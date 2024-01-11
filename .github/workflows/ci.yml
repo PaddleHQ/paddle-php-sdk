@@ -15,7 +15,8 @@ jobs:
   build:
     name: "Package stability ${{ matrix.stability }}"
     runs-on: ubuntu-latest
-    permissions: {}
+    permissions:
+      - contents: read
 
     strategy:
       matrix:
