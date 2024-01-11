@@ -1,0 +1,13 @@
+{
+  "name": "ChatApp Pro",
+  "tax_category": "saas",
+  "description": "Spend more time engaging with students with ChatApp Pro.",
+  "image_url": "https://paddle-sandbox.s3.amazonaws.com/pro.png",
+  "custom_data": {
+    "features": {
+      "reports": true,
+      "crm": true,
+      "data_retention": true
+    }
+  }
+}

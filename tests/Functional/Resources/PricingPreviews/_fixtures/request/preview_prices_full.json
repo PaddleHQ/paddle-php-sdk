@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "quantity": 20,
+            "price_id": "pri_01gsz8z1q1n00f12qt82y31smh"
+        },
+        {
+            "quantity": 1,
+            "price_id": "pri_01gsz98e27ak2tyhexptwc58yk"
+        }
+    ],
+    "customer_id": "ctm_01h25m0sar5845yv5j8zj5xwe1",
+    "address_id": "add_01h848pep46enq8y372x7maj0p",
+    "business_id": "biz_01hfvpm3fj1my86qqs1c32mzsp",
+    "currency_code": "USD",
+    "discount_id": "dsc_01gtgztp8fpchantd5g1wrksa3",
+    "address": {
+        "postal_code": "20149",
+        "country_code": "US"
+    },
+    "customer_ip_address": "34.232.58.13"
+}

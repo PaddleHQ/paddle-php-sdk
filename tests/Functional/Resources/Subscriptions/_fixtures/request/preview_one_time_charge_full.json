@@ -1,0 +1,17 @@
+{
+    "effective_from": "immediately",
+    "items": [
+        {
+            "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+            "quantity": 1
+        },
+        {
+            "price_id": "pri_01h7zdqstxe6djaefkqbkjy4k2",
+            "quantity": 10
+        },
+        {
+            "price_id": "pri_01h7zd9mzfq79850w4ryc39v38",
+            "quantity": 845
+        }
+    ]
+}

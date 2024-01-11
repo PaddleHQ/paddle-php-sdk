@@ -1,0 +1,19 @@
+{
+  "data": {
+    "id": "add_01h848pep46enq8y372x7maj0p",
+    "status": "active",
+    "description": "Head Office",
+    "first_line": "4050 Jefferson Plaza, 41st Floor",
+    "second_line": null,
+    "city": "New York",
+    "postal_code": "10021",
+    "region": "NY",
+    "country_code": "US",
+    "custom_data": null,
+    "created_at": "2023-08-18T12:07:36.9Z",
+    "updated_at": "2023-08-18T12:07:36.9Z"
+  },
+  "meta": {
+    "request_id": "f00bb3ca-399d-4686-889c-50b028f4c999"
+  }
+}

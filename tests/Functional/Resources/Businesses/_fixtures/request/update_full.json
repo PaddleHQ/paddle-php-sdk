@@ -1,0 +1,23 @@
+{
+    "name": "ChatApp Inc.",
+    "company_number": "555775291485",
+    "tax_identifier": "555952383",
+    "contacts": [
+        {
+            "name": "Parker Jones",
+            "email": "parker@example.com"
+        },
+        {
+            "name": "Jo Riley",
+            "email": "jo@example.com"
+        },
+        {
+            "name": "Jesse Garcia",
+            "email": "jo@example.com"
+        }
+    ],
+    "custom_data": {
+        "customer_reference_id": "abcd1234"
+    },
+    "status": "active"
+}

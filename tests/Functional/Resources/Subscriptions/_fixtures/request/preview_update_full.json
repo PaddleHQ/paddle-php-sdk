@@ -1,0 +1,22 @@
+{
+    "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+    "address_id": "add_01h848pep46enq8y372x7maj0p",
+    "business_id": null,
+    "currency_code": "GBP",
+    "next_billed_at": "2023-11-06T14:00:00.000000Z",
+    "discount": {
+        "id": "dsc_01h848pep46enq8y372x7maj0p",
+        "effective_from": "next_billing_period"
+    },
+    "collection_mode": "automatic",
+    "billing_details": null,
+    "scheduled_change": null,
+    "items": [
+        { "price_id": "pri_01gsz91wy9k1yn7kx82aafwvea", "quantity": 1 },
+        { "price_id": "pri_01gsz91wy9k1yn7kx82bafwvea", "quantity": 5 }
+    ],
+    "proration_billing_mode": "full_immediately",
+    "custom_data": {
+        "early_access": true
+    }
+}

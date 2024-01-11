@@ -1,0 +1,17 @@
+{
+    "description": "Nonprofit discount",
+    "enabled_for_checkout": true,
+    "type": "percentage",
+    "amount": "10",
+    "recur": true,
+    "currency_code": "USD",
+    "code": "ABCDE12345",
+    "maximum_recurring_intervals": 5,
+    "usage_limit": 1000,
+    "restrict_to": [
+        "pro_01gsz4t5hdjse780zja8vvr7jg",
+        "pro_01gsz4s0w61y0pp88528f1wvvb"
+    ],
+    "expires_at": "2025-01-01 10:00:00",
+    "status": "active"
+}

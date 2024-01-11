@@ -1,0 +1,458 @@
+{
+    "data": [
+        {
+            "id": "ntf_01h8bzam1z32agrxjwhjgqk8w6",
+            "type": "business.updated",
+            "status": "failed",
+            "payload": {
+                "data": {
+                    "id": "biz_01h84a7hr4pzhsajkm8tev89ev",
+                    "name": "ChatApp Inc.",
+                    "status": "active",
+                    "contacts": [
+                        {
+                            "name": "Parker Jones",
+                            "email": "parker@example.com"
+                        },
+                        {
+                            "name": "Jo Riley",
+                            "email": "jo@example.com"
+                        },
+                        {
+                            "name": "Jesse Garcia",
+                            "email": "jo@example.com"
+                        }
+                    ],
+                    "created_at": "2023-08-18T12:34:25.668Z",
+                    "updated_at": "2023-08-21T11:57:47.03542Z",
+                    "company_number": "555775291485",
+                    "tax_identifier": null
+                },
+                "event_id": "evt_01h8bzakzx3hm2fmen703n5q45",
+                "event_type": "business.updated",
+                "occurred_at": "2023-08-21T11:57:47.390028Z",
+                "notification_id": "ntf_01h8bzam1z32agrxjwhjgqk8w6"
+            },
+            "occurred_at": "2023-08-21T11:57:47.390028Z",
+            "delivered_at": null,
+            "replayed_at": null,
+            "origin": "event",
+            "last_attempt_at": "2023-08-21T12:15:53.620185Z",
+            "retry_at": null,
+            "times_attempted": 10,
+            "notification_setting_id": "ntfset_01h126ps19rp06wn89v9797mab"
+        },
+        {
+            "id": "ntf_01h8brhd934tvsvf8s5q7thd2r",
+            "type": "transaction.created",
+            "status": "delivered",
+            "payload": {
+                "data": {
+                    "id": "txn_01h8brhckjd6qk4n7e4py2340t",
+                    "items": [
+                        {
+                            "price": {
+                                "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                                "status": "active",
+                                "quantity": {
+                                    "maximum": 999,
+                                    "minimum": 10
+                                },
+                                "tax_mode": "account_setting",
+                                "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "unit_price": {
+                                    "amount": "3000",
+                                    "currency_code": "USD"
+                                },
+                                "description": "Monthly (per seat)",
+                                "name": "Monthly (per seat)",
+                                "trial_period": null,
+                                "billing_cycle": {
+                                    "interval": "month",
+                                    "frequency": 1
+                                },
+                                "unit_price_overrides": [
+                                    {
+                                        "unit_price": {
+                                            "amount": "5000",
+                                            "currency_code": "AUD"
+                                        },
+                                        "country_codes": [
+                                            "AU"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "proration": null
+                        },
+                        {
+                            "price": {
+                                "id": "pri_01h1vjfevh5etwq3rb416a23h2",
+                                "status": "active",
+                                "quantity": {
+                                    "maximum": 100,
+                                    "minimum": 1
+                                },
+                                "tax_mode": "account_setting",
+                                "product_id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                "unit_price": {
+                                    "amount": "10000",
+                                    "currency_code": "USD"
+                                },
+                                "description": "Monthly (recurring addon)",
+                                "name": "Monthly (recurring addon)",
+                                "trial_period": null,
+                                "billing_cycle": {
+                                    "interval": "month",
+                                    "frequency": 1
+                                },
+                                "unit_price_overrides": [
+                                    {
+                                        "unit_price": {
+                                            "amount": "20000",
+                                            "currency_code": "AUD"
+                                        },
+                                        "country_codes": [
+                                            "AU"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "price_id": "pri_01h1vjfevh5etwq3rb416a23h2",
+                            "quantity": 1,
+                            "proration": null
+                        },
+                        {
+                            "price": {
+                                "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                                "status": "active",
+                                "quantity": {
+                                    "maximum": 1,
+                                    "minimum": 1
+                                },
+                                "tax_mode": "account_setting",
+                                "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                                "unit_price": {
+                                    "amount": "19900",
+                                    "currency_code": "USD"
+                                },
+                                "description": "One-time charge",
+                                "name": "One-time charge",
+                                "trial_period": null,
+                                "billing_cycle": null,
+                                "unit_price_overrides": [
+                                    {
+                                        "unit_price": {
+                                            "amount": "40000",
+                                            "currency_code": "AUD"
+                                        },
+                                        "country_codes": [
+                                            "AU"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                            "quantity": 1,
+                            "proration": null
+                        }
+                    ],
+                    "origin": "web",
+                    "status": "draft",
+                    "details": {
+                        "totals": {
+                            "fee": null,
+                            "tax": "11980",
+                            "total": "71880",
+                            "credit": "0",
+                            "balance": "71880",
+                            "discount": "0",
+                            "earnings": null,
+                            "subtotal": "59900",
+                            "grand_total": "71880",
+                            "currency_code": "USD"
+                        },
+                        "line_items": [
+                            {
+                                "id": "txnitm_01h8brhcmxzjp7zy6zxa4rmb6w",
+                                "totals": {
+                                    "tax": "6000",
+                                    "total": "36000",
+                                    "discount": "0",
+                                    "subtotal": "30000"
+                                },
+                                "product": {
+                                    "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                    "name": "ChatApp Pro",
+                                    "status": "active",
+                                    "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                    "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                    "tax_category": "standard"
+                                },
+                                "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                                "quantity": 10,
+                                "tax_rate": "0.2",
+                                "unit_totals": {
+                                    "tax": "600",
+                                    "total": "3600",
+                                    "discount": "0",
+                                    "subtotal": "3000"
+                                }
+                            },
+                            {
+                                "id": "txnitm_01h8brhcmxzjp7zy6zxbxpks7d",
+                                "totals": {
+                                    "tax": "2000",
+                                    "total": "12000",
+                                    "discount": "0",
+                                    "subtotal": "10000"
+                                },
+                                "product": {
+                                    "id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                    "name": "Voice rooms addon",
+                                    "status": "active",
+                                    "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/GcZzBjXRfiraensppgtQ_icon2.png",
+                                    "description": "Create voice rooms in your chats to work in real time alongside your colleagues. Includes unlimited voice rooms and recording backup for compliance.",
+                                    "tax_category": "standard"
+                                },
+                                "price_id": "pri_01h1vjfevh5etwq3rb416a23h2",
+                                "quantity": 1,
+                                "tax_rate": "0.2",
+                                "unit_totals": {
+                                    "tax": "2000",
+                                    "total": "12000",
+                                    "discount": "0",
+                                    "subtotal": "10000"
+                                }
+                            },
+                            {
+                                "id": "txnitm_01h8brhcmxzjp7zy6zxdm1d0wt",
+                                "totals": {
+                                    "tax": "3980",
+                                    "total": "23880",
+                                    "discount": "0",
+                                    "subtotal": "19900"
+                                },
+                                "product": {
+                                    "id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                                    "name": "Custom domains",
+                                    "status": "active",
+                                    "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                    "description": "Make ChatApp truly your own with custom domains! Custom domains reinforce your brand identity and make it easy for your team to access ChatApp.",
+                                    "tax_category": "standard"
+                                },
+                                "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                                "quantity": 1,
+                                "tax_rate": "0.2",
+                                "unit_totals": {
+                                    "tax": "3980",
+                                    "total": "23880",
+                                    "discount": "0",
+                                    "subtotal": "19900"
+                                }
+                            }
+                        ],
+                        "payout_totals": null,
+                        "tax_rates_used": [
+                            {
+                                "totals": {
+                                    "tax": "11980",
+                                    "total": "71880",
+                                    "discount": "0",
+                                    "subtotal": "59900"
+                                },
+                                "tax_rate": "0.2"
+                            }
+                        ]
+                    },
+                    "checkout": {
+                        "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01h8brhckjd6qk4n7e4py2340t"
+                    },
+                    "payments": [],
+                    "billed_at": null,
+                    "address_id": null,
+                    "created_at": "2023-08-21T09:59:09.237822398Z",
+                    "invoice_id": null,
+                    "updated_at": "2023-08-21T09:59:09.237822398Z",
+                    "business_id": null,
+                    "custom_data": null,
+                    "customer_id": null,
+                    "discount_id": null,
+                    "currency_code": "USD",
+                    "billing_period": null,
+                    "invoice_number": null,
+                    "billing_details": null,
+                    "collection_mode": "automatic",
+                    "subscription_id": null
+                },
+                "event_id": "evt_01h8brhd6mj4frv1dg3cghcrs3",
+                "event_type": "transaction.created",
+                "occurred_at": "2023-08-21T09:59:09.781003Z",
+                "notification_id": "ntf_01h8brhd934tvsvf8s5q7thd2r"
+            },
+            "occurred_at": "2023-08-21T09:59:09.781003Z",
+            "delivered_at": "2023-08-21T09:59:10.316373Z",
+            "replayed_at": null,
+            "origin": "event",
+            "last_attempt_at": "2023-08-21T09:59:09.902732Z",
+            "retry_at": null,
+            "times_attempted": 1,
+            "notification_setting_id": "ntfset_01h7zcdzf04a7wvyja9k9p1n3p"
+        },
+        {
+            "id": "ntf_01h8bkrfe7w1vwf8xmytwn51e7",
+            "type": "product.updated",
+            "status": "failed",
+            "payload": {
+                "data": {
+                    "id": "pro_01h7zcgmdc6tmwtjehp3sh7azf",
+                    "name": "ChatApp for Schools",
+                    "status": "archived",
+                    "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                    "created_at": "2023-08-16T14:38:08.3Z",
+                    "custom_data": {
+                        "features": {
+                            "crm": false,
+                            "reports": true,
+                            "data_retention": true
+                        }
+                    },
+                    "description": "Spend more time engaging with students with ChataApp Education. Includes features from our Pro plan, plus tools to help educators track student progress.",
+                    "tax_category": "standard"
+                },
+                "event_id": "evt_01h8bkrfbwtaram1w8m7qekytx",
+                "event_type": "product.updated",
+                "occurred_at": "2023-08-21T08:35:38.493036Z",
+                "notification_id": "ntf_01h8bkrfe7w1vwf8xmytwn51e7"
+            },
+            "occurred_at": "2023-08-21T08:35:38.493036Z",
+            "delivered_at": null,
+            "replayed_at": null,
+            "origin": "event",
+            "last_attempt_at": "2023-08-21T08:53:50.759289Z",
+            "retry_at": null,
+            "times_attempted": 10,
+            "notification_setting_id": "ntfset_01gt21c5pdx9q1e4mh1xrsjjn6"
+        },
+        {
+            "id": "ntf_01h84cka91b65gy90qhe2tw2q6",
+            "type": "subscription.trialing",
+            "status": "delivered",
+            "payload": {
+                "data": {
+                    "id": "sub_01h84ck8sg4ebkpzqb9x2mtjjf",
+                    "items": [
+                        {
+                            "price": {
+                                "id": "pri_01h84cdy3xatsp16afda2gekzy",
+                                "tax_mode": "account_setting",
+                                "product_id": "pro_01h84cd36f900f3wmpdfamgv8w",
+                                "unit_price": {
+                                    "amount": "0",
+                                    "currency_code": "USD"
+                                },
+                                "description": "Annual plan",
+                                "trial_period": {
+                                    "interval": "day",
+                                    "frequency": 10
+                                },
+                                "billing_cycle": {
+                                    "interval": "year",
+                                    "frequency": 1
+                                }
+                            },
+                            "status": "trialing",
+                            "quantity": 1,
+                            "recurring": true,
+                            "created_at": "2023-08-18T13:15:46.864164Z",
+                            "updated_at": "2023-08-18T13:15:46.864164Z",
+                            "trial_dates": {
+                                "ends_at": "2023-08-28T13:15:46.864158Z",
+                                "starts_at": "2023-08-18T13:15:46.864158Z"
+                            },
+                            "next_billed_at": "2023-08-28T13:15:46.864158Z",
+                            "previously_billed_at": null
+                        }
+                    ],
+                    "status": "trialing",
+                    "paused_at": null,
+                    "address_id": "add_01h84cjfy5411jpjes4hmafqry",
+                    "created_at": "2023-08-18T13:15:46.864163Z",
+                    "started_at": "2023-08-18T13:15:46.864158Z",
+                    "updated_at": "2023-08-18T13:15:46.864163Z",
+                    "business_id": null,
+                    "canceled_at": null,
+                    "custom_data": null,
+                    "customer_id": "ctm_01h84cjfwmdph1k8kgsyjt3k7g",
+                    "billing_cycle": {
+                        "interval": "year",
+                        "frequency": 1
+                    },
+                    "currency_code": "USD",
+                    "next_billed_at": "2023-08-28T13:15:46.864158Z",
+                    "billing_details": null,
+                    "collection_mode": "automatic",
+                    "first_billed_at": null,
+                    "scheduled_change": null,
+                    "current_billing_period": {
+                        "ends_at": "2023-08-28T13:15:46.864158Z",
+                        "starts_at": "2023-08-18T13:15:46.864158Z"
+                    },
+                    "import_meta": null
+                },
+                "event_id": "evt_01h84cka4p40e737vm1ajb2bc5",
+                "event_type": "subscription.trialing",
+                "occurred_at": "2023-08-18T13:15:48.246292Z",
+                "notification_id": "ntf_01h84cka91b65gy90qhe2tw2q6"
+            },
+            "occurred_at": "2023-08-18T13:15:48.246292Z",
+            "delivered_at": "2023-08-18T13:15:49.043358Z",
+            "replayed_at": null,
+            "origin": "event",
+            "last_attempt_at": "2023-08-18T13:15:48.446347Z",
+            "retry_at": null,
+            "times_attempted": 1,
+            "notification_setting_id": "ntfset_01h7hssm6xememp4cx2h562hvq"
+        },
+        {
+            "id": "ntf_01h8441jz6fr97hv7zemswj8cw",
+            "type": "customer.created",
+            "status": "delivered",
+            "payload": {
+                "data": {
+                    "id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+                    "name": "Sam Miller",
+                    "email": "sam@example.com",
+                    "locale": "en",
+                    "status": "active",
+                    "created_at": "2023-08-18T10:46:18.533Z",
+                    "updated_at": "2023-08-18T10:46:18.533Z",
+                    "marketing_consent": false
+                },
+                "event_id": "evt_01h8441jx8x1q971q9ksksqh82",
+                "event_type": "customer.created",
+                "occurred_at": "2023-08-18T10:46:18.792661Z",
+                "notification_id": "ntf_01h8441jz6fr97hv7zemswj8cw"
+            },
+            "occurred_at": "2023-08-18T10:46:18.792661Z",
+            "delivered_at": "2023-08-18T10:46:19.396422Z",
+            "replayed_at": null,
+            "origin": "event",
+            "last_attempt_at": "2023-08-18T10:46:18.887423Z",
+            "retry_at": null,
+            "times_attempted": 1,
+            "notification_setting_id": "ntfset_01h7zcdzf04a7wvyja9k9p1n3p"
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "per_page": 50,
+            "estimated_total": 5,
+            "next": "http://api.paddle.com/notifications?after=ntf_01h8441jz6fr97hv7zemswj8cw",
+            "has_more": false
+        },
+        "request_id": "21279f36-3eee-4828-943b-e2a9a6df4fce"
+    }
+}

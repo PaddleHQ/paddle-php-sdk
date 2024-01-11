@@ -1,0 +1,27 @@
+{
+    "data": {
+        "id": "dsc_01h83xenpcfjyhkqr4x214m02x",
+        "status": "active",
+        "description": "Nonprofit discount",
+        "enabled_for_checkout": true,
+        "code": "4Y3ZR24Q4R",
+        "type": "percentage",
+        "amount": "10",
+        "currency_code": "USD",
+        "recur": true,
+        "maximum_recurring_intervals": null,
+        "usage_limit": null,
+        "restrict_to": [
+            "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "pro_01gsz4s0w61y0pp88528f1wvvb"
+        ],
+        "expires_at": null,
+        "times_used": 0,
+        "custom_data": null,
+        "created_at": "2023-08-18T08:51:07.596Z",
+        "updated_at": "2023-08-18T08:51:07.596Z"
+    },
+    "meta": {
+        "request_id": "badf3eb7-3eb8-4d4a-92f9-bc798790b7bc"
+    }
+}

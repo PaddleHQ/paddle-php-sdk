@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "id": "ctm_01h844q4mznqpgqgm6evgw1w63",
+      "status": "active",
+      "custom_data": {
+        "customer_reference_id": "abcd1234"
+      },
+      "name": "Jamie Price",
+      "email": "test3@example.com",
+      "marketing_consent": false,
+      "locale": "en",
+      "created_at": "2023-08-18T10:58:05.087Z",
+      "updated_at": "2023-08-18T10:58:05.087Z"
+    },
+    {
+      "id": "ctm_01h844p3h41s12zs5mn4axja51",
+      "status": "active",
+      "custom_data": null,
+      "name": "Alex Wilson",
+      "email": "test2@example.com",
+      "marketing_consent": false,
+      "locale": "en",
+      "created_at": "2023-08-18T10:57:31.172Z",
+      "updated_at": "2023-08-18T10:57:31.172Z"
+    },
+    {
+      "id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+      "status": "active",
+      "custom_data": null,
+      "name": "Sam Miller",
+      "email": "sam@example.com",
+      "marketing_consent": false,
+      "locale": "en",
+      "created_at": "2023-08-18T10:46:18.533Z",
+      "updated_at": "2023-08-18T10:46:18.533Z"
+    }
+  ],
+  "meta": {
+    "request_id": "91d95663-e2df-4769-a81b-b6f340b782c9",
+    "pagination": {
+      "per_page": 50,
+      "next": "https://api.paddle.com/customers?after=ctm_01h8441jn5pcwrfhwh78jqt8hk",
+      "has_more": false,
+      "estimated_total": 3
+    }
+  }
+}

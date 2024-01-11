@@ -1,0 +1,9 @@
+{
+  "status": "active",
+  "email": "test1@example.com",
+  "name": "Alex Wilson",
+  "custom_data": {
+    "customer_reference_id": "abcd1234"
+  },
+  "locale": "el"
+}

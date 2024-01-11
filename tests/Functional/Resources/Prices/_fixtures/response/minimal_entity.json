@@ -1,0 +1,28 @@
+{
+  "data": {
+    "id": "pri_01he6fm50df5cjmwdy3v3p1z1t",
+    "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+    "description": "Monthly (per seat)",
+    "name": null,
+    "billing_cycle": {
+      "interval": "month",
+      "frequency": 1
+    },
+    "trial_period": null,
+    "tax_mode": "account_setting",
+    "unit_price": {
+      "amount": "500",
+      "currency_code": "USD"
+    },
+    "unit_price_overrides": [],
+    "custom_data": null,
+    "status": "active",
+    "quantity": {
+      "minimum": 1,
+      "maximum": 100
+    }
+  },
+  "meta": {
+    "request_id": "119db08f-5a82-4993-9dfa-72ec694af98b"
+  }
+}

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  schedule:
+    - cron: '0 10 * * *'
+
+jobs:
+  build:
+    name: "Package stability ${{ matrix.stability }}"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        stability: [ 'stable', 'lowest' ]
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Build Container
+        run: make build
+
+      - name: Install Dependencies
+        run: COMPOSER_STABILITY=${{ matrix.stability }} make install
+
+      - name: Run Linter
+        run: make lint
+
+      - name: Run Static Analysis
+        run: make stan
+
+      - name: Run Tests
+        run: make test

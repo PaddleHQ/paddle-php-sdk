@@ -1,0 +1,65 @@
+{
+  "data": {
+    "id": "pri_01he6hp8cg49jjf1pdjf6d5yw1",
+    "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+    "description": "Weekly (per seat)",
+    "name": null,
+    "billing_cycle": {
+      "interval": "week",
+      "frequency": 1
+    },
+    "trial_period": {
+      "interval": "week",
+      "frequency": 1
+    },
+    "tax_mode": "account_setting",
+    "unit_price": {
+      "amount": "1000",
+      "currency_code": "GBP"
+    },
+    "unit_price_overrides": [
+      {
+        "country_codes": [
+          "CA",
+          "US"
+        ],
+        "unit_price": {
+          "amount": "5000",
+          "currency_code": "USD"
+        }
+      }
+    ],
+    "custom_data": {
+      "foo": "bar"
+    },
+    "status": "active",
+    "quantity": {
+      "minimum": 1,
+      "maximum": 1
+    },
+    "product": {
+      "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+      "name": "ChatApp Pro",
+      "tax_category": "standard",
+      "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+      "image_url": "https://paddle-sandbox.s3.amazonaws.com/2nmP8MQSret0aWeDemRw_icon1.png",
+      "custom_data": {
+        "features": {
+          "crm": true,
+          "data_retention": false,
+          "reports": true
+        },
+        "suggested_addons": [
+          "pro_01h1vjes1y163xfj1rh1tkfb65",
+          "pro_01gsz97mq9pa4fkyy0wqenepkz"
+        ],
+        "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+      },
+      "status": "active",
+      "created_at": "2023-02-23T12:43:46.605Z"
+    }
+  },
+  "meta": {
+    "request_id": "aad79720-fb1b-4cf5-a770-15505251eb9e"
+  }
+}

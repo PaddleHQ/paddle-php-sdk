@@ -1,0 +1,10 @@
+{
+    "type": "transactions",
+    "filters": [
+        {
+            "name": "updated_at",
+            "value": "2023-12-30",
+            "operator": "lt"
+        }
+    ]
+}

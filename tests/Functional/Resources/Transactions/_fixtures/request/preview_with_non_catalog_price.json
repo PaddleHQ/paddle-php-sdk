@@ -1,0 +1,29 @@
+{
+    "items": [
+        {
+            "quantity": 20,
+            "price": {
+                "description": "Annual (per seat)",
+                "name": "Annual (per seat)",
+                "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                "billing_cycle": {
+                    "interval": "year",
+                    "frequency": 1
+                },
+                "trial_period": null,
+                "tax_mode": "account_setting",
+                "unit_price": {
+                    "amount": "30000",
+                    "currency_code": "USD"
+                },
+                "unit_price_overrides": [],
+                "quantity": {
+                    "minimum": 10,
+                    "maximum": 999
+                },
+                "custom_data": null
+            },
+            "include_in_totals": true
+        }
+    ]
+}

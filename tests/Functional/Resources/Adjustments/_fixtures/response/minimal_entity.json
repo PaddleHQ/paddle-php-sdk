@@ -1,0 +1,47 @@
+{
+    "data": {
+        "id": "adj_01h8c65c2ggq5nxswnnwv78e75",
+        "action": "refund",
+        "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
+        "subscription_id": "sub_01h8bxswamxysj44zt5n48njwh",
+        "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+        "reason": "error",
+        "currency_code": "USD",
+        "status": "pending_approval",
+        "items": [
+            {
+                "id": "adjitm_01h8c65c2ggq5nxswnnz4kxkkr",
+                "item_id": "txnitm_01h8bxryv3065dyh6103p3yg28",
+                "type": "partial",
+                "amount": "100",
+                "proration": null,
+                "totals": {
+                    "subtotal": "92",
+                    "tax": "8",
+                    "total": "100"
+                }
+            }
+        ],
+        "totals": {
+            "subtotal": "92",
+            "tax": "8",
+            "total": "100",
+            "fee": "5",
+            "earnings": "87",
+            "currency_code": "USD"
+        },
+        "payout_totals": {
+            "subtotal": "92",
+            "tax": "8",
+            "total": "100",
+            "fee": "5",
+            "earnings": "87",
+            "currency_code": "USD"
+        },
+        "created_at": "2023-08-21T13:57:15.489634Z",
+        "updated_at": "0001-01-01T00:00:00Z"
+    },
+    "meta": {
+        "request_id": "4ec9ff32-c88a-4eef-93b6-d8b99b5fba4b"
+    }
+}

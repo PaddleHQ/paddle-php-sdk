@@ -1,0 +1,222 @@
+{
+  "data": {
+    "id": "sub_01heb0tj9w00j33bfbq3469cy0",
+    "status": "active",
+    "customer_id": "ctm_01heaqwvb9kv4dv4v67m738dta",
+    "address_id": "add_01heaqx50ad2sbsmf68saya8v2",
+    "business_id": null,
+    "currency_code": "USD",
+    "created_at": "2023-11-03T16:38:55.036Z",
+    "updated_at": "2023-11-24T16:38:53.111897Z",
+    "started_at": "2023-11-03T16:38:53.111897Z",
+    "first_billed_at": "2023-11-03T16:38:53.111897Z",
+    "next_billed_at": "2023-12-03T16:38:53.111897Z",
+    "paused_at": null,
+    "canceled_at": null,
+    "collection_mode": "automatic",
+    "billing_details": null,
+    "current_billing_period": {
+      "starts_at": "2023-11-03T16:38:53.111897Z",
+      "ends_at": "2023-12-03T16:38:53.111897Z"
+    },
+    "billing_cycle": {
+      "frequency": 1,
+      "interval": "month"
+    },
+    "next_transaction": {
+      "billing_period": {
+        "starts_at": "2023-12-03T16:38:53.111897Z",
+        "ends_at": "2024-01-03T16:38:53.111897Z"
+      },
+      "details": {
+        "tax_rates_used": [
+          {
+            "tax_rate": "0.2",
+            "totals": {
+              "subtotal": "41667",
+              "discount": "0",
+              "tax": "8333",
+              "total": "50000"
+            }
+          }
+        ],
+        "totals": {
+          "subtotal": "41667",
+          "tax": "8333",
+          "discount": "0",
+          "total": "50000",
+          "fee": null,
+          "credit": "0",
+          "credit_to_balance": "0",
+          "balance": "50000",
+          "grand_total": "50000",
+          "earnings": null,
+          "currency_code": "USD",
+          "exchange_rate": "1"
+        },
+        "line_items": [
+          {
+            "item_id": null,
+            "price_id": "pri_01heb0e913gej56emc8tjrkaq1",
+            "quantity": 5,
+            "totals": {
+              "subtotal": "16667",
+              "tax": "3333",
+              "discount": "0",
+              "total": "20000"
+            },
+            "product": {
+              "id": "pro_01heb0cesy14mwnpyps6ee3hdc",
+              "name": " Basic Plan Product",
+              "description": "This is a description of my fav product",
+              "tax_category": "standard",
+              "image_url": "http://example.com",
+              "status": "active"
+            },
+            "tax_rate": "0.2",
+            "unit_totals": {
+              "subtotal": "3333",
+              "discount": "0",
+              "tax": "667",
+              "total": "4000"
+            },
+            "proration": {
+              "rate": "1",
+              "billing_period": {
+                "starts_at": "2023-12-03T16:38:53.111897Z",
+                "ends_at": "2024-01-03T16:38:53.111897Z"
+              }
+            }
+          },
+          {
+            "item_id": null,
+            "price_id": "pri_01heb0fkqcnj94ykp5c3r8e0ja",
+            "quantity": 10,
+            "totals": {
+              "subtotal": "25000",
+              "tax": "5000",
+              "discount": "0",
+              "total": "30000"
+            },
+            "product": {
+              "id": "pro_01heb0eqkjnw4pwgshghq87qga",
+              "name": "Recurring Addon Test",
+              "description": "",
+              "tax_category": "standard",
+              "image_url": "",
+              "status": "active"
+            },
+            "tax_rate": "0.2",
+            "unit_totals": {
+              "subtotal": "2500",
+              "discount": "0",
+              "tax": "500",
+              "total": "3000"
+            },
+            "proration": {
+              "rate": "1",
+              "billing_period": {
+                "starts_at": "2023-12-03T16:38:53.111897Z",
+                "ends_at": "2024-01-03T16:38:53.111897Z"
+              }
+            }
+          }
+        ]
+      },
+      "adjustments":  [
+        {
+          "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
+          "items": [
+            {
+              "item_id": "txnitm_01h8bxryv3065dyh6103p3yg28",
+              "type": "proration",
+              "amount": "97987",
+              "proration": {
+                "rate": "1",
+                "billing_period": {
+                  "starts_at": "2023-08-21T11:31:59.284Z",
+                  "ends_at": "2023-09-21T11:31:08.689295Z"
+                }
+              },
+              "totals": {
+                "subtotal": "90000",
+                "tax": "7987",
+                "total": "97987"
+              }
+            }
+          ],
+          "totals": {
+            "subtotal": "90000",
+            "tax": "7987",
+            "total": "97987",
+            "fee": "4949",
+            "earnings": "85051",
+            "currency_code": "USD"
+          }
+        }
+      ]
+    },
+    "scheduled_change": null,
+    "items": [
+      {
+        "status": "active",
+        "quantity": 5,
+        "recurring": true,
+        "created_at": "2023-11-03T16:38:55.036Z",
+        "updated_at": "2023-11-03T16:38:55.036Z",
+        "previously_billed_at": "2023-11-03T16:38:53.111897Z",
+        "next_billed_at": "2023-12-03T16:38:53.111897Z",
+        "trial_dates": null,
+        "price": {
+          "id": "pri_01heb0e913gej56emc8tjrkaqa",
+          "product_id": "pro_01heb0cesy14mwnpyps6ee3hda",
+          "description": "basic plan",
+          "tax_mode": "internal",
+          "billing_cycle": {
+            "frequency": 1,
+            "interval": "month"
+          },
+          "trial_period": null,
+          "unit_price": {
+            "amount": "4000",
+            "currency_code": "USD"
+          }
+        }
+      },
+      {
+        "status": "active",
+        "quantity": 10,
+        "recurring": true,
+        "created_at": "2023-11-03T16:38:55.036Z",
+        "updated_at": "2023-11-03T16:38:55.036Z",
+        "previously_billed_at": "2023-11-03T16:38:53.111897Z",
+        "next_billed_at": "2023-12-03T16:38:53.111897Z",
+        "trial_dates": null,
+        "price": {
+          "id": "pri_01heb0fkqcnj94ykp5c3r8e0ja",
+          "product_id": "pro_01heb0eqkjnw4pwgshghq87qga",
+          "description": "recurring addon",
+          "tax_mode": "internal",
+          "billing_cycle": {
+            "frequency": 1,
+            "interval": "month"
+          },
+          "trial_period": null,
+          "unit_price": {
+            "amount": "3000",
+            "currency_code": "USD"
+          }
+        }
+      }
+    ],
+    "custom_data": null,
+    "management_urls": {
+      "update_payment_method": "https://buyer-portal.paddle.com/subscriptions/sub_01heb0tj9w00j33bfbq3469cy0/update-payment-method?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6InBnYV8wMWhlanBja2s1Z2trYmZhcWhhYXgyNnJlYSIsInNlbGxlci1pZCI6IjUwNiIsInR5cGUiOiJzdGFuZGFyZCIsInZlcnNpb24iOiIxIiwidXNhZ2UiOiJtYW5hZ2VtZW50X3VybCIsInNjb3BlIjoiY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQudXBkYXRlIGN1c3RvbWVyLnN1YnNjcmlwdGlvbi1wYXltZW50LnJlYWQgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLWNhbmNlbC5jcmVhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLnJlYWQiLCJpc3MiOiJndWVzdGFjY2Vzcy1zZXJ2aWNlIiwic3ViIjoiY3RtXzAxaGVhcXd2YjlrdjRkdjR2NjdtNzM4ZHR2IiwiZXhwIjoxNzMyNzE3OTEyLCJpYXQiOjE2OTkyODcwMjd9.YX52k0BnP5KqXmaCKK7MBsvXMnxXDw0q_ZYKV25zkjLSzmAYG0ME1flRqj8b5WcoeFJLI8z0UPAhtFqys30XCA",
+      "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01heb0tj9w00j33bfbq3469cy0/cancel?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6InBnYV8wMWhlanBja2s1Z2trYmZhcWhhYXgyNnJlYSIsInNlbGxlci1pZCI6IjUwNiIsInR5cGUiOiJzdGFuZGFyZCIsInZlcnNpb24iOiIxIiwidXNhZ2UiOiJtYW5hZ2VtZW50X3VybCIsInNjb3BlIjoiY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQudXBkYXRlIGN1c3RvbWVyLnN1YnNjcmlwdGlvbi1wYXltZW50LnJlYWQgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLWNhbmNlbC5jcmVhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLnJlYWQiLCJpc3MiOiJndWVzdGFjY2Vzcy1zZXJ2aWNlIiwic3ViIjoiY3RtXzAxaGVhcXd2YjlrdjRkdjR2NjdtNzM4ZHR2IiwiZXhwIjoxNzMyNzE3OTEyLCJpYXQiOjE2OTkyODcwMjd9.YX52k0BnP5KqXmaCKK7MBsvXMnxXDw0q_ZYKV25zkjLSzmAYG0ME1flRqj8b5WcoeFJLI8z0UPAhtFqys30XCA"
+    },
+    "discount": null
+  },
+  "meta": {
+    "request_id": "1e465507-6d78-4553-9186-8ac8dfa02318"
+  }
+}

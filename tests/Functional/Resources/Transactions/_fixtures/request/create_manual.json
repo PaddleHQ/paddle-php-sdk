@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "quantity": 1,
+            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke"
+        }
+    ],
+    "status": "billed",
+    "customer_id": "ctm_01he849dseyj0zgrc589eeb1c7",
+    "address_id": "add_01hen28ebw1ew99y295jhd4n3n",
+    "business_id": "biz_01hen2ng2290g84twtefdn5s00",
+    "currency_code": "GBP",
+    "collection_mode": "manual",
+    "discount_id": "dsc_01hen7bjzh12m0v2peer15d9qt",
+    "billing_details": {
+        "additional_information": null,
+        "enable_checkout": true,
+        "purchase_order_number": "10009",
+        "payment_terms": {
+            "interval": "month",
+            "frequency": 1
+        }
+    }
+}

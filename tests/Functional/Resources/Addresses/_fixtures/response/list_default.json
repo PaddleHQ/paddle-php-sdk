@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": "add_01h848pep46enq8y372x7maj0p",
+      "status": "active",
+      "description": "Head Office",
+      "first_line": "4050 Jefferson Plaza, 41st Floor",
+      "second_line": null,
+      "city": "New York",
+      "postal_code": "10021",
+      "region": "NY",
+      "country_code": "US",
+      "custom_data": null,
+      "created_at": "2023-08-18T12:07:36.9Z",
+      "updated_at": "2023-08-18T12:07:36.9Z"
+    },
+    {
+      "id": "add_01h8494f4w5rwfp8b12yqh8fp1",
+      "status": "active",
+      "description": "London Office",
+      "first_line": "81 Richmond Road",
+      "second_line": null,
+      "city": "Shoreditch",
+      "postal_code": "E1 1EK",
+      "region": "London",
+      "country_code": "GB",
+      "custom_data": null,
+      "created_at": "2023-08-18T12:15:16.124Z",
+      "updated_at": "2023-08-18T12:15:16.124Z"
+    }
+  ],
+  "meta": {
+    "request_id": "26a794f3-c26d-4c06-aac0-81d8e0b7ffbd",
+    "pagination": {
+      "per_page": 50,
+      "next": "https://api.paddle.com/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?after=add_01h8494f4w5rwfp8b12yqh8fp1",
+      "has_more": false,
+      "estimated_total": 2
+    }
+  }
+}

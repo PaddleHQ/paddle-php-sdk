@@ -1,0 +1,83 @@
+{
+  "data": [
+    {
+      "id": "ntflog_01h8c0bswct46cwamynrzs6fwr",
+      "response_code": 200,
+      "response_content_type": "text/plain; charset=UTF-8",
+      "response_body": "",
+      "attempted_at": "2023-08-21T12:15:54.764232Z"
+    },
+    {
+      "id": "ntflog_01h8c04xjj1ybcgsawp54h5zkr",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T12:12:09.170559Z"
+    },
+    {
+      "id": "ntflog_01h8bzyx2g57ywng4edfnpycya",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T12:08:52.049462Z"
+    },
+    {
+      "id": "ntflog_01h8bzsp45tvprvrra1jq5m2n5",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T12:06:01.093936Z"
+    },
+    {
+      "id": "ntflog_01h8bzn9vr2j0hav6bqjvmfhwj",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T12:03:37.464996Z"
+    },
+    {
+      "id": "ntflog_01h8bzhqdt790wtmepa10we4ed",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T12:01:40.282965Z"
+    },
+    {
+      "id": "ntflog_01h8bzey4xs3txscjw7td3793c",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T12:00:08.861949Z"
+    },
+    {
+      "id": "ntflog_01h8bzcx9gwtcvf000ngvacnnw",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T11:59:02.448596Z"
+    },
+    {
+      "id": "ntflog_01h8bzb80ns1dtwmjsx311ztcw",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T11:58:07.893473Z"
+    },
+    {
+      "id": "ntflog_01h8bzame8ykt2zw5a11mxs110",
+      "response_code": 404,
+      "response_content_type": "application/json",
+      "response_body": "{\"success\":false,\"error\":{\"message\":\"Token not found\",\"id\":null}}",
+      "attempted_at": "2023-08-21T11:57:47.848991Z"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "per_page": 50,
+      "estimated_total": 10,
+      "next": "http://api.paddle.com/notifications/ntf_01h8bzam1z32agrxjwhjgqk8w6/logs?after=ntflog_01h8bzame8ykt2zw5a11mxs110",
+      "has_more": false
+    },
+    "request_id": "b12dc646-6131-4801-b76a-b717d1aff37c"
+  }
+}

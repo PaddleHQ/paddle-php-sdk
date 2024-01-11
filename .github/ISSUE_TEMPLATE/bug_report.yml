@@ -1,0 +1,71 @@
+name: Bug report
+description: Create a bug report to help us improve
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: Brief description of the bug and its impact.
+      placeholder: A clear and concise description of what is happening.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Explain the steps to recreate the issue.
+      placeholder: |
+        1. Create entity ... 
+        2. Get entity ...
+        3. See error ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: code-snippets
+    attributes:
+      label: Code snippets
+      description: If applicable, add code snippets to help explain your problem.
+      render: PHP
+    validations:
+      required: false
+  - type: input
+    id: language-version
+    attributes:
+      label: PHP version
+      placeholder: PHP 8.1
+    validations:
+      required: true
+  - type: input
+    id: sdk-version
+    attributes:
+      label: SDK version
+      placeholder: paddle-php-sdk 1.20.1
+    validations:
+      required: true
+  - type: input
+    id: api-version
+    attributes:
+      label: API version
+      description: See [Versioning](https://developer.paddle.com/api-reference/about/versioning) in the API Reference to find which version you're using
+      placeholder: "Paddle Version 1"
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+    validations:
+      required: false

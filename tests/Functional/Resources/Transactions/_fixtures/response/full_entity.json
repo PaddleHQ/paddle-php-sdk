@@ -1,0 +1,165 @@
+{
+  "data": {
+    "id": "txn_01hen7bxc1p8ep4yk7n5jbzk9r",
+    "status": "billed",
+    "customer_id": "ctm_01he849dseyj0zgrc589eeb1c7",
+    "address_id": "add_01hen28ebw1ew99y295jhd4n3n",
+    "business_id": "biz_01hen2ng2290g84twtefdn5s00",
+    "custom_data": null,
+    "origin": "api",
+    "collection_mode": "manual",
+    "subscription_id": "sub_01hen7byqyfeh7d0cw0qg8tphh",
+    "invoice_id": "inv_01hen7bys9g6d2xkj9n208e2yw",
+    "invoice_number": "325-10261",
+    "billing_details": {
+      "enable_checkout": true,
+      "payment_terms": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "purchase_order_number": "10009",
+      "additional_information": null
+    },
+    "billing_period": {
+      "starts_at": "2023-11-07T15:45:40.606Z",
+      "ends_at": "2023-12-07T15:45:40.606Z"
+    },
+    "currency_code": "GBP",
+    "discount_id": "dsc_01hen7bjzh12m0v2peer15d9qt",
+    "created_at": "2023-11-07T15:45:39.297512Z",
+    "updated_at": "2023-11-07T15:45:45.086499Z",
+    "billed_at": "2023-11-07T15:45:39.201442Z",
+    "items": [
+      {
+        "price": {
+          "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "description": "Monthly (per seat)",
+          "name": null,
+          "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "billing_cycle": {
+            "interval": "month",
+            "frequency": 1
+          },
+          "trial_period": null,
+          "tax_mode": "account_setting",
+          "unit_price": {
+            "amount": "3000",
+            "currency_code": "USD"
+          },
+          "unit_price_overrides": [
+            {
+              "country_codes": [
+                "AU"
+              ],
+              "unit_price": {
+                "amount": "5000",
+                "currency_code": "AUD"
+              }
+            }
+          ],
+          "custom_data": {
+            "features": {
+              "crm": true,
+              "data_retention": false,
+              "reports": true
+            },
+            "suggested_addons": [
+              "pro_01h1vjes1y163xfj1rh1tkfb65",
+              "pro_01gsz97mq9pa4fkyy0wqenepkz"
+            ],
+            "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+          },
+          "quantity": {
+            "minimum": 1,
+            "maximum": 999
+          },
+          "status": "active"
+        },
+        "quantity": 1
+      }
+    ],
+    "details": {
+      "tax_rates_used": [
+        {
+          "tax_rate": "0.2",
+          "totals": {
+            "subtotal": "2439",
+            "discount": "10",
+            "tax": "486",
+            "total": "2915"
+          }
+        }
+      ],
+      "totals": {
+        "subtotal": "2439",
+        "tax": "486",
+        "discount": "10",
+        "total": "2915",
+        "grand_total": "2915",
+        "fee": null,
+        "credit": "0",
+        "balance": "2915",
+        "earnings": null,
+        "currency_code": "GBP"
+      },
+      "adjusted_totals": {
+        "subtotal": "2429",
+        "tax": "486",
+        "total": "2915",
+        "grand_total": "2915",
+        "fee": "0",
+        "earnings": "0",
+        "currency_code": "GBP"
+      },
+      "payout_totals": null,
+      "adjusted_payout_totals": null,
+      "line_items": [
+        {
+          "id": "txnitm_01hen7bxecbsbdd65s8qhyv7jw",
+          "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "quantity": 1,
+          "totals": {
+            "subtotal": "2439",
+            "tax": "486",
+            "discount": "10",
+            "total": "2915"
+          },
+          "product": {
+            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "name": "ChatApp Pro",
+            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+            "tax_category": "standard",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+            "custom_data": {
+              "features": {
+                "crm": true,
+                "data_retention": false,
+                "reports": true
+              },
+              "suggested_addons": [
+                "pro_01h1vjes1y163xfj1rh1tkfb65",
+                "pro_01gsz97mq9pa4fkyy0wqenepkz"
+              ],
+              "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+            },
+            "status": "active"
+          },
+          "tax_rate": "0.2",
+          "unit_totals": {
+            "subtotal": "2439",
+            "tax": "486",
+            "discount": "10",
+            "total": "2915"
+          }
+        }
+      ]
+    },
+    "payments": [],
+    "checkout": {
+      "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hen7bxc1p8ep4yk7n5jbzk9r"
+    }
+  },
+  "meta": {
+    "request_id": "0daa7c59-f2eb-41b6-bf2e-bb3b070873a5"
+  }
+}

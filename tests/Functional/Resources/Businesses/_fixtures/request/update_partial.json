@@ -1,0 +1,17 @@
+{
+    "name": "ChatApp Inc.",
+    "contacts": [
+        {
+            "name": "Parker Jones",
+            "email": "parker@example.com"
+        },
+        {
+            "name": "Jo Riley",
+            "email": "jo@example.com"
+        },
+        {
+            "name": "Jesse Garcia",
+            "email": "jo@example.com"
+        }
+    ]
+}

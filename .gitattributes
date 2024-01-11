@@ -1,0 +1,13 @@
+# A list of files and folders those will be excluded from archives and the Composer package.
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.github export-ignore
+/.php-cs-fixer.php export-ignore
+/.vscode export-ignore
+/examples export-ignore
+/Makefile export-ignore
+/phpdoc.dist.xml export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml export-ignore
+/tests export-ignore
+/dockerfile export-ignore

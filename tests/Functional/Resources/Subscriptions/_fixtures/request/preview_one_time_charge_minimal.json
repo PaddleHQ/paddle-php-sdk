@@ -1,0 +1,9 @@
+{
+    "effective_from": "next_billing_period",
+    "items": [
+        {
+            "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+            "quantity": 1
+        }
+    ]
+}

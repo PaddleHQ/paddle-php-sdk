@@ -1,0 +1,72 @@
+{
+  "data": {
+    "id": "sub_01h8bx8fmywym11t6swgzba704",
+    "status": "active",
+    "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+    "address_id": "add_01h848pep46enq8y372x7maj0p",
+    "business_id": null,
+    "currency_code": "USD",
+    "created_at": "2023-08-21T11:21:40.254Z",
+    "updated_at": "2023-08-21T11:25:13Z",
+    "started_at": "2023-08-21T11:21:38.547106Z",
+    "first_billed_at": "2023-08-21T11:21:38.547106Z",
+    "next_billed_at": "2024-08-21T11:25:12.462Z",
+    "paused_at": null,
+    "canceled_at": null,
+    "collection_mode": "manual",
+    "billing_details": {
+      "enable_checkout": false,
+      "purchase_order_number": "PO-123",
+      "additional_information": "Welcome to Enterprise! Contact your dedicated account manager if you have any problems.",
+      "payment_terms": {
+        "frequency": 2,
+        "interval": "week"
+      }
+    },
+    "current_billing_period": {
+      "starts_at": "2023-08-21T11:25:12.462Z",
+      "ends_at": "2024-08-21T11:25:12.462Z"
+    },
+    "billing_cycle": {
+      "frequency": 1,
+      "interval": "year"
+    },
+    "scheduled_change": null,
+    "items": [
+      {
+        "status": "active",
+        "quantity": 85,
+        "recurring": true,
+        "created_at": "2023-08-21T11:25:12.476Z",
+        "updated_at": "2023-08-21T11:25:12.476Z",
+        "previously_billed_at": "2023-08-21T11:25:12.476Z",
+        "next_billed_at": "2024-08-21T11:25:12.462Z",
+        "trial_dates": null,
+        "price": {
+          "id": "pri_01gsz91wy9k1yn7kx82aafwvea",
+          "product_id": "pro_01gsz4vmqbjk3x4vvtafffd540",
+          "description": "Annual (per seat)",
+          "tax_mode": "account_setting",
+          "billing_cycle": {
+            "frequency": 1,
+            "interval": "year"
+          },
+          "trial_period": null,
+          "unit_price": {
+            "amount": "54437",
+            "currency_code": "USD"
+          }
+        }
+      }
+    ],
+    "custom_data": null,
+    "management_urls": {
+      "update_payment_method": null,
+      "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01h8bx8fmywym11t6swgzba704/cancel"
+    },
+    "discount": null
+  },
+  "meta": {
+    "request_id": "1431ce43-0e7f-4ed7-b4c6-c2c860b9a1ff"
+  }
+}

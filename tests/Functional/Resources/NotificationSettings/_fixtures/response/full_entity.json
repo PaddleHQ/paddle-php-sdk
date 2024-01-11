@@ -1,0 +1,107 @@
+{
+    "data": {
+        "id": "ntfset_01gkpjp8bkm3tm53kdgkx6sms7",
+        "description": "Slack notifications",
+        "type": "url",
+        "destination": "https://hooks.slack.com/example",
+        "active": true,
+        "api_version": 1,
+        "include_sensitive_fields": false,
+        "subscribed_events": [
+            {
+                "name": "transaction.billed",
+                "description": "Occurs when a transaction is billed.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "transaction.canceled",
+                "description": "Occurs when a transaction is canceled.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "transaction.completed",
+                "description": "Occurs when a transaction is completed.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "transaction.created",
+                "description": "Occurs when a transaction is created.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "transaction.payment_failed",
+                "description": "Occurs when a payment fails for a transaction.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "transaction.ready",
+                "description": "Occurs when a transaction is ready.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "transaction.updated",
+                "description": "Occurs when a transaction is updated.",
+                "group": "Transaction",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.activated",
+                "description": "Occurs when a subscription is activated.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.canceled",
+                "description": "Occurs when a subscription is canceled.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.created",
+                "description": "Occurs when a subscription is created.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.past_due",
+                "description": "Occurs when a subscription is past due.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.paused",
+                "description": "Occurs when a subscription is paused.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.resumed",
+                "description": "Occurs when a subscription is resumed.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.trialing",
+                "description": "Occurs when a subscription is trialing.",
+                "group": "Subscription",
+                "available_versions": [1]
+            },
+            {
+                "name": "subscription.updated",
+                "description": "Occurs when a subscription is updated.",
+                "group": "Subscription",
+                "available_versions": [1]
+            }
+        ],
+        "endpoint_secret_key": "pdl_ntfset_01gkpjp8bkm3tm53kdgkx6sms7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI"
+    },
+    "meta": {
+        "request_id": "fd55d51a-6242-4645-8572-af2a8b6f41b6"
+    }
+}

@@ -1,0 +1,161 @@
+{
+    "data": {
+        "customer_id": null,
+        "address_id": null,
+        "business_id": null,
+        "currency_code": "USD",
+        "address": {
+            "postal_code": "",
+            "country_code": "US"
+        },
+        "customer_ip_address": null,
+        "discount_id": "dsc_01gtgztp8fpchantd5g1wrksa3",
+        "items": [
+            {
+                "price": {
+                    "id": "pri_01gsz8z1q1n00f12qt82y31smh",
+                    "description": "Annual (per seat)",
+                    "name": "Annual (per seat)",
+                    "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                    "billing_cycle": {
+                        "interval": "year",
+                        "frequency": 1
+                    },
+                    "trial_period": null,
+                    "tax_mode": "account_setting",
+                    "unit_price": {
+                        "amount": "30000",
+                        "currency_code": "USD"
+                    },
+                    "unit_price_overrides": [],
+                    "quantity": {
+                        "minimum": 10,
+                        "maximum": 999
+                    },
+                    "status": "active",
+                    "custom_data": null
+                },
+                "quantity": 20,
+                "proration": null,
+                "include_in_totals": true
+            },
+            {
+                "price": {
+                    "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                    "description": "One-time charge",
+                    "name": "One-time charge",
+                    "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                    "billing_cycle": null,
+                    "trial_period": null,
+                    "tax_mode": "account_setting",
+                    "unit_price": {
+                        "amount": "19900",
+                        "currency_code": "USD"
+                    },
+                    "unit_price_overrides": [
+                        {
+                            "country_codes": ["AU"],
+                            "unit_price": {
+                                "amount": "40000",
+                                "currency_code": "AUD"
+                            }
+                        }
+                    ],
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 1
+                    },
+                    "status": "active",
+                    "custom_data": null
+                },
+                "quantity": 1,
+                "proration": null,
+                "include_in_totals": false
+            }
+        ],
+        "details": {
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0",
+                    "totals": {
+                        "subtotal": "600000",
+                        "discount": "60000",
+                        "tax": "0",
+                        "total": "540000"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "600000",
+                "tax": "0",
+                "discount": "60000",
+                "total": "540000",
+                "grand_total": "540000",
+                "fee": null,
+                "credit": "0",
+                "balance": "540000",
+                "earnings": null,
+                "currency_code": "USD"
+            },
+            "line_items": [
+                {
+                    "price_id": "pri_01gsz8z1q1n00f12qt82y31smh",
+                    "quantity": 20,
+                    "totals": {
+                        "subtotal": "600000",
+                        "tax": "0",
+                        "discount": "60000",
+                        "total": "540000"
+                    },
+                    "product": {
+                        "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                        "name": "ChatApp Pro",
+                        "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                        "tax_category": "standard",
+                        "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                        "status": "active",
+                        "custom_data": null
+                    },
+                    "tax_rate": "0",
+                    "unit_totals": {
+                        "subtotal": "30000",
+                        "tax": "0",
+                        "discount": "3000",
+                        "total": "27000"
+                    }
+                },
+                {
+                    "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                    "quantity": 1,
+                    "totals": {
+                        "subtotal": "19900",
+                        "tax": "0",
+                        "discount": "1990",
+                        "total": "17910"
+                    },
+                    "product": {
+                        "id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                        "name": "Custom domains",
+                        "description": "Make ChatApp truly your own with custom domains! Custom domains reinforce your brand identity and make it easy for your team to access ChatApp.",
+                        "tax_category": "standard",
+                        "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                        "status": "active",
+                        "custom_data": null
+                    },
+                    "tax_rate": "0",
+                    "unit_totals": {
+                        "subtotal": "19900",
+                        "tax": "0",
+                        "discount": "1990",
+                        "total": "17910"
+                    }
+                }
+            ]
+        },
+        "ignore_trials": false,
+        "available_payment_methods": ["apple_pay"]
+    },
+    "meta": {
+        "request_id": "9e6a1195-d86f-4110-a0ee-981b5500a6a8"
+    }
+}

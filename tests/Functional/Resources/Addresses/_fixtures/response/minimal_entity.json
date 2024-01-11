@@ -1,0 +1,19 @@
+{
+  "data": {
+    "id": "add_01he8brnckeq87t52hajkgfrg5",
+    "status": "active",
+    "description": null,
+    "first_line": null,
+    "second_line": null,
+    "city": null,
+    "postal_code": null,
+    "region": null,
+    "country_code": "AG",
+    "custom_data": null,
+    "created_at": "2023-11-02T15:52:23.699Z",
+    "updated_at": "2023-11-02T15:52:23.699Z"
+  },
+  "meta": {
+    "request_id": "e36223a7-c047-457e-b937-95fdce44766d"
+  }
+}

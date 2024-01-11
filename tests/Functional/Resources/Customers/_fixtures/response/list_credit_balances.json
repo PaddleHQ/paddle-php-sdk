@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "customer_id": "ctm_01gw9m680k848184fpttwr0b7z",
+            "currency_code": "USD",
+            "balance": {
+                "available": "550",
+                "reserved": "900",
+                "used": "1300"
+            }
+        }
+    ],
+    "meta": {
+        "request_id": "32cf1966-ed49-47d6-a76a-a9b8f7843245"
+    }
+}

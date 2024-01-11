@@ -1,0 +1,617 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Paddle\SDK\Tests\Functional\Resources\Subscriptions;
+
+use GuzzleHttp\Psr7\Response;
+use Http\Mock\Client as MockClient;
+use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Shared\CollectionMode;
+use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
+use Paddle\SDK\Entities\Subscription\SubscriptionItems;
+use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
+use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
+use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChangeAction;
+use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
+use Paddle\SDK\Environment;
+use Paddle\SDK\Options;
+use Paddle\SDK\Resources\Shared\Operations\List\Pager;
+use Paddle\SDK\Resources\Subscriptions\Operations\CancelOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeChargeOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\Get\Includes;
+use Paddle\SDK\Resources\Subscriptions\Operations\ListOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\PauseOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeChargeOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\PreviewUpdateOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\ResumeOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
+use Paddle\SDK\Resources\Subscriptions\Operations\UpdateOperation;
+use Paddle\SDK\Tests\Utils\ReadsFixtures;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+class SubscriptionsClientTest extends TestCase
+{
+    use ReadsFixtures;
+
+    private MockClient $mockClient;
+    private Client $client;
+
+    public function setUp(): void
+    {
+        $this->mockClient = new MockClient();
+        $this->client = new Client(
+            apiKey: 'API_KEY_PLACEHOLDER',
+            options: new Options(Environment::SANDBOX),
+            httpClient: $this->mockClient);
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider updateOperationsProvider
+     */
+    public function it_uses_expected_payload_on_update(
+        UpdateOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->update('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('PATCH', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function updateOperationsProvider(): \Generator
+    {
+        yield 'Update Single' => [
+            new UpdateOperation(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_single'),
+        ];
+
+        yield 'Update Partial' => [
+            new UpdateOperation(prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately, scheduledChange: null),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_partial'),
+        ];
+
+        yield 'Update All' => [
+            new UpdateOperation(
+                customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
+                addressId: 'add_01h848pep46enq8y372x7maj0p',
+                businessId: null,
+                currencyCode: CurrencyCode::GBP,
+                nextBilledAt: new \DateTimeImmutable('2023-11-06 14:00:00'),
+                discount: new SubscriptionDiscount(
+                    'dsc_01h848pep46enq8y372x7maj0p',
+                    SubscriptionEffectiveFrom::NextBillingPeriod,
+                ),
+                collectionMode: CollectionMode::Automatic,
+                billingDetails: null,
+                scheduledChange: null,
+                items: [
+                    new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
+                    new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                ],
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
+                customData: new CustomData(['early_access' => true]),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_full'),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider listOperationsProvider
+     */
+    public function list_hits_expected_uri(
+        ListOperation $operation,
+        ResponseInterface $response,
+        string $expectedUri,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->list($operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+    }
+
+    public static function listOperationsProvider(): \Generator
+    {
+        yield 'Default' => [
+            new ListOperation(),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Default Paged' => [
+            new ListOperation(new Pager()),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/subscriptions?order_by=id[asc]&per_page=50',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'Default Paged with After' => [
+            new ListOperation(new Pager(after: 'sub_01h848pep46enq8y372x7maj0p')),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/subscriptions?after=sub_01h848pep46enq8y372x7maj0p&order_by=id[asc]&per_page=50',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'NotificationStatus Filtered' => [
+            new ListOperation(statuses: [SubscriptionStatus::Paused]),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?status=paused', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'ID Filtered' => [
+            new ListOperation(ids: ['sub_01h848pep46enq8y372x7maj0p']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?id=sub_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Multiple ID Filtered' => [
+            new ListOperation(ids: ['sub_01h8494f4w5rwfp8b12yqh8fp1', 'sub_01h848pep46enq8y372x7maj0p']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/subscriptions?id=sub_01h8494f4w5rwfp8b12yqh8fp1,sub_01h848pep46enq8y372x7maj0p',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'Collection Mode Filtered' => [
+            new ListOperation(collectionMode: CollectionMode::Automatic),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?collection_mode=automatic', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Address ID Filtered' => [
+            new ListOperation(addressIds: ['add_01h8494f4w5rwfp8b12yqh8fp1']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?address_id=add_01h8494f4w5rwfp8b12yqh8fp1', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Multiple Address ID Filtered' => [
+            new ListOperation(addressIds: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'add_01h848pep46enq8y372x7maj0p']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?address_id=add_01h8494f4w5rwfp8b12yqh8fp1,add_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Price ID Filtered' => [
+            new ListOperation(priceIds: ['pri_01h8494f4w5rwfp8b12yqh8fp1']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?price_id=pri_01h8494f4w5rwfp8b12yqh8fp1', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Multiple Price ID Filtered' => [
+            new ListOperation(priceIds: ['pri_01h8494f4w5rwfp8b12yqh8fp1', 'pri_01h848pep46enq8y372x7maj0p']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?price_id=pri_01h8494f4w5rwfp8b12yqh8fp1,pri_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Scheduled Change Action Filtered' => [
+            new ListOperation(scheduledChangeActions: [SubscriptionScheduledChangeAction::Pause]),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?scheduled_change_action=pause', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Multiple Scheduled Change Action Filtered' => [
+            new ListOperation(scheduledChangeActions: [
+                SubscriptionScheduledChangeAction::Pause,
+                SubscriptionScheduledChangeAction::Cancel,
+            ]),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?scheduled_change_action=pause,cancel', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider getRequestProvider
+     *
+     * @param Includes[] $includes
+     */
+    public function get_hits_expected_uri(
+        array $includes,
+        ResponseInterface $response,
+        string $expectedUri,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->get('sub_01h7zcgmdc6tmwtjehp3sh7azf', $includes);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+    }
+
+    public static function getRequestProvider(): \Generator
+    {
+        yield 'Without Includes' => [
+            [],
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            sprintf('%s/subscriptions/sub_01h7zcgmdc6tmwtjehp3sh7azf', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'With Includes' => [
+            [Includes::NextTransaction],
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
+            sprintf('%s/subscriptions/sub_01h7zcgmdc6tmwtjehp3sh7azf?include=next_transaction', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider pauseOperationsProvider
+     */
+    public function pause_uses_expected_payload(
+        PauseOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->pause('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/pause',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function pauseOperationsProvider(): \Generator
+    {
+        yield 'Update None' => [
+            new PauseOperation(),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_none'),
+        ];
+
+        yield 'Update Single' => [
+            new PauseOperation(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_single'),
+        ];
+
+        yield 'Update All' => [
+            new PauseOperation(
+                SubscriptionEffectiveFrom::NextBillingPeriod,
+                new \DateTime('2023-10-09T16:30:00Z'),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_full'),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider resumeOperationsProvider
+     */
+    public function resume_uses_expected_payload(
+        ResumeOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->resume('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/resume',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function resumeOperationsProvider(): \Generator
+    {
+        yield 'Update None' => [
+            new ResumeOperation(),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_none'),
+        ];
+
+        yield 'Update Single As Enum' => [
+            new ResumeOperation(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_single_as_enum'),
+        ];
+
+        yield 'Update Single As Date' => [
+            new ResumeOperation(new \DateTime('2023-10-09T16:30:00Z')),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_single_as_date'),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider cancelOperationsProvider
+     */
+    public function cancel_uses_expected_payload(
+        CancelOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->cancel('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/cancel',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function cancelOperationsProvider(): \Generator
+    {
+        yield 'Update None' => [
+            new CancelOperation(),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/cancel_none'),
+        ];
+
+        yield 'Update Single' => [
+            new CancelOperation(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/cancel_single'),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider getPaymentMethodChangeTransactionRequestProvider
+     */
+    public function get_payment_method_change_transaction_hits_expected_uri(
+        ResponseInterface $response,
+        string $expectedUri,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->getPaymentMethodChangeTransaction('sub_01h7zcgmdc6tmwtjehp3sh7azf');
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+    }
+
+    public static function getPaymentMethodChangeTransactionRequestProvider(): \Generator
+    {
+        yield 'Basic' => [
+            new Response(200, body: self::readRawJsonFixture('response/get_payment_method_change_transaction_entity')),
+            sprintf('%s/subscriptions/sub_01h7zcgmdc6tmwtjehp3sh7azf/update-payment-method-transaction', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider activateOperationsProvider
+     */
+    public function activate_uses_expected_payload(
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->activate('sub_01h8bx8fmywym11t6swgzba704');
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/activate',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function activateOperationsProvider(): \Generator
+    {
+        yield 'Update' => [
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            '{}',
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider createOneTimeChargeOperationsProvider
+     */
+    public function create_one_time_charge_uses_expected_payload(
+        CreateOneTimeChargeOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->createOneTimeCharge('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/charge',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function createOneTimeChargeOperationsProvider(): \Generator
+    {
+        yield 'Update Minimal' => [
+            new CreateOneTimeChargeOperation(
+                SubscriptionEffectiveFrom::NextBillingPeriod,
+                [
+                    new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_minimal'),
+        ];
+
+        yield 'Update Full' => [
+            new CreateOneTimeChargeOperation(
+                SubscriptionEffectiveFrom::Immediately,
+                [
+                    new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                    new SubscriptionItems('pri_01h7zdqstxe6djaefkqbkjy4k2', 10),
+                    new SubscriptionItems('pri_01h7zd9mzfq79850w4ryc39v38', 845),
+                ],
+                SubscriptionOnPaymentFailure::ApplyChange,
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_full'),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider previewUpdateOperationsProvider
+     */
+    public function it_uses_expected_payload_on_preview_update(
+        PreviewUpdateOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->previewUpdate('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('PATCH', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/preview',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function previewUpdateOperationsProvider(): \Generator
+    {
+        yield 'Preview Update Single' => [
+            new PreviewUpdateOperation(
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod,
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            self::readRawJsonFixture('request/preview_update_single'),
+        ];
+
+        yield 'Preview Update Partial' => [
+            new PreviewUpdateOperation(
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
+                scheduledChange: null,
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            self::readRawJsonFixture('request/preview_update_partial'),
+        ];
+
+        yield 'Preview Update All' => [
+            new PreviewUpdateOperation(
+                customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
+                addressId: 'add_01h848pep46enq8y372x7maj0p',
+                businessId: null,
+                currencyCode: CurrencyCode::GBP,
+                nextBilledAt: new \DateTimeImmutable('2023-11-06 14:00:00'),
+                discount: new SubscriptionDiscount(
+                    'dsc_01h848pep46enq8y372x7maj0p',
+                    SubscriptionEffectiveFrom::NextBillingPeriod,
+                ),
+                collectionMode: CollectionMode::Automatic,
+                billingDetails: null,
+                scheduledChange: null,
+                items: [
+                    new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
+                    new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                ],
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
+                customData: new CustomData(['early_access' => true]),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            self::readRawJsonFixture('request/preview_update_full'),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider previewOneTimeChargeOperationsProvider
+     */
+    public function preview_one_time_charge_uses_expected_payload(
+        PreviewOneTimeChargeOperation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->subscriptions->previewOneTimeCharge('sub_01h8bx8fmywym11t6swgzba704', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01h8bx8fmywym11t6swgzba704/charge/preview',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function previewOneTimeChargeOperationsProvider(): \Generator
+    {
+        yield 'Update Minimal' => [
+            new PreviewOneTimeChargeOperation(
+                SubscriptionEffectiveFrom::NextBillingPeriod,
+                [
+                    new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_minimal'),
+        ];
+
+        yield 'Update Full' => [
+            new PreviewOneTimeChargeOperation(
+                SubscriptionEffectiveFrom::Immediately,
+                [
+                    new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                    new SubscriptionItems('pri_01h7zdqstxe6djaefkqbkjy4k2', 10),
+                    new SubscriptionItems('pri_01h7zd9mzfq79850w4ryc39v38', 845),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_full'),
+        ];
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+  "description": "Weekly (per seat)",
+  "name": "Weekly",
+  "billing_cycle": {
+    "interval": "year",
+    "frequency": 1
+  },
+  "trial_period": {
+    "interval": "week",
+    "frequency": 1
+  },
+  "tax_mode": "account_setting",
+  "unit_price": {
+    "amount": "1000",
+    "currency_code": "GBP"
+  },
+  "unit_price_overrides": [
+    {
+      "country_codes": [
+        "CA",
+        "US"
+      ],
+      "unit_price": {
+        "amount": "5000",
+        "currency_code": "USD"
+      }
+    }
+  ],
+  "custom_data": {
+    "foo": "bar"
+  },
+  "quantity": {
+    "minimum": 1,
+    "maximum": 1
+  }
+}

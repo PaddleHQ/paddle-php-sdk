@@ -1,0 +1,2777 @@
+{
+    "data": [
+        {
+            "event_id": "evt_01hg0trvbgjfp0avfam8a2yzq1",
+            "event_type": "subscription.updated",
+            "occurred_at": "2023-11-24T14:12:06.640975Z",
+            "data": {
+                "id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "status": "past_due",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "currency_code": "GBP",
+                "created_at": "2023-04-24T14:11:13.014122Z",
+                "updated_at": "2023-11-24T14:12:05.533Z",
+                "started_at": "2023-04-24T14:11:11.447004Z",
+                "first_billed_at": "2023-04-24T14:11:11.447004Z",
+                "next_billed_at": "2023-12-24T14:11:11.447004Z",
+                "paused_at": null,
+                "canceled_at": null,
+                "discount": null,
+                "collection_mode": "automatic",
+                "billing_details": null,
+                "current_billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "billing_cycle": {
+                    "interval": "month",
+                    "frequency": 1
+                },
+                "scheduled_change": null,
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3600",
+                                "currency_code": null
+                            },
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            }
+                        },
+                        "status": "active",
+                        "quantity": 10,
+                        "recurring": true,
+                        "created_at": "2023-04-24T14:11:13.014124Z",
+                        "updated_at": "2023-11-24T14:12:05.528Z",
+                        "trial_dates": null,
+                        "next_billed_at": "2023-12-24T14:11:11.447004Z",
+                        "previously_billed_at": "2023-11-24T14:11:11.447004Z"
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "30000",
+                                "currency_code": null
+                            },
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            }
+                        },
+                        "status": "active",
+                        "quantity": 1,
+                        "recurring": true,
+                        "created_at": "2023-04-24T14:11:13.014128Z",
+                        "updated_at": "2023-11-24T14:12:05.53Z",
+                        "trial_dates": null,
+                        "next_billed_at": "2023-12-24T14:11:11.447004Z",
+                        "previously_billed_at": "2023-11-24T14:11:11.447004Z"
+                    }
+                ],
+                "custom_data": null,
+                "import_meta": null
+            }
+        },
+        {
+            "event_id": "evt_01hg0trtbnd4jz0h6y6yg0jjv6",
+            "event_type": "transaction.past_due",
+            "occurred_at": "2023-11-24T14:12:05.621593Z",
+            "data": {
+                "id": "txn_01hg0trpqvp70evgmzj1648z5q",
+                "status": "past_due",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "invoice_id": null,
+                "invoice_number": null,
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": null,
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "66000",
+                        "discount": "0",
+                        "earnings": null,
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8gyvf1ma",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8qv8k0kw",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": null,
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "0",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "0",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [
+                    {
+                        "amount": "66000",
+                        "status": "error",
+                        "created_at": "2023-11-24T14:12:02.096324Z",
+                        "error_code": "authentication_failed",
+                        "captured_at": null,
+                        "method_details": {
+                            "card": {
+                                "type": "visa",
+                                "last4": "3184",
+                                "expiry_year": 2024,
+                                "expiry_month": 1,
+                                "cardholder_name": "Michael"
+                            },
+                            "type": "card"
+                        },
+                        "payment_attempt_id": "afa07161-601d-4a65-8c1a-6993ae1ae027",
+                        "stored_payment_method_id": "d3218a38-1cff-44a7-8a47-6a809a5ae9ad"
+                    }
+                ],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hg0trpqvp70evgmzj1648z5q"
+                },
+                "created_at": "2023-11-24T14:12:02.004032Z",
+                "updated_at": "2023-11-24T14:12:02.004032Z",
+                "billed_at": "2023-11-24T14:12:01.915193Z"
+            }
+        },
+        {
+            "event_id": "evt_01hg0trtavsvbmrdaz5vhekm5w",
+            "event_type": "transaction.updated",
+            "occurred_at": "2023-11-24T14:12:05.596257Z",
+            "data": {
+                "id": "txn_01hg0trpqvp70evgmzj1648z5q",
+                "status": "past_due",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "invoice_id": null,
+                "invoice_number": null,
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": null,
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "66000",
+                        "discount": "0",
+                        "earnings": null,
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8gyvf1ma",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8qv8k0kw",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": null,
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "0",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "0",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [
+                    {
+                        "amount": "66000",
+                        "status": "error",
+                        "created_at": "2023-11-24T14:12:02.096324Z",
+                        "error_code": "authentication_failed",
+                        "captured_at": null,
+                        "method_details": {
+                            "card": {
+                                "type": "visa",
+                                "last4": "3184",
+                                "expiry_year": 2024,
+                                "expiry_month": 1,
+                                "cardholder_name": "Michael"
+                            },
+                            "type": "card"
+                        },
+                        "payment_attempt_id": "afa07161-601d-4a65-8c1a-6993ae1ae027",
+                        "stored_payment_method_id": "d3218a38-1cff-44a7-8a47-6a809a5ae9ad"
+                    }
+                ],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hg0trpqvp70evgmzj1648z5q"
+                },
+                "created_at": "2023-11-24T14:12:02.004032Z",
+                "updated_at": "2023-11-24T14:12:02.004032Z",
+                "billed_at": "2023-11-24T14:12:01.915193Z"
+            }
+        },
+        {
+            "event_id": "evt_01hg0trtagdz34hgnyvdz31j9e",
+            "event_type": "transaction.payment_failed",
+            "occurred_at": "2023-11-24T14:12:05.584247Z",
+            "data": {
+                "id": "txn_01hg0trpqvp70evgmzj1648z5q",
+                "status": "billed",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "invoice_id": null,
+                "invoice_number": null,
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": null,
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "66000",
+                        "discount": "0",
+                        "earnings": null,
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8gyvf1ma",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8qv8k0kw",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": null,
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "0",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "0",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [
+                    {
+                        "amount": "66000",
+                        "status": "error",
+                        "created_at": "2023-11-24T14:12:02.096324Z",
+                        "error_code": "authentication_failed",
+                        "captured_at": null,
+                        "method_details": {
+                            "card": {
+                                "type": "visa",
+                                "last4": "3184",
+                                "expiry_year": 2024,
+                                "expiry_month": 1,
+                                "cardholder_name": "Michael"
+                            },
+                            "type": "card"
+                        },
+                        "payment_attempt_id": "afa07161-601d-4a65-8c1a-6993ae1ae027",
+                        "stored_payment_method_id": "d3218a38-1cff-44a7-8a47-6a809a5ae9ad"
+                    }
+                ],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hg0trpqvp70evgmzj1648z5q"
+                },
+                "created_at": "2023-11-24T14:12:02.004032Z",
+                "updated_at": "2023-11-24T14:12:02.004032Z",
+                "billed_at": "2023-11-24T14:12:01.915193Z"
+            }
+        },
+        {
+            "event_id": "evt_01hg0trqj5q888jba20v662gsg",
+            "event_type": "transaction.billed",
+            "occurred_at": "2023-11-24T14:12:02.757703Z",
+            "data": {
+                "id": "txn_01hg0trpqvp70evgmzj1648z5q",
+                "status": "billed",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "invoice_id": null,
+                "invoice_number": null,
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": null,
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "66000",
+                        "discount": "0",
+                        "earnings": null,
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8gyvf1ma",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8qv8k0kw",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": null,
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "0",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "0",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hg0trpqvp70evgmzj1648z5q"
+                },
+                "created_at": "2023-11-24T14:12:02.004032433Z",
+                "updated_at": "2023-11-24T14:12:02.004032433Z",
+                "billed_at": "2023-11-24T14:12:01.915193036Z"
+            }
+        },
+        {
+            "event_id": "evt_01hg0trqf2gc8g6pyqy2xnzwg6",
+            "event_type": "transaction.created",
+            "occurred_at": "2023-11-24T14:12:02.664829Z",
+            "data": {
+                "id": "txn_01hg0trpqvp70evgmzj1648z5q",
+                "status": "billed",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "invoice_id": null,
+                "invoice_number": null,
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2023-12-24T14:11:11.447004Z",
+                                "starts_at": "2023-11-24T14:11:11.447004Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": null,
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "66000",
+                        "discount": "0",
+                        "earnings": null,
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8gyvf1ma",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hg0trpt1k1h3c98j8qv8k0kw",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": null,
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "0",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "0",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hg0trpqvp70evgmzj1648z5q"
+                },
+                "created_at": "2023-11-24T14:12:02.004032433Z",
+                "updated_at": "2023-11-24T14:12:02.004032433Z",
+                "billed_at": "2023-11-24T14:12:01.915193036Z"
+            }
+        },
+        {
+            "event_id": "evt_01hg0trpmmdkkdbk4p8czp4drm",
+            "event_type": "subscription.updated",
+            "occurred_at": "2023-11-24T14:12:01.813044Z",
+            "data": {
+                "id": "sub_01gyssnczp81czs49zcprm6hfv",
+                "status": "past_due",
+                "customer_id": "ctm_01gyssmfx5rnmk4dt8qx88v0ee",
+                "address_id": "add_01gyssmfzbaxg9e6tkazmt02ba",
+                "business_id": null,
+                "currency_code": "GBP",
+                "created_at": "2023-04-24T14:11:13.014122Z",
+                "updated_at": "2023-11-24T14:12:00.876Z",
+                "started_at": "2023-04-24T14:11:11.447004Z",
+                "first_billed_at": "2023-04-24T14:11:11.447004Z",
+                "next_billed_at": "2023-12-24T14:11:11.447004Z",
+                "paused_at": null,
+                "canceled_at": null,
+                "discount": null,
+                "collection_mode": "automatic",
+                "billing_details": null,
+                "current_billing_period": {
+                    "ends_at": "2023-12-24T14:11:11.447004Z",
+                    "starts_at": "2023-11-24T14:11:11.447004Z"
+                },
+                "billing_cycle": {
+                    "interval": "month",
+                    "frequency": 1
+                },
+                "scheduled_change": null,
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3600",
+                                "currency_code": null
+                            },
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            }
+                        },
+                        "status": "active",
+                        "quantity": 10,
+                        "recurring": true,
+                        "created_at": "2023-04-24T14:11:13.014124Z",
+                        "updated_at": "2023-11-24T14:12:00.877Z",
+                        "trial_dates": null,
+                        "next_billed_at": "2023-12-24T14:11:11.447004Z",
+                        "previously_billed_at": "2023-11-24T14:11:11.447004Z"
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "30000",
+                                "currency_code": null
+                            },
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            }
+                        },
+                        "status": "active",
+                        "quantity": 1,
+                        "recurring": true,
+                        "created_at": "2023-04-24T14:11:13.014128Z",
+                        "updated_at": "2023-11-24T14:12:00.88Z",
+                        "trial_dates": null,
+                        "next_billed_at": "2023-12-24T14:11:11.447004Z",
+                        "previously_billed_at": "2023-11-24T14:11:11.447004Z"
+                    }
+                ],
+                "custom_data": null,
+                "import_meta": null
+            }
+        },
+        {
+            "event_id": "evt_01hfzvc6v4005wad5dcgtbewv9",
+            "event_type": "transaction.created",
+            "occurred_at": "2023-11-24T05:03:26.564980Z",
+            "data": {
+                "id": "txn_01hfzvc6e6zqc0eehgqhjsfx5b",
+                "status": "draft",
+                "customer_id": null,
+                "address_id": null,
+                "business_id": null,
+                "custom_data": null,
+                "currency_code": "USD",
+                "origin": "web",
+                "subscription_id": null,
+                "invoice_id": null,
+                "invoice_number": null,
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": null,
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "USD"
+                            },
+                            "custom_data": {
+                                "features": {
+                                    "crm": true,
+                                    "reports": true,
+                                    "data_retention": false
+                                },
+                                "suggested_addons": [
+                                    "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                    "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                ],
+                                "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                            },
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "5000",
+                                        "currency_code": "AUD"
+                                    },
+                                    "country_codes": [
+                                        "AU"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": null
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01h1vjfevh5etwq3rb416a23h2",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 100,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+                            "unit_price": {
+                                "amount": "10000",
+                                "currency_code": "USD"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "20000",
+                                        "currency_code": "AUD"
+                                    },
+                                    "country_codes": [
+                                        "AU",
+                                        "AT",
+                                        "BE"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01h1vjfevh5etwq3rb416a23h2",
+                        "quantity": 1,
+                        "proration": null
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                            "unit_price": {
+                                "amount": "19900",
+                                "currency_code": "USD"
+                            },
+                            "custom_data": null,
+                            "description": "One-time charge",
+                            "trial_period": null,
+                            "billing_cycle": null,
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "AUD"
+                                    },
+                                    "country_codes": [
+                                        "AU"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                        "quantity": 1,
+                        "proration": null
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": null,
+                        "tax": "3594",
+                        "total": "63494",
+                        "credit": "0",
+                        "balance": "63494",
+                        "discount": "0",
+                        "earnings": null,
+                        "subtotal": "59900",
+                        "grand_total": "63494",
+                        "currency_code": "USD",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hfzvc6gm4b7pkce40gtnxrr2",
+                            "totals": {
+                                "tax": "1800",
+                                "total": "31800",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.06",
+                            "unit_totals": {
+                                "tax": "180",
+                                "total": "3180",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hfzvc6gm4b7pkce40pe6sj5p",
+                            "totals": {
+                                "tax": "600",
+                                "total": "10600",
+                                "discount": "0",
+                                "subtotal": "10000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                "name": "Voice rooms addon",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/GcZzBjXRfiraensppgtQ_icon2.png",
+                                "custom_data": null,
+                                "description": "Create voice rooms in your chats to work in real time alongside your colleagues. Includes unlimited voice rooms and recording backup for compliance.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01h1vjfevh5etwq3rb416a23h2",
+                            "quantity": 1,
+                            "tax_rate": "0.06",
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "10600",
+                                "discount": "0",
+                                "subtotal": "10000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hfzvc6gm4b7pkce40st7wfvh",
+                            "totals": {
+                                "tax": "1194",
+                                "total": "21094",
+                                "discount": "0",
+                                "subtotal": "19900"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                                "name": "Custom domains",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": {
+                                    "crm_id": "ABC"
+                                },
+                                "description": "Make ChatApp truly your own with custom domains! Custom domains reinforce your brand identity and make it easy for your team to access ChatApp.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                            "quantity": 1,
+                            "tax_rate": "0.06",
+                            "unit_totals": {
+                                "tax": "1194",
+                                "total": "21094",
+                                "discount": "0",
+                                "subtotal": "19900"
+                            }
+                        }
+                    ],
+                    "payout_totals": null,
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "3594",
+                                "total": "63494",
+                                "discount": "0",
+                                "subtotal": "59900"
+                            },
+                            "tax_rate": "0.06"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "0",
+                        "tax": "3594",
+                        "total": "63494",
+                        "earnings": "0",
+                        "subtotal": "59900",
+                        "grand_total": "63494",
+                        "currency_code": "USD"
+                    }
+                },
+                "payments": [],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hfzvc6e6zqc0eehgqhjsfx5b"
+                },
+                "created_at": "2023-11-24T05:03:26.244748839Z",
+                "updated_at": "2023-11-24T05:03:26.244748839Z",
+                "billed_at": null
+            }
+        },
+        {
+            "event_id": "evt_01hfyd0v4xpqdypnyf55gnn58g",
+            "event_type": "transaction.updated",
+            "occurred_at": "2023-11-23T15:33:19.645701Z",
+            "data": {
+                "id": "txn_01hfyd09vas8qwq6jw7k6yd9rg",
+                "status": "completed",
+                "customer_id": "ctm_01gyswd1xrzxsxghdtc2f8jhep",
+                "address_id": "add_01gyswev1m6gq9evx9akpw48d0",
+                "business_id": "biz_01gyswg3q9m0gzvh4sgy4zb7yw",
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyswnfgtehe0f6mvggzza8qk",
+                "invoice_id": "inv_01hfyd0j9xfv64vfthhrbxmpe0",
+                "invoice_number": "325-10290",
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2024-05-24T15:07:40.922338Z",
+                    "starts_at": "2024-04-24T15:07:40.922338Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2024-05-24T15:07:40.922338Z",
+                                "starts_at": "2024-04-24T15:07:40.922338Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2024-05-24T15:07:40.922338Z",
+                                "starts_at": "2024-04-24T15:07:40.922338Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": "3340",
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "0",
+                        "discount": "0",
+                        "earnings": "51660",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hfyd09xrkdkbaacs934g8v8p",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2024-05-24T15:07:40.922338Z",
+                                    "starts_at": "2024-04-24T15:07:40.922338Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hfyd09xrkdkbaacs98bjfgfj",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2024-05-24T15:07:40.922338Z",
+                                    "starts_at": "2024-04-24T15:07:40.922338Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": {
+                        "fee": "4102",
+                        "tax": "13511",
+                        "total": "81066",
+                        "credit": "0",
+                        "balance": "0",
+                        "discount": "0",
+                        "earnings": "63453",
+                        "fee_rate": "0.05",
+                        "subtotal": "67555",
+                        "grand_total": "81066",
+                        "currency_code": "USD",
+                        "exchange_rate": "1.2282731999999998",
+                        "credit_to_balance": "0"
+                    },
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "3340",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "51660",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [
+                    {
+                        "amount": "66000",
+                        "status": "captured",
+                        "created_at": "2023-11-23T15:33:02.177841Z",
+                        "error_code": null,
+                        "captured_at": "2023-11-23T15:33:04.574587Z",
+                        "method_details": {
+                            "card": {
+                                "type": "visa",
+                                "last4": "4242",
+                                "expiry_year": 2024,
+                                "expiry_month": 1,
+                                "cardholder_name": "Michael McGovern"
+                            },
+                            "type": "card"
+                        },
+                        "payment_attempt_id": "0bec49bd-dd4d-45e3-a91e-46992b09c5e2",
+                        "stored_payment_method_id": "8009a718-30f7-4718-a7f6-4d3fdecf559b"
+                    }
+                ],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hfyd09vas8qwq6jw7k6yd9rg"
+                },
+                "created_at": "2023-11-23T15:33:02.036155Z",
+                "updated_at": "2023-11-23T15:33:13.358282Z",
+                "billed_at": "2023-11-23T15:33:01.930479Z"
+            }
+        },
+        {
+            "event_id": "evt_01hfyd0v4xppkwmjaca5xyzh5d",
+            "event_type": "transaction.completed",
+            "occurred_at": "2023-11-23T15:33:19.645134Z",
+            "data": {
+                "id": "txn_01hfyd09vas8qwq6jw7k6yd9rg",
+                "status": "completed",
+                "customer_id": "ctm_01gyswd1xrzxsxghdtc2f8jhep",
+                "address_id": "add_01gyswev1m6gq9evx9akpw48d0",
+                "business_id": "biz_01gyswg3q9m0gzvh4sgy4zb7yw",
+                "custom_data": null,
+                "currency_code": "GBP",
+                "origin": "subscription_recurring",
+                "subscription_id": "sub_01gyswnfgtehe0f6mvggzza8qk",
+                "invoice_id": "inv_01hfyd0j9xfv64vfthhrbxmpe0",
+                "invoice_number": "325-10290",
+                "collection_mode": "automatic",
+                "discount_id": null,
+                "billing_details": null,
+                "billing_period": {
+                    "ends_at": "2024-05-24T15:07:40.922338Z",
+                    "starts_at": "2024-04-24T15:07:40.922338Z"
+                },
+                "items": [
+                    {
+                        "price": {
+                            "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 10
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "unit_price": {
+                                "amount": "3000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (per seat)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "4500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "8000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "100500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "40000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "1400",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                        "quantity": 10,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2024-05-24T15:07:40.922338Z",
+                                "starts_at": "2024-04-24T15:07:40.922338Z"
+                            }
+                        }
+                    },
+                    {
+                        "price": {
+                            "id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "status": "active",
+                            "quantity": {
+                                "maximum": 1,
+                                "minimum": 1
+                            },
+                            "tax_mode": "account_setting",
+                            "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                            "unit_price": {
+                                "amount": "25000",
+                                "currency_code": "GBP"
+                            },
+                            "custom_data": null,
+                            "description": "Monthly (recurring addon)",
+                            "trial_period": null,
+                            "billing_cycle": {
+                                "interval": "month",
+                                "frequency": 1
+                            },
+                            "unit_price_overrides": [
+                                {
+                                    "unit_price": {
+                                        "amount": "28500",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "US"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "66000",
+                                        "currency_code": "PLN"
+                                    },
+                                    "country_codes": [
+                                        "PL"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "837500",
+                                        "currency_code": "INR"
+                                    },
+                                    "country_codes": [
+                                        "IN"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "335000",
+                                        "currency_code": "UAH"
+                                    },
+                                    "country_codes": [
+                                        "UA"
+                                    ]
+                                },
+                                {
+                                    "unit_price": {
+                                        "amount": "12000",
+                                        "currency_code": "USD"
+                                    },
+                                    "country_codes": [
+                                        "NG"
+                                    ]
+                                }
+                            ]
+                        },
+                        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                        "quantity": 1,
+                        "proration": {
+                            "rate": "1",
+                            "billing_period": {
+                                "ends_at": "2024-05-24T15:07:40.922338Z",
+                                "starts_at": "2024-04-24T15:07:40.922338Z"
+                            }
+                        }
+                    }
+                ],
+                "details": {
+                    "totals": {
+                        "fee": "3340",
+                        "tax": "11000",
+                        "total": "66000",
+                        "credit": "0",
+                        "balance": "0",
+                        "discount": "0",
+                        "earnings": "51660",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP",
+                        "credit_to_balance": "0"
+                    },
+                    "line_items": [
+                        {
+                            "id": "txnitm_01hfyd09xrkdkbaacs934g8v8p",
+                            "totals": {
+                                "tax": "6000",
+                                "total": "36000",
+                                "discount": "0",
+                                "subtotal": "30000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                                "name": "ChatApp Pro",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                                "custom_data": {
+                                    "features": {
+                                        "crm": true,
+                                        "reports": true,
+                                        "data_retention": false
+                                    },
+                                    "suggested_addons": [
+                                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                                    ],
+                                    "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+                                },
+                                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                            "quantity": 10,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2024-05-24T15:07:40.922338Z",
+                                    "starts_at": "2024-04-24T15:07:40.922338Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "600",
+                                "total": "3600",
+                                "discount": "0",
+                                "subtotal": "3000"
+                            }
+                        },
+                        {
+                            "id": "txnitm_01hfyd09xrkdkbaacs98bjfgfj",
+                            "totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            },
+                            "item_id": null,
+                            "product": {
+                                "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                                "name": "VIP support",
+                                "status": "active",
+                                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                                "custom_data": null,
+                                "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+                                "tax_category": "standard"
+                            },
+                            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+                            "quantity": 1,
+                            "tax_rate": "0.2",
+                            "proration": {
+                                "rate": "1",
+                                "billing_period": {
+                                    "ends_at": "2024-05-24T15:07:40.922338Z",
+                                    "starts_at": "2024-04-24T15:07:40.922338Z"
+                                }
+                            },
+                            "unit_totals": {
+                                "tax": "5000",
+                                "total": "30000",
+                                "discount": "0",
+                                "subtotal": "25000"
+                            }
+                        }
+                    ],
+                    "payout_totals": {
+                        "fee": "4102",
+                        "tax": "13511",
+                        "total": "81066",
+                        "credit": "0",
+                        "balance": "0",
+                        "discount": "0",
+                        "earnings": "63453",
+                        "fee_rate": "0.05",
+                        "subtotal": "67555",
+                        "grand_total": "81066",
+                        "currency_code": "USD",
+                        "exchange_rate": "1.2282731999999998",
+                        "credit_to_balance": "0"
+                    },
+                    "tax_rates_used": [
+                        {
+                            "totals": {
+                                "tax": "11000",
+                                "total": "66000",
+                                "discount": "0",
+                                "subtotal": "55000"
+                            },
+                            "tax_rate": "0.2"
+                        }
+                    ],
+                    "adjusted_totals": {
+                        "fee": "3340",
+                        "tax": "11000",
+                        "total": "66000",
+                        "earnings": "51660",
+                        "subtotal": "55000",
+                        "grand_total": "66000",
+                        "currency_code": "GBP"
+                    }
+                },
+                "payments": [
+                    {
+                        "amount": "66000",
+                        "status": "captured",
+                        "created_at": "2023-11-23T15:33:02.177841Z",
+                        "error_code": null,
+                        "captured_at": "2023-11-23T15:33:04.574587Z",
+                        "method_details": {
+                            "card": {
+                                "type": "visa",
+                                "last4": "4242",
+                                "expiry_year": 2024,
+                                "expiry_month": 1,
+                                "cardholder_name": "Michael McGovern"
+                            },
+                            "type": "card"
+                        },
+                        "payment_attempt_id": "0bec49bd-dd4d-45e3-a91e-46992b09c5e2",
+                        "stored_payment_method_id": "8009a718-30f7-4718-a7f6-4d3fdecf559b"
+                    }
+                ],
+                "checkout": {
+                    "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hfyd09vas8qwq6jw7k6yd9rg"
+                },
+                "created_at": "2023-11-23T15:33:02.036155Z",
+                "updated_at": "2023-11-23T15:33:19.238230688Z",
+                "billed_at": "2023-11-23T15:33:01.930479Z"
+            }
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "per_page": 10,
+            "estimated_total": 5574,
+            "next": "http://sandbox-api.paddle.com/events?per_page=10&after=evt_01hfyd0v4xppkwmjaca5xyzh5d",
+            "has_more": true
+        },
+        "request_id": "acca7502-1eaf-4a9e-9635-c6ab9844c8a5"
+    }
+}

@@ -1,0 +1,195 @@
+{
+    "data": {
+        "customer_id": null,
+        "address_id": null,
+        "business_id": null,
+        "currency_code": "USD",
+        "address": {
+            "postal_code": "20149",
+            "country_code": "US"
+        },
+        "customer_ip_address": "34.232.58.13",
+        "discount_id": "dsc_01gtgztp8fpchantd5g1wrksa3",
+        "details": {
+            "line_items": [
+                {
+                    "price": {
+                        "id": "pri_01gsz8z1q1n00f12qt82y31smh",
+                        "description": "Annual (per seat)",
+                        "name": "Annual (per seat)",
+                        "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                        "billing_cycle": {
+                            "interval": "year",
+                            "frequency": 1
+                        },
+                        "trial_period": null,
+                        "tax_mode": "account_setting",
+                        "unit_price": {
+                            "amount": "30000",
+                            "currency_code": "USD"
+                        },
+                        "unit_price_overrides": [],
+                        "quantity": {
+                            "minimum": 10,
+                            "maximum": 999
+                        },
+                        "status": "active",
+                        "custom_data": null
+                    },
+                    "quantity": 20,
+                    "tax_rate": "0",
+                    "unit_totals": {
+                        "subtotal": "30000",
+                        "discount": "3000",
+                        "tax": "0",
+                        "total": "27000"
+                    },
+                    "formatted_unit_totals": {
+                        "subtotal": "$300.00",
+                        "discount": "$30.00",
+                        "tax": "$0.00",
+                        "total": "$270.00"
+                    },
+                    "totals": {
+                        "subtotal": "600000",
+                        "discount": "60000",
+                        "tax": "0",
+                        "total": "540000"
+                    },
+                    "formatted_totals": {
+                        "subtotal": "$6,000.00",
+                        "discount": "$600.00",
+                        "tax": "$0.00",
+                        "total": "$5,400.00"
+                    },
+                    "product": {
+                        "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                        "name": "ChatApp Pro",
+                        "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                        "tax_category": "standard",
+                        "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                        "status": "active",
+                        "custom_data": null
+                    },
+                    "discounts": [
+                        {
+                            "discount": {
+                                "id": "dsc_01gtgztp8fpchantd5g1wrksa3",
+                                "status": "active",
+                                "description": "Black Friday 2024",
+                                "enabled_for_checkout": false,
+                                "code": "BF2024",
+                                "type": "percentage",
+                                "amount": "10",
+                                "currency_code": null,
+                                "recur": false,
+                                "maximum_recurring_intervals": null,
+                                "usage_limit": null,
+                                "restrict_to": null,
+                                "expires_at": "2024-12-03T00:00:00Z",
+                                "times_used": 0,
+                                "created_at": "2023-03-02T11:03:00.623Z",
+                                "updated_at": "2023-03-08T12:24:29.706Z"
+                            },
+                            "total": "60000",
+                            "formatted_total": "$600.00"
+                        }
+                    ]
+                },
+                {
+                    "price": {
+                        "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                        "description": "One-time charge",
+                        "name": "One-time charge",
+                        "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                        "billing_cycle": null,
+                        "trial_period": null,
+                        "tax_mode": "account_setting",
+                        "unit_price": {
+                            "amount": "19900",
+                            "currency_code": "USD"
+                        },
+                        "unit_price_overrides": [
+                            {
+                                "country_codes": ["AU"],
+                                "unit_price": {
+                                    "amount": "40000",
+                                    "currency_code": "AUD"
+                                }
+                            }
+                        ],
+                        "quantity": {
+                            "minimum": 1,
+                            "maximum": 1
+                        },
+                        "status": "active",
+                        "custom_data": null
+                    },
+                    "quantity": 1,
+                    "tax_rate": "0",
+                    "unit_totals": {
+                        "subtotal": "19900",
+                        "discount": "1990",
+                        "tax": "0",
+                        "total": "17910"
+                    },
+                    "formatted_unit_totals": {
+                        "subtotal": "$199.00",
+                        "discount": "$19.90",
+                        "tax": "$0.00",
+                        "total": "$179.10"
+                    },
+                    "totals": {
+                        "subtotal": "19900",
+                        "discount": "1990",
+                        "tax": "0",
+                        "total": "17910"
+                    },
+                    "formatted_totals": {
+                        "subtotal": "$199.00",
+                        "discount": "$19.90",
+                        "tax": "$0.00",
+                        "total": "$179.10"
+                    },
+                    "product": {
+                        "id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                        "name": "Custom domains",
+                        "description": "Make ChatApp truly your own with custom domains! Custom domains reinforce your brand identity and make it easy for your team to access ChatApp.",
+                        "tax_category": "standard",
+                        "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+                        "status": "active",
+                        "custom_data": null
+                    },
+                    "discounts": [
+                        {
+                            "discount": {
+                                "id": "dsc_01gtgztp8fpchantd5g1wrksa3",
+                                "status": "active",
+                                "description": "Black Friday 2024",
+                                "enabled_for_checkout": false,
+                                "code": "BF2024",
+                                "type": "percentage",
+                                "amount": "10",
+                                "currency_code": null,
+                                "recur": false,
+                                "maximum_recurring_intervals": null,
+                                "usage_limit": null,
+                                "restrict_to": null,
+                                "expires_at": "2024-12-03T00:00:00Z",
+                                "times_used": 0,
+                                "created_at": "2023-03-02T11:03:00.623Z",
+                                "updated_at": "2023-03-08T12:24:29.706Z"
+                            },
+                            "total": "1990",
+                            "formatted_total": "$19.90"
+                        }
+                    ]
+                }
+            ]
+        },
+        "available_payment_methods": ["apple_pay"]
+    },
+    "meta": {
+        "request_id": "1b2b31c3-f266-4996-8d4d-e5fd495e2069"
+    }
+}

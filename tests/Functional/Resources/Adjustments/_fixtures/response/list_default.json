@@ -1,0 +1,269 @@
+{
+    "data": [
+        {
+            "id": "adj_01h8c65c2ggq5nxswnnwv78e75",
+            "action": "refund",
+            "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
+            "subscription_id": "sub_01h8bxswamxysj44zt5n48njwh",
+            "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+            "reason": "error",
+            "currency_code": "USD",
+            "status": "pending_approval",
+            "items": [
+                {
+                    "id": "adjitm_01h8c65c2ggq5nxswnnz4kxkkr",
+                    "item_id": "txnitm_01h8bxryv3065dyh6103p3yg28",
+                    "type": "partial",
+                    "amount": "100",
+                    "proration": null,
+                    "totals": {
+                        "subtotal": "92",
+                        "tax": "8",
+                        "total": "100"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "92",
+                "tax": "8",
+                "total": "100",
+                "fee": "5",
+                "earnings": "87",
+                "currency_code": "USD"
+            },
+            "payout_totals": {
+                "subtotal": "92",
+                "tax": "8",
+                "total": "100",
+                "fee": "5",
+                "earnings": "87",
+                "currency_code": "USD"
+            },
+            "created_at": "2023-08-21T13:57:15.489634Z",
+            "updated_at": "2023-08-21T13:57:15.489634Z"
+        },
+        {
+            "id": "adj_01h8bxezh16gm6t8rx21dx271b",
+            "action": "credit",
+            "credit_applied_to_balance": true,
+            "transaction_id": "txn_01h8bx69629a16wwm9z8rjmak3",
+            "subscription_id": "sub_01h8bx8fmywym11t6swgzba704",
+            "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+            "reason": "subscription_recurring",
+            "currency_code": "USD",
+            "status": "pending_approval",
+            "items": [
+                {
+                    "id": "adjitm_01h8bxezh16gm6t8rx21s3bvfq",
+                    "item_id": "txnitm_01h8bx69hvh6c94cngs0fzxm31",
+                    "type": "proration",
+                    "amount": "163297",
+                    "proration": {
+                        "rate": "0.99991",
+                        "billing_period": {
+                            "starts_at": "2023-08-21T11:25:12.474Z",
+                            "ends_at": "2023-09-21T11:21:38.547106Z"
+                        }
+                    },
+                    "totals": {
+                        "subtotal": "149986",
+                        "tax": "13311",
+                        "total": "163297"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "149986",
+                "tax": "13311",
+                "total": "163297",
+                "fee": "8215",
+                "earnings": "141771",
+                "currency_code": "USD"
+            },
+            "payout_totals": {
+                "subtotal": "149986",
+                "tax": "13311",
+                "total": "163297",
+                "fee": "8215",
+                "earnings": "141771",
+                "currency_code": "USD"
+            },
+            "created_at": "2023-08-21T11:25:13.138521Z",
+            "updated_at": "2023-08-21T11:25:13.138521Z"
+        },
+        {
+            "id": "adj_01h7jgzjqt2s8sab70e03ptkhv",
+            "action": "credit",
+            "credit_applied_to_balance": true,
+            "transaction_id": "txn_01h7jgd9bkwjscj3ae15g5d3vs",
+            "subscription_id": "sub_01h7ht5z5wdg9pz18jx1fagp8k",
+            "customer_id": "ctm_01h7hswb86rtps5ggbq7ybydcw",
+            "reason": "subscription_recurring",
+            "currency_code": "USD",
+            "status": "approved",
+            "items": [
+                {
+                    "id": "adjitm_01h7jgzjqt2s8sab70e43mth7k",
+                    "item_id": "txnitm_01h7jgd9cp215v676v2eye6pf7",
+                    "type": "proration",
+                    "amount": "71984",
+                    "proration": {
+                        "rate": "0.99978",
+                        "billing_period": {
+                            "starts_at": "2023-12-11T08:43:21.861947Z",
+                            "ends_at": "2024-01-11T08:33:04.443903Z"
+                        }
+                    },
+                    "totals": {
+                        "subtotal": "59987",
+                        "tax": "11997",
+                        "total": "71984"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "59987",
+                "tax": "11997",
+                "total": "71984",
+                "fee": "3631",
+                "earnings": "56356",
+                "currency_code": "USD"
+            },
+            "payout_totals": {
+                "subtotal": "59987",
+                "tax": "11997",
+                "total": "71984",
+                "fee": "3631",
+                "earnings": "56356",
+                "currency_code": "USD"
+            },
+            "created_at": "2023-08-11T14:46:04.811464Z",
+            "updated_at": "2023-08-11T14:46:05.13404Z"
+        },
+        {
+            "id": "adj_01h7jf6ptkfsc93hzc20fgf8wy",
+            "action": "credit",
+            "credit_applied_to_balance": true,
+            "transaction_id": "txn_01h7je77vc1qmzxntem45ebb5q",
+            "subscription_id": "sub_01h7ht5z5wdg9pz18jx1fagp8k",
+            "customer_id": "ctm_01h7hswb86rtps5ggbq7ybydcw",
+            "reason": "subscription_recurring",
+            "currency_code": "USD",
+            "status": "approved",
+            "items": [
+                {
+                    "id": "adjitm_01h7jf6ptkfsc93hzc23je84yw",
+                    "item_id": "txnitm_01h7je77web8mawdyntht1w855",
+                    "type": "proration",
+                    "amount": "35986",
+                    "proration": {
+                        "rate": "0.99961",
+                        "billing_period": {
+                            "starts_at": "2023-11-11T08:50:20.664672Z",
+                            "ends_at": "2023-12-11T08:33:04.443903Z"
+                        }
+                    },
+                    "totals": {
+                        "subtotal": "29988",
+                        "tax": "5998",
+                        "total": "35986"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "29988",
+                "tax": "5998",
+                "total": "35986",
+                "fee": "1837",
+                "earnings": "28151",
+                "currency_code": "USD"
+            },
+            "payout_totals": {
+                "subtotal": "29988",
+                "tax": "5998",
+                "total": "35986",
+                "fee": "1837",
+                "earnings": "28151",
+                "currency_code": "USD"
+            },
+            "created_at": "2023-08-11T14:15:01.225381Z",
+            "updated_at": "2023-08-11T14:15:03.54843Z"
+        },
+        {
+            "id": "adj_01h468w41ttb2j2bh8av74gwt1",
+            "action": "credit",
+            "credit_applied_to_balance": true,
+            "transaction_id": "txn_01h468crc3b3fe98a5ft53recb",
+            "subscription_id": "sub_01h468kv3jhs5jk330gszncsgt",
+            "customer_id": "ctm_01h468k5wr7j4r6kf0790k9g3d",
+            "reason": "subscription_recurring",
+            "currency_code": "AUD",
+            "status": "pending_approval",
+            "items": [
+                {
+                    "id": "adjitm_01h468w41ttb2j2bh8avxtnfwf",
+                    "item_id": "txnitm_01h468k649s7zk3dyyh3pbys2w",
+                    "type": "proration",
+                    "amount": "54993",
+                    "proration": {
+                        "rate": "0.99988",
+                        "billing_period": {
+                            "starts_at": "2023-06-30T13:46:23.963147Z",
+                            "ends_at": "2023-07-30T13:41:51.571658Z"
+                        }
+                    },
+                    "totals": {
+                        "subtotal": "49994",
+                        "tax": "4999",
+                        "total": "54993"
+                    }
+                },
+                {
+                    "id": "adjitm_01h468w41ttb2j2bh8awm8zwtg",
+                    "item_id": "txnitm_01h468k649s7zk3dyyh7ennjwq",
+                    "type": "proration",
+                    "amount": "21997",
+                    "proration": {
+                        "rate": "0.99988",
+                        "billing_period": {
+                            "starts_at": "2023-06-30T13:46:23.969169Z",
+                            "ends_at": "2023-07-30T13:41:51.571658Z"
+                        }
+                    },
+                    "totals": {
+                        "subtotal": "19997",
+                        "tax": "2000",
+                        "total": "21997"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "69991",
+                "tax": "6999",
+                "total": "76990",
+                "fee": "3897",
+                "earnings": "66094",
+                "currency_code": "AUD"
+            },
+            "payout_totals": {
+                "subtotal": "45120",
+                "tax": "4513",
+                "total": "49633",
+                "fee": "2512",
+                "earnings": "42608",
+                "currency_code": "USD"
+            },
+            "created_at": "2023-06-30T13:46:24.240375Z",
+            "updated_at": "2023-06-30T13:46:24.240376Z"
+        }
+    ],
+    "meta": {
+        "request_id": "fb879865-79fc-4547-9df7-0edd92289cd5",
+        "pagination": {
+            "per_page": 5,
+            "next": "https://api.paddle.com/adjustments?after=adj_01h468w41ttb2j2bh8av74gwt1",
+            "has_more": false,
+            "estimated_total": 5
+        }
+    }
+}

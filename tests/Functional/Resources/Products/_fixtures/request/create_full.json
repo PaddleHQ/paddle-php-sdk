@@ -1,0 +1,13 @@
+{
+  "name": "ChatApp Full",
+  "tax_category": "standard",
+  "description": "Spend more time engaging with students with ChataApp Education.",
+  "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+  "custom_data": {
+    "features": {
+      "reports": true,
+      "crm": false,
+      "data_retention": true
+    }
+  }
+}

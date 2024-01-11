@@ -1,0 +1,534 @@
+{
+  "data": [
+    {
+      "id": "pri_01he6hp8cg49jjf1pdjf6d5yw1",
+      "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+      "description": "Weekly (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "week",
+        "frequency": 1
+      },
+      "trial_period": {
+        "interval": "week",
+        "frequency": 1
+      },
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "1000",
+        "currency_code": "GBP"
+      },
+      "unit_price_overrides": [
+        {
+          "country_codes": [
+            "CA",
+            "US"
+          ],
+          "unit_price": {
+            "amount": "5000",
+            "currency_code": "USD"
+          }
+        }
+      ],
+      "custom_data": {
+        "foo": "bar"
+      },
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 1
+      }
+    },
+    {
+      "id": "pri_01he6fm50df5cjmwdy3v3p1z1t",
+      "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+      "description": "Monthly (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "500",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01he5kxqey1k8ankgef29cj4bv",
+      "product_id": "pro_01he5kwnnvgdv2chtpgavk2rf8",
+      "description": "Base subscription",
+      "name": "Base subscription",
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "0",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01h982194qx6az312q4jc7pb7y",
+      "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+      "description": "One-time charge",
+      "name": null,
+      "billing_cycle": null,
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "20000000",
+        "currency_code": "CNY"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01h95tv9jar7paw64xf2f9vdpt",
+      "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+      "description": "One-time charge",
+      "name": null,
+      "billing_cycle": null,
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "15000",
+        "currency_code": "EUR"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01h1vjg3sqjj1y9tvazkdqe5vt",
+      "product_id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+      "description": "Annual (recurring addon)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "year",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "100000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 1
+      }
+    },
+    {
+      "id": "pri_01h1vjfevh5etwq3rb416a23h2",
+      "product_id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+      "description": "Monthly (recurring addon)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "10000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [
+        {
+          "country_codes": [
+            "AU",
+            "AT",
+            "BE"
+          ],
+          "unit_price": {
+            "amount": "20000",
+            "currency_code": "AUD"
+          }
+        }
+      ],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01gvne87kv8vbqa9jkfbmgtsed",
+      "product_id": "pro_01gsz4vmqbjk3x4vvtafffd540",
+      "description": "Monthly",
+      "name": null,
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "5000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+      "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+      "description": "One-time charge",
+      "name": null,
+      "billing_cycle": null,
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "19900",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [
+        {
+          "country_codes": [
+            "AU"
+          ],
+          "unit_price": {
+            "amount": "40000",
+            "currency_code": "AUD"
+          }
+        }
+      ],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 1
+      }
+    },
+    {
+      "id": "pri_01gsz96z29d88jrmsf2ztbfgjg",
+      "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+      "description": "Annual (recurring addon)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "year",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "300000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 1
+      }
+    },
+    {
+      "id": "pri_01gsz95g2zrkagg294kpstx54r",
+      "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+      "description": "Monthly (recurring addon)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "25000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [
+        {
+          "country_codes": [
+            "US"
+          ],
+          "unit_price": {
+            "amount": "28500",
+            "currency_code": "USD"
+          }
+        },
+        {
+          "country_codes": [
+            "PL"
+          ],
+          "unit_price": {
+            "amount": "66000",
+            "currency_code": "PLN"
+          }
+        },
+        {
+          "country_codes": [
+            "IN"
+          ],
+          "unit_price": {
+            "amount": "837500",
+            "currency_code": "INR"
+          }
+        },
+        {
+          "country_codes": [
+            "UA"
+          ],
+          "unit_price": {
+            "amount": "335000",
+            "currency_code": "UAH"
+          }
+        },
+        {
+          "country_codes": [
+            "NG"
+          ],
+          "unit_price": {
+            "amount": "12000",
+            "currency_code": "USD"
+          }
+        }
+      ],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 1
+      }
+    },
+    {
+      "id": "pri_01gsz91wy9k1yn7kx82aafwvea",
+      "product_id": "pro_01gsz4vmqbjk3x4vvtafffd540",
+      "description": "Annual (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "year",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "50000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01gsz8z1q1n00f12qt82y31smh",
+      "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+      "description": "Annual (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "year",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "30000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": {
+        "features": {
+          "crm": true,
+          "data_retention": false,
+          "reports": true
+        },
+        "suggested_addons": [
+          "pro_01h1vjes1y163xfj1rh1tkfb65",
+          "pro_01gsz97mq9pa4fkyy0wqenepkz"
+        ],
+        "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+      },
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 999
+      }
+    },
+    {
+      "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+      "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+      "description": "Monthly (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "3000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [
+        {
+          "country_codes": [
+            "AU"
+          ],
+          "unit_price": {
+            "amount": "5000",
+            "currency_code": "AUD"
+          }
+        }
+      ],
+      "custom_data": {
+        "features": {
+          "crm": true,
+          "data_retention": false,
+          "reports": true
+        },
+        "suggested_addons": [
+          "pro_01h1vjes1y163xfj1rh1tkfb65",
+          "pro_01gsz97mq9pa4fkyy0wqenepkz"
+        ],
+        "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+      },
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 999
+      }
+    },
+    {
+      "id": "pri_01gsz8s48pyr4mbhvv2xfggesg",
+      "product_id": "pro_01gsz4s0w61y0pp88528f1wvvb",
+      "description": "Annual (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "year",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "10000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [
+        {
+          "country_codes": [
+            "IN"
+          ],
+          "unit_price": {
+            "amount": "360000",
+            "currency_code": "INR"
+          }
+        },
+        {
+          "country_codes": [
+            "UA"
+          ],
+          "unit_price": {
+            "amount": "140000",
+            "currency_code": "UAH"
+          }
+        },
+        {
+          "country_codes": [
+            "PL"
+          ],
+          "unit_price": {
+            "amount": "28000",
+            "currency_code": "PLN"
+          }
+        },
+        {
+          "country_codes": [
+            "US"
+          ],
+          "unit_price": {
+            "amount": "15000",
+            "currency_code": "USD"
+          }
+        },
+        {
+          "country_codes": [
+            "NG"
+          ],
+          "unit_price": {
+            "amount": "5000",
+            "currency_code": "USD"
+          }
+        }
+      ],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    {
+      "id": "pri_01gsz8ntc6z7npqqp6j4ys0w1w",
+      "product_id": "pro_01gsz4s0w61y0pp88528f1wvvb",
+      "description": "Monthly (per seat)",
+      "name": null,
+      "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+      },
+      "trial_period": null,
+      "tax_mode": "account_setting",
+      "unit_price": {
+        "amount": "1000",
+        "currency_code": "USD"
+      },
+      "unit_price_overrides": [],
+      "custom_data": null,
+      "status": "active",
+      "quantity": {
+        "minimum": 1,
+        "maximum": 100
+      }
+    }
+  ],
+  "meta": {
+    "request_id": "a36e7258-c04d-483f-b50a-8d3a45eab392",
+    "pagination": {
+      "per_page": 50,
+      "next": "https://sandbox-api.paddle.com/prices?after=pri_01gsz8ntc6z7npqqp6j4ys0w1w",
+      "has_more": false,
+      "estimated_total": 16
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "description": "Slack notifications",
+    "type": "url",
+    "destination": "https://hooks.slack.com/example",
+    "include_sensitive_fields": false,
+    "subscribed_events": [
+        "transaction.billed",
+        "transaction.canceled",
+        "transaction.completed",
+        "transaction.created",
+        "transaction.payment_failed",
+        "transaction.ready",
+        "transaction.updated",
+        "subscription.activated",
+        "subscription.created",
+        "subscription.past_due",
+        "subscription.paused",
+        "subscription.resumed",
+        "subscription.trialing",
+        "subscription.updated"
+    ],
+    "api_version": 1
+}

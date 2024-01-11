@@ -1,0 +1,8 @@
+{
+    "description": "Monthly (per seat)",
+    "product_id": "pro_01h7zcgmdc6tmwtjehp3sh7azf",
+    "unit_price": {
+        "amount": "500",
+        "currency_code": "USD"
+    }
+}

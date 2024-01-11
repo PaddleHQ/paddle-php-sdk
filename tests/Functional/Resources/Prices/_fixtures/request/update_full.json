@@ -1,0 +1,35 @@
+{
+  "description": "Annually (per seat)",
+  "name": "Annually",
+  "billing_cycle": {
+    "interval": "year",
+    "frequency": 1
+  },
+  "trial_period": {
+    "interval": "month",
+    "frequency": 1
+  },
+  "tax_mode": "external",
+  "unit_price": {
+    "amount": "100000",
+    "currency_code": "GBP"
+  },
+  "unit_price_overrides": [
+    {
+      "country_codes": [
+        "US"
+      ],
+      "unit_price": {
+        "amount": "200000",
+        "currency_code": "USD"
+      }
+    }
+  ],
+  "custom_data": {
+    "features": {"reports":  true}
+  },
+  "quantity": {
+    "minimum": 1,
+    "maximum": 10
+  }
+}
