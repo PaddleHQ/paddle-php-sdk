@@ -16,7 +16,7 @@ jobs:
     name: "Package stability ${{ matrix.stability }}"
     runs-on: ubuntu-latest
     permissions:
-      - contents: read
+      contents: read
 
     strategy:
       matrix:
@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build Container
         run: make build
