@@ -14,8 +14,8 @@ use Paddle\SDK\Entities\Report\ReportStatus;
 use Paddle\SDK\Entities\Report\ReportType;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Reports\Operations\CreateOperation;
-use Paddle\SDK\Resources\Reports\Operations\ListOperation;
+use Paddle\SDK\Resources\Reports\Operations\CreateReport;
+use Paddle\SDK\Resources\Reports\Operations\ListReports;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -44,7 +44,7 @@ class ReportsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateReport $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -64,7 +64,7 @@ class ReportsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateReport(
                 type: ReportType::Transactions,
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity')),
@@ -72,7 +72,7 @@ class ReportsClientTest extends TestCase
         ];
 
         yield 'Create with filters' => [
-            new CreateOperation(
+            new CreateReport(
                 type: ReportType::Transactions,
                 filters: [new ReportFilters(name: ReportName::UpdatedAt, operator: ReportOperator::Lt, value: '2023-12-30')],
             ),
@@ -87,7 +87,7 @@ class ReportsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListReports $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -103,13 +103,13 @@ class ReportsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListReports(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/reports', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListReports(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/reports?order_by=id[asc]&per_page=50',
@@ -118,7 +118,7 @@ class ReportsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'rep_01hhq4c3b03g3x2kpkj8aecjv6')),
+            new ListReports(new Pager(after: 'rep_01hhq4c3b03g3x2kpkj8aecjv6')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/reports?after=rep_01hhq4c3b03g3x2kpkj8aecjv6&order_by=id[asc]&per_page=50',
@@ -127,7 +127,7 @@ class ReportsClientTest extends TestCase
         ];
 
         yield 'Status Filtered' => [
-            new ListOperation(statuses: [ReportStatus::Ready]),
+            new ListReports(statuses: [ReportStatus::Ready]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/reports?status=ready', Environment::SANDBOX->baseUrl()),
         ];

@@ -10,7 +10,7 @@ use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Notification\NotificationStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Notifications\Operations\ListOperation;
+use Paddle\SDK\Resources\Notifications\Operations\ListNotifications;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -39,7 +39,7 @@ class NotificationsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListNotifications $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -55,13 +55,13 @@ class NotificationsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListNotifications(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListNotifications(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/notifications?order_by=id[asc]&per_page=50',
@@ -70,7 +70,7 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'nft_01h83xenpcfjyhkqr4x214m02x')),
+            new ListNotifications(new Pager(after: 'nft_01h83xenpcfjyhkqr4x214m02x')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/notifications?after=nft_01h83xenpcfjyhkqr4x214m02x&order_by=id[asc]&per_page=50',
@@ -79,13 +79,13 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'Notification Setting ID Filtered' => [
-            new ListOperation(notificationSettingId: ['nftset_01h83xenpcfjyhkqr4x214m02']),
+            new ListNotifications(notificationSettingId: ['nftset_01h83xenpcfjyhkqr4x214m02']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?notification_setting_id=nftset_01h83xenpcfjyhkqr4x214m02', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Notification Setting ID Filtered' => [
-            new ListOperation(notificationSettingId: ['nftset_01h83xenpcfjyhkqr4x214m02', 'nftset_01h8brhckjd6qk4n7e4py2340t']),
+            new ListNotifications(notificationSettingId: ['nftset_01h83xenpcfjyhkqr4x214m02', 'nftset_01h8brhckjd6qk4n7e4py2340t']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/notifications?notification_setting_id=nftset_01h83xenpcfjyhkqr4x214m02,nftset_01h8brhckjd6qk4n7e4py2340t',
@@ -94,43 +94,43 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(status: [NotificationStatus::Delivered]),
+            new ListNotifications(status: [NotificationStatus::Delivered]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?status=delivered', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple NotificationStatus Filtered' => [
-            new ListOperation(status: [NotificationStatus::Delivered, NotificationStatus::NotAttempted]),
+            new ListNotifications(status: [NotificationStatus::Delivered, NotificationStatus::NotAttempted]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?status=delivered,not_attempted', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Filter Filtered' => [
-            new ListOperation(filter: 'txn_01h83xenpcfjyhkqr4x214m02'),
+            new ListNotifications(filter: 'txn_01h83xenpcfjyhkqr4x214m02'),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?filter=txn_01h83xenpcfjyhkqr4x214m02', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Search Filtered' => [
-            new ListOperation(search: 'transaction.created'),
+            new ListNotifications(search: 'transaction.created'),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?search=transaction.created', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'To Filtered' => [
-            new ListOperation(to: new \DateTime('2023-12-25T00:00:00.000Z')),
+            new ListNotifications(to: new \DateTime('2023-12-25T00:00:00.000Z')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?to=2023-12-25T00:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'From Filtered' => [
-            new ListOperation(to: new \DateTime('2023-12-25T00:00:00.000Z')),
+            new ListNotifications(to: new \DateTime('2023-12-25T00:00:00.000Z')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?to=2023-12-25T00:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'To and From Filtered' => [
-            new ListOperation(
+            new ListNotifications(
                 to: new \DateTime('2023-12-25T00:00:00.000Z'),
                 from: new \DateTime('2023-12-24T00:00:00.000Z'),
             ),

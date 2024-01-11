@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Events\Operations\ListOperation;
+use Paddle\SDK\Resources\Events\Operations\ListEvents;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -25,7 +25,7 @@ $paddle = new Paddle\SDK\Client($apiKey, options: new Paddle\SDK\Options($enviro
 $lastProcessedEventId = 'evt_01hfxx8t6ek9h399srcrp36jt3';
 
 try {
-    $events = $paddle->events->list(new ListOperation(new Pager(after: $lastProcessedEventId)));
+    $events = $paddle->events->list(new ListEvents(new Pager(after: $lastProcessedEventId)));
 } catch (ApiError|MalformedResponse $e) {
     // Handle an error, terminate the poll
     var_dump($e->getMessage());

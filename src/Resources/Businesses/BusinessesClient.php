@@ -18,9 +18,9 @@ use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Businesses\Operations\CreateOperation;
-use Paddle\SDK\Resources\Businesses\Operations\ListOperation;
-use Paddle\SDK\Resources\Businesses\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Businesses\Operations\CreateBusiness;
+use Paddle\SDK\Resources\Businesses\Operations\ListBusinesses;
+use Paddle\SDK\Resources\Businesses\Operations\UpdateBusiness;
 use Paddle\SDK\ResponseParser;
 
 class BusinessesClient
@@ -34,7 +34,7 @@ class BusinessesClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(string $customerId, ListOperation $listOperation = new ListOperation()): BusinessCollection
+    public function list(string $customerId, ListBusinesses $listOperation = new ListBusinesses()): BusinessCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw("/customers/{$customerId}/businesses", $listOperation),
@@ -64,7 +64,7 @@ class BusinessesClient
      * @throws ApiError\BusinessApiError On an business specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function create(string $customerId, CreateOperation $createOperation): Business
+    public function create(string $customerId, CreateBusiness $createOperation): Business
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/customers/{$customerId}/businesses", $createOperation),
@@ -78,7 +78,7 @@ class BusinessesClient
      * @throws ApiError\BusinessApiError On an business specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function update(string $customerId, string $id, UpdateOperation $operation): Business
+    public function update(string $customerId, string $id, UpdateBusiness $operation): Business
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/customers/{$customerId}/businesses/{$id}", $operation),
@@ -94,6 +94,6 @@ class BusinessesClient
      */
     public function archive(string $customerId, string $id): Business
     {
-        return $this->update($customerId, $id, new UpdateOperation(status: Status::Archived));
+        return $this->update($customerId, $id, new UpdateBusiness(status: Status::Archived));
     }
 }

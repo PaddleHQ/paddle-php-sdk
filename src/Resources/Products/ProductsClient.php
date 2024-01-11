@@ -19,10 +19,10 @@ use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Products\Operations\CreateOperation;
+use Paddle\SDK\Resources\Products\Operations\CreateProduct;
 use Paddle\SDK\Resources\Products\Operations\List\Includes;
-use Paddle\SDK\Resources\Products\Operations\ListOperation;
-use Paddle\SDK\Resources\Products\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Products\Operations\ListProducts;
+use Paddle\SDK\Resources\Products\Operations\UpdateProduct;
 use Paddle\SDK\ResponseParser;
 
 class ProductsClient
@@ -36,7 +36,7 @@ class ProductsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): ProductWithIncludesCollection
+    public function list(ListProducts $listOperation = new ListProducts()): ProductWithIncludesCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/products', $listOperation),
@@ -76,7 +76,7 @@ class ProductsClient
      * @throws ApiError\ProductApiError On a product specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): ProductWithIncludes
+    public function create(CreateProduct $createOperation): ProductWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/products', $createOperation),
@@ -90,7 +90,7 @@ class ProductsClient
      * @throws ApiError\ProductApiError On a product specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): ProductWithIncludes
+    public function update(string $id, UpdateProduct $operation): ProductWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/products/{$id}", $operation),
@@ -106,6 +106,6 @@ class ProductsClient
      */
     public function archive(string $id): ProductWithIncludes
     {
-        return $this->update($id, new UpdateOperation(status: Status::Archived));
+        return $this->update($id, new UpdateProduct(status: Status::Archived));
     }
 }

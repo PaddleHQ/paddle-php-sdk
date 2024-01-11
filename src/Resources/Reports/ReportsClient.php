@@ -18,8 +18,8 @@ use Paddle\SDK\Entities\Report;
 use Paddle\SDK\Entities\ReportCSV;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Reports\Operations\CreateOperation;
-use Paddle\SDK\Resources\Reports\Operations\ListOperation;
+use Paddle\SDK\Resources\Reports\Operations\CreateReport;
+use Paddle\SDK\Resources\Reports\Operations\ListReports;
 use Paddle\SDK\ResponseParser;
 
 class ReportsClient
@@ -33,7 +33,7 @@ class ReportsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): ReportCollection
+    public function list(ListReports $listOperation = new ListReports()): ReportCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/reports', $listOperation),
@@ -76,7 +76,7 @@ class ReportsClient
      * @throws ApiError\AddressApiError On an address specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): Report
+    public function create(CreateReport $createOperation): Report
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/reports', $createOperation),

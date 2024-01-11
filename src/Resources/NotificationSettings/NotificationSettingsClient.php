@@ -16,8 +16,8 @@ use Paddle\SDK\Entities\Collections\NotificationSettingCollection;
 use Paddle\SDK\Entities\NotificationSetting;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\NotificationSettings\Operations\CreateOperation;
-use Paddle\SDK\Resources\NotificationSettings\Operations\UpdateOperation;
+use Paddle\SDK\Resources\NotificationSettings\Operations\CreateNotificationSetting;
+use Paddle\SDK\Resources\NotificationSettings\Operations\UpdateNotificationSetting;
 use Paddle\SDK\ResponseParser;
 
 class NotificationSettingsClient
@@ -59,7 +59,7 @@ class NotificationSettingsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): NotificationSetting
+    public function create(CreateNotificationSetting $createOperation): NotificationSetting
     {
         $parser = new ResponseParser(
             $this->client->postRaw('notification-settings', $createOperation),
@@ -72,7 +72,7 @@ class NotificationSettingsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): NotificationSetting
+    public function update(string $id, UpdateNotificationSetting $operation): NotificationSetting
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("notification-settings/{$id}", $operation),

@@ -15,7 +15,7 @@ use Paddle\SDK\Client;
 use Paddle\SDK\Entities\PricePreview;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\PricingPreviews\Operations\PreviewPricesOperation;
+use Paddle\SDK\Resources\PricingPreviews\Operations\PreviewPrice;
 use Paddle\SDK\ResponseParser;
 
 class PricingPreviewsClient
@@ -29,7 +29,7 @@ class PricingPreviewsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function previewPrices(PreviewPricesOperation $operation): PricePreview
+    public function previewPrices(PreviewPrice $operation): PricePreview
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/pricing-preview', $operation),

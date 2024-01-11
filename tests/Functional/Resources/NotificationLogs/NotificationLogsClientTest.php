@@ -9,7 +9,7 @@ use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\NotificationLogs\Operations\ListOperation;
+use Paddle\SDK\Resources\NotificationLogs\Operations\ListNotificationLogs;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -40,7 +40,7 @@ class NotificationLogsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListNotificationLogs $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -56,13 +56,13 @@ class NotificationLogsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListNotificationLogs(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications/%s/logs', Environment::SANDBOX->baseUrl(), self::TEST_ID),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListNotificationLogs(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/notifications/%s/logs?order_by=id[asc]&per_page=50',
@@ -72,7 +72,7 @@ class NotificationLogsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'pro_01gsz4s0w61y0pp88528f1wvvb')),
+            new ListNotificationLogs(new Pager(after: 'pro_01gsz4s0w61y0pp88528f1wvvb')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/notifications/%s/logs?after=pro_01gsz4s0w61y0pp88528f1wvvb&order_by=id[asc]&per_page=50',

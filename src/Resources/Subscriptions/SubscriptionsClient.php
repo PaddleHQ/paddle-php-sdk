@@ -20,15 +20,15 @@ use Paddle\SDK\Entities\TransactionWithIncludes;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Subscriptions\Operations\CancelOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeChargeOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\CancelSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeCharge;
 use Paddle\SDK\Resources\Subscriptions\Operations\Get\Includes;
-use Paddle\SDK\Resources\Subscriptions\Operations\ListOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\PauseOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeChargeOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\PreviewUpdateOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\ResumeOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptions;
+use Paddle\SDK\Resources\Subscriptions\Operations\PauseSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeCharge;
+use Paddle\SDK\Resources\Subscriptions\Operations\PreviewUpdateSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\ResumeSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\UpdateSubscription;
 use Paddle\SDK\ResponseParser;
 
 class SubscriptionsClient
@@ -42,7 +42,7 @@ class SubscriptionsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): SubscriptionWithIncludesCollection
+    public function list(ListSubscriptions $listOperation = new ListSubscriptions()): SubscriptionWithIncludesCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/subscriptions', $listOperation),
@@ -82,7 +82,7 @@ class SubscriptionsClient
      * @throws ApiError\SubscriptionApiError On a subscription specific API error
      * @throws MalformedResponse             If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): SubscriptionWithIncludes
+    public function update(string $id, UpdateSubscription $operation): SubscriptionWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/subscriptions/{$id}", $operation),
@@ -91,7 +91,7 @@ class SubscriptionsClient
         return SubscriptionWithIncludes::from($parser->getData());
     }
 
-    public function pause(string $id, PauseOperation $operation): SubscriptionWithIncludes
+    public function pause(string $id, PauseSubscription $operation): SubscriptionWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/pause", $operation),
@@ -100,7 +100,7 @@ class SubscriptionsClient
         return SubscriptionWithIncludes::from($parser->getData());
     }
 
-    public function resume(string $id, ResumeOperation $operation): SubscriptionWithIncludes
+    public function resume(string $id, ResumeSubscription $operation): SubscriptionWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/resume", $operation),
@@ -109,7 +109,7 @@ class SubscriptionsClient
         return SubscriptionWithIncludes::from($parser->getData());
     }
 
-    public function cancel(string $id, CancelOperation $operation): SubscriptionWithIncludes
+    public function cancel(string $id, CancelSubscription $operation): SubscriptionWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/cancel", $operation),
@@ -136,7 +136,7 @@ class SubscriptionsClient
         return SubscriptionWithIncludes::from($parser->getData());
     }
 
-    public function createOneTimeCharge(string $id, CreateOneTimeChargeOperation $operation): SubscriptionWithIncludes
+    public function createOneTimeCharge(string $id, CreateOneTimeCharge $operation): SubscriptionWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/charge", $operation),
@@ -145,7 +145,7 @@ class SubscriptionsClient
         return SubscriptionWithIncludes::from($parser->getData());
     }
 
-    public function previewUpdate(string $id, PreviewUpdateOperation $operation): SubscriptionPreview
+    public function previewUpdate(string $id, PreviewUpdateSubscription $operation): SubscriptionPreview
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/subscriptions/{$id}/preview", $operation),
@@ -154,7 +154,7 @@ class SubscriptionsClient
         return SubscriptionPreview::from($parser->getData());
     }
 
-    public function previewOneTimeCharge(string $id, PreviewOneTimeChargeOperation $operation): SubscriptionPreview
+    public function previewOneTimeCharge(string $id, PreviewOneTimeCharge $operation): SubscriptionPreview
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/charge/preview", $operation),

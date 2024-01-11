@@ -12,10 +12,10 @@ use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Products\Operations\CreateOperation;
+use Paddle\SDK\Resources\Products\Operations\CreateProduct;
 use Paddle\SDK\Resources\Products\Operations\List\Includes;
-use Paddle\SDK\Resources\Products\Operations\ListOperation;
-use Paddle\SDK\Resources\Products\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Products\Operations\ListProducts;
+use Paddle\SDK\Resources\Products\Operations\UpdateProduct;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -44,7 +44,7 @@ class ProductsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateProduct $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -61,7 +61,7 @@ class ProductsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateProduct(
                 name: 'ChatApp Basic',
                 taxCategory: TaxCategory::Standard,
             ),
@@ -70,7 +70,7 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateProduct(
                 name: 'ChatApp Full',
                 taxCategory: TaxCategory::Standard,
                 description: 'Spend more time engaging with students with ChataApp Education.',
@@ -94,7 +94,7 @@ class ProductsClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateProduct $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -111,19 +111,19 @@ class ProductsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(name: 'ChatApp Pro'),
+            new UpdateProduct(name: 'ChatApp Pro'),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(name: 'ChatApp Pro', taxCategory: TaxCategory::Saas),
+            new UpdateProduct(name: 'ChatApp Pro', taxCategory: TaxCategory::Saas),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateProduct(
                 name: 'ChatApp Pro',
                 taxCategory: TaxCategory::Saas,
                 description: 'Spend more time engaging with students with ChatApp Pro.',
@@ -147,7 +147,7 @@ class ProductsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListProducts $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -163,13 +163,13 @@ class ProductsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListProducts(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListProducts(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/products?order_by=id[asc]&per_page=50',
@@ -178,7 +178,7 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'pro_01gsz4s0w61y0pp88528f1wvvb')),
+            new ListProducts(new Pager(after: 'pro_01gsz4s0w61y0pp88528f1wvvb')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/products?after=pro_01gsz4s0w61y0pp88528f1wvvb&order_by=id[asc]&per_page=50',
@@ -187,19 +187,19 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [Status::Archived]),
+            new ListProducts(statuses: [Status::Archived]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?status=archived', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['pro_01gsz4s0w61y0pp88528f1wvvb']),
+            new ListProducts(ids: ['pro_01gsz4s0w61y0pp88528f1wvvb']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?id=pro_01gsz4s0w61y0pp88528f1wvvb', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['pro_01gsz4s0w61y0pp88528f1wvvb', 'pro_01h1vjes1y163xfj1rh1tkfb65']),
+            new ListProducts(ids: ['pro_01gsz4s0w61y0pp88528f1wvvb', 'pro_01h1vjes1y163xfj1rh1tkfb65']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/products?id=pro_01gsz4s0w61y0pp88528f1wvvb,pro_01h1vjes1y163xfj1rh1tkfb65',
@@ -208,13 +208,13 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'Tax Category Filtered' => [
-            new ListOperation(taxCategories: [TaxCategory::DigitalGoods, TaxCategory::Standard]),
+            new ListProducts(taxCategories: [TaxCategory::DigitalGoods, TaxCategory::Standard]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?tax_category=digital-goods,standard', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Includes' => [
-            new ListOperation(includes: [Includes::Prices]),
+            new ListProducts(includes: [Includes::Prices]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?include=prices', Environment::SANDBOX->baseUrl()),
         ];

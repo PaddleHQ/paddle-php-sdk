@@ -11,8 +11,8 @@ use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Entities\NotificationSetting\NotificationSettingType;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\NotificationSettings\Operations\CreateOperation;
-use Paddle\SDK\Resources\NotificationSettings\Operations\UpdateOperation;
+use Paddle\SDK\Resources\NotificationSettings\Operations\CreateNotificationSetting;
+use Paddle\SDK\Resources\NotificationSettings\Operations\UpdateNotificationSetting;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -40,7 +40,7 @@ class NotificationSettingsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateNotificationSetting $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -57,7 +57,7 @@ class NotificationSettingsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateNotificationSetting(
                 description: 'Slack notifications',
                 type: NotificationSettingType::Url,
                 destination: 'https://hooks.slack.com/example',
@@ -76,7 +76,7 @@ class NotificationSettingsClientTest extends TestCase
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateNotificationSetting(
                 description: 'Slack notifications',
                 type: NotificationSettingType::Url,
                 destination: 'https://hooks.slack.com/example',
@@ -110,7 +110,7 @@ class NotificationSettingsClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateNotificationSetting $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -127,19 +127,19 @@ class NotificationSettingsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(active: false),
+            new UpdateNotificationSetting(active: false),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(description: 'Slack notifications (old)', active: false),
+            new UpdateNotificationSetting(description: 'Slack notifications (old)', active: false),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateNotificationSetting(
                 description: 'Slack notifications (old)',
                 destination: 'https://hooks.slack.com/example',
                 active: false,

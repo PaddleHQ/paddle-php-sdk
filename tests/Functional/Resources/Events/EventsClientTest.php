@@ -9,7 +9,7 @@ use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Events\Operations\ListOperation;
+use Paddle\SDK\Resources\Events\Operations\ListEvents;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -38,7 +38,7 @@ class EventsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListEvents $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -54,13 +54,13 @@ class EventsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListEvents(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/events', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListEvents(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/events?order_by=id[asc]&per_page=50',
@@ -69,7 +69,7 @@ class EventsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'evt_01h83xenpcfjyhkqr4x214m02x')),
+            new ListEvents(new Pager(after: 'evt_01h83xenpcfjyhkqr4x214m02x')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/events?after=evt_01h83xenpcfjyhkqr4x214m02x&order_by=id[asc]&per_page=50',
