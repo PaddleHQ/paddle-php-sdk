@@ -176,12 +176,14 @@ class Client
             [new JsonEncoder()],
         );
 
-        $body = $serializer->serialize($payload, 'json');
+        if ($payload !== null) {
+            $body = $serializer->serialize($payload, 'json');
 
-        $request = $request->withBody(
-            // Satisfies empty body requests.
-            $this->streamFactory->createStream($body === '[]' ? '{}' : $body),
-        );
+            $request = $request->withBody(
+                // Satisfies empty body requests.
+                $this->streamFactory->createStream($body === '[]' ? '{}' : $body),
+            );
+        }
 
         $request = $request->withAddedHeader('X-Transaction-ID', $this->transactionId ?? (string) new Ulid());
 
