@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## 0.1.1 - 2024-01-15
+
+### Fixed
+
+- Resolved invalid streams being created for null payloads
+
 ## dev - 2024-01-10
 
 ### Added
