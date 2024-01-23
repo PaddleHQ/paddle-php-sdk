@@ -12,9 +12,9 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Addresses\Operations\CreateOperation;
-use Paddle\SDK\Resources\Addresses\Operations\ListOperation;
-use Paddle\SDK\Resources\Addresses\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Addresses\Operations\CreateAddress;
+use Paddle\SDK\Resources\Addresses\Operations\ListAddresses;
+use Paddle\SDK\Resources\Addresses\Operations\UpdateAddress;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -43,7 +43,7 @@ class AddressesClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateAddress $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -63,13 +63,13 @@ class AddressesClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(CountryCode::AG),
+            new CreateAddress(CountryCode::AG),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_basic'),
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateAddress(
                 countryCode: CountryCode::US,
                 description: 'Head Office',
                 firstLine: '4050 Jefferson Plaza, 41st Floor',
@@ -90,7 +90,7 @@ class AddressesClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateAddress $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -110,7 +110,7 @@ class AddressesClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(
+            new UpdateAddress(
                 description: 'Head Office',
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
@@ -118,13 +118,13 @@ class AddressesClientTest extends TestCase
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(description: 'Head Office', city: 'New York'),
+            new UpdateAddress(description: 'Head Office', city: 'New York'),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateAddress(
                 description: 'Head Office',
                 firstLine: '4050 Jefferson Plaza, 41st Floor',
                 secondLine: null,
@@ -146,7 +146,7 @@ class AddressesClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListAddresses $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -162,13 +162,13 @@ class AddressesClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListAddresses(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListAddresses(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?order_by=id[asc]&per_page=50',
@@ -177,7 +177,7 @@ class AddressesClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'add_01h848pep46enq8y372x7maj0p')),
+            new ListAddresses(new Pager(after: 'add_01h848pep46enq8y372x7maj0p')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?after=add_01h848pep46enq8y372x7maj0p&order_by=id[asc]&per_page=50',
@@ -186,19 +186,19 @@ class AddressesClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [Status::Archived]),
+            new ListAddresses(statuses: [Status::Archived]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?status=archived', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['add_01h848pep46enq8y372x7maj0p']),
+            new ListAddresses(ids: ['add_01h848pep46enq8y372x7maj0p']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?id=add_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'add_01h848pep46enq8y372x7maj0p']),
+            new ListAddresses(ids: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'add_01h848pep46enq8y372x7maj0p']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?id=add_01h8494f4w5rwfp8b12yqh8fp1,add_01h848pep46enq8y372x7maj0p',
@@ -207,7 +207,7 @@ class AddressesClientTest extends TestCase
         ];
 
         yield 'Search Filtered' => [
-            new ListOperation(search: 'Office'),
+            new ListAddresses(search: 'Office'),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?search=Office', Environment::SANDBOX->baseUrl()),
         ];

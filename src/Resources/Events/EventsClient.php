@@ -16,7 +16,7 @@ use Paddle\SDK\Entities\Collections\EventCollection;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Events\Operations\ListOperation;
+use Paddle\SDK\Resources\Events\Operations\ListEvents;
 use Paddle\SDK\ResponseParser;
 
 class EventsClient
@@ -30,7 +30,7 @@ class EventsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): EventCollection
+    public function list(ListEvents $listOperation = new ListEvents()): EventCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/events', $listOperation),

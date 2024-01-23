@@ -20,11 +20,11 @@ use Paddle\SDK\Entities\TransactionWithIncludes;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Transactions\Operations\CreateOperation;
+use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
-use Paddle\SDK\Resources\Transactions\Operations\ListOperation;
-use Paddle\SDK\Resources\Transactions\Operations\PreviewOperation;
-use Paddle\SDK\Resources\Transactions\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
+use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
 use Paddle\SDK\ResponseParser;
 
 class TransactionsClient
@@ -38,7 +38,7 @@ class TransactionsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): TransactionWithIncludesCollection
+    public function list(ListTransactions $listOperation = new ListTransactions()): TransactionWithIncludesCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/transactions', $listOperation),
@@ -78,7 +78,7 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation, array $includes = []): TransactionWithIncludes
+    public function create(CreateTransaction $createOperation, array $includes = []): TransactionWithIncludes
     {
         if ($invalid = array_filter($includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -100,7 +100,7 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): TransactionWithIncludes
+    public function update(string $id, UpdateTransaction $operation): TransactionWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/transactions/{$id}", $operation),
@@ -114,7 +114,7 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function preview(PreviewOperation $operation): TransactionPreview
+    public function preview(PreviewTransaction $operation): TransactionPreview
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/transactions/preview', $operation),

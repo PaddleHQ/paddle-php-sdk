@@ -28,11 +28,11 @@ use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
 use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
-use Paddle\SDK\Resources\Transactions\Operations\CreateOperation;
+use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
-use Paddle\SDK\Resources\Transactions\Operations\ListOperation;
-use Paddle\SDK\Resources\Transactions\Operations\PreviewOperation;
-use Paddle\SDK\Resources\Transactions\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
+use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -84,7 +84,7 @@ class TransactionsClientTest extends TestCase
     /** @test */
     public function it_can_include_on_create(): void
     {
-        $operation = new CreateOperation(
+        $operation = new CreateTransaction(
             items: [
                 new TransactionCreateItem('pri_01he5kxqey1k8ankgef29cj4bv', 1),
             ],
@@ -108,7 +108,7 @@ class TransactionsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateTransaction $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -125,7 +125,7 @@ class TransactionsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateTransaction(
                 items: [
                     new TransactionCreateItem('pri_01he5kxqey1k8ankgef29cj4bv', 1),
                 ],
@@ -135,7 +135,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Create with non catalog price' => [
-            new CreateOperation(
+            new CreateTransaction(
                 items: [
                     new TransactionCreateItemWithPrice(
                         new TransactionNonCatalogPrice(
@@ -159,7 +159,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Create Manually Collected' => [
-            new CreateOperation(
+            new CreateTransaction(
                 items: [
                     new TransactionCreateItem('pri_01gsz8x8sawmvhz1pv30nge1ke', 1),
                 ],
@@ -187,7 +187,7 @@ class TransactionsClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateTransaction $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -204,13 +204,13 @@ class TransactionsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(status: StatusTransaction::Billed),
+            new UpdateTransaction(status: StatusTransaction::Billed),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(
+            new UpdateTransaction(
                 status: StatusTransaction::Billed,
                 customData: new CustomData(['completed_by' => 'Frank T']),
             ),
@@ -225,7 +225,7 @@ class TransactionsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListTransactions $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -241,13 +241,13 @@ class TransactionsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListTransactions(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListTransactions(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/transactions?order_by=id[asc]&per_page=50',
@@ -256,7 +256,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'txn_01hen7bxc1p8ep4yk7n5jbzk9r')),
+            new ListTransactions(new Pager(after: 'txn_01hen7bxc1p8ep4yk7n5jbzk9r')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/transactions?after=txn_01hen7bxc1p8ep4yk7n5jbzk9r&order_by=id[asc]&per_page=50',
@@ -265,19 +265,19 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [StatusTransaction::Billed]),
+            new ListTransactions(statuses: [StatusTransaction::Billed]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?status=billed', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'NotificationStatus Filtered Multiple' => [
-            new ListOperation(statuses: [StatusTransaction::Billed, StatusTransaction::Completed]),
+            new ListTransactions(statuses: [StatusTransaction::Billed, StatusTransaction::Completed]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?status=billed,completed', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['txn_01gsz4s0w61y0pp88528f1wvvb']),
+            new ListTransactions(ids: ['txn_01gsz4s0w61y0pp88528f1wvvb']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/transactions?id=txn_01gsz4s0w61y0pp88528f1wvvb',
@@ -286,7 +286,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['txn_01gsz4s0w61y0pp88528f1wvvb', 'txn_01h1vjes1y163xfj1rh1tkfb65']),
+            new ListTransactions(ids: ['txn_01gsz4s0w61y0pp88528f1wvvb', 'txn_01h1vjes1y163xfj1rh1tkfb65']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/transactions?id=txn_01gsz4s0w61y0pp88528f1wvvb,txn_01h1vjes1y163xfj1rh1tkfb65',
@@ -295,79 +295,79 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Collection Mode Filtered' => [
-            new ListOperation(collectionMode: CollectionMode::Automatic),
+            new ListTransactions(collectionMode: CollectionMode::Automatic),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?collection_mode=automatic', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Billed At Filtered No Comparator' => [
-            new ListOperation(billedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
+            new ListTransactions(billedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?billed_at=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Billed At Filtered With Comparator' => [
-            new ListOperation(billedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
+            new ListTransactions(billedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?billed_at[GT]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Invoice Number Filtered' => [
-            new ListOperation(invoiceNumbers: ['inv_01gsz4s0w61y0pp88528f1wvvb']),
+            new ListTransactions(invoiceNumbers: ['inv_01gsz4s0w61y0pp88528f1wvvb']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?invoice_number=inv_01gsz4s0w61y0pp88528f1wvvb', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Invoice Number Filtered multiple' => [
-            new ListOperation(invoiceNumbers: ['inv_01gsz4s0w61y0pp88528f1wvvb', 'inv_01h1vjes1y163xfj1rh1tkfb65']),
+            new ListTransactions(invoiceNumbers: ['inv_01gsz4s0w61y0pp88528f1wvvb', 'inv_01h1vjes1y163xfj1rh1tkfb65']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?invoice_number=inv_01gsz4s0w61y0pp88528f1wvvb,inv_01h1vjes1y163xfj1rh1tkfb65', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'NotificationSubscription ID Filtered' => [
-            new ListOperation(subscriptionIds: ['sub_01gsz4s0w61y0pp88528f1wvvb']),
+            new ListTransactions(subscriptionIds: ['sub_01gsz4s0w61y0pp88528f1wvvb']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?subscription_id=sub_01gsz4s0w61y0pp88528f1wvvb', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'NotificationSubscription ID Filtered Multiple' => [
-            new ListOperation(subscriptionIds: ['sub_01gsz4s0w61y0pp88528f1wvvb', 'sub_01h1vjes1y163xfj1rh1tkfb65']),
+            new ListTransactions(subscriptionIds: ['sub_01gsz4s0w61y0pp88528f1wvvb', 'sub_01h1vjes1y163xfj1rh1tkfb65']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?subscription_id=sub_01gsz4s0w61y0pp88528f1wvvb,sub_01h1vjes1y163xfj1rh1tkfb65', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Updated At Filtered No Comparator' => [
-            new ListOperation(updatedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
+            new ListTransactions(updatedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?updated_at=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Updated At Filtered With Comparator' => [
-            new ListOperation(updatedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
+            new ListTransactions(updatedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?updated_at[GT]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Created At Filtered No Comparator' => [
-            new ListOperation(createdAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
+            new ListTransactions(createdAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?created_at=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Created At Filtered With Comparator' => [
-            new ListOperation(createdAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
+            new ListTransactions(createdAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?created_at[GT]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Includes' => [
-            new ListOperation(includes: [Includes::Customer]),
+            new ListTransactions(includes: [Includes::Customer]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?include=customer', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Includes Multiple' => [
-            new ListOperation(includes: [Includes::Customer, Includes::Address, Includes::Discount]),
+            new ListTransactions(includes: [Includes::Customer, Includes::Address, Includes::Discount]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?include=customer,address,discount', Environment::SANDBOX->baseUrl()),
         ];
@@ -415,7 +415,7 @@ class TransactionsClientTest extends TestCase
      * @dataProvider previewOperationsProvider
      */
     public function it_uses_expected_payload_on_preview(
-        PreviewOperation $operation,
+        PreviewTransaction $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -432,7 +432,7 @@ class TransactionsClientTest extends TestCase
     public static function previewOperationsProvider(): \Generator
     {
         yield 'Basic Preview' => [
-            new PreviewOperation(
+            new PreviewTransaction(
                 items: [
                     new TransactionItemPreviewWithPriceId('pri_01he5kxqey1k8ankgef29cj4bv', 1, true),
                 ],
@@ -442,7 +442,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Preview with non catalog price' => [
-            new PreviewOperation(
+            new PreviewTransaction(
                 items: [
                     new TransactionItemPreviewWithNonCatalogPrice(
                         new TransactionNonCatalogPrice(

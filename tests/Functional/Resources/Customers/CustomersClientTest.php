@@ -11,9 +11,9 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Customers\Operations\CreateOperation;
-use Paddle\SDK\Resources\Customers\Operations\ListOperation;
-use Paddle\SDK\Resources\Customers\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Customers\Operations\CreateCustomer;
+use Paddle\SDK\Resources\Customers\Operations\ListCustomers;
+use Paddle\SDK\Resources\Customers\Operations\UpdateCustomer;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -42,7 +42,7 @@ class CustomersClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateCustomer $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -59,13 +59,13 @@ class CustomersClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation('test2@example.com'),
+            new CreateCustomer('test2@example.com'),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_basic'),
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateCustomer(
                 email: 'test2@example.com',
                 name: 'Alex Wilson',
                 customData: new CustomData(['customer_reference_id' => 'abcd1234']),
@@ -82,7 +82,7 @@ class CustomersClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateCustomer $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -99,19 +99,19 @@ class CustomersClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(name: 'Alex Wilson'),
+            new UpdateCustomer(name: 'Alex Wilson'),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(name: 'Alex Wilson', email: 'test1@example.com'),
+            new UpdateCustomer(name: 'Alex Wilson', email: 'test1@example.com'),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateCustomer(
                 name: 'Alex Wilson',
                 email: 'test1@example.com',
                 locale: 'el',
@@ -129,7 +129,7 @@ class CustomersClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListCustomers $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -145,13 +145,13 @@ class CustomersClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListCustomers(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListCustomers(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers?order_by=id[asc]&per_page=50',
@@ -160,7 +160,7 @@ class CustomersClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'ctm_01h8441jn5pcwrfhwh78jqt8hk')),
+            new ListCustomers(new Pager(after: 'ctm_01h8441jn5pcwrfhwh78jqt8hk')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers?after=ctm_01h8441jn5pcwrfhwh78jqt8hk&order_by=id[asc]&per_page=50',
@@ -169,19 +169,19 @@ class CustomersClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [Status::Archived]),
+            new ListCustomers(statuses: [Status::Archived]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers?status=archived', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['ctm_01h8441jn5pcwrfhwh78jqt8hk']),
+            new ListCustomers(ids: ['ctm_01h8441jn5pcwrfhwh78jqt8hk']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers?id=ctm_01h8441jn5pcwrfhwh78jqt8hk', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['ctm_01h8441jn5pcwrfhwh78jqt8hk', 'ctm_01h844p3h41s12zs5mn4axja51']),
+            new ListCustomers(ids: ['ctm_01h8441jn5pcwrfhwh78jqt8hk', 'ctm_01h844p3h41s12zs5mn4axja51']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers?id=ctm_01h8441jn5pcwrfhwh78jqt8hk,ctm_01h844p3h41s12zs5mn4axja51',
@@ -190,7 +190,7 @@ class CustomersClientTest extends TestCase
         ];
 
         yield 'Search Filtered' => [
-            new ListOperation(search: 'Alex'),
+            new ListCustomers(search: 'Alex'),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers?search=Alex', Environment::SANDBOX->baseUrl()),
         ];

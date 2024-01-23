@@ -19,10 +19,10 @@ use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Prices\Operations\CreateOperation;
+use Paddle\SDK\Resources\Prices\Operations\CreatePrice;
 use Paddle\SDK\Resources\Prices\Operations\List\Includes;
-use Paddle\SDK\Resources\Prices\Operations\ListOperation;
-use Paddle\SDK\Resources\Prices\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Prices\Operations\ListPrices;
+use Paddle\SDK\Resources\Prices\Operations\UpdatePrice;
 use Paddle\SDK\ResponseParser;
 
 class PricesClient
@@ -36,7 +36,7 @@ class PricesClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): PriceWithIncludesCollection
+    public function list(ListPrices $listOperation = new ListPrices()): PriceWithIncludesCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/prices', $listOperation),
@@ -76,7 +76,7 @@ class PricesClient
      * @throws ApiError\PriceApiError On a price specific API error
      * @throws MalformedResponse      If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): PriceWithIncludes
+    public function create(CreatePrice $createOperation): PriceWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/prices', $createOperation),
@@ -90,7 +90,7 @@ class PricesClient
      * @throws ApiError\PriceApiError On a price specific API error
      * @throws MalformedResponse      If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): PriceWithIncludes
+    public function update(string $id, UpdatePrice $operation): PriceWithIncludes
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/prices/{$id}", $operation),
@@ -106,6 +106,6 @@ class PricesClient
      */
     public function archive(string $id): PriceWithIncludes
     {
-        return $this->update($id, new UpdateOperation(status: Status::Archived));
+        return $this->update($id, new UpdatePrice(status: Status::Archived));
     }
 }

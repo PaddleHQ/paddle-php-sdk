@@ -13,8 +13,8 @@ use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\StatusAdjustment;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Adjustments\Operations\CreateOperation;
-use Paddle\SDK\Resources\Adjustments\Operations\ListOperation;
+use Paddle\SDK\Resources\Adjustments\Operations\CreateAdjustment;
+use Paddle\SDK\Resources\Adjustments\Operations\ListAdjustments;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -43,7 +43,7 @@ class AdjustmentsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateAdjustment $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -63,7 +63,7 @@ class AdjustmentsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateAdjustment(
                 Action::Refund,
                 [new AdjustmentItem(
                     'txnitm_01h8bxryv3065dyh6103p3yg28',
@@ -78,7 +78,7 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateAdjustment(
                 Action::Refund,
                 [
                     new AdjustmentItem(
@@ -106,7 +106,7 @@ class AdjustmentsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListAdjustments $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -122,13 +122,13 @@ class AdjustmentsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListAdjustments(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListAdjustments(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/adjustments?order_by=id[asc]&per_page=50',
@@ -137,7 +137,7 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'adj_01h8c65c2ggq5nxswnnwv78e75')),
+            new ListAdjustments(new Pager(after: 'adj_01h8c65c2ggq5nxswnnwv78e75')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/adjustments?after=adj_01h8c65c2ggq5nxswnnwv78e75&order_by=id[asc]&per_page=50',
@@ -146,19 +146,19 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [StatusAdjustment::PendingApproval]),
+            new ListAdjustments(statuses: [StatusAdjustment::PendingApproval]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?status=pending_approval', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['adj_01h8c65c2ggq5nxswnnwv78e75']),
+            new ListAdjustments(ids: ['adj_01h8c65c2ggq5nxswnnwv78e75']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?id=adj_01h8c65c2ggq5nxswnnwv78e75', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'adj_01h8c65c2ggq5nxswnnwv78e75']),
+            new ListAdjustments(ids: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'adj_01h8c65c2ggq5nxswnnwv78e75']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/adjustments?id=add_01h8494f4w5rwfp8b12yqh8fp1,adj_01h8c65c2ggq5nxswnnwv78e75',
@@ -167,43 +167,43 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'Customer ID Filtered' => [
-            new ListOperation(customerIds: ['ctm_01h8441jn5pcwrfhwh78jqt8hk']),
+            new ListAdjustments(customerIds: ['ctm_01h8441jn5pcwrfhwh78jqt8hk']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?customer_id=ctm_01h8441jn5pcwrfhwh78jqt8hk', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Customer ID Filtered' => [
-            new ListOperation(customerIds: ['ctm_01h8441jn5pcwrfhwh78jqt8hk', 'ctm_01h7hswb86rtps5ggbq7ybydcw']),
+            new ListAdjustments(customerIds: ['ctm_01h8441jn5pcwrfhwh78jqt8hk', 'ctm_01h7hswb86rtps5ggbq7ybydcw']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?customer_id=ctm_01h8441jn5pcwrfhwh78jqt8hk,ctm_01h7hswb86rtps5ggbq7ybydcw', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Transaction ID Filtered' => [
-            new ListOperation(transactionIds: ['txn_01h8bxpvx398a7zbawb77y0kp5']),
+            new ListAdjustments(transactionIds: ['txn_01h8bxpvx398a7zbawb77y0kp5']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?transaction_id=txn_01h8bxpvx398a7zbawb77y0kp5', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Transaction ID Filtered' => [
-            new ListOperation(transactionIds: ['ctm_01h8441jn5pcwrfhwh78jqt8hk', 'txn_01h8bx69629a16wwm9z8rjmak3']),
+            new ListAdjustments(transactionIds: ['ctm_01h8441jn5pcwrfhwh78jqt8hk', 'txn_01h8bx69629a16wwm9z8rjmak3']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?transaction_id=ctm_01h8441jn5pcwrfhwh78jqt8hk,txn_01h8bx69629a16wwm9z8rjmak3', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'NotificationSubscription ID Filtered' => [
-            new ListOperation(subscriptionIds: ['sub_01h8bxswamxysj44zt5n48njwh']),
+            new ListAdjustments(subscriptionIds: ['sub_01h8bxswamxysj44zt5n48njwh']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?subscription_id=sub_01h8bxswamxysj44zt5n48njwh', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple NotificationSubscription ID Filtered' => [
-            new ListOperation(subscriptionIds: ['sub_01h8bxswamxysj44zt5n48njwh', 'sub_01h8bx8fmywym11t6swgzba704']),
+            new ListAdjustments(subscriptionIds: ['sub_01h8bxswamxysj44zt5n48njwh', 'sub_01h8bx8fmywym11t6swgzba704']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?subscription_id=sub_01h8bxswamxysj44zt5n48njwh,sub_01h8bx8fmywym11t6swgzba704', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Action Filtered' => [
-            new ListOperation(action: Action::Refund),
+            new ListAdjustments(action: Action::Refund),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?action=refund', Environment::SANDBOX->baseUrl()),
         ];

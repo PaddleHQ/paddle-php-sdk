@@ -18,9 +18,9 @@ use Paddle\SDK\Entities\Discount;
 use Paddle\SDK\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Discounts\Operations\CreateOperation;
-use Paddle\SDK\Resources\Discounts\Operations\ListOperation;
-use Paddle\SDK\Resources\Discounts\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Discounts\Operations\CreateDiscount;
+use Paddle\SDK\Resources\Discounts\Operations\ListDiscounts;
+use Paddle\SDK\Resources\Discounts\Operations\UpdateDiscount;
 use Paddle\SDK\ResponseParser;
 
 class DiscountsClient
@@ -34,7 +34,7 @@ class DiscountsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): DiscountCollection
+    public function list(ListDiscounts $listOperation = new ListDiscounts()): DiscountCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/discounts', $listOperation),
@@ -64,7 +64,7 @@ class DiscountsClient
      * @throws ApiError\DiscountApiError On a discount specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): Discount
+    public function create(CreateDiscount $createOperation): Discount
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/discounts', $createOperation),
@@ -78,7 +78,7 @@ class DiscountsClient
      * @throws ApiError\DiscountApiError On a discount specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): Discount
+    public function update(string $id, UpdateDiscount $operation): Discount
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/discounts/{$id}", $operation),
@@ -94,6 +94,6 @@ class DiscountsClient
      */
     public function archive(string $id): Discount
     {
-        return $this->update($id, new UpdateOperation(status: DiscountStatus::Archived));
+        return $this->update($id, new UpdateDiscount(status: DiscountStatus::Archived));
     }
 }

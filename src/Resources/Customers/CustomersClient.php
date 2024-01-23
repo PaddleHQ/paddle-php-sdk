@@ -19,9 +19,9 @@ use Paddle\SDK\Entities\Customer;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Customers\Operations\CreateOperation;
-use Paddle\SDK\Resources\Customers\Operations\ListOperation;
-use Paddle\SDK\Resources\Customers\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Customers\Operations\CreateCustomer;
+use Paddle\SDK\Resources\Customers\Operations\ListCustomers;
+use Paddle\SDK\Resources\Customers\Operations\UpdateCustomer;
 use Paddle\SDK\ResponseParser;
 
 class CustomersClient
@@ -35,7 +35,7 @@ class CustomersClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): CustomerCollection
+    public function list(ListCustomers $listOperation = new ListCustomers()): CustomerCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/customers', $listOperation),
@@ -65,7 +65,7 @@ class CustomersClient
      * @throws ApiError\CustomerApiError On a customer specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): Customer
+    public function create(CreateCustomer $createOperation): Customer
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/customers', $createOperation),
@@ -79,7 +79,7 @@ class CustomersClient
      * @throws ApiError\CustomerApiError On a customer specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function update(string $id, UpdateOperation $operation): Customer
+    public function update(string $id, UpdateCustomer $operation): Customer
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/customers/{$id}", $operation),
@@ -95,7 +95,7 @@ class CustomersClient
      */
     public function archive(string $id): Customer
     {
-        return $this->update($id, new UpdateOperation(status: Status::Archived));
+        return $this->update($id, new UpdateCustomer(status: Status::Archived));
     }
 
     /**

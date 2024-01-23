@@ -19,16 +19,16 @@ use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
-use Paddle\SDK\Resources\Subscriptions\Operations\CancelOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeChargeOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\CancelSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeCharge;
 use Paddle\SDK\Resources\Subscriptions\Operations\Get\Includes;
-use Paddle\SDK\Resources\Subscriptions\Operations\ListOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\PauseOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeChargeOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\PreviewUpdateOperation;
-use Paddle\SDK\Resources\Subscriptions\Operations\ResumeOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptions;
+use Paddle\SDK\Resources\Subscriptions\Operations\PauseSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeCharge;
+use Paddle\SDK\Resources\Subscriptions\Operations\PreviewUpdateSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\ResumeSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
-use Paddle\SDK\Resources\Subscriptions\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Subscriptions\Operations\UpdateSubscription;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -56,7 +56,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateSubscription $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -76,19 +76,19 @@ class SubscriptionsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod),
+            new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately, scheduledChange: null),
+            new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately, scheduledChange: null),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateSubscription(
                 customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
                 addressId: 'add_01h848pep46enq8y372x7maj0p',
                 businessId: null,
@@ -119,7 +119,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListSubscriptions $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -135,13 +135,13 @@ class SubscriptionsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListSubscriptions(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListSubscriptions(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/subscriptions?order_by=id[asc]&per_page=50',
@@ -150,7 +150,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'sub_01h848pep46enq8y372x7maj0p')),
+            new ListSubscriptions(new Pager(after: 'sub_01h848pep46enq8y372x7maj0p')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/subscriptions?after=sub_01h848pep46enq8y372x7maj0p&order_by=id[asc]&per_page=50',
@@ -159,19 +159,19 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [SubscriptionStatus::Paused]),
+            new ListSubscriptions(statuses: [SubscriptionStatus::Paused]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?status=paused', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['sub_01h848pep46enq8y372x7maj0p']),
+            new ListSubscriptions(ids: ['sub_01h848pep46enq8y372x7maj0p']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?id=sub_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['sub_01h8494f4w5rwfp8b12yqh8fp1', 'sub_01h848pep46enq8y372x7maj0p']),
+            new ListSubscriptions(ids: ['sub_01h8494f4w5rwfp8b12yqh8fp1', 'sub_01h848pep46enq8y372x7maj0p']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/subscriptions?id=sub_01h8494f4w5rwfp8b12yqh8fp1,sub_01h848pep46enq8y372x7maj0p',
@@ -180,43 +180,43 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Collection Mode Filtered' => [
-            new ListOperation(collectionMode: CollectionMode::Automatic),
+            new ListSubscriptions(collectionMode: CollectionMode::Automatic),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?collection_mode=automatic', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Address ID Filtered' => [
-            new ListOperation(addressIds: ['add_01h8494f4w5rwfp8b12yqh8fp1']),
+            new ListSubscriptions(addressIds: ['add_01h8494f4w5rwfp8b12yqh8fp1']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?address_id=add_01h8494f4w5rwfp8b12yqh8fp1', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Address ID Filtered' => [
-            new ListOperation(addressIds: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'add_01h848pep46enq8y372x7maj0p']),
+            new ListSubscriptions(addressIds: ['add_01h8494f4w5rwfp8b12yqh8fp1', 'add_01h848pep46enq8y372x7maj0p']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?address_id=add_01h8494f4w5rwfp8b12yqh8fp1,add_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Price ID Filtered' => [
-            new ListOperation(priceIds: ['pri_01h8494f4w5rwfp8b12yqh8fp1']),
+            new ListSubscriptions(priceIds: ['pri_01h8494f4w5rwfp8b12yqh8fp1']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?price_id=pri_01h8494f4w5rwfp8b12yqh8fp1', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Price ID Filtered' => [
-            new ListOperation(priceIds: ['pri_01h8494f4w5rwfp8b12yqh8fp1', 'pri_01h848pep46enq8y372x7maj0p']),
+            new ListSubscriptions(priceIds: ['pri_01h8494f4w5rwfp8b12yqh8fp1', 'pri_01h848pep46enq8y372x7maj0p']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?price_id=pri_01h8494f4w5rwfp8b12yqh8fp1,pri_01h848pep46enq8y372x7maj0p', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Scheduled Change Action Filtered' => [
-            new ListOperation(scheduledChangeActions: [SubscriptionScheduledChangeAction::Pause]),
+            new ListSubscriptions(scheduledChangeActions: [SubscriptionScheduledChangeAction::Pause]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?scheduled_change_action=pause', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Scheduled Change Action Filtered' => [
-            new ListOperation(scheduledChangeActions: [
+            new ListSubscriptions(scheduledChangeActions: [
                 SubscriptionScheduledChangeAction::Pause,
                 SubscriptionScheduledChangeAction::Cancel,
             ]),
@@ -267,7 +267,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider pauseOperationsProvider
      */
     public function pause_uses_expected_payload(
-        PauseOperation $operation,
+        PauseSubscription $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -287,19 +287,19 @@ class SubscriptionsClientTest extends TestCase
     public static function pauseOperationsProvider(): \Generator
     {
         yield 'Update None' => [
-            new PauseOperation(),
+            new PauseSubscription(),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/pause_none'),
         ];
 
         yield 'Update Single' => [
-            new PauseOperation(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new PauseSubscription(SubscriptionEffectiveFrom::NextBillingPeriod),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/pause_single'),
         ];
 
         yield 'Update All' => [
-            new PauseOperation(
+            new PauseSubscription(
                 SubscriptionEffectiveFrom::NextBillingPeriod,
                 new \DateTime('2023-10-09T16:30:00Z'),
             ),
@@ -314,7 +314,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider resumeOperationsProvider
      */
     public function resume_uses_expected_payload(
-        ResumeOperation $operation,
+        ResumeSubscription $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -334,19 +334,19 @@ class SubscriptionsClientTest extends TestCase
     public static function resumeOperationsProvider(): \Generator
     {
         yield 'Update None' => [
-            new ResumeOperation(),
+            new ResumeSubscription(),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_none'),
         ];
 
         yield 'Update Single As Enum' => [
-            new ResumeOperation(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new ResumeSubscription(SubscriptionEffectiveFrom::NextBillingPeriod),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_single_as_enum'),
         ];
 
         yield 'Update Single As Date' => [
-            new ResumeOperation(new \DateTime('2023-10-09T16:30:00Z')),
+            new ResumeSubscription(new \DateTime('2023-10-09T16:30:00Z')),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_single_as_date'),
         ];
@@ -358,7 +358,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider cancelOperationsProvider
      */
     public function cancel_uses_expected_payload(
-        CancelOperation $operation,
+        CancelSubscription $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -378,13 +378,13 @@ class SubscriptionsClientTest extends TestCase
     public static function cancelOperationsProvider(): \Generator
     {
         yield 'Update None' => [
-            new CancelOperation(),
+            new CancelSubscription(),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/cancel_none'),
         ];
 
         yield 'Update Single' => [
-            new CancelOperation(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new CancelSubscription(SubscriptionEffectiveFrom::NextBillingPeriod),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/cancel_single'),
         ];
@@ -452,7 +452,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider createOneTimeChargeOperationsProvider
      */
     public function create_one_time_charge_uses_expected_payload(
-        CreateOneTimeChargeOperation $operation,
+        CreateOneTimeCharge $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -472,7 +472,7 @@ class SubscriptionsClientTest extends TestCase
     public static function createOneTimeChargeOperationsProvider(): \Generator
     {
         yield 'Update Minimal' => [
-            new CreateOneTimeChargeOperation(
+            new CreateOneTimeCharge(
                 SubscriptionEffectiveFrom::NextBillingPeriod,
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
@@ -483,7 +483,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Update Full' => [
-            new CreateOneTimeChargeOperation(
+            new CreateOneTimeCharge(
                 SubscriptionEffectiveFrom::Immediately,
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
@@ -503,7 +503,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider previewUpdateOperationsProvider
      */
     public function it_uses_expected_payload_on_preview_update(
-        PreviewUpdateOperation $operation,
+        PreviewUpdateSubscription $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -523,7 +523,7 @@ class SubscriptionsClientTest extends TestCase
     public static function previewUpdateOperationsProvider(): \Generator
     {
         yield 'Preview Update Single' => [
-            new PreviewUpdateOperation(
+            new PreviewUpdateSubscription(
                 prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod,
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
@@ -531,7 +531,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Preview Update Partial' => [
-            new PreviewUpdateOperation(
+            new PreviewUpdateSubscription(
                 prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
                 scheduledChange: null,
             ),
@@ -540,7 +540,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Preview Update All' => [
-            new PreviewUpdateOperation(
+            new PreviewUpdateSubscription(
                 customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
                 addressId: 'add_01h848pep46enq8y372x7maj0p',
                 businessId: null,
@@ -571,7 +571,7 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider previewOneTimeChargeOperationsProvider
      */
     public function preview_one_time_charge_uses_expected_payload(
-        PreviewOneTimeChargeOperation $operation,
+        PreviewOneTimeCharge $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -591,7 +591,7 @@ class SubscriptionsClientTest extends TestCase
     public static function previewOneTimeChargeOperationsProvider(): \Generator
     {
         yield 'Update Minimal' => [
-            new PreviewOneTimeChargeOperation(
+            new PreviewOneTimeCharge(
                 SubscriptionEffectiveFrom::NextBillingPeriod,
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
@@ -602,7 +602,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Update Full' => [
-            new PreviewOneTimeChargeOperation(
+            new PreviewOneTimeCharge(
                 SubscriptionEffectiveFrom::Immediately,
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),

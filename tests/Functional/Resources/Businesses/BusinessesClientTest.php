@@ -12,9 +12,9 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Businesses\Operations\CreateOperation;
-use Paddle\SDK\Resources\Businesses\Operations\ListOperation;
-use Paddle\SDK\Resources\Businesses\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Businesses\Operations\CreateBusiness;
+use Paddle\SDK\Resources\Businesses\Operations\ListBusinesses;
+use Paddle\SDK\Resources\Businesses\Operations\UpdateBusiness;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -43,7 +43,7 @@ class BusinessesClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateBusiness $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -63,7 +63,7 @@ class BusinessesClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateBusiness(
                 name: 'ChatApp Inc.',
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
@@ -71,7 +71,7 @@ class BusinessesClientTest extends TestCase
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateBusiness(
                 name: 'ChatApp Inc.',
                 companyNumber: '555775291485',
                 taxIdentifier: '555952383',
@@ -96,7 +96,7 @@ class BusinessesClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateBusiness $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -116,13 +116,13 @@ class BusinessesClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(name: 'ChatApp Inc.'),
+            new UpdateBusiness(name: 'ChatApp Inc.'),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(
+            new UpdateBusiness(
                 name: 'ChatApp Inc.',
                 contacts: [
                     new Contacts('Parker Jones', 'parker@example.com'),
@@ -135,7 +135,7 @@ class BusinessesClientTest extends TestCase
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateBusiness(
                 name: 'ChatApp Inc.',
                 companyNumber: '555775291485',
                 taxIdentifier: '555952383',
@@ -160,7 +160,7 @@ class BusinessesClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListBusinesses $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -176,13 +176,13 @@ class BusinessesClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListBusinesses(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListBusinesses(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?order_by=id[asc]&per_page=50',
@@ -191,7 +191,7 @@ class BusinessesClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'biz_01h84a7hr4pzhsajkm8tev89ev')),
+            new ListBusinesses(new Pager(after: 'biz_01h84a7hr4pzhsajkm8tev89ev')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?after=biz_01h84a7hr4pzhsajkm8tev89ev&order_by=id[asc]&per_page=50',
@@ -200,19 +200,19 @@ class BusinessesClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [Status::Archived]),
+            new ListBusinesses(statuses: [Status::Archived]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?status=archived', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['biz_01h84a7hr4pzhsajkm8tev89ev']),
+            new ListBusinesses(ids: ['biz_01h84a7hr4pzhsajkm8tev89ev']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?id=biz_01h84a7hr4pzhsajkm8tev89ev', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['biz_01h84a7hr4pzhsajkm8tev89ev', 'biz_01hf6pv0tmnw1cs0bcj2z8nmqx']),
+            new ListBusinesses(ids: ['biz_01h84a7hr4pzhsajkm8tev89ev', 'biz_01hf6pv0tmnw1cs0bcj2z8nmqx']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?id=biz_01h84a7hr4pzhsajkm8tev89ev,biz_01hf6pv0tmnw1cs0bcj2z8nmqx',
@@ -221,7 +221,7 @@ class BusinessesClientTest extends TestCase
         ];
 
         yield 'Search Filtered' => [
-            new ListOperation(search: 'ChatApp'),
+            new ListBusinesses(search: 'ChatApp'),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?search=ChatApp', Environment::SANDBOX->baseUrl()),
         ];

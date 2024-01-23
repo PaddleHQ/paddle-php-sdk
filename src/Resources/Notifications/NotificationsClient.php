@@ -17,7 +17,7 @@ use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\Notification;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Notifications\Operations\ListOperation;
+use Paddle\SDK\Resources\Notifications\Operations\ListNotifications;
 use Paddle\SDK\ResponseParser;
 
 class NotificationsClient
@@ -31,7 +31,7 @@ class NotificationsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): NotificationCollection
+    public function list(ListNotifications $listOperation = new ListNotifications()): NotificationCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/notifications', $listOperation),

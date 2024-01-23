@@ -18,9 +18,9 @@ use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Addresses\Operations\CreateOperation;
-use Paddle\SDK\Resources\Addresses\Operations\ListOperation;
-use Paddle\SDK\Resources\Addresses\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Addresses\Operations\CreateAddress;
+use Paddle\SDK\Resources\Addresses\Operations\ListAddresses;
+use Paddle\SDK\Resources\Addresses\Operations\UpdateAddress;
 use Paddle\SDK\ResponseParser;
 
 class AddressesClient
@@ -34,7 +34,7 @@ class AddressesClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(string $customerId, ListOperation $listOperation = new ListOperation()): AddressCollection
+    public function list(string $customerId, ListAddresses $listOperation = new ListAddresses()): AddressCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw("/customers/{$customerId}/addresses", $listOperation),
@@ -64,7 +64,7 @@ class AddressesClient
      * @throws ApiError\AddressApiError On an address specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function create(string $customerId, CreateOperation $createOperation): Address
+    public function create(string $customerId, CreateAddress $createOperation): Address
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/customers/{$customerId}/addresses", $createOperation),
@@ -78,7 +78,7 @@ class AddressesClient
      * @throws ApiError\AddressApiError On an address specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function update(string $customerId, string $id, UpdateOperation $operation): Address
+    public function update(string $customerId, string $id, UpdateAddress $operation): Address
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/customers/{$customerId}/addresses/{$id}", $operation),
@@ -94,6 +94,6 @@ class AddressesClient
      */
     public function archive(string $customerId, string $id): Address
     {
-        return $this->update($customerId, $id, new UpdateOperation(status: Status::Archived));
+        return $this->update($customerId, $id, new UpdateAddress(status: Status::Archived));
     }
 }

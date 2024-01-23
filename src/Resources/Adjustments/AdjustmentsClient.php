@@ -17,8 +17,8 @@ use Paddle\SDK\Entities\Collections\AdjustmentsAdjustmentCollection;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Resources\Adjustments\Operations\CreateOperation;
-use Paddle\SDK\Resources\Adjustments\Operations\ListOperation;
+use Paddle\SDK\Resources\Adjustments\Operations\CreateAdjustment;
+use Paddle\SDK\Resources\Adjustments\Operations\ListAdjustments;
 use Paddle\SDK\ResponseParser;
 
 class AdjustmentsClient
@@ -32,7 +32,7 @@ class AdjustmentsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListOperation $listOperation = new ListOperation()): AdjustmentsAdjustmentCollection
+    public function list(ListAdjustments $listOperation = new ListAdjustments()): AdjustmentsAdjustmentCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/adjustments', $listOperation),
@@ -49,7 +49,7 @@ class AdjustmentsClient
      * @throws ApiError\AdjustmentApiError On an adjustment specific API error
      * @throws MalformedResponse           If the API response was not parsable
      */
-    public function create(CreateOperation $createOperation): Adjustment
+    public function create(CreateAdjustment $createOperation): Adjustment
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/adjustments', $createOperation),

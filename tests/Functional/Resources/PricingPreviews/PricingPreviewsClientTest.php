@@ -13,7 +13,7 @@ use Paddle\SDK\Entities\Shared\CountryCode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\PricingPreviews\Operations\PreviewPricesOperation;
+use Paddle\SDK\Resources\PricingPreviews\Operations\PreviewPrice;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -41,7 +41,7 @@ class PricingPreviewsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_preview_prices(
-        PreviewPricesOperation $operation,
+        PreviewPrice $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -58,7 +58,7 @@ class PricingPreviewsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Minimal' => [
-            new PreviewPricesOperation(
+            new PreviewPrice(
                 [
                     new PricePreviewItem('pri_01gsz8z1q1n00f12qt82y31smh', 20),
                 ],
@@ -68,7 +68,7 @@ class PricingPreviewsClientTest extends TestCase
         ];
 
         yield 'Multiple' => [
-            new PreviewPricesOperation(
+            new PreviewPrice(
                 [
                     new PricePreviewItem('pri_01gsz8z1q1n00f12qt82y31smh', 20),
                     new PricePreviewItem('pri_01gsz98e27ak2tyhexptwc58yk', 1),
@@ -82,7 +82,7 @@ class PricingPreviewsClientTest extends TestCase
         ];
 
         yield 'Full' => [
-            new PreviewPricesOperation(
+            new PreviewPrice(
                 [
                     new PricePreviewItem('pri_01gsz8z1q1n00f12qt82y31smh', 20),
                     new PricePreviewItem('pri_01gsz98e27ak2tyhexptwc58yk', 1),

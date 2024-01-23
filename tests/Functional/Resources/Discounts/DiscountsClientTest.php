@@ -13,9 +13,9 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
-use Paddle\SDK\Resources\Discounts\Operations\CreateOperation;
-use Paddle\SDK\Resources\Discounts\Operations\ListOperation;
-use Paddle\SDK\Resources\Discounts\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Discounts\Operations\CreateDiscount;
+use Paddle\SDK\Resources\Discounts\Operations\ListDiscounts;
+use Paddle\SDK\Resources\Discounts\Operations\UpdateDiscount;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -44,7 +44,7 @@ class DiscountsClientTest extends TestCase
      * @dataProvider createOperationsProvider
      */
     public function it_uses_expected_payload_on_create(
-        CreateOperation $operation,
+        CreateDiscount $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -61,7 +61,7 @@ class DiscountsClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateOperation(
+            new CreateDiscount(
                 '10',
                 'Nonprofit discount',
                 DiscountType::Percentage,
@@ -74,7 +74,7 @@ class DiscountsClientTest extends TestCase
         ];
 
         yield 'Create with Data' => [
-            new CreateOperation(
+            new CreateDiscount(
                 '10',
                 'Nonprofit discount',
                 DiscountType::Percentage,
@@ -98,7 +98,7 @@ class DiscountsClientTest extends TestCase
      * @dataProvider updateOperationsProvider
      */
     public function it_uses_expected_payload_on_update(
-        UpdateOperation $operation,
+        UpdateDiscount $operation,
         ResponseInterface $response,
         string $expectedBody,
     ): void {
@@ -115,19 +115,19 @@ class DiscountsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateOperation(enabledForCheckout: false),
+            new UpdateDiscount(enabledForCheckout: false),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateOperation(enabledForCheckout: false, code: null),
+            new UpdateDiscount(enabledForCheckout: false, code: null),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
-            new UpdateOperation(
+            new UpdateDiscount(
                 description: 'Nonprofit discount',
                 enabledForCheckout: true,
                 type: DiscountType::Percentage,
@@ -155,7 +155,7 @@ class DiscountsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ListOperation $operation,
+        ListDiscounts $operation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
@@ -171,13 +171,13 @@ class DiscountsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new ListOperation(),
+            new ListDiscounts(),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Default Paged' => [
-            new ListOperation(new Pager()),
+            new ListDiscounts(new Pager()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/discounts?order_by=id[asc]&per_page=50',
@@ -186,7 +186,7 @@ class DiscountsClientTest extends TestCase
         ];
 
         yield 'Default Paged with After' => [
-            new ListOperation(new Pager(after: 'dsc_01h83xenpcfjyhkqr4x214m02x')),
+            new ListDiscounts(new Pager(after: 'dsc_01h83xenpcfjyhkqr4x214m02x')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/discounts?after=dsc_01h83xenpcfjyhkqr4x214m02x&order_by=id[asc]&per_page=50',
@@ -195,19 +195,19 @@ class DiscountsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListOperation(statuses: [Status::Archived]),
+            new ListDiscounts(statuses: [Status::Archived]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts?status=archived', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'ID Filtered' => [
-            new ListOperation(ids: ['dsc_01h83xenpcfjyhkqr4x214m02x']),
+            new ListDiscounts(ids: ['dsc_01h83xenpcfjyhkqr4x214m02x']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts?id=dsc_01h83xenpcfjyhkqr4x214m02x', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple ID Filtered' => [
-            new ListOperation(ids: ['dsc_01h83xenpcfjyhkqr4x214m02x', 'dsc_01gtgraak4chyhnp47rrdv89ad']),
+            new ListDiscounts(ids: ['dsc_01h83xenpcfjyhkqr4x214m02x', 'dsc_01gtgraak4chyhnp47rrdv89ad']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/discounts?id=dsc_01h83xenpcfjyhkqr4x214m02x,dsc_01gtgraak4chyhnp47rrdv89ad',
@@ -216,13 +216,13 @@ class DiscountsClientTest extends TestCase
         ];
 
         yield 'Code Filtered' => [
-            new ListOperation(codes: ['ABCDE12345']),
+            new ListDiscounts(codes: ['ABCDE12345']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts?code=ABCDE12345', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Code Filtered' => [
-            new ListOperation(codes: ['ABCDE12345', '54321EDCBA']),
+            new ListDiscounts(codes: ['ABCDE12345', '54321EDCBA']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts?code=ABCDE12345,54321EDCBA', Environment::SANDBOX->baseUrl()),
         ];

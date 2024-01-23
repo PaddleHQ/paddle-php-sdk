@@ -40,7 +40,7 @@ $paddle = new Paddle\SDK\Client($apiKey, options: new Paddle\SDK\Options($enviro
 // │ Create Product │
 // └────────────────┘
 try {
-    $product = $paddle->products->create(new Products\Operations\CreateOperation(
+    $product = $paddle->products->create(new Products\Operations\CreateProduct(
         name: 'Kitten Service',
         taxCategory: TaxCategory::Standard,
         description: 'Simply an awesome product',
@@ -57,7 +57,7 @@ echo sprintf("Created product '%s': %s \n", $product->id, $product->description)
 // ┌───
 // │ Update Product │
 // └────────────────┘
-$update = new Products\Operations\UpdateOperation(
+$update = new Products\Operations\UpdateProduct(
     name: 'Bear Service',
     imageUrl: 'https://placebear.com/200/300',
     customData: new CustomData(['beep' => 'boop']),
@@ -76,7 +76,7 @@ echo sprintf("Updated product '%s': %s \n", $product->id, $product->description)
 // │ Create Price │
 // └──────────────┘
 try {
-    $price = $paddle->prices->create(new Prices\Operations\CreateOperation(
+    $price = $paddle->prices->create(new Prices\Operations\CreatePrice(
         description: 'Bear Hug',
         productId: $product->id,
         unitPrice: new Money('1000', CurrencyCode::GBP),
@@ -101,7 +101,7 @@ echo sprintf("Created price '%s': %s \n", $price->id, $price->description);
 // ┌───
 // │ Update Price │
 // └──────────────┘
-$update = new Prices\Operations\UpdateOperation(
+$update = new Prices\Operations\UpdatePrice(
     description: 'One-off Bear Hug',
     unitPrice: new Money('500', CurrencyCode::GBP),
     customData: new CustomData(['beep' => 'boop']),
@@ -154,7 +154,7 @@ echo sprintf("Read price '%s' with product %s \n", $price->id, $price->product?-
 // │ Get Products │
 // └──────────────┘
 try {
-    $products = $paddle->products->list(new Products\Operations\ListOperation(
+    $products = $paddle->products->list(new Products\Operations\ListProducts(
         includes: [ProductIncludes::Prices],
         statuses: [Status::Active],
     ));
