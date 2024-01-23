@@ -24,6 +24,7 @@ class TransactionTotals
         public string|null $fee,
         public string|null $earnings,
         public CurrencyCode $currencyCode,
+        public string $creditToBalance,
     ) {
     }
 
@@ -40,6 +41,7 @@ class TransactionTotals
             fee: $data['fee'] ?? null,
             earnings: $data['earnings'] ?? null,
             currencyCode: CurrencyCode::from($data['currency_code']),
+            creditToBalance: $data['credit_to_balance'],
         );
     }
 }

@@ -14,6 +14,7 @@ namespace Paddle\SDK\Entities;
 use Paddle\SDK\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Entities\Discount\DiscountType;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 
 class Discount implements Entity
 {
@@ -34,6 +35,7 @@ class Discount implements Entity
         public int $timesUsed,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -56,6 +58,7 @@ class Discount implements Entity
             timesUsed: $data['times_used'],
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }

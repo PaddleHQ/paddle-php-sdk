@@ -194,6 +194,12 @@ class CustomersClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers?search=Alex', Environment::SANDBOX->baseUrl()),
         ];
+
+        yield 'Email Filtered' => [
+            new ListCustomers(emails: ['dx@paddle.com']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/customers?email=dx@paddle.com', Environment::SANDBOX->baseUrl()),
+        ];
     }
 
     /** @test */

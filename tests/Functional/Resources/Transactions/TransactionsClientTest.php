@@ -30,6 +30,7 @@ use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
+use Paddle\SDK\Resources\Transactions\Operations\List\Origin;
 use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
 use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
@@ -371,6 +372,12 @@ class TransactionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?include=customer,address,discount', Environment::SANDBOX->baseUrl()),
         ];
+
+        yield 'With Origin' => [
+            new ListTransactions(origin: [Origin::Web, Origin::Api, Origin::SubscriptionRecurring]),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/transactions?origin=web,api,subscription_recurring', Environment::SANDBOX->baseUrl()),
+        ];
     }
 
     /**
@@ -403,9 +410,9 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'With Includes' => [
-            [Includes::Customer, Includes::Address, Includes::Business, Includes::Discount],
+            [Includes::Customer, Includes::Address, Includes::Business, Includes::Discount, Includes::AvailablePaymentMethods],
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
-            sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r?include=customer,address,business,discount', Environment::SANDBOX->baseUrl()),
+            sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r?include=customer,address,business,discount,available_payment_methods', Environment::SANDBOX->baseUrl()),
         ];
     }
 

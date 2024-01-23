@@ -13,6 +13,7 @@ namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Shared\CountryCode;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\Status;
 
 class Address implements Entity
@@ -30,6 +31,7 @@ class Address implements Entity
         public Status $status,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -48,6 +50,7 @@ class Address implements Entity
             status: Status::from($data['status']),
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }

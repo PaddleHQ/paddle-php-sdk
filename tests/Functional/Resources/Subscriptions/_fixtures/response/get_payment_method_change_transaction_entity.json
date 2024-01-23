@@ -82,6 +82,7 @@
                 "total": "0",
                 "fee": null,
                 "credit": "0",
+                "credit_to_balance": "0",
                 "balance": "0",
                 "grand_total": "0",
                 "earnings": null,

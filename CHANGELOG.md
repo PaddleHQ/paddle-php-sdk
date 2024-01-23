@@ -8,6 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [0.2.1] - 2024-01-24
+
+### Added
+
+- Added `importMeta` to product, price, address, business, customer, discount and subscription entities
+- Added `creditToBalance` to `transaction.details.payoutTotals` and `transaction.details.totals`
+- Added `origin` query parameter to list transactions, see [related changelog](https://developer.paddle.com/changelog/2023/filter-transactions-origin?utm_source=dx&utm_medium=paddle-php-sdk).
+- Added `available_payment_methods` to transaction with includes entity
+- Added `email` query parameter to list customers, see [related changelog](https://developer.paddle.com/changelog/2024/filter-customers-email#filter-customers-by-email-address?utm_source=dx&utm_medium=paddle-php-sdk)
+
 ## [0.2.0] - 2024-01-23
 
 ### Changed
@@ -25,10 +35,10 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ### Added
 
-- Added `available_payment_methods` to [transaction preview and pricing preview](https://developer.paddle.com/changelog/2023/available-payment-methods?utm_source=dx&utm_medium=paddle-node-sdk)
-- Added non-catalog items to [subscriptions](https://developer.paddle.com/changelog/2023/bill-custom-items-one-time-subscription-charge?utm_source=dx&utm_medium=paddle-node-sdk)
-- Added non catalog items to [transactions](https://developer.paddle.com/changelog/2023/add-custom-items-transaction?utm_source=dx&utm_medium=paddle-node-sdk)
-- Added `on_payment_failure` to [subscriptions](https://developer.paddle.com/changelog/2023/payment-failure-behavior-update-subscription?utm_source=dx&utm_medium=paddle-node-sdk)
+- Added `available_payment_methods` to [transaction preview and pricing preview](https://developer.paddle.com/changelog/2023/available-payment-methods?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added non-catalog items to [subscriptions](https://developer.paddle.com/changelog/2023/bill-custom-items-one-time-subscription-charge?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added non catalog items to [transactions](https://developer.paddle.com/changelog/2023/add-custom-items-transaction?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `on_payment_failure` to [subscriptions](https://developer.paddle.com/changelog/2023/payment-failure-behavior-update-subscription?utm_source=dx&utm_medium=paddle-php-sdk)
 
 ### Fixed
 

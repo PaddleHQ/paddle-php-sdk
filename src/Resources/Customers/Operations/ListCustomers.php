@@ -22,6 +22,7 @@ class ListCustomers implements HasParameters
         private readonly array $ids = [],
         private readonly array $statuses = [],
         private readonly ?string $search = null,
+        private readonly array $emails = [],
     ) {
         if ($invalid = array_filter($this->ids, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('ids', 'string', implode(', ', $invalid));
@@ -29,6 +30,10 @@ class ListCustomers implements HasParameters
 
         if ($invalid = array_filter($this->statuses, fn ($value): bool => ! $value instanceof Status)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('statuses', Status::class, implode(', ', $invalid));
+        }
+
+        if ($invalid = array_filter($this->emails, fn ($value): bool => ! is_string($value))) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('emails', 'string', implode(', ', $invalid));
         }
     }
 
@@ -42,6 +47,7 @@ class ListCustomers implements HasParameters
                 'id' => implode(',', $this->ids),
                 'status' => implode(',', array_map($enumStringify, $this->statuses)),
                 'search' => $this->search,
+                'email' => implode(',', $this->emails),
             ]),
         );
     }

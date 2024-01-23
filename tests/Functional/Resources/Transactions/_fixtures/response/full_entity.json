@@ -98,6 +98,7 @@
         "grand_total": "2915",
         "fee": null,
         "credit": "0",
+        "credit_to_balance": "0",
         "balance": "2915",
         "earnings": null,
         "currency_code": "GBP"

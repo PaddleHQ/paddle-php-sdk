@@ -98,6 +98,7 @@
         "grand_total": "2915",
         "fee": null,
         "credit": "0",
+        "credit_to_balance": "0",
         "balance": "2915",
         "earnings": null,
         "currency_code": "GBP"
@@ -211,7 +212,8 @@
       "times_used": 0,
       "created_at": "2023-11-07T15:45:28.561Z",
       "updated_at": "2023-11-07T15:45:28.561Z"
-    }
+    },
+    "available_payment_methods": ["apple_pay"]
   },
   "meta": {
     "request_id": "f3dd61c8-045a-4975-95c3-a361ff2abcc6"

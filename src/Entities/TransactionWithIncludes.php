@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+use Paddle\SDK\Entities\Shared\AvailablePaymentMethods;
 use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\Checkout;
 use Paddle\SDK\Entities\Shared\CollectionMode;
@@ -31,6 +32,7 @@ class TransactionWithIncludes implements Entity
      * @param array<TransactionItem>           $items
      * @param array<TransactionPaymentAttempt> $payments
      * @param array<TransactionAdjustment>     $adjustments
+     * @param array<AvailablePaymentMethods>   $availablePaymentMethods
      */
     public function __construct(
         public string $id,
@@ -61,6 +63,7 @@ class TransactionWithIncludes implements Entity
         public Business|null $business,
         public Customer|null $customer,
         public Discount|null $discount,
+        public array $availablePaymentMethods,
     ) {
     }
 
@@ -95,6 +98,7 @@ class TransactionWithIncludes implements Entity
             business: isset($data['business']) ? Business::from($data['business']) : null,
             customer: isset($data['customer']) ? Customer::from($data['customer']) : null,
             discount: isset($data['discount']) ? Discount::from($data['discount']) : null,
+            availablePaymentMethods: array_map(fn (string $item): AvailablePaymentMethods => AvailablePaymentMethods::from($item), $data['available_payment_methods'] ?? []),
         );
     }
 }
