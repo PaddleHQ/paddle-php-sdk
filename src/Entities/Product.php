@@ -13,6 +13,7 @@ namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 
@@ -28,6 +29,7 @@ class Product implements Entity
         public CustomData|null $customData,
         public Status $status,
         public \DateTimeInterface|null $createdAt,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -43,6 +45,7 @@ class Product implements Entity
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             status: Status::from($data['status']),
             createdAt: isset($data['created_at']) ? DateTime::from($data['created_at']) : null,
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }

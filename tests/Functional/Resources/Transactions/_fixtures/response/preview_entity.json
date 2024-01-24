@@ -93,6 +93,7 @@
                 "grand_total": "540000",
                 "fee": null,
                 "credit": "0",
+                "credit_to_balance": "0",
                 "balance": "540000",
                 "earnings": null,
                 "currency_code": "USD"

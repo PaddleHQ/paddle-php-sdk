@@ -129,6 +129,7 @@
                     "grand_total": "901387",
                     "fee": null,
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "901387",
                     "earnings": null,
                     "currency_code": "USD"
@@ -364,6 +365,7 @@
                     "grand_total": "72479",
                     "fee": null,
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "72479",
                     "earnings": null,
                     "currency_code": "USD"
@@ -599,6 +601,7 @@
                     "grand_total": "59900",
                     "fee": null,
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "59900",
                     "earnings": null,
                     "currency_code": "USD"
@@ -792,6 +795,7 @@
                     "grand_total": "40000",
                     "fee": "2050",
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "0",
                     "earnings": "37950",
                     "currency_code": "USD"
@@ -811,6 +815,7 @@
                     "discount": "0",
                     "total": "40000",
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "0",
                     "grand_total": "40000",
                     "fee": "2050",
@@ -985,6 +990,7 @@
                     "grand_total": "5000",
                     "fee": null,
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "5000",
                     "earnings": null,
                     "currency_code": "USD"
@@ -1134,6 +1140,7 @@
                     "grand_total": "43549",
                     "fee": null,
                     "credit": "0",
+                    "credit_to_balance": "0",
                     "balance": "43549",
                     "earnings": null,
                     "currency_code": "USD"

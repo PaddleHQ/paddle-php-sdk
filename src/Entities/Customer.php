@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\Status;
 
 class Customer implements Entity
@@ -26,6 +27,7 @@ class Customer implements Entity
         public string $locale,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -41,6 +43,7 @@ class Customer implements Entity
             locale: $data['locale'],
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }

@@ -13,6 +13,7 @@ namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Shared\Contacts;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\Status;
 
 class Business implements Entity
@@ -30,6 +31,7 @@ class Business implements Entity
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
         public CustomData|null $customData,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -45,6 +47,7 @@ class Business implements Entity
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }

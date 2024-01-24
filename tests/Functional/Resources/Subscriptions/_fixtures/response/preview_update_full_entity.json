@@ -203,6 +203,7 @@
         "total": "194341",
         "fee": null,
         "credit": "0",
+        "credit_to_balance": "0",
         "balance": "194341",
         "grand_total": "194341",
         "earnings": null,

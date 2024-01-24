@@ -167,6 +167,7 @@
                             "tax": "11980",
                             "total": "71880",
                             "credit": "0",
+                            "credit_to_balance": "0",
                             "balance": "71880",
                             "discount": "0",
                             "earnings": null,

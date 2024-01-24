@@ -13,6 +13,7 @@ namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
 use Paddle\SDK\Entities\Shared\Status;
@@ -39,6 +40,7 @@ class Price implements Entity
         public PriceQuantity $quantity,
         public Status $status,
         public CustomData|null $customData,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -61,6 +63,7 @@ class Price implements Entity
             quantity: PriceQuantity::from($data['quantity']),
             status: Status::from($data['status']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }

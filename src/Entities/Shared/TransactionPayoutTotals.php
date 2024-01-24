@@ -24,22 +24,24 @@ class TransactionPayoutTotals
         public string $fee,
         public string $earnings,
         public CurrencyCodePayouts $currencyCode,
+        public string $creditToBalance,
     ) {
     }
 
     public static function from(array $data): self
     {
         return new self(
-            $data['subtotal'],
-            $data['discount'],
-            $data['tax'],
-            $data['total'],
-            $data['credit'],
-            $data['balance'],
-            $data['grand_total'],
-            $data['fee'] ?? null,
-            $data['earnings'] ?? null,
-            CurrencyCodePayouts::from($data['currency_code']),
+            subtotal: $data['subtotal'],
+            discount: $data['discount'],
+            tax: $data['tax'],
+            total: $data['total'],
+            credit: $data['credit'],
+            balance: $data['balance'],
+            grandTotal: $data['grand_total'],
+            fee: $data['fee'] ?? null,
+            earnings: $data['earnings'] ?? null,
+            currencyCode: CurrencyCodePayouts::from($data['currency_code']),
+            creditToBalance: $data['credit_to_balance'],
         );
     }
 }
