@@ -373,8 +373,8 @@ class TransactionsClientTest extends TestCase
             sprintf('%s/transactions?include=customer,address,discount', Environment::SANDBOX->baseUrl()),
         ];
 
-        yield 'With Origin' => [
-            new ListTransactions(origin: [Origin::Web, Origin::Api, Origin::SubscriptionRecurring]),
+        yield 'With Origins' => [
+            new ListTransactions(origins: [Origin::Web, Origin::Api, Origin::SubscriptionRecurring]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?origin=web,api,subscription_recurring', Environment::SANDBOX->baseUrl()),
         ];

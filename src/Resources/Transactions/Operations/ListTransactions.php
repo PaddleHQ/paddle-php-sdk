@@ -22,7 +22,7 @@ class ListTransactions implements HasParameters
      * @param array<string>            $invoiceNumbers
      * @param array<StatusTransaction> $statuses
      * @param array<string>            $subscriptionIds
-     * @param array<Origin>            $origin
+     * @param array<Origin>            $origins
      */
     public function __construct(
         private readonly ?Pager $pager = null,
@@ -36,7 +36,7 @@ class ListTransactions implements HasParameters
         private readonly array $statuses = [],
         private readonly array $subscriptionIds = [],
         private readonly ?DateComparison $updatedAt = null,
-        private readonly array $origin = [],
+        private readonly array $origins = [],
     ) {
         if ($invalid = array_filter($this->customerIds, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('customerIds', 'string', implode(', ', $invalid));
@@ -62,8 +62,8 @@ class ListTransactions implements HasParameters
             throw InvalidArgumentException::arrayContainsInvalidTypes('subscriptionIds', 'string', implode(', ', $invalid));
         }
 
-        if ($invalid = array_filter($this->origin, fn ($value): bool => ! $value instanceof Origin)) {
-            throw InvalidArgumentException::arrayContainsInvalidTypes('origin', Origin::class, implode(', ', $invalid));
+        if ($invalid = array_filter($this->origins, fn ($value): bool => ! $value instanceof Origin)) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('origins', Origin::class, implode(', ', $invalid));
         }
     }
 
@@ -84,7 +84,7 @@ class ListTransactions implements HasParameters
                 'status' => implode(',', array_map($enumStringify, $this->statuses)),
                 'subscription_id' => implode(',', $this->subscriptionIds),
                 'updated_at' . $this->updatedAt?->comparator() => $this->updatedAt?->formatted(),
-                'origin' => implode(',', array_map($enumStringify, $this->origin)),
+                'origin' => implode(',', array_map($enumStringify, $this->origins)),
             ]),
         );
     }
