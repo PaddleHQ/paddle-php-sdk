@@ -85,17 +85,17 @@ foreach ($products as $product) {
 
 ### Create an entity
 
-You can create a supported entity with the `create` function in the resource. It accepts the resource's corresponding `CreateOperation`. The created entity is returned.
+You can create a supported entity with the `create` function in the resource. It accepts the resource's corresponding `Create` operation e.g. `CreateProduct`. The created entity is returned.
 
 ``` php
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Shared\TaxCategory;
-use Paddle\SDK\Resources\Products\Operations\CreateOperation;
+use Paddle\SDK\Resources\Products\Operations\CreateProduct;
 
 $paddle = new Client('API_KEY');
 
 $product = $paddle->products->create(
-    new CreateOperation(
+    new CreateProduct(
         name: 'ChatApp Education',
         taxCategory: TaxCategory::Standard,
     ),
@@ -104,15 +104,15 @@ $product = $paddle->products->create(
 
 ### Update an entity
 
-You can update a supported entity with the `update` function in the resource. It accepts the `id` of the entity to update and the corresponding `UpdateOperation`. The updated entity is returned.
+You can update a supported entity with the `update` function in the resource. It accepts the `id` of the entity to update and the corresponding `Update` operation e.g. `UpdateProduct`. The updated entity is returned.
 
 ``` php
 use Paddle\SDK\Client;
-use Paddle\SDK\Resources\Products\Operations\UpdateOperation;
+use Paddle\SDK\Resources\Products\Operations\UpdateProduct;
 
 $paddle = new Client('API_KEY');
 
-$operation = new UpdateOperation(
+$operation = new UpdateProduct(
     name: 'ChatApp Professional'
 );
 
@@ -122,7 +122,7 @@ $product = $paddle->products->update('id', $operation);
 Where operations require more than one `id`, the `update` function accepts multiple arguments. For example, to update an address for a customer, pass the `customerId` and the `addressId`:
 
 ``` php
-$address = $paddle->products->update(
+$address = $paddle->addresses->update(
     'customer_id',
     'address_id',
     $operation,
