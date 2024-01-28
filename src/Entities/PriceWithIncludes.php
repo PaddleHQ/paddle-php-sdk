@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+
+use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Money;
@@ -39,7 +41,7 @@ class PriceWithIncludes implements Entity
         public PriceQuantity $quantity,
         public Status $status,
         public CustomData|null $customData,
-        public ProductWithIncludes|null $product,
+        public Product|null $product,
     ) {
     }
 
@@ -62,7 +64,7 @@ class PriceWithIncludes implements Entity
             quantity: PriceQuantity::from($data['quantity']),
             status: Status::from($data['status']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
-            product: isset($data['product']) ? ProductWithIncludes::from($data['product']) : null,
+            product: isset($data['product']) ? Product::from($data['product']) : null,
         );
     }
 }
