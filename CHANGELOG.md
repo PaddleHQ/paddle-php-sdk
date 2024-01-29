@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [0.2.2] - 2024-01-29
+
+### Fixed
+
+- Fixed PDF invoice for transaction endpoint to correctly hit `/transactions/{transaction_id}/invoice`
+
 ## [0.2.1] - 2024-01-24
 
 ### Added

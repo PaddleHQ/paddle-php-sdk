@@ -131,7 +131,7 @@ class TransactionsClient
     public function getInvoicePDF(string $id): TransactionData
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/transactions/{$id}/preview"),
+            $this->client->getRaw("/transactions/{$id}/invoice"),
         );
 
         return TransactionData::from($parser->getData());
