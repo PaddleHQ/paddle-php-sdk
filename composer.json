@@ -24,9 +24,9 @@
     "psr/http-factory": "^1.0",
     "psr/http-factory-implementation": "^1.0",
     "psr/log": "^1.0 || ^2.0 || ^3.0",
-    "symfony/uid": "^5.4 || ^6.3",
-    "symfony/property-access": "^5.4 || ^6.3",
-    "symfony/serializer": "^5.4 || ^6.3"
+    "symfony/uid": "^5.4 || ^6.3 || ^7.0",
+    "symfony/property-access": "^5.4 || ^6.3 || ^7.0",
+    "symfony/serializer": "^5.4 || ^6.3 || ^7.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.35",
