@@ -496,7 +496,7 @@ class TransactionsClientTest extends TestCase
     {
         yield 'Default' => [
             new Response(200, body: self::readRawJsonFixture('response/get_invoice_pdf_default')),
-            sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r/preview', Environment::SANDBOX->baseUrl()),
+            sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r/invoice', Environment::SANDBOX->baseUrl()),
         ];
     }
 }
