@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\ProductWithIncludes;
+use Paddle\SDK\Entities\Product;
 
 final class ProductCreated extends Event
 {
@@ -14,7 +14,7 @@ final class ProductCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        ProductWithIncludes $data,
+        Product $data,
     ) {
         parent::__construct($eventId, $eventType, $occurredAt, $data);
     }

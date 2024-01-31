@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\TransactionWithIncludes;
+use Paddle\SDK\Entities\Transaction;
 
 final class TransactionUpdated extends Event
 {
@@ -14,7 +14,7 @@ final class TransactionUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        TransactionWithIncludes $data,
+        Transaction $data,
     ) {
         parent::__construct($eventId, $eventType, $occurredAt, $data);
     }
