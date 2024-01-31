@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Adjustment;
 
-class AdjustmentsAdjustmentCollection extends Collection
+class AdjustmentCollection extends Collection
 {
     public static function from(array $itemsData, Paginator $paginator = null): self
     {
