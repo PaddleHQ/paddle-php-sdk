@@ -124,9 +124,9 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'From Filtered' => [
-            new ListNotifications(to: new \DateTime('2023-12-25T00:00:00.000Z')),
+            new ListNotifications(from: new \DateTime('2023-12-24T00:00:00.000Z')),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
-            sprintf('%s/notifications?to=2023-12-25T00:00:00.000000Z', Environment::SANDBOX->baseUrl()),
+            sprintf('%s/notifications?from=2023-12-24T00:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'To and From Filtered' => [
