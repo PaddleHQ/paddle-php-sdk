@@ -34,11 +34,11 @@ class NotificationDiscount implements Entity
         public int|null $maximumRecurringIntervals,
         public int|null $usageLimit,
         public array|null $restrictTo,
+        public CustomData|null $customData,
         public \DateTimeInterface|null $expiresAt,
+        public ImportMeta|null $importMeta,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
-        public CustomData|null $customData,
-        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -57,11 +57,11 @@ class NotificationDiscount implements Entity
             maximumRecurringIntervals: $data['maximum_recurring_intervals'],
             usageLimit: $data['usage_limit'] ?? null,
             restrictTo: $data['restrict_to'] ?? null,
+            customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
+            importMeta: isset($data['import_meta']) ? new ImportMeta($data['import_meta']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
-            customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
-            importMeta: isset($data['import_meta']) ? new ImportMeta($data['import_meta']) : null,
         );
     }
 }
