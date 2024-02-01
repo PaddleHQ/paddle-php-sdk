@@ -25,7 +25,6 @@
     "psr/http-factory-implementation": "^1.0",
     "psr/log": "^1.0 || ^2.0 || ^3.0",
     "symfony/uid": "^5.4 || ^6.3 || ^7.0",
-    "symfony/property-access": "^5.4 || ^6.3 || ^7.0",
     "symfony/serializer": "^5.4 || ^6.3 || ^7.0"
   },
   "require-dev": {
@@ -37,6 +36,7 @@
     "phpstan/phpstan": "^1.11",
     "phpunit/phpunit": "^9.5 || ^10.0",
     "rector/rector": "dev-main",
+    "symfony/property-access": "^5.4 || ^6.3 || ^7.0",
     "symfony/var-dumper": "^6.3"
   },
   "autoload": {
