@@ -11,6 +11,7 @@ use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TimePeriod;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Subscription\SubscriptionDiscount;
 use Paddle\SDK\Entities\Subscription\SubscriptionItem;
 use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChange;
@@ -44,6 +45,7 @@ class NotificationSubscription implements Entity
         public SubscriptionScheduledChange|null $scheduledChange,
         public array $items,
         public CustomData|null $customData,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -75,6 +77,7 @@ class NotificationSubscription implements Entity
                 : null,
             items: array_map(fn (array $item): SubscriptionItem => SubscriptionItem::from($item), $data['items']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
+            importMeta: isset($data['import_meta']) ? new ImportMeta($data['import_meta']) : null,
         );
     }
 }
