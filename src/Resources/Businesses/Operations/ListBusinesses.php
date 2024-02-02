@@ -18,10 +18,10 @@ class ListBusinesses implements HasParameters
      * @throws InvalidArgumentException On invalid array contents
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $ids = [],
         private readonly array $statuses = [],
-        private readonly ?string $search = null,
+        private readonly string|null $search = null,
     ) {
         if ($invalid = array_filter($this->ids, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('ids', 'string', implode(', ', $invalid));

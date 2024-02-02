@@ -16,7 +16,7 @@ class ListNotifications implements HasParameters
      * @param array<NotificationStatus> $status
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $notificationSettingId = [],
         private readonly string|null $search = null,
         private readonly array $status = [],

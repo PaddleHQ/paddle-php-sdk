@@ -12,11 +12,11 @@ abstract class Collection implements \Iterator
 
     public function __construct(
         protected array $items,
-        protected ?Paginator $paginator = null,
+        protected Paginator|null $paginator = null,
     ) {
     }
 
-    abstract public static function from(array $data, ?Paginator $paginator): self;
+    abstract public static function from(array $data, Paginator|null $paginator): self;
 
     public function current(): Entity
     {

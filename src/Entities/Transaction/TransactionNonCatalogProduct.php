@@ -20,7 +20,7 @@ class TransactionNonCatalogProduct
         public string $name,
         public string|null $description,
         public TaxCategory $taxCategory,
-        public null|string $imageUrl,
+        public string|null $imageUrl,
         public CustomData|null $customData,
     ) {
     }

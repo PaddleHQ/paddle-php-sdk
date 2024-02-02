@@ -17,11 +17,11 @@ class UpdateProduct implements \JsonSerializable
 
     public function __construct(
         public readonly string|Undefined $name = new Undefined(),
-        public readonly string|null|Undefined $description = new Undefined(),
-        public readonly CatalogType|null|Undefined $type = new Undefined(),
+        public readonly string|Undefined|null $description = new Undefined(),
+        public readonly CatalogType|Undefined|null $type = new Undefined(),
         public readonly TaxCategory|Undefined $taxCategory = new Undefined(),
-        public readonly string|null|Undefined $imageUrl = new Undefined(),
-        public readonly CustomData|null|Undefined $customData = new Undefined(),
+        public readonly string|Undefined|null $imageUrl = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly Status|Undefined $status = new Undefined(),
     ) {
     }

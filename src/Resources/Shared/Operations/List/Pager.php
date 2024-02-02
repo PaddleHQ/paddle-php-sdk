@@ -8,7 +8,7 @@ use Paddle\SDK\HasParameters;
 
 class Pager implements HasParameters
 {
-    public function __construct(private readonly ?string $after = null, private ?OrderBy $orderBy = null, private readonly int $perPage = 50)
+    public function __construct(private readonly string|null $after = null, private OrderBy|null $orderBy = null, private readonly int $perPage = 50)
     {
         $this->orderBy ??= OrderBy::idAscending();
     }
