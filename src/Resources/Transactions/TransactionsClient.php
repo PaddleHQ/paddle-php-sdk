@@ -13,10 +13,10 @@ namespace Paddle\SDK\Resources\Transactions;
 
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\Paginator;
-use Paddle\SDK\Entities\Collections\TransactionWithIncludesCollection;
+use Paddle\SDK\Entities\Collections\TransactionCollection;
+use Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Entities\TransactionData;
 use Paddle\SDK\Entities\TransactionPreview;
-use Paddle\SDK\Entities\TransactionWithIncludes;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
@@ -38,15 +38,15 @@ class TransactionsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListTransactions $listOperation = new ListTransactions()): TransactionWithIncludesCollection
+    public function list(ListTransactions $listOperation = new ListTransactions()): TransactionCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/transactions', $listOperation),
         );
 
-        return TransactionWithIncludesCollection::from(
+        return TransactionCollection::from(
             $parser->getData(),
-            new Paginator($this->client, $parser->getPagination(), TransactionWithIncludesCollection::class),
+            new Paginator($this->client, $parser->getPagination(), TransactionCollection::class),
         );
     }
 
@@ -56,7 +56,7 @@ class TransactionsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function get(string $id, array $includes = []): TransactionWithIncludes
+    public function get(string $id, array $includes = []): Transaction
     {
         if ($invalid = array_filter($includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -70,7 +70,7 @@ class TransactionsClient
             $this->client->getRaw("/transactions/{$id}", $params),
         );
 
-        return TransactionWithIncludes::from($parser->getData());
+        return Transaction::from($parser->getData());
     }
 
     /**
@@ -78,7 +78,7 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function create(CreateTransaction $createOperation, array $includes = []): TransactionWithIncludes
+    public function create(CreateTransaction $createOperation, array $includes = []): Transaction
     {
         if ($invalid = array_filter($includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -92,7 +92,7 @@ class TransactionsClient
             $this->client->postRaw('/transactions', $createOperation, $params),
         );
 
-        return TransactionWithIncludes::from($parser->getData());
+        return Transaction::from($parser->getData());
     }
 
     /**
@@ -100,13 +100,13 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function update(string $id, UpdateTransaction $operation): TransactionWithIncludes
+    public function update(string $id, UpdateTransaction $operation): Transaction
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/transactions/{$id}", $operation),
         );
 
-        return TransactionWithIncludes::from($parser->getData());
+        return Transaction::from($parser->getData());
     }
 
     /**

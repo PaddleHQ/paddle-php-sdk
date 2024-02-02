@@ -13,8 +13,8 @@ namespace Paddle\SDK\Resources\Prices;
 
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\Paginator;
-use Paddle\SDK\Entities\Collections\PriceWithIncludesCollection;
-use Paddle\SDK\Entities\PriceWithIncludes;
+use Paddle\SDK\Entities\Collections\PriceCollection;
+use Paddle\SDK\Entities\Price;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
@@ -36,15 +36,15 @@ class PricesClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListPrices $listOperation = new ListPrices()): PriceWithIncludesCollection
+    public function list(ListPrices $listOperation = new ListPrices()): PriceCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/prices', $listOperation),
         );
 
-        return PriceWithIncludesCollection::from(
+        return PriceCollection::from(
             $parser->getData(),
-            new Paginator($this->client, $parser->getPagination(), PriceWithIncludesCollection::class),
+            new Paginator($this->client, $parser->getPagination(), PriceCollection::class),
         );
     }
 
@@ -54,7 +54,7 @@ class PricesClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function get(string $id, array $includes = []): PriceWithIncludes
+    public function get(string $id, array $includes = []): Price
     {
         if ($invalid = array_filter($includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -68,7 +68,7 @@ class PricesClient
             $this->client->getRaw("/prices/{$id}", $params),
         );
 
-        return PriceWithIncludes::from($parser->getData());
+        return Price::from($parser->getData());
     }
 
     /**
@@ -76,13 +76,13 @@ class PricesClient
      * @throws ApiError\PriceApiError On a price specific API error
      * @throws MalformedResponse      If the API response was not parsable
      */
-    public function create(CreatePrice $createOperation): PriceWithIncludes
+    public function create(CreatePrice $createOperation): Price
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/prices', $createOperation),
         );
 
-        return PriceWithIncludes::from($parser->getData());
+        return Price::from($parser->getData());
     }
 
     /**
@@ -90,13 +90,13 @@ class PricesClient
      * @throws ApiError\PriceApiError On a price specific API error
      * @throws MalformedResponse      If the API response was not parsable
      */
-    public function update(string $id, UpdatePrice $operation): PriceWithIncludes
+    public function update(string $id, UpdatePrice $operation): Price
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/prices/{$id}", $operation),
         );
 
-        return PriceWithIncludes::from($parser->getData());
+        return Price::from($parser->getData());
     }
 
     /**
@@ -104,7 +104,7 @@ class PricesClient
      * @throws ApiError\PriceApiError On a price specific API error
      * @throws MalformedResponse      If the API response was not parsable
      */
-    public function archive(string $id): PriceWithIncludes
+    public function archive(string $id): Price
     {
         return $this->update($id, new UpdatePrice(status: Status::Archived));
     }
