@@ -18,9 +18,11 @@ use Paddle\SDK\Entities\Report\ReportType;
 class Report implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<ReportFilter> $filters
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public ReportStatus $status,
         public int|null $rows,

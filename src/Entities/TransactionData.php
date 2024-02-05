@@ -13,7 +13,10 @@ namespace Paddle\SDK\Entities;
 
 class TransactionData implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $url,
     ) {
     }

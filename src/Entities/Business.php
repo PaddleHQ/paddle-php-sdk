@@ -19,9 +19,11 @@ use Paddle\SDK\Entities\Shared\Status;
 class Business implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<Contacts> $contacts
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public string $name,
         public string|null $companyNumber,

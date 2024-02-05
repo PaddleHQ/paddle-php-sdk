@@ -13,7 +13,10 @@ namespace Paddle\SDK\Entities;
 
 class ReportCSV implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public readonly string $url,
     ) {
     }
