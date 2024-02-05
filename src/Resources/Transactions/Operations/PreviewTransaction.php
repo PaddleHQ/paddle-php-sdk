@@ -21,14 +21,14 @@ class PreviewTransaction implements \JsonSerializable
      */
     public function __construct(
         public readonly array $items,
-        public readonly string|null|Undefined $customerId = new Undefined(),
-        public readonly string|null|Undefined $addressId = new Undefined(),
-        public readonly string|null|Undefined $businessId = new Undefined(),
+        public readonly string|Undefined|null $customerId = new Undefined(),
+        public readonly string|Undefined|null $addressId = new Undefined(),
+        public readonly string|Undefined|null $businessId = new Undefined(),
         public readonly CurrencyCode|Undefined $currencyCode = new Undefined(),
         public readonly CollectionMode|Undefined $collectionMode = new Undefined(),
-        public readonly string|null|Undefined $discountId = new Undefined(),
-        public readonly string|null|Undefined $customerIpAddress = new Undefined(),
-        public readonly AddressPreview|null|Undefined $address = new Undefined(),
+        public readonly string|Undefined|null $discountId = new Undefined(),
+        public readonly string|Undefined|null $customerIpAddress = new Undefined(),
+        public readonly AddressPreview|Undefined|null $address = new Undefined(),
         public readonly bool|Undefined $ignoreTrials = new Undefined(),
     ) {
     }

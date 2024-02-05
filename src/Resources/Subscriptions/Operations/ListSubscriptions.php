@@ -22,9 +22,9 @@ class ListSubscriptions implements HasParameters
      * @param array<SubscriptionStatus>                $statuses
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $addressIds = [],
-        private readonly ?CollectionMode $collectionMode = null,
+        private readonly CollectionMode|null $collectionMode = null,
         private readonly array $customerIds = [],
         private readonly array $ids = [],
         private readonly array $priceIds = [],

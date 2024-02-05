@@ -25,17 +25,17 @@ class ListTransactions implements HasParameters
      * @param array<Origin>            $origins
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
-        private readonly ?DateComparison $billedAt = null,
-        private readonly ?CollectionMode $collectionMode = null,
-        private readonly ?DateComparison $createdAt = null,
+        private readonly Pager|null $pager = null,
+        private readonly DateComparison|null $billedAt = null,
+        private readonly CollectionMode|null $collectionMode = null,
+        private readonly DateComparison|null $createdAt = null,
         private readonly array $customerIds = [],
         private readonly array $ids = [],
         private readonly array $includes = [],
         private readonly array $invoiceNumbers = [],
         private readonly array $statuses = [],
         private readonly array $subscriptionIds = [],
-        private readonly ?DateComparison $updatedAt = null,
+        private readonly DateComparison|null $updatedAt = null,
         private readonly array $origins = [],
     ) {
         if ($invalid = array_filter($this->customerIds, fn ($value): bool => ! is_string($value))) {

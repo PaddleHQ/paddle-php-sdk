@@ -22,13 +22,13 @@ class ListAdjustments implements HasParameters
      * @throws InvalidArgumentException On invalid array arguments
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $ids = [],
         private readonly array $statuses = [],
         private readonly array $customerIds = [],
         private readonly array $transactionIds = [],
         private readonly array $subscriptionIds = [],
-        private readonly ?Action $action = null,
+        private readonly Action|null $action = null,
     ) {
         if ($invalid = array_filter($this->ids, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('ids', 'string', implode(', ', $invalid));

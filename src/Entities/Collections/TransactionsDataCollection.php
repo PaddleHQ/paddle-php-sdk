@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\TransactionData;
 
 class TransactionsDataCollection extends Collection
 {
-    public static function from(array $itemsData, Paginator $paginator = null): self
+    public static function from(array $itemsData, Paginator|null $paginator = null): self
     {
         return new self(
             array_map(fn (array $item): TransactionData => TransactionData::from($item), $itemsData),

@@ -10,7 +10,7 @@ class DateComparison
 {
     public function __construct(
         public readonly \DateTimeInterface $date,
-        public readonly ?Comparator $comparator = null,
+        public readonly Comparator|null $comparator = null,
     ) {
     }
 
