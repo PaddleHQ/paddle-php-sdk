@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-class ReportFilters
+class ReportFilter
 {
     public function __construct(
-        public ReportName $name,
-        public ReportOperator|null $operator,
+        public ReportFilterName $name,
+        public ReportFilterOperator|null $operator,
         public array|string $value,
     ) {
     }
@@ -23,8 +23,8 @@ class ReportFilters
     public static function from(array $data): self
     {
         return new self(
-            name: ReportName::from($data['name']),
-            operator: isset($data['operator']) ? ReportOperator::from($data['operator']) : null,
+            name: ReportFilterName::from($data['name']),
+            operator: isset($data['operator']) ? ReportFilterOperator::from($data['operator']) : null,
             value: $data['value'],
         );
     }

@@ -11,8 +11,11 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-enum ReportOperator: string
+enum ReportFilterName: string
 {
-    case Lt = 'lt';
-    case Gte = 'gte';
+    case CollectionMode = 'collection_mode';
+    case CurrencyCode = 'currency_code';
+    case Origin = 'origin';
+    case Status = 'status';
+    case UpdatedAt = 'updated_at';
 }
