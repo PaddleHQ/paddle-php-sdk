@@ -10,7 +10,10 @@ use Paddle\SDK\Entities\Notification\NotificationSubscription;
 
 class Event implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $eventId,
         public EventTypeName $eventType,
         public \DateTimeInterface $occurredAt,

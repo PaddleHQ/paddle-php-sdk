@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\PricingPreview;
 
-use Paddle\SDK\Entities\Entity;
-
-class PricePreviewDetails implements Entity
+class PricePreviewDetails
 {
     /**
      * @param array<PricePreviewLineItem> $lineItems

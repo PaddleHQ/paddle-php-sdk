@@ -11,13 +11,12 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\PricingPreview;
 
-use Paddle\SDK\Entities\Entity;
 use Paddle\SDK\Entities\Price;
 use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\Totals;
 use Paddle\SDK\Entities\Shared\UnitTotals;
 
-class PricePreviewLineItem implements Entity
+class PricePreviewLineItem
 {
     /**
      * @param PricePreviewDiscounts[] $discounts

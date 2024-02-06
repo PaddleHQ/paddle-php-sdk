@@ -29,12 +29,14 @@ use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 class Transaction implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<TransactionItem>           $items
      * @param array<TransactionPaymentAttempt> $payments
      * @param array<TransactionAdjustment>     $adjustments
      * @param array<AvailablePaymentMethods>   $availablePaymentMethods
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public StatusTransaction $status,
         public string|null $customerId,
