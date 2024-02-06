@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+use Paddle\SDK\Entities\Collections\PriceCollection;
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\ImportMeta;
@@ -19,17 +20,21 @@ use Paddle\SDK\Entities\Shared\TaxCategory;
 
 class Product implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $id,
         public string $name,
         public string|null $description,
         public CatalogType|null $type,
         public TaxCategory $taxCategory,
-        public null|string $imageUrl,
+        public string|null $imageUrl,
         public CustomData|null $customData,
         public Status $status,
         public \DateTimeInterface|null $createdAt,
         public ImportMeta|null $importMeta,
+        public PriceCollection $prices,
     ) {
     }
 
@@ -46,6 +51,7 @@ class Product implements Entity
             status: Status::from($data['status']),
             createdAt: isset($data['created_at']) ? DateTime::from($data['created_at']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            prices: PriceCollection::from($data['prices'] ?? []),
         );
     }
 }

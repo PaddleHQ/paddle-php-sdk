@@ -24,16 +24,16 @@ class UpdatePrice implements \JsonSerializable
      */
     public function __construct(
         public readonly string|Undefined $description = new Undefined(),
-        public readonly string|null|Undefined $name = new Undefined(),
+        public readonly string|Undefined|null $name = new Undefined(),
         public readonly CatalogType|Undefined $type = new Undefined(),
-        public readonly TimePeriod|null|Undefined $billingCycle = new Undefined(),
-        public readonly TimePeriod|null|Undefined $trialPeriod = new Undefined(),
+        public readonly TimePeriod|Undefined|null $billingCycle = new Undefined(),
+        public readonly TimePeriod|Undefined|null $trialPeriod = new Undefined(),
         public readonly TaxMode|Undefined $taxMode = new Undefined(),
         public readonly Money|Undefined $unitPrice = new Undefined(),
         public readonly array|Undefined $unitPriceOverrides = new Undefined(),
         public readonly PriceQuantity|Undefined $quantity = new Undefined(),
         public readonly Status|Undefined $status = new Undefined(),
-        public readonly CustomData|null|Undefined $customData = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
     ) {
     }
 

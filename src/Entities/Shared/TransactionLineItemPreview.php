@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-use Paddle\SDK\Entities\ProductWithIncludes;
+use Paddle\SDK\Entities\Product;
 
 class TransactionLineItemPreview
 {
@@ -21,7 +21,7 @@ class TransactionLineItemPreview
         public string $taxRate,
         public UnitTotals $unitTotals,
         public Totals $totals,
-        public ProductWithIncludes $product,
+        public Product $product,
     ) {
     }
 
@@ -33,7 +33,7 @@ class TransactionLineItemPreview
             $data['tax_rate'],
             UnitTotals::from($data['unit_totals']),
             Totals::from($data['totals']),
-            ProductWithIncludes::from($data['product']),
+            Product::from($data['product']),
         );
     }
 }

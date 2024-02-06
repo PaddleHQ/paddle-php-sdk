@@ -23,13 +23,13 @@ class ListPrices implements HasParameters
      * @throws InvalidArgumentException If includes, ids, statuses or taxCategories contain the incorrect type
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $includes = [],
         private readonly array $ids = [],
         private readonly array $types = [],
         private readonly array $productIds = [],
         private readonly array $statuses = [],
-        private readonly ?bool $recurring = null,
+        private readonly bool|null $recurring = null,
     ) {
         if ($invalid = array_filter($this->includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));

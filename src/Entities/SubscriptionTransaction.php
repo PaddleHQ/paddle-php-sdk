@@ -27,11 +27,13 @@ use Paddle\SDK\Entities\Subscription\SubscriptionTransactionItem;
 class SubscriptionTransaction implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<SubscriptionTransactionItem> $items
      * @param array<TransactionPaymentAttempt>   $payments
      * @param array<SubscriptionAdjustment>      $adjustments
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public StatusTransaction $status,
         public string|null $customerId,

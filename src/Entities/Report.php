@@ -11,16 +11,18 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
-use Paddle\SDK\Entities\Report\ReportFilters;
+use Paddle\SDK\Entities\Report\ReportFilter;
 use Paddle\SDK\Entities\Report\ReportStatus;
 use Paddle\SDK\Entities\Report\ReportType;
 
 class Report implements Entity
 {
     /**
-     * @param array<ReportFilters> $filters
+     * @internal
+     *
+     * @param array<ReportFilter> $filters
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public ReportStatus $status,
         public int|null $rows,
@@ -39,7 +41,7 @@ class Report implements Entity
             status: ReportStatus::from($data['status']),
             rows: $data['rows'] ?? null,
             type: ReportType::from($data['type']),
-            filters: array_map(fn (array $filter): ReportFilters => ReportFilters::from($filter), $data['filters'] ?? []),
+            filters: array_map(fn (array $filter): ReportFilter => ReportFilter::from($filter), $data['filters'] ?? []),
             expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),

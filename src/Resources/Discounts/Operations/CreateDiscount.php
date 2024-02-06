@@ -23,11 +23,11 @@ class CreateDiscount implements \JsonSerializable
         public readonly bool $enabledForCheckout,
         public readonly bool $recur,
         public readonly CurrencyCode $currencyCode,
-        public readonly string|null|Undefined $code = new Undefined(),
-        public readonly int|null|Undefined $maximumRecurringIntervals = new Undefined(),
-        public readonly int|null|Undefined $usageLimit = new Undefined(),
-        public readonly array|null|Undefined $restrictTo = new Undefined(),
-        public readonly string|null|Undefined $expiresAt = new Undefined(),
+        public readonly string|Undefined|null $code = new Undefined(),
+        public readonly int|Undefined|null $maximumRecurringIntervals = new Undefined(),
+        public readonly int|Undefined|null $usageLimit = new Undefined(),
+        public readonly array|Undefined|null $restrictTo = new Undefined(),
+        public readonly string|Undefined|null $expiresAt = new Undefined(),
     ) {
     }
 

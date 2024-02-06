@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class ResponseParser
 {
-    private ?array $body = null;
+    private array|null $body = null;
 
     /**
      * @throws ApiError When the API response contains errors

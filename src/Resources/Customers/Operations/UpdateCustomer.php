@@ -15,8 +15,8 @@ class UpdateCustomer implements \JsonSerializable
 
     public function __construct(
         public readonly string|Undefined $email = new Undefined(),
-        public readonly string|null|Undefined $name = new Undefined(),
-        public readonly CustomData|null|Undefined $customData = new Undefined(),
+        public readonly string|Undefined|null $name = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly string|Undefined $locale = new Undefined(),
         public readonly Status|Undefined $status = new Undefined(),
     ) {

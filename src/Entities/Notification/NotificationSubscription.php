@@ -20,9 +20,11 @@ use Paddle\SDK\Entities\Subscription\SubscriptionTimePeriod;
 class NotificationSubscription implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<SubscriptionItem> $items
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public SubscriptionStatus $status,
         public string $customerId,
@@ -39,7 +41,7 @@ class NotificationSubscription implements Entity
         public SubscriptionDiscount|null $discount,
         public CollectionMode $collectionMode,
         public BillingDetails|null $billingDetails,
-        public SubscriptionTimePeriod $currentBillingPeriod,
+        public SubscriptionTimePeriod|null $currentBillingPeriod,
         public TimePeriod $billingCycle,
         public SubscriptionScheduledChange|null $scheduledChange,
         public array $items,
