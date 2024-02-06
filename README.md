@@ -150,9 +150,14 @@ The SDK includes a helper class to verify webhook signatures sent by Notificatio
 ``` php
 use Paddle\SDK\Notifications\Secret;
 use Paddle\SDK\Notifications\Verifier;
+use Paddle\SDK\Notifications\PaddleSignature;
+
+$payload = @file_get_contents('php://input');
+$signatureHeader = $_SERVER[PaddleSignature::HEADER];
 
 (new Verifier())->verify(
-    $request,
+    $payload,
+    $signatureHeader,
     new Secret('WEBHOOK_SECRET_KEY')
 );
 ```

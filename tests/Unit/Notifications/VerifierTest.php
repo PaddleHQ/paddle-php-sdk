@@ -32,6 +32,9 @@ class VerifierTest extends TestCase
             new Secret('pdl_ntf_01hbpjmytsa32fhr36nqgc3kgb_WvRO0eL4Bj9rgYYIBZY6wZhG4EHy9jzh'),
         ];
 
-        self::assertTrue((new Verifier(null))->verify($request, ...$secrets));
+        $payload = $request->getBody()->getContents();
+        $signatureHeader = $request->getHeader(PaddleSignature::HEADER)[0];
+
+        self::assertTrue((new Verifier(null))->verify($payload, $signatureHeader, ...$secrets));
     }
 }

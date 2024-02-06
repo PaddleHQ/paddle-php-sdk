@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications;
 
-use Psr\Http\Message\RequestInterface;
-
 final class Verifier
 {
     public function __construct(
@@ -13,23 +11,16 @@ final class Verifier
     ) {
     }
 
-    public function verify(RequestInterface $request, Secret ...$secrets): bool
+    public function verify(string $payload, string $signatureHeader, Secret ...$secrets): bool
     {
-        $signatureData = $request->getHeader(PaddleSignature::HEADER);
-        if ($signatureData === []) {
-            return false;
-        }
-
-        $signature = PaddleSignature::parse($signatureData[0]);
+        $signature = PaddleSignature::parse($signatureHeader);
 
         if ($this->maximumVariance > 0 && \time() > $signature->timestamp + $this->maximumVariance) {
             return false;
         }
 
-        $request->getBody()->rewind();
-
         return $signature->verify(
-            (string) $request->getBody(),
+            $payload,
             ...$secrets,
         );
     }
