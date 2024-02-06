@@ -26,16 +26,16 @@ class CreateTransaction implements \JsonSerializable
     public function __construct(
         public readonly array $items,
         public readonly StatusTransaction|Undefined $status = new Undefined(),
-        public readonly string|null|Undefined $customerId = new Undefined(),
-        public readonly string|null|Undefined $addressId = new Undefined(),
-        public readonly string|null|Undefined $businessId = new Undefined(),
-        public readonly CustomData|null|Undefined $customData = new Undefined(),
+        public readonly string|Undefined|null $customerId = new Undefined(),
+        public readonly string|Undefined|null $addressId = new Undefined(),
+        public readonly string|Undefined|null $businessId = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly CurrencyCode|Undefined $currencyCode = new Undefined(),
         public readonly CollectionMode|Undefined $collectionMode = new Undefined(),
-        public readonly string|null|Undefined $discountId = new Undefined(),
-        public readonly BillingDetails|null|Undefined $billingDetails = new Undefined(),
-        public readonly TransactionTimePeriod|null|Undefined $billingPeriod = new Undefined(),
-        public readonly Checkout|null|Undefined $checkout = new Undefined(),
+        public readonly string|Undefined|null $discountId = new Undefined(),
+        public readonly BillingDetails|Undefined|null $billingDetails = new Undefined(),
+        public readonly TransactionTimePeriod|Undefined|null $billingPeriod = new Undefined(),
+        public readonly Checkout|Undefined|null $checkout = new Undefined(),
     ) {
     }
 

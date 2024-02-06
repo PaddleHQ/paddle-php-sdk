@@ -18,7 +18,10 @@ use Paddle\SDK\Entities\Shared\Status;
 
 class Address implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $id,
         public string|null $description,
         public string|null $firstLine,

@@ -13,10 +13,10 @@ namespace Paddle\SDK\Resources\Subscriptions;
 
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\Paginator;
-use Paddle\SDK\Entities\Collections\SubscriptionWithIncludesCollection;
+use Paddle\SDK\Entities\Collections\SubscriptionCollection;
+use Paddle\SDK\Entities\Subscription;
 use Paddle\SDK\Entities\SubscriptionPreview;
-use Paddle\SDK\Entities\SubscriptionWithIncludes;
-use Paddle\SDK\Entities\TransactionWithIncludes;
+use Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
@@ -42,15 +42,15 @@ class SubscriptionsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListSubscriptions $listOperation = new ListSubscriptions()): SubscriptionWithIncludesCollection
+    public function list(ListSubscriptions $listOperation = new ListSubscriptions()): SubscriptionCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/subscriptions', $listOperation),
         );
 
-        return SubscriptionWithIncludesCollection::from(
+        return SubscriptionCollection::from(
             $parser->getData(),
-            new Paginator($this->client, $parser->getPagination(), SubscriptionWithIncludesCollection::class),
+            new Paginator($this->client, $parser->getPagination(), SubscriptionCollection::class),
         );
     }
 
@@ -60,7 +60,7 @@ class SubscriptionsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function get(string $id, array $includes = []): SubscriptionWithIncludes
+    public function get(string $id, array $includes = []): Subscription
     {
         if ($invalid = array_filter($includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -74,7 +74,7 @@ class SubscriptionsClient
             $this->client->getRaw("/subscriptions/{$id}", $params),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
     /**
@@ -82,67 +82,67 @@ class SubscriptionsClient
      * @throws ApiError\SubscriptionApiError On a subscription specific API error
      * @throws MalformedResponse             If the API response was not parsable
      */
-    public function update(string $id, UpdateSubscription $operation): SubscriptionWithIncludes
+    public function update(string $id, UpdateSubscription $operation): Subscription
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/subscriptions/{$id}", $operation),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
-    public function pause(string $id, PauseSubscription $operation): SubscriptionWithIncludes
+    public function pause(string $id, PauseSubscription $operation): Subscription
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/pause", $operation),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
-    public function resume(string $id, ResumeSubscription $operation): SubscriptionWithIncludes
+    public function resume(string $id, ResumeSubscription $operation): Subscription
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/resume", $operation),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
-    public function cancel(string $id, CancelSubscription $operation): SubscriptionWithIncludes
+    public function cancel(string $id, CancelSubscription $operation): Subscription
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/cancel", $operation),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
-    public function getPaymentMethodChangeTransaction(string $id): TransactionWithIncludes
+    public function getPaymentMethodChangeTransaction(string $id): Transaction
     {
         $parser = new ResponseParser(
             $this->client->getRaw("/subscriptions/{$id}/update-payment-method-transaction"),
         );
 
-        return TransactionWithIncludes::from($parser->getData());
+        return Transaction::from($parser->getData());
     }
 
-    public function activate(string $id): SubscriptionWithIncludes
+    public function activate(string $id): Subscription
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/activate"),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
-    public function createOneTimeCharge(string $id, CreateOneTimeCharge $operation): SubscriptionWithIncludes
+    public function createOneTimeCharge(string $id, CreateOneTimeCharge $operation): Subscription
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/subscriptions/{$id}/charge", $operation),
         );
 
-        return SubscriptionWithIncludes::from($parser->getData());
+        return Subscription::from($parser->getData());
     }
 
     public function previewUpdate(string $id, PreviewUpdateSubscription $operation): SubscriptionPreview

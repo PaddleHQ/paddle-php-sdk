@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Paddle\SDK\Entities\Price;
-use Paddle\SDK\Entities\PriceWithIncludes;
 use Paddle\SDK\Entities\Shared\CountryCode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
@@ -135,7 +134,7 @@ try {
 echo sprintf(
     "Read product '%s' with prices %s \n",
     $product->id,
-    implode(', ', array_map(fn (PriceWithIncludes $price) => $price->id, iterator_to_array($product->prices))),
+    implode(', ', array_map(fn (Price $price) => $price->id, iterator_to_array($product->prices))),
 );
 
 // ┌───

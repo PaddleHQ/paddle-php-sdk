@@ -11,19 +11,19 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Collections;
 
-use Paddle\SDK\Entities\ProductWithIncludes;
+use Paddle\SDK\Entities\Adjustment;
 
-class ProductWithIncludesCollection extends Collection
+class AdjustmentCollection extends Collection
 {
-    public static function from(array $itemsData, Paginator $paginator = null): self
+    public static function from(array $itemsData, Paginator|null $paginator = null): self
     {
         return new self(
-            array_map(fn (array $item): ProductWithIncludes => ProductWithIncludes::from($item), $itemsData),
+            array_map(fn (array $item): Adjustment => Adjustment::from($item), $itemsData),
             $paginator,
         );
     }
 
-    public function current(): ProductWithIncludes
+    public function current(): Adjustment
     {
         return parent::current();
     }

@@ -16,7 +16,10 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 
 class CreditBalance implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $customerId,
         public CurrencyCode $currencyCode,
         public AdjustmentCustomerBalance $balance,

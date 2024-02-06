@@ -21,7 +21,10 @@ use Paddle\SDK\Entities\Shared\ImportMeta;
 
 class NotificationDiscount implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $id,
         public DiscountStatus $status,
         public string $description,

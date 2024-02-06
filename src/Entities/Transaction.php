@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+use Paddle\SDK\Entities\Shared\AvailablePaymentMethods;
 use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\Checkout;
 use Paddle\SDK\Entities\Shared\CollectionMode;
@@ -19,6 +20,8 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\StatusTransaction;
 use Paddle\SDK\Entities\Shared\TransactionOrigin;
 use Paddle\SDK\Entities\Shared\TransactionPaymentAttempt;
+use Paddle\SDK\Entities\Transaction\TransactionAdjustment;
+use Paddle\SDK\Entities\Transaction\TransactionAdjustmentsTotals;
 use Paddle\SDK\Entities\Transaction\TransactionDetails;
 use Paddle\SDK\Entities\Transaction\TransactionItem;
 use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
@@ -26,10 +29,14 @@ use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 class Transaction implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<TransactionItem>           $items
      * @param array<TransactionPaymentAttempt> $payments
+     * @param array<TransactionAdjustment>     $adjustments
+     * @param array<AvailablePaymentMethods>   $availablePaymentMethods
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public StatusTransaction $status,
         public string|null $customerId,
@@ -48,10 +55,17 @@ class Transaction implements Entity
         public array $items,
         public TransactionDetails $details,
         public array $payments,
-        public Checkout $checkout,
+        public Checkout|null $checkout,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
         public \DateTimeInterface|null $billedAt,
+        public Address|null $address,
+        public array $adjustments,
+        public TransactionAdjustmentsTotals|null $adjustmentsTotals,
+        public Business|null $business,
+        public Customer|null $customer,
+        public Discount|null $discount,
+        public array $availablePaymentMethods,
     ) {
     }
 
@@ -80,6 +94,13 @@ class Transaction implements Entity
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
             billedAt: isset($data['billed_at']) ? DateTime::from($data['billed_at']) : null,
+            address: isset($data['address']) ? Address::from($data['address']) : null,
+            adjustments: array_map(fn (array $adjustment): TransactionAdjustment => TransactionAdjustment::from($adjustment), $data['adjustments'] ?? []),
+            adjustmentsTotals: isset($data['adjustments_totals']) ? TransactionAdjustmentsTotals::from($data['adjustments_totals']) : null,
+            business: isset($data['business']) ? Business::from($data['business']) : null,
+            customer: isset($data['customer']) ? Customer::from($data['customer']) : null,
+            discount: isset($data['discount']) ? Discount::from($data['discount']) : null,
+            availablePaymentMethods: array_map(fn (string $item): AvailablePaymentMethods => AvailablePaymentMethods::from($item), $data['available_payment_methods'] ?? []),
         );
     }
 }

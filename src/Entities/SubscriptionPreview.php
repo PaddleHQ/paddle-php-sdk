@@ -29,9 +29,11 @@ use Paddle\SDK\Entities\Subscription\SubscriptionTimePeriod;
 class SubscriptionPreview implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<SubscriptionItem> $items
      */
-    public function __construct(
+    protected function __construct(
         public SubscriptionStatus $status,
         public string $customerId,
         public string $addressId,

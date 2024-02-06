@@ -13,8 +13,8 @@ namespace Paddle\SDK\Resources\Products;
 
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\Paginator;
-use Paddle\SDK\Entities\Collections\ProductWithIncludesCollection;
-use Paddle\SDK\Entities\ProductWithIncludes;
+use Paddle\SDK\Entities\Collections\ProductCollection;
+use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
@@ -36,15 +36,15 @@ class ProductsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(ListProducts $listOperation = new ListProducts()): ProductWithIncludesCollection
+    public function list(ListProducts $listOperation = new ListProducts()): ProductCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw('/products', $listOperation),
         );
 
-        return ProductWithIncludesCollection::from(
+        return ProductCollection::from(
             $parser->getData(),
-            new Paginator($this->client, $parser->getPagination(), ProductWithIncludesCollection::class),
+            new Paginator($this->client, $parser->getPagination(), ProductCollection::class),
         );
     }
 
@@ -54,7 +54,7 @@ class ProductsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function get(string $id, array $includes = []): ProductWithIncludes
+    public function get(string $id, array $includes = []): Product
     {
         if ($invalid = array_filter($includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -68,7 +68,7 @@ class ProductsClient
             $this->client->getRaw("/products/{$id}", $params),
         );
 
-        return ProductWithIncludes::from($parser->getData());
+        return Product::from($parser->getData());
     }
 
     /**
@@ -76,13 +76,13 @@ class ProductsClient
      * @throws ApiError\ProductApiError On a product specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function create(CreateProduct $createOperation): ProductWithIncludes
+    public function create(CreateProduct $createOperation): Product
     {
         $parser = new ResponseParser(
             $this->client->postRaw('/products', $createOperation),
         );
 
-        return ProductWithIncludes::from($parser->getData());
+        return Product::from($parser->getData());
     }
 
     /**
@@ -90,13 +90,13 @@ class ProductsClient
      * @throws ApiError\ProductApiError On a product specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function update(string $id, UpdateProduct $operation): ProductWithIncludes
+    public function update(string $id, UpdateProduct $operation): Product
     {
         $parser = new ResponseParser(
             $this->client->patchRaw("/products/{$id}", $operation),
         );
 
-        return ProductWithIncludes::from($parser->getData());
+        return Product::from($parser->getData());
     }
 
     /**
@@ -104,7 +104,7 @@ class ProductsClient
      * @throws ApiError\ProductApiError On a product specific API error
      * @throws MalformedResponse        If the API response was not parsable
      */
-    public function archive(string $id): ProductWithIncludes
+    public function archive(string $id): Product
     {
         return $this->update($id, new UpdateProduct(status: Status::Archived));
     }

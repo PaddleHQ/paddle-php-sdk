@@ -37,6 +37,11 @@ return $config->setRules([
         'spacing' => 'one',
     ],
     'self_accessor' => true,
+    'nullable_type_declaration' => ['syntax' => 'union'],
+    'ordered_types' => [
+        'null_adjustment' => 'always_last',
+        'sort_algorithm' => 'none',
+    ],
 ])
     ->setRiskyAllowed(true)
     ->setFinder($finder);
