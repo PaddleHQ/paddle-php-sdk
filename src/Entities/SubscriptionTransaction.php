@@ -93,7 +93,7 @@ class SubscriptionTransaction implements Entity
             address: Address::from($data['address']),
             business: Business::from($data['business']),
             discount: Discount::from($data['discount']),
-            adjustments: $data['adjustments'],
+            adjustments: array_map(fn (array $adjustment) => SubscriptionAdjustment::from($adjustment), $data['adjustments']),
         );
     }
 }

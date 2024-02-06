@@ -24,4 +24,15 @@ class SubscriptionAdjustmentItem
         public AdjustmentItemTotals $totals,
     ) {
     }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            itemId: $data['item_id'],
+            type: AdjustmentType::from($data['type']),
+            amount: $data['amount'] ?? null,
+            proration: SubscriptionProration::from($data['proration']),
+            totals: AdjustmentItemTotals::from($data['totals']),
+        );
+    }
 }

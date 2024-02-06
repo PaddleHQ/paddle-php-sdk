@@ -30,7 +30,10 @@ class SubscriptionNextTransaction
         return new self(
             billingPeriod: SubscriptionTimePeriod::from($data['billing_period']),
             details: TransactionDetailsPreview::from($data['details']),
-            adjustments: [],
+            adjustments: array_map(
+                fn (array $adjustment) => SubscriptionAdjustmentPreview::from($adjustment),
+                $data['adjustments'],
+            ),
         );
     }
 }
