@@ -13,6 +13,7 @@ enum EventTypeName: string
     case BusinessCreated = 'business.created';
     case BusinessUpdated = 'business.updated';
     case CustomerCreated = 'customer.created';
+    case CustomerImported = 'customer.imported';
     case CustomerUpdated = 'customer.updated';
     case DiscountCreated = 'discount.created';
     case DiscountImported = 'discount.imported';

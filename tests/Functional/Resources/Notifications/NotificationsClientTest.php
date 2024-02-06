@@ -79,13 +79,13 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'Notification Setting ID Filtered' => [
-            new ListNotifications(notificationSettingId: ['nftset_01h83xenpcfjyhkqr4x214m02']),
+            new ListNotifications(notificationSettingIds: ['nftset_01h83xenpcfjyhkqr4x214m02']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?notification_setting_id=nftset_01h83xenpcfjyhkqr4x214m02', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Notification Setting ID Filtered' => [
-            new ListNotifications(notificationSettingId: ['nftset_01h83xenpcfjyhkqr4x214m02', 'nftset_01h8brhckjd6qk4n7e4py2340t']),
+            new ListNotifications(notificationSettingIds: ['nftset_01h83xenpcfjyhkqr4x214m02', 'nftset_01h8brhckjd6qk4n7e4py2340t']),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/notifications?notification_setting_id=nftset_01h83xenpcfjyhkqr4x214m02,nftset_01h8brhckjd6qk4n7e4py2340t',
@@ -94,13 +94,13 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListNotifications(status: [NotificationStatus::Delivered]),
+            new ListNotifications(statuses: [NotificationStatus::Delivered]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?status=delivered', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple NotificationStatus Filtered' => [
-            new ListNotifications(status: [NotificationStatus::Delivered, NotificationStatus::NotAttempted]),
+            new ListNotifications(statuses: [NotificationStatus::Delivered, NotificationStatus::NotAttempted]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?status=delivered,not_attempted', Environment::SANDBOX->baseUrl()),
         ];
