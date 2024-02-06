@@ -22,7 +22,7 @@ class SubscriptionNonCatalogProduct
         public string|null $description,
         public CatalogType|null $type,
         public TaxCategory $taxCategory,
-        public null|string $imageUrl,
+        public string|null $imageUrl,
         public CustomData|null $customData,
     ) {
     }

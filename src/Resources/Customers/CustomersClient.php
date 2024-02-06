@@ -20,6 +20,7 @@ use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\Customers\Operations\CreateCustomer;
+use Paddle\SDK\Resources\Customers\Operations\ListCreditBalances;
 use Paddle\SDK\Resources\Customers\Operations\ListCustomers;
 use Paddle\SDK\Resources\Customers\Operations\UpdateCustomer;
 use Paddle\SDK\ResponseParser;
@@ -103,10 +104,10 @@ class CustomersClient
      * @throws ApiError\CustomerApiError On a customer specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function creditBalances(string $id): CreditBalanceCollection
+    public function creditBalances(string $id, ListCreditBalances $operation = new ListCreditBalances()): CreditBalanceCollection
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/customers/{$id}/credit-balances"),
+            $this->client->getRaw("/customers/{$id}/credit-balances", $operation),
         );
 
         return CreditBalanceCollection::from($parser->getData());

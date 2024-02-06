@@ -14,7 +14,7 @@ class DateTime extends \DateTimeImmutable
         parent::__construct(datetime: $datetime, timezone: new \DateTimeZone('UTC'));
     }
 
-    public function format(string $format = null): string
+    public function format(string|null $format = null): string
     {
         return parent::format($format ?? self::PADDLE_RFC3339);
     }

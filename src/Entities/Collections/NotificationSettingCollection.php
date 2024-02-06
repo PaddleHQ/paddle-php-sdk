@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\NotificationSetting;
 
 class NotificationSettingCollection extends Collection
 {
-    public static function from(array $itemsData, Paginator $paginator = null): self
+    public static function from(array $itemsData, Paginator|null $paginator = null): self
     {
         return new self(
             array_map(fn (array $item): NotificationSetting => NotificationSetting::from($item), $itemsData),

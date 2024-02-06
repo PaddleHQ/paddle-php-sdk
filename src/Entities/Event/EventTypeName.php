@@ -7,12 +7,15 @@ namespace Paddle\SDK\Entities\Event;
 enum EventTypeName: string
 {
     case AddressCreated = 'address.created';
+    case AddressImported = 'address.imported';
     case AddressUpdated = 'address.updated';
     case AdjustmentCreated = 'adjustment.created';
     case AdjustmentUpdated = 'adjustment.updated';
     case BusinessCreated = 'business.created';
+    case BusinessImported = 'business.imported';
     case BusinessUpdated = 'business.updated';
     case CustomerCreated = 'customer.created';
+    case CustomerImported = 'customer.imported';
     case CustomerUpdated = 'customer.updated';
     case DiscountCreated = 'discount.created';
     case DiscountImported = 'discount.imported';

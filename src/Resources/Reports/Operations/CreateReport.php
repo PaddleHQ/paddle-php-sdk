@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Reports\Operations;
 
-use Paddle\SDK\Entities\Report\ReportFilters;
+use Paddle\SDK\Entities\Report\ReportFilter;
 use Paddle\SDK\Entities\Report\ReportType;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\FiltersUndefined;
@@ -14,7 +14,7 @@ class CreateReport implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<ReportFilters> $filters
+     * @param array<ReportFilter> $filters
      *
      * @throws InvalidArgumentException
      */
@@ -22,8 +22,8 @@ class CreateReport implements \JsonSerializable
         public readonly ReportType $type,
         public readonly array $filters = [],
     ) {
-        if ($invalid = array_filter($this->filters, fn ($value): bool => ! $value instanceof ReportFilters)) {
-            throw InvalidArgumentException::arrayContainsInvalidTypes('filters', ReportFilters::class, implode(', ', $invalid));
+        if ($invalid = array_filter($this->filters, fn ($value): bool => ! $value instanceof ReportFilter)) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('filters', ReportFilter::class, implode(', ', $invalid));
         }
     }
 

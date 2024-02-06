@@ -17,9 +17,11 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\TimePeriod;
+use Paddle\SDK\Entities\Shared\TransactionDetailsPreview;
 use Paddle\SDK\Entities\Subscription\SubscriptionDiscount;
 use Paddle\SDK\Entities\Subscription\SubscriptionItem;
 use Paddle\SDK\Entities\Subscription\SubscriptionManagementUrls;
+use Paddle\SDK\Entities\Subscription\SubscriptionNextTransaction;
 use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChange;
 use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
 use Paddle\SDK\Entities\Subscription\SubscriptionTimePeriod;
@@ -27,9 +29,11 @@ use Paddle\SDK\Entities\Subscription\SubscriptionTimePeriod;
 class Subscription implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<SubscriptionItem> $items
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public SubscriptionStatus $status,
         public string $customerId,
@@ -46,13 +50,15 @@ class Subscription implements Entity
         public SubscriptionDiscount|null $discount,
         public CollectionMode $collectionMode,
         public BillingDetails|null $billingDetails,
-        public SubscriptionTimePeriod $currentBillingPeriod,
+        public SubscriptionTimePeriod|null $currentBillingPeriod,
         public TimePeriod $billingCycle,
         public SubscriptionScheduledChange|null $scheduledChange,
-        public SubscriptionManagementUrls $managementUrls,
+        public SubscriptionManagementUrls|null $managementUrls,
         public array $items,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
+        public SubscriptionNextTransaction|null $nextTransaction,
+        public TransactionDetailsPreview|null $recurringTransactionDetails,
     ) {
     }
 
@@ -88,6 +94,10 @@ class Subscription implements Entity
             items: array_map(fn (array $item): SubscriptionItem => SubscriptionItem::from($item), $data['items']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            nextTransaction: isset($data['next_transaction']) ? SubscriptionNextTransaction::from($data['next_transaction']) : null,
+            recurringTransactionDetails: isset($data['recurring_transaction_details'])
+                ? TransactionDetailsPreview::from($data['recurring_transaction_details'])
+                : null,
         );
     }
 }

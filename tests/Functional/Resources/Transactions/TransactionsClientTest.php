@@ -17,12 +17,12 @@ use Paddle\SDK\Entities\Shared\PriceQuantity;
 use Paddle\SDK\Entities\Shared\StatusTransaction;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
+use Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Entities\Transaction\TransactionCreateItem;
 use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice;
 use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice;
 use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId;
 use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPrice;
-use Paddle\SDK\Entities\TransactionWithIncludes;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
@@ -71,7 +71,7 @@ class TransactionsClientTest extends TestCase
         );
 
         foreach ($collection as $transaction) {
-            self::assertInstanceOf(TransactionWithIncludes::class, $transaction);
+            self::assertInstanceOf(Transaction::class, $transaction);
         }
 
         $request = $this->mockClient->getLastRequest();

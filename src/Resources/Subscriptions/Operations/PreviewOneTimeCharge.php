@@ -22,6 +22,7 @@ class PreviewOneTimeCharge implements \JsonSerializable
         public readonly SubscriptionEffectiveFrom $effectiveFrom,
         public readonly array $items,
         public readonly SubscriptionOnPaymentFailure|Undefined $onPaymentFailure = new Undefined(),
+        public readonly string|Undefined $receiptData = new Undefined(),
     ) {
     }
 
@@ -31,6 +32,7 @@ class PreviewOneTimeCharge implements \JsonSerializable
             'effective_from' => $this->effectiveFrom,
             'items' => $this->items,
             'on_payment_failure' => $this->onPaymentFailure,
+            'receipt_data' => $this->receiptData,
         ]);
     }
 }
