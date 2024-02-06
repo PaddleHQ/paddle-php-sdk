@@ -15,8 +15,12 @@ use Paddle\SDK\Entities\DateTime;
 
 class TransactionPaymentAttempt
 {
+    /**
+     * @deprecated $storedPaymentMethodId
+     */
     public function __construct(
         public string $paymentAttemptId,
+        public string $paymentMethodId,
         public string $storedPaymentMethodId,
         public string $amount,
         public StatusPaymentAttempt $status,
@@ -31,6 +35,7 @@ class TransactionPaymentAttempt
     {
         return new self(
             $data['payment_attempt_id'],
+            $data['payment_method_id'],
             $data['stored_payment_method_id'],
             $data['amount'],
             StatusPaymentAttempt::from($data['status']),

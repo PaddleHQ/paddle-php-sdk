@@ -906,6 +906,7 @@
       "payments": [
         {
           "payment_attempt_id": "1f8e8302-b6fa-4290-b457-4c201eb3d53f",
+          "payment_method_id": "paymtd_01hkm9xwqpbbpr1ksmvg3sx3v1",
           "stored_payment_method_id": "5f85a637-efa7-4c6b-88ec-9cc05301bb48",
           "amount": "40000",
           "status": "captured",

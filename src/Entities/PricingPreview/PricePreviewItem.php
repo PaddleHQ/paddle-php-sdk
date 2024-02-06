@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\PricingPreview;
 
-use Paddle\SDK\Entities\Entity;
-
-class PricePreviewItem implements Entity
+class PricePreviewItem
 {
     public function __construct(
         public string $priceId,

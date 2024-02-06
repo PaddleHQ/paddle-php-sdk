@@ -24,11 +24,11 @@ class UpdateDiscount implements \JsonSerializable
         public readonly bool|Undefined $enabledForCheckout = new Undefined(),
         public readonly bool|Undefined $recur = new Undefined(),
         public readonly CurrencyCode|Undefined $currencyCode = new Undefined(),
-        public readonly string|null|Undefined $code = new Undefined(),
-        public readonly int|null|Undefined $maximumRecurringIntervals = new Undefined(),
-        public readonly int|null|Undefined $usageLimit = new Undefined(),
-        public readonly array|null|Undefined $restrictTo = new Undefined(),
-        public readonly string|null|Undefined $expiresAt = new Undefined(),
+        public readonly string|Undefined|null $code = new Undefined(),
+        public readonly int|Undefined|null $maximumRecurringIntervals = new Undefined(),
+        public readonly int|Undefined|null $usageLimit = new Undefined(),
+        public readonly array|Undefined|null $restrictTo = new Undefined(),
+        public readonly string|Undefined|null $expiresAt = new Undefined(),
         public readonly DiscountStatus|Undefined $status = new Undefined(),
     ) {
     }

@@ -24,7 +24,7 @@ class ListProducts implements HasParameters
      * @throws InvalidArgumentException
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $includes = [],
         private readonly array $ids = [],
         private readonly array $types = [],

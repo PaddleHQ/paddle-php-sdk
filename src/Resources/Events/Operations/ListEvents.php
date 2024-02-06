@@ -9,7 +9,7 @@ use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 
 class ListEvents implements HasParameters
 {
-    public function __construct(private readonly ?Pager $pager = null)
+    public function __construct(private readonly Pager|null $pager = null)
     {
     }
 

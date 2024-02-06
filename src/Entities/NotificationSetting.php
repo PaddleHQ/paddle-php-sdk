@@ -16,7 +16,10 @@ use Paddle\SDK\Entities\NotificationSetting\NotificationSettingType;
 
 class NotificationSetting implements Entity
 {
-    public function __construct(
+    /**
+     * @internal
+     */
+    protected function __construct(
         public string $id,
         public string $description,
         public NotificationSettingType $type,

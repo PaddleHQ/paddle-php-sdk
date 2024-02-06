@@ -17,7 +17,7 @@ class ListReports implements HasParameters
      * @throws InvalidArgumentException
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $statuses = [],
     ) {
         if ($invalid = array_filter($this->statuses, fn ($value): bool => ! $value instanceof ReportStatus)) {

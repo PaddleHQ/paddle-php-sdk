@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-enum ReportOperator: string
+enum ReportFilterOperator: string
 {
     case Lt = 'lt';
     case Gte = 'gte';

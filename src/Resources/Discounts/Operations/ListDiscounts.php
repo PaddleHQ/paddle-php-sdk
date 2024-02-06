@@ -19,7 +19,7 @@ class ListDiscounts implements HasParameters
      * @throws InvalidArgumentException On invalid array contents
      */
     public function __construct(
-        private readonly ?Pager $pager = null,
+        private readonly Pager|null $pager = null,
         private readonly array $ids = [],
         private readonly array $statuses = [],
         private readonly array $codes = [],

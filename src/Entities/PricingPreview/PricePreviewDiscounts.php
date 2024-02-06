@@ -12,9 +12,8 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities\PricingPreview;
 
 use Paddle\SDK\Entities\Discount;
-use Paddle\SDK\Entities\Entity;
 
-class PricePreviewDiscounts implements Entity
+class PricePreviewDiscounts
 {
     public function __construct(
         public Discount $discount,

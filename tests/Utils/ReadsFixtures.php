@@ -14,7 +14,7 @@ trait ReadsFixtures
         return json_decode(self::readRawJsonFixture($fixture, $basePath), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    public static function readRawJsonFixture(string $fixture, string $basePath = null): string
+    public static function readRawJsonFixture(string $fixture, string|null $basePath = null): string
     {
         if (! $basePath) {
             [$caller] = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);

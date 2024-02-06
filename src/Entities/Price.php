@@ -24,9 +24,11 @@ use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 class Price implements Entity
 {
     /**
+     * @internal
+     *
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
-    public function __construct(
+    protected function __construct(
         public string $id,
         public string $productId,
         public string|null $name,
@@ -34,13 +36,14 @@ class Price implements Entity
         public CatalogType|null $type,
         public TimePeriod|null $billingCycle,
         public TimePeriod|null $trialPeriod,
-        public TaxMode $taxMode,
+        public TaxMode|null $taxMode,
         public Money $unitPrice,
         public array $unitPriceOverrides,
         public PriceQuantity $quantity,
         public Status $status,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
+        public Product|null $product,
     ) {
     }
 
@@ -51,7 +54,7 @@ class Price implements Entity
             productId: $data['product_id'],
             name: $data['name'] ?? null,
             description: $data['description'],
-            type: CatalogType::tryFrom($data['type'] ?? CatalogType::Standard->value),
+            type: CatalogType::tryFrom($data['type'] ?? ''),
             billingCycle: isset($data['billing_cycle']) ? TimePeriod::from($data['billing_cycle']) : null,
             trialPeriod: isset($data['trial_period']) ? TimePeriod::from($data['trial_period']) : null,
             taxMode: isset($data['tax_mode']) ? TaxMode::from($data['tax_mode']) : null,
@@ -64,6 +67,7 @@ class Price implements Entity
             status: Status::from($data['status']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            product: isset($data['product']) ? Product::from($data['product']) : null,
         );
     }
 }

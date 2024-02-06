@@ -19,10 +19,10 @@ class UpdateBusiness implements \JsonSerializable
      */
     public function __construct(
         public readonly string|Undefined $name = new Undefined(),
-        public readonly string|null|Undefined $companyNumber = new Undefined(),
-        public readonly string|null|Undefined $taxIdentifier = new Undefined(),
+        public readonly string|Undefined|null $companyNumber = new Undefined(),
+        public readonly string|Undefined|null $taxIdentifier = new Undefined(),
         public readonly array|Undefined $contacts = new Undefined(),
-        public readonly CustomData|null|Undefined $customData = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly Status|Undefined $status = new Undefined(),
     ) {
     }

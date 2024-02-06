@@ -9,7 +9,7 @@ use Psr\Http\Message\RequestInterface;
 final class Verifier
 {
     public function __construct(
-        private readonly ?int $maximumVariance = 5,
+        private readonly int|null $maximumVariance = 5,
     ) {
     }
 

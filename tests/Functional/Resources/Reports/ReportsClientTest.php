@@ -7,9 +7,9 @@ namespace Paddle\SDK\Tests\Functional\Resources\Reports;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
-use Paddle\SDK\Entities\Report\ReportFilters;
-use Paddle\SDK\Entities\Report\ReportName;
-use Paddle\SDK\Entities\Report\ReportOperator;
+use Paddle\SDK\Entities\Report\ReportFilter;
+use Paddle\SDK\Entities\Report\ReportFilterName;
+use Paddle\SDK\Entities\Report\ReportFilterOperator;
 use Paddle\SDK\Entities\Report\ReportStatus;
 use Paddle\SDK\Entities\Report\ReportType;
 use Paddle\SDK\Environment;
@@ -74,7 +74,7 @@ class ReportsClientTest extends TestCase
         yield 'Create with filters' => [
             new CreateReport(
                 type: ReportType::Transactions,
-                filters: [new ReportFilters(name: ReportName::UpdatedAt, operator: ReportOperator::Lt, value: '2023-12-30')],
+                filters: [new ReportFilter(name: ReportFilterName::UpdatedAt, operator: ReportFilterOperator::Lt, value: '2023-12-30')],
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),

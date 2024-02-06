@@ -81,12 +81,12 @@ class Client
 
     public function __construct(
         #[\SensitiveParameter] private readonly string $apiKey,
-        Options $options = null,
-        HttpAsyncClient $httpClient = null,
-        LoggerInterface $logger = null,
-        RequestFactoryInterface $requestFactory = null,
-        StreamFactoryInterface $streamFactory = null,
-        UriFactoryInterface $uriFactory = null,
+        Options|null $options = null,
+        HttpAsyncClient|null $httpClient = null,
+        LoggerInterface|null $logger = null,
+        RequestFactoryInterface|null $requestFactory = null,
+        StreamFactoryInterface|null $streamFactory = null,
+        UriFactoryInterface|null $uriFactory = null,
     ) {
         $this->options = $options ?: new Options();
         $this->logger = $logger ?: new NullLogger();
@@ -159,7 +159,7 @@ class Client
         return $this->requestRaw('DELETE', $uri);
     }
 
-    private function requestRaw(string $method, string|UriInterface $uri, array|\JsonSerializable $payload = null): ResponseInterface
+    private function requestRaw(string $method, string|UriInterface $uri, array|\JsonSerializable|null $payload = null): ResponseInterface
     {
         if (\is_string($uri)) {
             $components = \parse_url($this->options->environment->baseUrl());

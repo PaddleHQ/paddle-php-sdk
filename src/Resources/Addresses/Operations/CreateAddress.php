@@ -15,13 +15,13 @@ class CreateAddress implements \JsonSerializable
 
     public function __construct(
         public readonly CountryCode $countryCode,
-        public readonly string|null|Undefined $description = new Undefined(),
-        public readonly string|null|Undefined $firstLine = new Undefined(),
-        public readonly string|null|Undefined $secondLine = new Undefined(),
-        public readonly string|null|Undefined $city = new Undefined(),
-        public readonly string|null|Undefined $postalCode = new Undefined(),
-        public readonly string|null|Undefined $region = new Undefined(),
-        public readonly CustomData|null|Undefined $customData = new Undefined(),
+        public readonly string|Undefined|null $description = new Undefined(),
+        public readonly string|Undefined|null $firstLine = new Undefined(),
+        public readonly string|Undefined|null $secondLine = new Undefined(),
+        public readonly string|Undefined|null $city = new Undefined(),
+        public readonly string|Undefined|null $postalCode = new Undefined(),
+        public readonly string|Undefined|null $region = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
     ) {
     }
 
