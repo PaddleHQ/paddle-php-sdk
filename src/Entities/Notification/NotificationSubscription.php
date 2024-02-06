@@ -41,7 +41,7 @@ class NotificationSubscription implements Entity
         public SubscriptionDiscount|null $discount,
         public CollectionMode $collectionMode,
         public BillingDetails|null $billingDetails,
-        public SubscriptionTimePeriod $currentBillingPeriod,
+        public SubscriptionTimePeriod|null $currentBillingPeriod,
         public TimePeriod $billingCycle,
         public SubscriptionScheduledChange|null $scheduledChange,
         public array $items,
