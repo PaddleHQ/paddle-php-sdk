@@ -13,6 +13,7 @@ namespace Paddle\SDK\Entities\Report;
 
 enum ReportFilterName: string
 {
+    case Action = 'action';
     case CollectionMode = 'collection_mode';
     case CurrencyCode = 'currency_code';
     case Origin = 'origin';
