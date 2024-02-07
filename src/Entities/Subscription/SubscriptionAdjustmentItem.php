@@ -11,8 +11,9 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-use Paddle\SDK\Entities\Adjustment\AdjustmentType;
 use Paddle\SDK\Entities\Shared\AdjustmentItemTotals;
+use Paddle\SDK\Entities\Shared\AdjustmentProration;
+use Paddle\SDK\Entities\Shared\AdjustmentType;
 
 class SubscriptionAdjustmentItem
 {
@@ -20,7 +21,7 @@ class SubscriptionAdjustmentItem
         public string $itemId,
         public AdjustmentType $type,
         public string|null $amount,
-        public SubscriptionProration $proration,
+        public AdjustmentProration $proration,
         public AdjustmentItemTotals $totals,
     ) {
     }
@@ -31,7 +32,7 @@ class SubscriptionAdjustmentItem
             itemId: $data['item_id'],
             type: AdjustmentType::from($data['type']),
             amount: $data['amount'] ?? null,
-            proration: SubscriptionProration::from($data['proration']),
+            proration: AdjustmentProration::from($data['proration']),
             totals: AdjustmentItemTotals::from($data['totals']),
         );
     }

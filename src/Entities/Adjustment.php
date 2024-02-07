@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
-use Paddle\SDK\Entities\Adjustment\AdjustmentItemTotals;
+use Paddle\SDK\Entities\Adjustment\AdjustmentItem;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -23,7 +23,7 @@ class Adjustment implements Entity
     /**
      * @internal
      *
-     * @param array<AdjustmentItemTotals> $items
+     * @param array<AdjustmentItem> $items
      */
     protected function __construct(
         public string $id,
@@ -55,7 +55,7 @@ class Adjustment implements Entity
             creditAppliedToBalance: $data['credit_applied_to_balance'] ?? null,
             currencyCode: CurrencyCode::from($data['currency_code']),
             status: AdjustmentStatus::from($data['status']),
-            items: $data['items'],
+            items: array_map(fn (array $item) => AdjustmentItem::from($item), $data['items']),
             totals: TotalAdjustments::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,
             createdAt: DateTime::from($data['created_at']),

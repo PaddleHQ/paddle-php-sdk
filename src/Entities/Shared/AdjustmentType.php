@@ -9,7 +9,7 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities\Adjustment;
+namespace Paddle\SDK\Entities\Shared;
 
 enum AdjustmentType: string
 {
