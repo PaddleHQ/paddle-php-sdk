@@ -11,13 +11,10 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum StatusTransaction: string
+enum AdjustmentStatus: string
 {
-    case Draft = 'draft';
-    case Ready = 'ready';
-    case Billed = 'billed';
-    case Paid = 'paid';
-    case Completed = 'completed';
-    case Canceled = 'canceled';
-    case PastDue = 'past_due';
+    case PendingApproval = 'pending_approval';
+    case Approved = 'approved';
+    case Rejected = 'rejected';
+    case Reversed = 'reversed';
 }

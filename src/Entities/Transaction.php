@@ -17,9 +17,9 @@ use Paddle\SDK\Entities\Shared\Checkout;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
-use Paddle\SDK\Entities\Shared\StatusTransaction;
 use Paddle\SDK\Entities\Shared\TransactionOrigin;
 use Paddle\SDK\Entities\Shared\TransactionPaymentAttempt;
+use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction\TransactionAdjustment;
 use Paddle\SDK\Entities\Transaction\TransactionAdjustmentsTotals;
 use Paddle\SDK\Entities\Transaction\TransactionDetails;
@@ -38,7 +38,7 @@ class Transaction implements Entity
      */
     protected function __construct(
         public string $id,
-        public StatusTransaction $status,
+        public TransactionStatus $status,
         public string|null $customerId,
         public string|null $addressId,
         public string|null $businessId,
@@ -74,7 +74,7 @@ class Transaction implements Entity
     {
         return new self(
             id: $data['id'],
-            status: StatusTransaction::from($data['status']),
+            status: TransactionStatus::from($data['status']),
             customerId: $data['customer_id'] ?? null,
             addressId: $data['address_id'] ?? null,
             businessId: $data['business_id'] ?? null,

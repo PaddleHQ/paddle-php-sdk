@@ -9,7 +9,7 @@ use Paddle\SDK\Entities\Shared\Checkout;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
-use Paddle\SDK\Entities\Shared\StatusTransaction;
+use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\Entities\Transaction\TransactionUpdateTransactionItem;
 use Paddle\SDK\FiltersUndefined;
@@ -23,7 +23,7 @@ class UpdateTransaction implements \JsonSerializable
      * @param array<TransactionUpdateTransactionItem> $items
      */
     public function __construct(
-        public readonly StatusTransaction|Undefined $status = new Undefined(),
+        public readonly TransactionStatus|Undefined $status = new Undefined(),
         public readonly string|Undefined|null $customerId = new Undefined(),
         public readonly string|Undefined|null $addressId = new Undefined(),
         public readonly string|Undefined|null $businessId = new Undefined(),

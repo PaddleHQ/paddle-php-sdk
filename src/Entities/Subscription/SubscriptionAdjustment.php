@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities\Subscription;
 
 use Paddle\SDK\Entities\Shared\Action;
+use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\PayoutTotalsAdjustment;
-use Paddle\SDK\Entities\Shared\StatusAdjustment;
 use Paddle\SDK\Entities\Shared\TotalAdjustments;
 
 class SubscriptionAdjustment
@@ -31,7 +31,7 @@ class SubscriptionAdjustment
         public string $reason,
         public bool $creditAppliedToBalance,
         public CurrencyCode $currencyCode,
-        public StatusAdjustment $status,
+        public AdjustmentStatus $status,
         public array $items,
         public TotalAdjustments $totals,
         public PayoutTotalsAdjustment $payoutTotals,

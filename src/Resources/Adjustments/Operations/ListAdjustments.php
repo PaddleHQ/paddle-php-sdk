@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\Adjustments\Operations;
 
 use Paddle\SDK\Entities\Shared\Action;
-use Paddle\SDK\Entities\Shared\StatusAdjustment;
+use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\HasParameters;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -14,7 +14,7 @@ class ListAdjustments implements HasParameters
 {
     /**
      * @param array<string>           $ids
-     * @param array<StatusAdjustment> $statuses
+     * @param array<AdjustmentStatus> $statuses
      * @param array<string>           $customerIds
      * @param array<string>           $transactionIds
      * @param array<string>           $subscriptionIds
@@ -34,8 +34,8 @@ class ListAdjustments implements HasParameters
             throw InvalidArgumentException::arrayContainsInvalidTypes('ids', 'string', implode(', ', $invalid));
         }
 
-        if ($invalid = array_filter($this->statuses, fn ($value): bool => ! $value instanceof StatusAdjustment)) {
-            throw InvalidArgumentException::arrayContainsInvalidTypes('statuses', StatusAdjustment::class, implode(', ', $invalid));
+        if ($invalid = array_filter($this->statuses, fn ($value): bool => ! $value instanceof AdjustmentStatus)) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('statuses', AdjustmentStatus::class, implode(', ', $invalid));
         }
 
         if ($invalid = array_filter($this->customerIds, fn ($value): bool => ! is_string($value))) {
