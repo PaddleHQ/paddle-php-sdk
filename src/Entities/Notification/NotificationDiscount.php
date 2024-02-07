@@ -62,7 +62,7 @@ class NotificationDiscount implements Entity
             restrictTo: $data['restrict_to'] ?? null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
-            importMeta: isset($data['import_meta']) ? new ImportMeta($data['import_meta']) : null,
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
         );
