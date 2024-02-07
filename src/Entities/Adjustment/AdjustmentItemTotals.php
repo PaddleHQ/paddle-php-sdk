@@ -25,4 +25,16 @@ class AdjustmentItemTotals
         public SharedAdjustmentItemTotals $totals,
     ) {
     }
+
+    public function from(array $data): self
+    {
+        return new self(
+            id: $data['id'],
+            itemId: $data['item_id'],
+            type: Type::from($data['type']),
+            amount: $data['amount'] ?? null,
+            proration: AdjustmentProration::from($data['proration']),
+            totals: SharedAdjustmentItemTotals::from($data['totals']),
+        );
+    }
 }

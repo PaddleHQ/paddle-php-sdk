@@ -18,4 +18,12 @@ class AdjustmentProration
         public AdjustmentTimePeriod $billingPeriod,
     ) {
     }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            rate: $data['rate'],
+            billingPeriod: AdjustmentTimePeriod::from($data['billing_period']),
+        );
+    }
 }

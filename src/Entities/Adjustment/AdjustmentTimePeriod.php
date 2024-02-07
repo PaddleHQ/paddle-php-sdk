@@ -11,11 +11,21 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Adjustment;
 
+use Paddle\SDK\Entities\DateTime;
+
 class AdjustmentTimePeriod
 {
     public function __construct(
         public \DateTimeInterface $startsAt,
         public \DateTimeInterface $endsAt,
     ) {
+    }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            startsAt: DateTime::from($data['starts_at']),
+            endsAt: DateTime::from($data['ends_at']),
+        );
     }
 }
