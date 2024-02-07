@@ -13,9 +13,9 @@ namespace Paddle\SDK\Entities\Transaction;
 
 use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Entities\Shared\Action;
+use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\PayoutTotalsAdjustment;
-use Paddle\SDK\Entities\Shared\StatusAdjustment;
 use Paddle\SDK\Entities\Shared\TotalAdjustments;
 
 class TransactionAdjustment
@@ -32,7 +32,7 @@ class TransactionAdjustment
         public string $reason,
         public bool $creditAppliedToBalance,
         public CurrencyCode $currencyCode,
-        public StatusAdjustment $status,
+        public AdjustmentStatus $status,
         public array $items,
         public TotalAdjustments $totals,
         public PayoutTotalsAdjustment $payoutTotals,
@@ -52,7 +52,7 @@ class TransactionAdjustment
             reason: $data['reason'],
             creditAppliedToBalance: $data['credit_applied_to_balance'] ?? null,
             currencyCode: CurrencyCode::from($data['currency_code']),
-            status: StatusAdjustment::from($data['status']),
+            status: AdjustmentStatus::from($data['status']),
             items: $data['items'],
             totals: TotalAdjustments::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,

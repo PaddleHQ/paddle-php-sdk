@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum StatusPaymentAttempt: string
+enum PaymentAttemptStatus: string
 {
     case Authorized = 'authorized';
     case AuthorizedFlagged = 'authorized_flagged';

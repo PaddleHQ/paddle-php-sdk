@@ -14,9 +14,9 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Interval;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
-use Paddle\SDK\Entities\Shared\StatusTransaction;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
+use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Entities\Transaction\TransactionCreateItem;
 use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice;
@@ -164,7 +164,7 @@ class TransactionsClientTest extends TestCase
                 items: [
                     new TransactionCreateItem('pri_01gsz8x8sawmvhz1pv30nge1ke', 1),
                 ],
-                status: StatusTransaction::Billed,
+                status: TransactionStatus::Billed,
                 customerId: 'ctm_01he849dseyj0zgrc589eeb1c7',
                 addressId: 'add_01hen28ebw1ew99y295jhd4n3n',
                 businessId: 'biz_01hen2ng2290g84twtefdn5s00',
@@ -205,14 +205,14 @@ class TransactionsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateTransaction(status: StatusTransaction::Billed),
+            new UpdateTransaction(status: TransactionStatus::Billed),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
             new UpdateTransaction(
-                status: StatusTransaction::Billed,
+                status: TransactionStatus::Billed,
                 customData: new CustomData(['completed_by' => 'Frank T']),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
@@ -266,13 +266,13 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListTransactions(statuses: [StatusTransaction::Billed]),
+            new ListTransactions(statuses: [TransactionStatus::Billed]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?status=billed', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'NotificationStatus Filtered Multiple' => [
-            new ListTransactions(statuses: [StatusTransaction::Billed, StatusTransaction::Completed]),
+            new ListTransactions(statuses: [TransactionStatus::Billed, TransactionStatus::Completed]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?status=billed,completed', Environment::SANDBOX->baseUrl()),
         ];

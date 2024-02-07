@@ -10,7 +10,7 @@ use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Adjustment\AdjustmentItem;
 use Paddle\SDK\Entities\Adjustment\AdjustmentType;
 use Paddle\SDK\Entities\Shared\Action;
-use Paddle\SDK\Entities\Shared\StatusAdjustment;
+use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Adjustments\Operations\CreateAdjustment;
@@ -146,7 +146,7 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListAdjustments(statuses: [StatusAdjustment::PendingApproval]),
+            new ListAdjustments(statuses: [AdjustmentStatus::PendingApproval]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?status=pending_approval', Environment::SANDBOX->baseUrl()),
         ];

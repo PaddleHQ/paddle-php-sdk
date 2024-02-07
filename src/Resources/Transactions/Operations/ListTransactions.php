@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\Transactions\Operations;
 
 use Paddle\SDK\Entities\Shared\CollectionMode;
-use Paddle\SDK\Entities\Shared\StatusTransaction;
+use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\HasParameters;
 use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
@@ -20,7 +20,7 @@ class ListTransactions implements HasParameters
      * @param array<string>            $ids
      * @param array<Includes>          $includes
      * @param array<string>            $invoiceNumbers
-     * @param array<StatusTransaction> $statuses
+     * @param array<TransactionStatus> $statuses
      * @param array<string>            $subscriptionIds
      * @param array<Origin>            $origins
      */
@@ -54,8 +54,8 @@ class ListTransactions implements HasParameters
             throw InvalidArgumentException::arrayContainsInvalidTypes('invoiceNumbers', 'string', implode(', ', $invalid));
         }
 
-        if ($invalid = array_filter($this->statuses, fn ($value): bool => ! $value instanceof StatusTransaction)) {
-            throw InvalidArgumentException::arrayContainsInvalidTypes('statuses', StatusTransaction::class, implode(', ', $invalid));
+        if ($invalid = array_filter($this->statuses, fn ($value): bool => ! $value instanceof TransactionStatus)) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('statuses', TransactionStatus::class, implode(', ', $invalid));
         }
 
         if ($invalid = array_filter($this->subscriptionIds, fn ($value): bool => ! is_string($value))) {
