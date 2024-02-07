@@ -20,7 +20,6 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TransactionOrigin;
 use Paddle\SDK\Entities\Shared\TransactionPaymentAttempt;
 use Paddle\SDK\Entities\Shared\TransactionStatus;
-use Paddle\SDK\Entities\Transaction\TransactionAdjustment;
 use Paddle\SDK\Entities\Transaction\TransactionAdjustmentsTotals;
 use Paddle\SDK\Entities\Transaction\TransactionDetails;
 use Paddle\SDK\Entities\Transaction\TransactionItem;
@@ -33,7 +32,7 @@ class Transaction implements Entity
      *
      * @param array<TransactionItem>           $items
      * @param array<TransactionPaymentAttempt> $payments
-     * @param array<TransactionAdjustment>     $adjustments
+     * @param array<Adjustment>                $adjustments
      * @param array<AvailablePaymentMethods>   $availablePaymentMethods
      */
     protected function __construct(
@@ -97,7 +96,7 @@ class Transaction implements Entity
             billedAt: isset($data['billed_at']) ? DateTime::from($data['billed_at']) : null,
             receiptData: $data['receipt_data'] ?? null,
             address: isset($data['address']) ? Address::from($data['address']) : null,
-            adjustments: array_map(fn (array $adjustment): TransactionAdjustment => TransactionAdjustment::from($adjustment), $data['adjustments'] ?? []),
+            adjustments: array_map(fn (array $adjustment): Adjustment => Adjustment::from($adjustment), $data['adjustments'] ?? []),
             adjustmentsTotals: isset($data['adjustments_totals']) ? TransactionAdjustmentsTotals::from($data['adjustments_totals']) : null,
             business: isset($data['business']) ? Business::from($data['business']) : null,
             customer: isset($data['customer']) ? Customer::from($data['customer']) : null,
