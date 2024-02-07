@@ -38,8 +38,8 @@ class NotificationDiscount implements Entity
         public int|null $usageLimit,
         public array|null $restrictTo,
         public CustomData|null $customData,
-        public \DateTimeInterface|null $expiresAt,
         public ImportMeta|null $importMeta,
+        public \DateTimeInterface|null $expiresAt,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
     ) {
@@ -61,8 +61,8 @@ class NotificationDiscount implements Entity
             usageLimit: $data['usage_limit'] ?? null,
             restrictTo: $data['restrict_to'] ?? null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
-            expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
         );
