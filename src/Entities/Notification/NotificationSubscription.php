@@ -79,7 +79,7 @@ class NotificationSubscription implements Entity
                 : null,
             items: array_map(fn (array $item): SubscriptionItem => SubscriptionItem::from($item), $data['items']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
-            importMeta: isset($data['import_meta']) ? new ImportMeta::from($data['import_meta']) : null,
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }
