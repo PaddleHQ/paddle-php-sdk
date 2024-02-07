@@ -16,6 +16,8 @@ use Paddle\SDK\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Entities\Discount\DiscountType;
 use Paddle\SDK\Entities\Entity;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 
 class NotificationDiscount implements Entity
 {
@@ -35,6 +37,8 @@ class NotificationDiscount implements Entity
         public int|null $maximumRecurringIntervals,
         public int|null $usageLimit,
         public array|null $restrictTo,
+        public CustomData|null $customData,
+        public ImportMeta|null $importMeta,
         public \DateTimeInterface|null $expiresAt,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
@@ -56,6 +60,8 @@ class NotificationDiscount implements Entity
             maximumRecurringIntervals: $data['maximum_recurring_intervals'],
             usageLimit: $data['usage_limit'] ?? null,
             restrictTo: $data['restrict_to'] ?? null,
+            customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
             expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
