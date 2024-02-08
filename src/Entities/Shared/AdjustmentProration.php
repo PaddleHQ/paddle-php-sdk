@@ -9,7 +9,7 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities\Adjustment;
+namespace Paddle\SDK\Entities\Shared;
 
 class AdjustmentProration
 {
@@ -17,5 +17,13 @@ class AdjustmentProration
         public string $rate,
         public AdjustmentTimePeriod $billingPeriod,
     ) {
+    }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            rate: $data['rate'],
+            billingPeriod: AdjustmentTimePeriod::from($data['billing_period']),
+        );
     }
 }

@@ -17,4 +17,13 @@ class SubscriptionAdjustmentPreview
         public TotalAdjustments $totals,
     ) {
     }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            transactionId: $data['transaction_id'],
+            items: array_map(fn (array $item) => SubscriptionAdjustmentItem::from($item), $data['items']),
+            totals: TotalAdjustments::from($data['totals']),
+        );
+    }
 }
