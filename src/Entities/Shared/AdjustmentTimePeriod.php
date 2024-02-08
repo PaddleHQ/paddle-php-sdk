@@ -9,7 +9,9 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities\Adjustment;
+namespace Paddle\SDK\Entities\Shared;
+
+use Paddle\SDK\Entities\DateTime;
 
 class AdjustmentTimePeriod
 {
@@ -17,5 +19,13 @@ class AdjustmentTimePeriod
         public \DateTimeInterface $startsAt,
         public \DateTimeInterface $endsAt,
     ) {
+    }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            startsAt: DateTime::from($data['starts_at']),
+            endsAt: DateTime::from($data['ends_at']),
+        );
     }
 }

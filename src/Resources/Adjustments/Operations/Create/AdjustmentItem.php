@@ -9,20 +9,16 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities\Transaction;
+namespace Paddle\SDK\Resources\Adjustments\Operations\Create;
 
-use Paddle\SDK\Entities\Shared\AdjustmentItemTotals;
-use Paddle\SDK\Entities\Shared\Type;
+use Paddle\SDK\Entities\Shared\AdjustmentType;
 
-class TransactionAdjustmentItem
+class AdjustmentItem
 {
     public function __construct(
-        public string $id,
         public string $itemId,
-        public Type $type,
+        public AdjustmentType $type,
         public string|null $amount,
-        public TransactionProration $proration,
-        public AdjustmentItemTotals $totals,
     ) {
     }
 }

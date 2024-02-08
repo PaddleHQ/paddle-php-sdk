@@ -1,55 +1,166 @@
 {
   "data": {
-    "id": "sub_01heb0tj9w00j33bfbq3469cy0",
     "status": "active",
-    "customer_id": "ctm_01heaqwvb9kv4dv4v67m738dta",
-    "address_id": "add_01heaqx50ad2sbsmf68saya8v2",
+    "customer_id": "ctm_01hm4e55f7cq759z2t4hny8ch2",
+    "address_id": "add_01hm4e55ftjwsc2pgzhx1qr0eg",
     "business_id": null,
     "currency_code": "USD",
-    "created_at": "2023-11-03T16:38:55.036Z",
-    "updated_at": "2023-11-24T16:38:53.111897Z",
-    "started_at": "2023-11-03T16:38:53.111897Z",
-    "first_billed_at": "2023-11-03T16:38:53.111897Z",
-    "next_billed_at": "2023-12-03T16:38:53.111897Z",
+    "created_at": "2024-01-14T16:52:08.075Z",
+    "updated_at": "2024-02-06T15:33:47.114Z",
+    "started_at": "2024-01-14T16:52:06.565582Z",
+    "first_billed_at": "2024-01-14T16:52:06.565582Z",
+    "next_billed_at": "2024-02-14T16:52:06.565582Z",
     "paused_at": null,
     "canceled_at": null,
     "collection_mode": "automatic",
     "billing_details": null,
     "current_billing_period": {
-      "starts_at": "2023-11-03T16:38:53.111897Z",
-      "ends_at": "2023-12-03T16:38:53.111897Z"
+      "starts_at": "2024-01-14T16:52:06.565582Z",
+      "ends_at": "2024-02-14T16:52:06.565582Z"
     },
     "billing_cycle": {
       "frequency": 1,
       "interval": "month"
     },
+    "recurring_transaction_details": {
+      "tax_rates_used": [
+        {
+          "tax_rate": "0",
+          "totals": {
+            "subtotal": "175000",
+            "discount": "0",
+            "tax": "0",
+            "total": "175000"
+          }
+        }
+      ],
+      "totals": {
+        "subtotal": "175000",
+        "tax": "0",
+        "discount": "0",
+        "total": "175000",
+        "fee": null,
+        "credit": "0",
+        "credit_to_balance": "0",
+        "balance": "175000",
+        "grand_total": "175000",
+        "earnings": null,
+        "currency_code": "USD",
+        "exchange_rate": "1"
+      },
+      "line_items": [
+        {
+          "item_id": null,
+          "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "quantity": 50,
+          "totals": {
+            "subtotal": "150000",
+            "tax": "0",
+            "discount": "0",
+            "total": "150000"
+          },
+          "product": {
+            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "name": "ChatApp Pro",
+            "type": "standard",
+            "tax_category": "standard",
+            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+            "custom_data": {
+              "features": {
+                "crm": true,
+                "data_retention": false,
+                "reports": true
+              },
+              "suggested_addons": [
+                "pro_01h1vjes1y163xfj1rh1tkfb65",
+                "pro_01gsz97mq9pa4fkyy0wqenepkz"
+              ],
+              "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+            },
+            "status": "active",
+            "import_meta": null
+          },
+          "tax_rate": "0",
+          "unit_totals": {
+            "subtotal": "3000",
+            "discount": "0",
+            "tax": "0",
+            "total": "3000"
+          },
+          "proration": {
+            "rate": "1",
+            "billing_period": {
+              "starts_at": "2024-01-14T16:52:06.565582Z",
+              "ends_at": "2024-02-14T16:52:06.565582Z"
+            }
+          }
+        },
+        {
+          "item_id": null,
+          "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+          "quantity": 1,
+          "totals": {
+            "subtotal": "25000",
+            "tax": "0",
+            "discount": "0",
+            "total": "25000"
+          },
+          "product": {
+            "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+            "name": "VIP support",
+            "type": "standard",
+            "tax_category": "standard",
+            "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+            "custom_data": null,
+            "status": "active",
+            "import_meta": null
+          },
+          "tax_rate": "0",
+          "unit_totals": {
+            "subtotal": "25000",
+            "discount": "0",
+            "tax": "0",
+            "total": "25000"
+          },
+          "proration": {
+            "rate": "1",
+            "billing_period": {
+              "starts_at": "2024-01-14T16:52:06.565582Z",
+              "ends_at": "2024-02-14T16:52:06.565582Z"
+            }
+          }
+        }
+      ]
+    },
     "next_transaction": {
       "billing_period": {
-        "starts_at": "2023-12-03T16:38:53.111897Z",
-        "ends_at": "2024-01-03T16:38:53.111897Z"
+        "starts_at": "2024-02-14T16:52:06.565582Z",
+        "ends_at": "2024-03-14T16:52:06.565582Z"
       },
       "details": {
         "tax_rates_used": [
           {
-            "tax_rate": "0.2",
+            "tax_rate": "0",
             "totals": {
-              "subtotal": "41667",
+              "subtotal": "175000",
               "discount": "0",
-              "tax": "8333",
-              "total": "50000"
+              "tax": "0",
+              "total": "175000"
             }
           }
         ],
         "totals": {
-          "subtotal": "41667",
-          "tax": "8333",
+          "subtotal": "175000",
+          "tax": "0",
           "discount": "0",
-          "total": "50000",
+          "total": "175000",
           "fee": null,
           "credit": "0",
           "credit_to_balance": "0",
-          "balance": "50000",
-          "grand_total": "50000",
+          "balance": "175000",
+          "grand_total": "175000",
           "earnings": null,
           "currency_code": "USD",
           "exchange_rate": "1"
@@ -57,67 +168,84 @@
         "line_items": [
           {
             "item_id": null,
-            "price_id": "pri_01heb0e913gej56emc8tjrkaq1",
-            "quantity": 5,
+            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+            "quantity": 50,
             "totals": {
-              "subtotal": "16667",
-              "tax": "3333",
+              "subtotal": "150000",
+              "tax": "0",
               "discount": "0",
-              "total": "20000"
+              "total": "150000"
             },
             "product": {
-              "id": "pro_01heb0cesy14mwnpyps6ee3hdc",
-              "name": " Basic Plan Product",
-              "description": "This is a description of my fav product",
+              "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+              "name": "ChatApp Pro",
+              "type": "standard",
               "tax_category": "standard",
-              "image_url": "http://example.com",
-              "status": "active"
+              "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+              "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+              "custom_data": {
+                "features": {
+                  "crm": true,
+                  "data_retention": false,
+                  "reports": true
+                },
+                "suggested_addons": [
+                  "pro_01h1vjes1y163xfj1rh1tkfb65",
+                  "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                ],
+                "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+              },
+              "status": "active",
+              "import_meta": null
             },
-            "tax_rate": "0.2",
+            "tax_rate": "0",
             "unit_totals": {
-              "subtotal": "3333",
+              "subtotal": "3000",
               "discount": "0",
-              "tax": "667",
-              "total": "4000"
-            },
-            "proration": {
-              "rate": "1",
-              "billing_period": {
-                "starts_at": "2023-12-03T16:38:53.111897Z",
-                "ends_at": "2024-01-03T16:38:53.111897Z"
-              }
-            }
-          },
-          {
-            "item_id": null,
-            "price_id": "pri_01heb0fkqcnj94ykp5c3r8e0ja",
-            "quantity": 10,
-            "totals": {
-              "subtotal": "25000",
-              "tax": "5000",
-              "discount": "0",
-              "total": "30000"
-            },
-            "product": {
-              "id": "pro_01heb0eqkjnw4pwgshghq87qga",
-              "name": "Recurring Addon Test",
-              "description": "",
-              "tax_category": "standard",
-              "image_url": "",
-              "status": "active"
-            },
-            "tax_rate": "0.2",
-            "unit_totals": {
-              "subtotal": "2500",
-              "discount": "0",
-              "tax": "500",
+              "tax": "0",
               "total": "3000"
             },
             "proration": {
               "rate": "1",
               "billing_period": {
-                "starts_at": "2023-12-03T16:38:53.111897Z",
-                "ends_at": "2024-01-03T16:38:53.111897Z"
+                "starts_at": "2024-02-14T16:52:06.565582Z",
+                "ends_at": "2024-03-14T16:52:06.565582Z"
+              }
+            }
+          },
+          {
+            "item_id": null,
+            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+            "quantity": 1,
+            "totals": {
+              "subtotal": "25000",
+              "tax": "0",
+              "discount": "0",
+              "total": "25000"
+            },
+            "product": {
+              "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+              "name": "VIP support",
+              "type": "standard",
+              "tax_category": "standard",
+              "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+              "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+              "custom_data": null,
+              "status": "active",
+              "import_meta": null
+            },
+            "tax_rate": "0",
+            "unit_totals": {
+              "subtotal": "25000",
+              "discount": "0",
+              "tax": "0",
+              "total": "25000"
+            },
+            "proration": {
+              "rate": "1",
+              "billing_period": {
+                "starts_at": "2024-02-14T16:52:06.565582Z",
+                "ends_at": "2024-03-14T16:52:06.565582Z"
               }
             }
           }
@@ -125,47 +253,189 @@
       },
       "adjustments": []
     },
+    "immediate_transaction": {
+      "billing_period": {
+        "starts_at": "2024-02-06T15:33:47.447Z",
+        "ends_at": "2024-02-14T16:52:06.565582Z"
+      },
+      "details": {
+        "tax_rates_used": [
+          {
+            "tax_rate": "0",
+            "totals": {
+              "subtotal": "45471",
+              "discount": "0",
+              "tax": "0",
+              "total": "45471"
+            }
+          }
+        ],
+        "totals": {
+          "subtotal": "45471",
+          "tax": "0",
+          "discount": "0",
+          "total": "45471",
+          "fee": null,
+          "credit": "10393",
+          "credit_to_balance": "0",
+          "balance": "35078",
+          "grand_total": "35078",
+          "earnings": null,
+          "currency_code": "USD",
+          "exchange_rate": "1"
+        },
+        "line_items": [
+          {
+            "item_id": null,
+            "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+            "quantity": 50,
+            "totals": {
+              "subtotal": "38975",
+              "tax": "0",
+              "discount": "0",
+              "total": "38975"
+            },
+            "product": {
+              "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+              "name": "ChatApp Pro",
+              "type": "standard",
+              "tax_category": "standard",
+              "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+              "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+              "custom_data": {
+                "features": {
+                  "crm": true,
+                  "data_retention": false,
+                  "reports": true
+                },
+                "suggested_addons": [
+                  "pro_01h1vjes1y163xfj1rh1tkfb65",
+                  "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                ],
+                "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+              },
+              "status": "active",
+              "import_meta": null
+            },
+            "tax_rate": "0",
+            "unit_totals": {
+              "subtotal": "779",
+              "discount": "0",
+              "tax": "0",
+              "total": "779"
+            },
+            "proration": {
+              "rate": "0.25983",
+              "billing_period": {
+                "starts_at": "2024-02-06T15:33:46.944Z",
+                "ends_at": "2024-02-14T16:52:06.565582Z"
+              }
+            }
+          },
+          {
+            "item_id": null,
+            "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+            "quantity": 1,
+            "totals": {
+              "subtotal": "6496",
+              "tax": "0",
+              "discount": "0",
+              "total": "6496"
+            },
+            "product": {
+              "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+              "name": "VIP support",
+              "type": "standard",
+              "tax_category": "standard",
+              "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
+              "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
+              "custom_data": null,
+              "status": "active",
+              "import_meta": null
+            },
+            "tax_rate": "0",
+            "unit_totals": {
+              "subtotal": "6496",
+              "discount": "0",
+              "tax": "0",
+              "total": "6496"
+            },
+            "proration": {
+              "rate": "0.25983",
+              "billing_period": {
+                "starts_at": "2024-02-06T15:33:47.046Z",
+                "ends_at": "2024-02-14T16:52:06.565582Z"
+              }
+            }
+          }
+        ]
+      },
+      "adjustments": [
+        {
+          "transaction_id": "txn_01hm4e3z7953tarerdx59n4cf6",
+          "items": [
+            {
+              "item_id": "txnitm_01hm4e55pedstmc53e45qzf3jp",
+              "type": "proration",
+              "amount": "7795",
+              "proration": {
+                "rate": "0.25983",
+                "billing_period": {
+                  "starts_at": "2024-02-06T15:33:46.939Z",
+                  "ends_at": "2024-02-14T16:52:06.565582Z"
+                }
+              },
+              "totals": {
+                "subtotal": "7795",
+                "tax": "0",
+                "total": "7795"
+              }
+            },
+            {
+              "item_id": "txnitm_01hm4e55pedstmc53e4ae03ydh",
+              "type": "proration",
+              "amount": "2598",
+              "proration": {
+                "rate": "0.25983",
+                "billing_period": {
+                  "starts_at": "2024-02-06T15:33:46.96Z",
+                  "ends_at": "2024-02-14T16:52:06.565582Z"
+                }
+              },
+              "totals": {
+                "subtotal": "2598",
+                "tax": "0",
+                "total": "2598"
+              }
+            }
+          ],
+          "totals": {
+            "subtotal": "10393",
+            "tax": "0",
+            "total": "10393",
+            "fee": "528",
+            "earnings": "9865",
+            "currency_code": "USD"
+          }
+        }
+      ]
+    },
     "scheduled_change": null,
     "items": [
       {
         "status": "active",
-        "quantity": 5,
+        "quantity": 50,
         "recurring": true,
-        "created_at": "2023-11-03T16:38:55.036Z",
-        "updated_at": "2023-11-03T16:38:55.036Z",
-        "previously_billed_at": "2023-11-03T16:38:53.111897Z",
-        "next_billed_at": "2023-12-03T16:38:53.111897Z",
+        "created_at": "2024-01-14T16:52:08.075Z",
+        "updated_at": "2024-02-06T15:33:46.921Z",
+        "previously_billed_at": "2024-01-14T16:52:06.565582Z",
+        "next_billed_at": "2024-02-14T16:52:06.565582Z",
         "trial_dates": null,
         "price": {
-          "id": "pri_01heb0e913gej56emc8tjrkaqa",
-          "product_id": "pro_01heb0cesy14mwnpyps6ee3hda",
-          "description": "basic plan",
-          "tax_mode": "internal",
-          "billing_cycle": {
-            "frequency": 1,
-            "interval": "month"
-          },
-          "trial_period": null,
-          "unit_price": {
-            "amount": "4000",
-            "currency_code": "USD"
-          }
-        }
-      },
-      {
-        "status": "active",
-        "quantity": 10,
-        "recurring": true,
-        "created_at": "2023-11-03T16:38:55.036Z",
-        "updated_at": "2023-11-03T16:38:55.036Z",
-        "previously_billed_at": "2023-11-03T16:38:53.111897Z",
-        "next_billed_at": "2023-12-03T16:38:53.111897Z",
-        "trial_dates": null,
-        "price": {
-          "id": "pri_01heb0fkqcnj94ykp5c3r8e0ja",
-          "product_id": "pro_01heb0eqkjnw4pwgshghq87qga",
-          "description": "recurring addon",
-          "tax_mode": "internal",
+          "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "description": "Monthly (per seat)",
+          "tax_mode": "account_setting",
           "billing_cycle": {
             "frequency": 1,
             "interval": "month"
@@ -176,228 +446,57 @@
             "currency_code": "USD"
           }
         }
+      },
+      {
+        "status": "active",
+        "quantity": 1,
+        "recurring": true,
+        "created_at": "2024-02-06T15:33:46.962Z",
+        "updated_at": "2024-02-06T15:33:46.962Z",
+        "previously_billed_at": "2024-02-06T15:33:46.962Z",
+        "next_billed_at": "2024-02-14T16:52:06.565582Z",
+        "trial_dates": null,
+        "price": {
+          "id": "pri_01gsz95g2zrkagg294kpstx54r",
+          "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+          "description": "Monthly (recurring addon)",
+          "tax_mode": "account_setting",
+          "billing_cycle": {
+            "frequency": 1,
+            "interval": "month"
+          },
+          "trial_period": null,
+          "unit_price": {
+            "amount": "25000",
+            "currency_code": "USD"
+          }
+        }
       }
     ],
     "custom_data": null,
     "management_urls": {
-      "update_payment_method": "https://buyer-portal.paddle.com/subscriptions/sub_01heb0tj9w00j33bfbq3469cy0/update-payment-method?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6InBnYV8wMWhlanBja2s1Z2trYmZhcWhhYXgyNnJlYSIsInNlbGxlci1pZCI6IjUwNiIsInR5cGUiOiJzdGFuZGFyZCIsInZlcnNpb24iOiIxIiwidXNhZ2UiOiJtYW5hZ2VtZW50X3VybCIsInNjb3BlIjoiY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQudXBkYXRlIGN1c3RvbWVyLnN1YnNjcmlwdGlvbi1wYXltZW50LnJlYWQgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLWNhbmNlbC5jcmVhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLnJlYWQiLCJpc3MiOiJndWVzdGFjY2Vzcy1zZXJ2aWNlIiwic3ViIjoiY3RtXzAxaGVhcXd2YjlrdjRkdjR2NjdtNzM4ZHR2IiwiZXhwIjoxNzMyNzE3OTEyLCJpYXQiOjE2OTkyODcwMjd9.YX52k0BnP5KqXmaCKK7MBsvXMnxXDw0q_ZYKV25zkjLSzmAYG0ME1flRqj8b5WcoeFJLI8z0UPAhtFqys30XCA",
-      "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01heb0tj9w00j33bfbq3469cy0/cancel?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6InBnYV8wMWhlanBja2s1Z2trYmZhcWhhYXgyNnJlYSIsInNlbGxlci1pZCI6IjUwNiIsInR5cGUiOiJzdGFuZGFyZCIsInZlcnNpb24iOiIxIiwidXNhZ2UiOiJtYW5hZ2VtZW50X3VybCIsInNjb3BlIjoiY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQudXBkYXRlIGN1c3RvbWVyLnN1YnNjcmlwdGlvbi1wYXltZW50LnJlYWQgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLWNhbmNlbC5jcmVhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLnJlYWQiLCJpc3MiOiJndWVzdGFjY2Vzcy1zZXJ2aWNlIiwic3ViIjoiY3RtXzAxaGVhcXd2YjlrdjRkdjR2NjdtNzM4ZHR2IiwiZXhwIjoxNzMyNzE3OTEyLCJpYXQiOjE2OTkyODcwMjd9.YX52k0BnP5KqXmaCKK7MBsvXMnxXDw0q_ZYKV25zkjLSzmAYG0ME1flRqj8b5WcoeFJLI8z0UPAhtFqys30XCA"
+      "update_payment_method": "https://sandbox-buyer-portal.paddle.com/subscriptions/sub_01hm4e6grb3nm3y0kav5xz9g6w/update-payment-method?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1I6IkpXVCJ9.eyJpZCI6InBnYV8wMWhuemd2azlkdmt5N3pqM3FzdmVzajJnYSIsInNlbGxlci1pZCI6IjEwODg5IiwidHlwZSI6InN0YW5kYXJkIiwidmVyc2lvbiI6IjEiLCJ1c2FnZSI6Im1hbmFnZW1lbnRfdXJsIiwic2NvcGUiOiJjdXN0b21lci5zdWJzY3JpcHRpb24tcGF5bWVudC51cGRhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQucmVhZCBjdXN0b21lci5zdWJzY3JpcHRpb24tY2FuY2VsLmNyZWF0ZSBjdXN0b21lci5zdWJzY3JpcHRpb24ucmVhZCIsImlzcyI6Imd1ZXN0YWNjZXNzLXNlcnZpY2UiLCJzdWIiOiJjdG1fMDFobTRlNTVmN2NxNzU5ejJ0NGhueThjaDIiLCJleHAiOjE3Mzg4NTYwMjcsImlhdCI6MTcwNzIzMzYyN30.og8fsYmsErcNMoVnbhlddnecCziCWQsgtmtYAgrYuaLVWHSTYONWYo-h5KQKrUT9FiMrp38eeGSU-SyLEK8LCA",
+      "cancel": "https://sandbox-buyer-portal.paddle.com/subscriptions/sub_01hm4e6grb3nm3y0kav5xz9g6w/cancel?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6Inuemd2azlkdmt5N3pqM3FzdmVzajJnYSIsInNlbGxlci1pZCI6IjEwODg5IiwidHlwZSI6InN0YW5kYXJkIiwidmVyc2lvbiI6IjEiLCJ1c2FnZSI6Im1hbmFnZW1lbnRfdXJsIiwic2NvcGUiOiJjdXN0b21lci5zdWJzY3JpcHRpb24tcGF5bWVudC51cGRhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQucmVhZCBjdXN0b21lci5zdWJzY3JpcHRpb24tY2FuY2VsLmNyZWF0ZSBjdXN0b21lci5zdWJzY3JpcHRpb24ucmVhZCIsImlzcyI6Imd1ZXN0YWNjZXNzLXNlcnZpY2UiLCJzdWIiOiJjdG1fMDFobTRlNTVmN2NxNzU5ejJ0NGhueThjaDIiLCJleHAiOjE3Mzg4NTYwMjcsImlhdCI6MTcwNzIzMzYyN30.og8fsYmsErcNMoVnbhlddnecCziCWQsgtmtYAgrYuaLVWHSTYONWYo-h5KQKrUT9FiMrp38eeGSU-SyLEK8LCA"
     },
     "discount": null,
-    "recurring_transaction_details": {
-      "tax_rates_used": [
-        {
-          "tax_rate": "0.08875",
-          "totals": {
-            "subtotal": "178500",
-            "discount": "0",
-            "tax": "15841",
-            "total": "194341"
-          }
-        }
-      ],
-      "totals": {
-        "subtotal": "178500",
-        "tax": "15841",
-        "discount": "0",
-        "total": "194341",
-        "fee": null,
-        "credit": "0",
-        "credit_to_balance": "0",
-        "balance": "194341",
-        "grand_total": "194341",
-        "earnings": null,
-        "currency_code": "USD",
-        "exchange_rate": "1"
+    "update_summary": {
+      "credit": {
+        "amount": "10393",
+        "currency_code": "USD"
       },
-      "line_items": [
-        {
-          "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
-          "quantity": 50,
-          "totals": {
-            "subtotal": "150000",
-            "tax": "13312",
-            "discount": "0",
-            "total": "163312"
-          },
-          "product": {
-            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
-            "name": "ChatApp Pro",
-            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
-            "tax_category": "standard",
-            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
-            "status": "active"
-          },
-          "tax_rate": "0.08875",
-          "unit_totals": {
-            "subtotal": "3000",
-            "discount": "0",
-            "tax": "266",
-            "total": "3266"
-          }
-        },
-        {
-          "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
-          "quantity": 1,
-          "totals": {
-            "subtotal": "28500",
-            "tax": "2529",
-            "discount": "0",
-            "total": "31029"
-          },
-          "product": {
-            "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
-            "name": "VIP support",
-            "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription.",
-            "tax_category": "standard",
-            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
-            "status": "active"
-          },
-          "tax_rate": "0.08875",
-          "unit_totals": {
-            "subtotal": "28500",
-            "discount": "0",
-            "tax": "2529",
-            "total": "31029"
-          }
-        }
-      ]
+      "charge": {
+        "amount": "45471",
+        "currency_code": "USD"
+      },
+      "result": {
+        "action": "charge",
+        "amount": "35078",
+        "currency_code": "USD"
+      }
     },
-    "immediate_transaction": {
-      "billing_period": {
-        "starts_at": "2023-12-03T16:38:53.111897Z",
-        "ends_at": "2024-01-03T16:38:53.111897Z"
-      },
-      "details": {
-        "tax_rates_used": [
-          {
-            "tax_rate": "0.2",
-            "totals": {
-              "subtotal": "41667",
-              "discount": "0",
-              "tax": "8333",
-              "total": "50000"
-            }
-          }
-        ],
-        "totals": {
-          "subtotal": "41667",
-          "tax": "8333",
-          "discount": "0",
-          "total": "50000",
-          "fee": null,
-          "credit": "0",
-          "credit_to_balance": "0",
-          "balance": "50000",
-          "grand_total": "50000",
-          "earnings": null,
-          "currency_code": "USD",
-          "exchange_rate": "1"
-        },
-        "line_items": [
-          {
-            "item_id": null,
-            "price_id": "pri_01heb0e913gej56emc8tjrkaq1",
-            "quantity": 5,
-            "totals": {
-              "subtotal": "16667",
-              "tax": "3333",
-              "discount": "0",
-              "total": "20000"
-            },
-            "product": {
-              "id": "pro_01heb0cesy14mwnpyps6ee3hdc",
-              "name": " Basic Plan Product",
-              "description": "This is a description of my fav product",
-              "tax_category": "standard",
-              "image_url": "http://example.com",
-              "status": "active"
-            },
-            "tax_rate": "0.2",
-            "unit_totals": {
-              "subtotal": "3333",
-              "discount": "0",
-              "tax": "667",
-              "total": "4000"
-            },
-            "proration": {
-              "rate": "1",
-              "billing_period": {
-                "starts_at": "2023-12-03T16:38:53.111897Z",
-                "ends_at": "2024-01-03T16:38:53.111897Z"
-              }
-            }
-          },
-          {
-            "item_id": null,
-            "price_id": "pri_01heb0fkqcnj94ykp5c3r8e0ja",
-            "quantity": 10,
-            "totals": {
-              "subtotal": "25000",
-              "tax": "5000",
-              "discount": "0",
-              "total": "30000"
-            },
-            "product": {
-              "id": "pro_01heb0eqkjnw4pwgshghq87qga",
-              "name": "Recurring Addon Test",
-              "description": "",
-              "tax_category": "standard",
-              "image_url": "",
-              "status": "active"
-            },
-            "tax_rate": "0.2",
-            "unit_totals": {
-              "subtotal": "2500",
-              "discount": "0",
-              "tax": "500",
-              "total": "3000"
-            },
-            "proration": {
-              "rate": "1",
-              "billing_period": {
-                "starts_at": "2023-12-03T16:38:53.111897Z",
-                "ends_at": "2024-01-03T16:38:53.111897Z"
-              }
-            }
-          }
-        ]
-      },
-      "adjustments": [
-        {
-          "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
-          "items": [
-            {
-              "item_id": "txnitm_01h8bxryv3065dyh6103p3yg28",
-              "type": "proration",
-              "amount": "97987",
-              "proration": {
-                "rate": "1",
-                "billing_period": {
-                  "starts_at": "2023-08-21T11:31:59.284Z",
-                  "ends_at": "2023-09-21T11:31:08.689295Z"
-                }
-              },
-              "totals": {
-                "subtotal": "90000",
-                "tax": "7987",
-                "total": "97987"
-              }
-            }
-          ],
-          "totals": {
-            "subtotal": "90000",
-            "tax": "7987",
-            "total": "97987",
-            "fee": "4949",
-            "earnings": "85051",
-            "currency_code": "USD"
-          }
-        }
-      ]
-  }
+    "import_meta": null
   },
   "meta": {
-    "request_id": "1e465507-6d78-4553-9186-8ac8dfa02318"
+    "request_id": "cc2cfeba-1931-42ce-9557-9ac3ae18dd1b"
   }
 }
