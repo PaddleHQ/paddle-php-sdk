@@ -27,6 +27,7 @@ class NotificationSubscription implements Entity
      */
     protected function __construct(
         public string $id,
+        public string $transactionId,
         public SubscriptionStatus $status,
         public string $customerId,
         public string $addressId,
@@ -55,6 +56,7 @@ class NotificationSubscription implements Entity
     {
         return new self(
             id: $data['id'],
+            transactionId: $data['transaction_id'],
             status: SubscriptionStatus::from($data['status']),
             customerId: $data['customer_id'],
             addressId: $data['address_id'],
