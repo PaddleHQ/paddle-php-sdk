@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: paddle-php-sdk
+  title: paddle-php-sdk
+  namespace: paddlehq
+  description: Paddle's PHP SDK
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: PaddleHQ/paddle-php-sdk
+  tags:
+    - php
+    - sdk
+spec:
+  type: library
+  owner: dx
+  lifecycle: production
