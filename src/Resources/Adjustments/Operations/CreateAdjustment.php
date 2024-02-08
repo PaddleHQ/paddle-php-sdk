@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Adjustments\Operations;
 
-use Paddle\SDK\Entities\Adjustment\AdjustmentItem;
 use Paddle\SDK\Entities\Shared\Action;
+use Paddle\SDK\Resources\Adjustments\Operations\Create\AdjustmentItem;
 
 class CreateAdjustment implements \JsonSerializable
 {

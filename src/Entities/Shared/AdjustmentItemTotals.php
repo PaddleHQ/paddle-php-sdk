@@ -19,4 +19,13 @@ class AdjustmentItemTotals
         public string $total,
     ) {
     }
+
+    public static function from(array $data): self
+    {
+        return new self(
+            subtotal: $data['subtotal'],
+            tax: $data['tax'],
+            total: $data['total'],
+        );
+    }
 }
