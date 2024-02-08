@@ -55,9 +55,9 @@ class SubscriptionPreview implements Entity
         public SubscriptionManagementUrls $managementUrls,
         public array $items,
         public CustomData|null $customData,
-        public SubscriptionNextTransaction $immediateTransaction,
-        public SubscriptionNextTransaction $nextTransaction,
-        public TransactionDetailsPreview $recurringTransactionDetails,
+        public SubscriptionNextTransaction|null $immediateTransaction,
+        public SubscriptionNextTransaction|null $nextTransaction,
+        public TransactionDetailsPreview|null $recurringTransactionDetails,
         public SubscriptionPreviewSubscriptionUpdateSummary|null $updateSummary,
     ) {
     }
