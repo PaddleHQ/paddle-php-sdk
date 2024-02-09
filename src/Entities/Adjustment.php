@@ -14,9 +14,9 @@ namespace Paddle\SDK\Entities;
 use Paddle\SDK\Entities\Adjustment\AdjustmentItem;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\AdjustmentStatus;
+use Paddle\SDK\Entities\Shared\AdjustmentTotals;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\PayoutTotalsAdjustment;
-use Paddle\SDK\Entities\Shared\TotalAdjustments;
 
 class Adjustment implements Entity
 {
@@ -36,7 +36,7 @@ class Adjustment implements Entity
         public CurrencyCode $currencyCode,
         public AdjustmentStatus $status,
         public array $items,
-        public TotalAdjustments $totals,
+        public AdjustmentTotals $totals,
         public PayoutTotalsAdjustment|null $payoutTotals,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface|null $updatedAt,
@@ -56,7 +56,7 @@ class Adjustment implements Entity
             currencyCode: CurrencyCode::from($data['currency_code']),
             status: AdjustmentStatus::from($data['status']),
             items: array_map(fn (array $item) => AdjustmentItem::from($item), $data['items']),
-            totals: TotalAdjustments::from($data['totals']),
+            totals: AdjustmentTotals::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),

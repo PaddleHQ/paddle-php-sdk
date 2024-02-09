@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-use Paddle\SDK\Entities\Shared\TotalAdjustments;
+use Paddle\SDK\Entities\Shared\AdjustmentTotals;
 
 class SubscriptionAdjustmentPreview
 {
@@ -14,7 +14,7 @@ class SubscriptionAdjustmentPreview
     public function __construct(
         public string $transactionId,
         public array $items,
-        public TotalAdjustments $totals,
+        public AdjustmentTotals $totals,
     ) {
     }
 
@@ -23,7 +23,7 @@ class SubscriptionAdjustmentPreview
         return new self(
             transactionId: $data['transaction_id'],
             items: array_map(fn (array $item) => SubscriptionAdjustmentItem::from($item), $data['items']),
-            totals: TotalAdjustments::from($data['totals']),
+            totals: AdjustmentTotals::from($data['totals']),
         );
     }
 }
