@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-class TotalAdjustments
+class AdjustmentTotals
 {
     public function __construct(
         public string $subtotal,
