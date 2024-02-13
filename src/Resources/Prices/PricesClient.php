@@ -62,7 +62,7 @@ class PricesClient
 
         $params = $includes === []
             ? []
-            : ['include' => implode(',', array_map(fn ($enum) => $enum->value, $includes))];
+            : ['include' => implode(',', array_map(fn ($enum) => $enum->getValue(), $includes))];
 
         $parser = new ResponseParser(
             $this->client->getRaw("/prices/{$id}", $params),
@@ -106,6 +106,6 @@ class PricesClient
      */
     public function archive(string $id): Price
     {
-        return $this->update($id, new UpdatePrice(status: Status::Archived));
+        return $this->update($id, new UpdatePrice(status: Status::Archived()));
     }
 }

@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionEffectiveFrom: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionEffectiveFrom NextBillingPeriod()
+ * @method static SubscriptionEffectiveFrom Immediately()
+ */
+class SubscriptionEffectiveFrom extends PaddleEnum
 {
-    case NextBillingPeriod = 'next_billing_period';
-    case Immediately = 'immediately';
+    private const NextBillingPeriod = 'next_billing_period';
+    private const Immediately = 'immediately';
 }

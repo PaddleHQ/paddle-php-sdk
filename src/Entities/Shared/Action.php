@@ -11,12 +11,22 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum Action: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static Action Credit()
+ * @method static Action CreditReverse()
+ * @method static Action Refund()
+ * @method static Action Chargeback()
+ * @method static Action ChargebackReverse()
+ * @method static Action ChargebackWarning()
+ */
+class Action extends PaddleEnum
 {
-    case Credit = 'credit';
-    case CreditReverse = 'credit_reverse';
-    case Refund = 'refund';
-    case Chargeback = 'chargeback';
-    case ChargebackReverse = 'chargeback_reverse';
-    case ChargebackWarning = 'chargeback_warning';
+    private const Credit = 'credit';
+    private const CreditReverse = 'credit_reverse';
+    private const Refund = 'refund';
+    private const Chargeback = 'chargeback';
+    private const ChargebackReverse = 'chargeback_reverse';
+    private const ChargebackWarning = 'chargeback_warning';
 }

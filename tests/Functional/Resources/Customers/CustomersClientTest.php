@@ -116,7 +116,7 @@ class CustomersClientTest extends TestCase
                 email: 'test1@example.com',
                 locale: 'el',
                 customData: new CustomData(['customer_reference_id' => 'abcd1234']),
-                status: Status::Active,
+                status: Status::Active(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
@@ -169,7 +169,7 @@ class CustomersClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListCustomers(statuses: [Status::Archived]),
+            new ListCustomers(statuses: [Status::Archived()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers?status=archived', Environment::SANDBOX->baseUrl()),
         ];

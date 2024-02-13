@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum Status: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static Status Active()
+ * @method static Status Archived()
+ */
+class Status extends PaddleEnum
 {
-    case Active = 'active';
-    case Archived = 'archived';
+    private const Active = 'active';
+    private const Archived = 'archived';
 }

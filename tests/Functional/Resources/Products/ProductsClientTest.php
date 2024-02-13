@@ -63,7 +63,7 @@ class ProductsClientTest extends TestCase
         yield 'Basic Create' => [
             new CreateProduct(
                 name: 'ChatApp Basic',
-                taxCategory: TaxCategory::Standard,
+                taxCategory: TaxCategory::Standard(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_basic'),
@@ -72,7 +72,7 @@ class ProductsClientTest extends TestCase
         yield 'Create with Data' => [
             new CreateProduct(
                 name: 'ChatApp Full',
-                taxCategory: TaxCategory::Standard,
+                taxCategory: TaxCategory::Standard(),
                 description: 'Spend more time engaging with students with ChataApp Education.',
                 imageUrl: 'https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png',
                 customData: new CustomData([
@@ -117,7 +117,7 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'Update Partial' => [
-            new UpdateProduct(name: 'ChatApp Pro', taxCategory: TaxCategory::Saas),
+            new UpdateProduct(name: 'ChatApp Pro', taxCategory: TaxCategory::Saas()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
@@ -125,8 +125,8 @@ class ProductsClientTest extends TestCase
         yield 'Update All' => [
             new UpdateProduct(
                 name: 'ChatApp Pro',
-                taxCategory: TaxCategory::Saas,
                 description: 'Spend more time engaging with students with ChatApp Pro.',
+                taxCategory: TaxCategory::Saas(),
                 imageUrl: 'https://paddle-sandbox.s3.amazonaws.com/pro.png',
                 customData: new CustomData([
                     'features' => [
@@ -187,7 +187,7 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListProducts(statuses: [Status::Archived]),
+            new ListProducts(statuses: [Status::Archived()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?status=archived', Environment::SANDBOX->baseUrl()),
         ];
@@ -208,13 +208,13 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'Tax Category Filtered' => [
-            new ListProducts(taxCategories: [TaxCategory::DigitalGoods, TaxCategory::Standard]),
+            new ListProducts(taxCategories: [TaxCategory::DigitalGoods(), TaxCategory::Standard()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?tax_category=digital-goods,standard', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Includes' => [
-            new ListProducts(includes: [Includes::Prices]),
+            new ListProducts(includes: [Includes::Prices()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/products?include=prices', Environment::SANDBOX->baseUrl()),
         ];
@@ -250,7 +250,7 @@ class ProductsClientTest extends TestCase
         ];
 
         yield 'With Includes' => [
-            [Includes::Prices],
+            [Includes::Prices()],
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
             sprintf('%s/products/pro_01h7zcgmdc6tmwtjehp3sh7azf?include=prices', Environment::SANDBOX->baseUrl()),
         ];

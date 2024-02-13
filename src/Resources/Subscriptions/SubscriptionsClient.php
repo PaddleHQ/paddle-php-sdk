@@ -68,7 +68,7 @@ class SubscriptionsClient
 
         $params = $includes === []
             ? []
-            : ['include' => implode(',', array_map(fn ($enum) => $enum->value, $includes))];
+            : ['include' => implode(',', array_map(fn ($enum) => $enum->getValue(), $includes))];
 
         $parser = new ResponseParser(
             $this->client->getRaw("/subscriptions/{$id}", $params),

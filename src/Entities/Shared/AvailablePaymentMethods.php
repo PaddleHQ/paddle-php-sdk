@@ -11,13 +11,24 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum AvailablePaymentMethods: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static AvailablePaymentMethods Alipay()
+ * @method static AvailablePaymentMethods ApplePay()
+ * @method static AvailablePaymentMethods Bancontact()
+ * @method static AvailablePaymentMethods Card()
+ * @method static AvailablePaymentMethods GooglePay()
+ * @method static AvailablePaymentMethods Ideal()
+ * @method static AvailablePaymentMethods Paypal()
+ */
+class AvailablePaymentMethods extends PaddleEnum
 {
-    case Alipay = 'alipay';
-    case ApplePay = 'apple_pay';
-    case Bancontact = 'bancontact';
-    case Card = 'card';
-    case GooglePay = 'google_pay';
-    case Ideal = 'ideal';
-    case Paypal = 'paypal';
+    private const Alipay = 'alipay';
+    private const ApplePay = 'apple_pay';
+    private const Bancontact = 'bancontact';
+    private const Card = 'card';
+    private const GooglePay = 'google_pay';
+    private const Ideal = 'ideal';
+    private const Paypal = 'paypal';
 }

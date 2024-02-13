@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum CollectionMode: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static CollectionMode Automatic()
+ * @method static CollectionMode Manual()
+ */
+class CollectionMode extends PaddleEnum
 {
-    case Automatic = 'automatic';
-    case Manual = 'manual';
+    private const Automatic = 'automatic';
+    private const Manual = 'manual';
 }

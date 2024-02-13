@@ -2,10 +2,23 @@
 
 declare(strict_types=1);
 
+/**
+ * |------
+ * | ! Generated code !
+ * | Altering this code will result in changes being overwritten |
+ * |-------------------------------------------------------------|.
+ */
+
 namespace Paddle\SDK\Entities\Notification;
 
-enum NotificationOrigin: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static NotificationOrigin Event()
+ * @method static NotificationOrigin Replay()
+ */
+class NotificationOrigin extends PaddleEnum
 {
-    case Event = 'event';
-    case Replay = 'replay';
+    private const Event = 'event';
+    private const Replay = 'replay';
 }

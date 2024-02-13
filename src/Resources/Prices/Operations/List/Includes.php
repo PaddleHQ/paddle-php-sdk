@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Prices\Operations\List;
 
-enum Includes: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static Includes Product()
+ */
+class Includes extends PaddleEnum
 {
-    case Product = 'product';
+    private const Product = 'product';
 }

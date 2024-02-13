@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionOnPaymentFailure: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionOnPaymentFailure PreventChange()
+ * @method static SubscriptionOnPaymentFailure ApplyChange()
+ */
+class SubscriptionOnPaymentFailure extends PaddleEnum
 {
-    case PreventChange = 'prevent_change';
-    case ApplyChange = 'apply_change';
+    private const PreventChange = 'prevent_change';
+    private const ApplyChange = 'apply_change';
 }

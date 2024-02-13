@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Subscriptions\Operations\Get;
 
-enum Includes: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static Includes NextTransaction()
+ * @method static Includes RecurringTransactionDetails()
+ */
+class Includes extends PaddleEnum
 {
-    case NextTransaction = 'next_transaction';
-    case RecurringTransactionDetails = 'recurring_transaction_details';
+    public const NextTransaction = 'next_transaction';
+    public const RecurringTransactionDetails = 'recurring_transaction_details';
 }

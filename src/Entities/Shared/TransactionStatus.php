@@ -11,13 +11,24 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum TransactionStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static TransactionStatus Draft()
+ * @method static TransactionStatus Ready()
+ * @method static TransactionStatus Billed()
+ * @method static TransactionStatus Paid()
+ * @method static TransactionStatus Completed()
+ * @method static TransactionStatus Canceled()
+ * @method static TransactionStatus PastDue()
+ */
+class TransactionStatus extends PaddleEnum
 {
-    case Draft = 'draft';
-    case Ready = 'ready';
-    case Billed = 'billed';
-    case Paid = 'paid';
-    case Completed = 'completed';
-    case Canceled = 'canceled';
-    case PastDue = 'past_due';
+    private const Draft = 'draft';
+    private const Ready = 'ready';
+    private const Billed = 'billed';
+    private const Paid = 'paid';
+    private const Completed = 'completed';
+    private const Canceled = 'canceled';
+    private const PastDue = 'past_due';
 }

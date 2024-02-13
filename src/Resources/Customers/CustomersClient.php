@@ -96,7 +96,7 @@ class CustomersClient
      */
     public function archive(string $id): Customer
     {
-        return $this->update($id, new UpdateCustomer(status: Status::Archived));
+        return $this->update($id, new UpdateCustomer(status: Status::Archived()));
     }
 
     /**

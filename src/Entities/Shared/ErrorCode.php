@@ -11,23 +11,44 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum ErrorCode: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static ErrorCode AlreadyCanceled()
+ * @method static ErrorCode AlreadyRefunded()
+ * @method static ErrorCode AuthenticationFailed()
+ * @method static ErrorCode BlockedCard()
+ * @method static ErrorCode Canceled()
+ * @method static ErrorCode Declined()
+ * @method static ErrorCode ExpiredCard()
+ * @method static ErrorCode Fraud()
+ * @method static ErrorCode InvalidAmount()
+ * @method static ErrorCode InvalidPaymentDetails()
+ * @method static ErrorCode IssuerUnavailable()
+ * @method static ErrorCode NotEnoughBalance()
+ * @method static ErrorCode PspError()
+ * @method static ErrorCode RedactedPaymentMethod()
+ * @method static ErrorCode SystemError()
+ * @method static ErrorCode TransactionNotPermitted()
+ * @method static ErrorCode Unknown()
+ */
+class ErrorCode extends PaddleEnum
 {
-    case AlreadyCanceled = 'already_canceled';
-    case AlreadyRefunded = 'already_refunded';
-    case AuthenticationFailed = 'authentication_failed';
-    case BlockedCard = 'blocked_card';
-    case Canceled = 'canceled';
-    case Declined = 'declined';
-    case ExpiredCard = 'expired_card';
-    case Fraud = 'fraud';
-    case InvalidAmount = 'invalid_amount';
-    case InvalidPaymentDetails = 'invalid_payment_details';
-    case IssuerUnavailable = 'issuer_unavailable';
-    case NotEnoughBalance = 'not_enough_balance';
-    case PspError = 'psp_error';
-    case RedactedPaymentMethod = 'redacted_payment_method';
-    case SystemError = 'system_error';
-    case TransactionNotPermitted = 'transaction_not_permitted';
-    case Unknown = 'unknown';
+    private const AlreadyCanceled = 'already_canceled';
+    private const AlreadyRefunded = 'already_refunded';
+    private const AuthenticationFailed = 'authentication_failed';
+    private const BlockedCard = 'blocked_card';
+    private const Canceled = 'canceled';
+    private const Declined = 'declined';
+    private const ExpiredCard = 'expired_card';
+    private const Fraud = 'fraud';
+    private const InvalidAmount = 'invalid_amount';
+    private const InvalidPaymentDetails = 'invalid_payment_details';
+    private const IssuerUnavailable = 'issuer_unavailable';
+    private const NotEnoughBalance = 'not_enough_balance';
+    private const PspError = 'psp_error';
+    private const RedactedPaymentMethod = 'redacted_payment_method';
+    private const SystemError = 'system_error';
+    private const TransactionNotPermitted = 'transaction_not_permitted';
+    private const Unknown = 'unknown';
 }

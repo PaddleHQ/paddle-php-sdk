@@ -64,7 +64,7 @@ class TransactionsClient
 
         $params = $includes === []
             ? []
-            : ['include' => implode(',', array_map(fn ($enum) => $enum->value, $includes))];
+            : ['include' => implode(',', array_map(fn ($enum) => $enum->getValue(), $includes))];
 
         $parser = new ResponseParser(
             $this->client->getRaw("/transactions/{$id}", $params),
@@ -86,7 +86,7 @@ class TransactionsClient
 
         $params = $includes === []
             ? []
-            : ['include' => implode(',', array_map(fn ($enum) => $enum->value, $includes))];
+            : ['include' => implode(',', array_map(fn ($enum) => $enum->getValue(), $includes))];
 
         $parser = new ResponseParser(
             $this->client->postRaw('/transactions', $createOperation, $params),

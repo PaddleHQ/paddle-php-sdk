@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionScheduledChangeAction: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionScheduledChangeAction Cancel()
+ * @method static SubscriptionScheduledChangeAction Pause()
+ * @method static SubscriptionScheduledChangeAction Resume()
+ */
+class SubscriptionScheduledChangeAction extends PaddleEnum
 {
-    case Cancel = 'cancel';
-    case Pause = 'pause';
-    case Resume = 'resume';
+    private const Cancel = 'cancel';
+    private const Pause = 'pause';
+    private const Resume = 'resume';
 }

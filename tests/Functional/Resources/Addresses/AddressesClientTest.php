@@ -63,14 +63,14 @@ class AddressesClientTest extends TestCase
     public static function createOperationsProvider(): \Generator
     {
         yield 'Basic Create' => [
-            new CreateAddress(CountryCode::AG),
+            new CreateAddress(CountryCode::AG()),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_basic'),
         ];
 
         yield 'Create with Data' => [
             new CreateAddress(
-                countryCode: CountryCode::US,
+                countryCode: CountryCode::US(),
                 description: 'Head Office',
                 firstLine: '4050 Jefferson Plaza, 41st Floor',
                 secondLine: null,
@@ -131,9 +131,9 @@ class AddressesClientTest extends TestCase
                 city: 'New York',
                 postalCode: '10021',
                 region: 'NY',
-                countryCode: CountryCode::US,
+                countryCode: CountryCode::US(),
                 customData: new CustomData(['shippable' => true]),
-                status: Status::Active,
+                status: Status::Active(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
@@ -186,7 +186,7 @@ class AddressesClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListAddresses(statuses: [Status::Archived]),
+            new ListAddresses(statuses: [Status::Archived()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/addresses?status=archived', Environment::SANDBOX->baseUrl()),
         ];

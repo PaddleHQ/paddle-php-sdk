@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum TaxMode: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static TaxMode AccountSetting()
+ * @method static TaxMode External()
+ * @method static TaxMode Internal()
+ */
+class TaxMode extends PaddleEnum
 {
-    case AccountSetting = 'account_setting';
-    case External = 'external';
-    case Internal = 'internal';
+    private const AccountSetting = 'account_setting';
+    private const External = 'external';
+    private const Internal = 'internal';
 }

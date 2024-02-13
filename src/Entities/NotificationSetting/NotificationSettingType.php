@@ -2,10 +2,23 @@
 
 declare(strict_types=1);
 
+/**
+ * |------
+ * | ! Generated code !
+ * | Altering this code will result in changes being overwritten |
+ * |-------------------------------------------------------------|.
+ */
+
 namespace Paddle\SDK\Entities\NotificationSetting;
 
-enum NotificationSettingType: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static NotificationSettingType Email()
+ * @method static NotificationSettingType Url()
+ */
+class NotificationSettingType extends PaddleEnum
 {
-    case Email = 'email';
-    case Url = 'url';
+    private const Email = 'email';
+    private const Url = 'url';
 }

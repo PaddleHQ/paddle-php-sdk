@@ -76,13 +76,13 @@ class SubscriptionsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod),
+            new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
-            new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately, scheduledChange: null),
+            new UpdateSubscription(scheduledChange: null, prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
@@ -92,21 +92,21 @@ class SubscriptionsClientTest extends TestCase
                 customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
                 addressId: 'add_01h848pep46enq8y372x7maj0p',
                 businessId: null,
-                currencyCode: CurrencyCode::GBP,
+                currencyCode: CurrencyCode::GBP(),
                 nextBilledAt: new \DateTimeImmutable('2023-11-06 14:00:00'),
                 discount: new SubscriptionDiscount(
                     'dsc_01h848pep46enq8y372x7maj0p',
-                    SubscriptionEffectiveFrom::NextBillingPeriod,
+                    SubscriptionEffectiveFrom::NextBillingPeriod(),
                 ),
-                collectionMode: CollectionMode::Automatic,
+                collectionMode: CollectionMode::Automatic(),
                 billingDetails: null,
                 scheduledChange: null,
                 items: [
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
                 ],
-                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
                 customData: new CustomData(['early_access' => true]),
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
@@ -159,7 +159,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListSubscriptions(statuses: [SubscriptionStatus::Paused]),
+            new ListSubscriptions(statuses: [SubscriptionStatus::Paused()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?status=paused', Environment::SANDBOX->baseUrl()),
         ];
@@ -180,7 +180,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Collection Mode Filtered' => [
-            new ListSubscriptions(collectionMode: CollectionMode::Automatic),
+            new ListSubscriptions(collectionMode: CollectionMode::Automatic()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?collection_mode=automatic', Environment::SANDBOX->baseUrl()),
         ];
@@ -210,15 +210,15 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Scheduled Change Action Filtered' => [
-            new ListSubscriptions(scheduledChangeActions: [SubscriptionScheduledChangeAction::Pause]),
+            new ListSubscriptions(scheduledChangeActions: [SubscriptionScheduledChangeAction::Pause()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?scheduled_change_action=pause', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple Scheduled Change Action Filtered' => [
             new ListSubscriptions(scheduledChangeActions: [
-                SubscriptionScheduledChangeAction::Pause,
-                SubscriptionScheduledChangeAction::Cancel,
+                SubscriptionScheduledChangeAction::Pause(),
+                SubscriptionScheduledChangeAction::Cancel(),
             ]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?scheduled_change_action=pause,cancel', Environment::SANDBOX->baseUrl()),
@@ -255,7 +255,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'With Includes' => [
-            [Includes::NextTransaction],
+            [Includes::NextTransaction()],
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
             sprintf('%s/subscriptions/sub_01h7zcgmdc6tmwtjehp3sh7azf?include=next_transaction', Environment::SANDBOX->baseUrl()),
         ];
@@ -293,14 +293,14 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Update Single' => [
-            new PauseSubscription(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new PauseSubscription(SubscriptionEffectiveFrom::NextBillingPeriod()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/pause_single'),
         ];
 
         yield 'Update All' => [
             new PauseSubscription(
-                SubscriptionEffectiveFrom::NextBillingPeriod,
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
                 new \DateTime('2023-10-09T16:30:00Z'),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
@@ -340,7 +340,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Update Single As Enum' => [
-            new ResumeSubscription(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new ResumeSubscription(SubscriptionEffectiveFrom::NextBillingPeriod()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_single_as_enum'),
         ];
@@ -384,7 +384,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Update Single' => [
-            new CancelSubscription(SubscriptionEffectiveFrom::NextBillingPeriod),
+            new CancelSubscription(SubscriptionEffectiveFrom::NextBillingPeriod()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/cancel_single'),
         ];
@@ -473,7 +473,7 @@ class SubscriptionsClientTest extends TestCase
     {
         yield 'Update Minimal' => [
             new CreateOneTimeCharge(
-                SubscriptionEffectiveFrom::NextBillingPeriod,
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
                 ],
@@ -484,13 +484,13 @@ class SubscriptionsClientTest extends TestCase
 
         yield 'Update Full' => [
             new CreateOneTimeCharge(
-                SubscriptionEffectiveFrom::Immediately,
+                SubscriptionEffectiveFrom::Immediately(),
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
                     new SubscriptionItems('pri_01h7zdqstxe6djaefkqbkjy4k2', 10),
                     new SubscriptionItems('pri_01h7zd9mzfq79850w4ryc39v38', 845),
                 ],
-                SubscriptionOnPaymentFailure::ApplyChange,
+                SubscriptionOnPaymentFailure::ApplyChange(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_one_time_charge_full'),
@@ -524,7 +524,7 @@ class SubscriptionsClientTest extends TestCase
     {
         yield 'Preview Update Single' => [
             new PreviewUpdateSubscription(
-                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod,
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
             self::readRawJsonFixture('request/preview_update_single'),
@@ -532,8 +532,8 @@ class SubscriptionsClientTest extends TestCase
 
         yield 'Preview Update Partial' => [
             new PreviewUpdateSubscription(
-                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
                 scheduledChange: null,
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
             self::readRawJsonFixture('request/preview_update_partial'),
@@ -544,21 +544,21 @@ class SubscriptionsClientTest extends TestCase
                 customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
                 addressId: 'add_01h848pep46enq8y372x7maj0p',
                 businessId: null,
-                currencyCode: CurrencyCode::GBP,
+                currencyCode: CurrencyCode::GBP(),
                 nextBilledAt: new \DateTimeImmutable('2023-11-06 14:00:00'),
                 discount: new SubscriptionDiscount(
                     'dsc_01h848pep46enq8y372x7maj0p',
-                    SubscriptionEffectiveFrom::NextBillingPeriod,
+                    SubscriptionEffectiveFrom::NextBillingPeriod(),
                 ),
-                collectionMode: CollectionMode::Automatic,
+                collectionMode: CollectionMode::Automatic(),
                 billingDetails: null,
                 scheduledChange: null,
                 items: [
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
                 ],
-                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately,
                 customData: new CustomData(['early_access' => true]),
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
             self::readRawJsonFixture('request/preview_update_full'),
@@ -592,7 +592,7 @@ class SubscriptionsClientTest extends TestCase
     {
         yield 'Update Minimal' => [
             new PreviewOneTimeCharge(
-                SubscriptionEffectiveFrom::NextBillingPeriod,
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
                 ],
@@ -603,7 +603,7 @@ class SubscriptionsClientTest extends TestCase
 
         yield 'Update Full' => [
             new PreviewOneTimeCharge(
-                SubscriptionEffectiveFrom::Immediately,
+                SubscriptionEffectiveFrom::Immediately(),
                 [
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
                     new SubscriptionItems('pri_01h7zdqstxe6djaefkqbkjy4k2', 10),

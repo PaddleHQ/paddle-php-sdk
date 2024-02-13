@@ -25,7 +25,7 @@ class ListCreditBalances implements HasParameters
 
     public function getParameters(): array
     {
-        $enumStringify = fn ($enum) => $enum->value;
+        $enumStringify = fn ($enum) => $enum->getValue();
 
         return array_filter([
                 'currency_code' => implode(',', array_map($enumStringify, $this->currencyCodes)),

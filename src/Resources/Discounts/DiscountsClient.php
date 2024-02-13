@@ -94,6 +94,6 @@ class DiscountsClient
      */
     public function archive(string $id): Discount
     {
-        return $this->update($id, new UpdateDiscount(status: DiscountStatus::Archived));
+        return $this->update($id, new UpdateDiscount(status: DiscountStatus::Archived()));
     }
 }

@@ -94,6 +94,6 @@ class AddressesClient
      */
     public function archive(string $customerId, string $id): Address
     {
-        return $this->update($customerId, $id, new UpdateAddress(status: Status::Archived));
+        return $this->update($customerId, $id, new UpdateAddress(status: Status::Archived()));
     }
 }

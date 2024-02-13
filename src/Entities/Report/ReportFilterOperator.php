@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-enum ReportFilterOperator: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static ReportFilterOperator Lt()
+ * @method static ReportFilterOperator Gte()
+ */
+class ReportFilterOperator extends PaddleEnum
 {
-    case Lt = 'lt';
-    case Gte = 'gte';
+    private const Lt = 'lt';
+    private const Gte = 'gte';
 }

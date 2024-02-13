@@ -11,10 +11,18 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum Interval: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static Interval Day()
+ * @method static Interval Week()
+ * @method static Interval Month()
+ * @method static Interval Year()
+ */
+class Interval extends PaddleEnum
 {
-    case Day = 'day';
-    case Week = 'week';
-    case Month = 'month';
-    case Year = 'year';
+    private const Day = 'day';
+    private const Week = 'week';
+    private const Month = 'month';
+    private const Year = 'year';
 }

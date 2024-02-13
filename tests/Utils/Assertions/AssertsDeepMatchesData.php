@@ -44,8 +44,8 @@ trait AssertsDeepMatchesData
     {
         Assert::assertEquals(
             $value,
-            $enum->value,
-            sprintf('Enum value "%s" does not match expected value "%s"', $enum->value, $value),
+            $enum->getValue(),
+            sprintf('Enum value "%s" does not match expected value "%s"', $enum->getValue(), $value),
         );
     }
 }

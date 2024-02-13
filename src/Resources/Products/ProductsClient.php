@@ -62,7 +62,7 @@ class ProductsClient
 
         $params = $includes === []
             ? []
-            : ['include' => implode(',', array_map(fn ($enum) => $enum->value, $includes))];
+            : ['include' => implode(',', array_map(fn ($enum) => $enum->getValue(), $includes))];
 
         $parser = new ResponseParser(
             $this->client->getRaw("/products/{$id}", $params),
@@ -106,6 +106,6 @@ class ProductsClient
      */
     public function archive(string $id): Product
     {
-        return $this->update($id, new UpdateProduct(status: Status::Archived));
+        return $this->update($id, new UpdateProduct(status: Status::Archived()));
     }
 }

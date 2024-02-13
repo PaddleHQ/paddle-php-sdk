@@ -64,10 +64,10 @@ class AdjustmentsClientTest extends TestCase
     {
         yield 'Basic Create' => [
             new CreateAdjustment(
-                Action::Refund,
+                Action::Refund(),
                 [new AdjustmentItem(
                     'txnitm_01h8bxryv3065dyh6103p3yg28',
-                    AdjustmentType::Partial,
+                    AdjustmentType::Partial(),
                     '100',
                 )],
                 'error',
@@ -79,16 +79,16 @@ class AdjustmentsClientTest extends TestCase
 
         yield 'Create with Data' => [
             new CreateAdjustment(
-                Action::Refund,
+                Action::Refund(),
                 [
                     new AdjustmentItem(
                         'txnitm_01h8bxryv3065dyh6103p3yg28',
-                        AdjustmentType::Partial,
+                        AdjustmentType::Partial(),
                         '100',
                     ),
                     new AdjustmentItem(
                         'txnitm_01h8bxryv3065dyh6103p3yg29',
-                        AdjustmentType::Full,
+                        AdjustmentType::Full(),
                         '1949',
                     ),
                 ],
@@ -146,7 +146,7 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListAdjustments(statuses: [AdjustmentStatus::PendingApproval]),
+            new ListAdjustments(statuses: [AdjustmentStatus::PendingApproval()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?status=pending_approval', Environment::SANDBOX->baseUrl()),
         ];
@@ -203,7 +203,7 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'Action Filtered' => [
-            new ListAdjustments(action: Action::Refund),
+            new ListAdjustments(action: Action::Refund()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?action=refund', Environment::SANDBOX->baseUrl()),
         ];

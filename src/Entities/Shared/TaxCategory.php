@@ -11,15 +11,28 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum TaxCategory: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static TaxCategory DigitalGoods()
+ * @method static TaxCategory Ebooks()
+ * @method static TaxCategory ImplementationServices()
+ * @method static TaxCategory ProfessionalServices()
+ * @method static TaxCategory Saas()
+ * @method static TaxCategory SoftwareProgrammingServices()
+ * @method static TaxCategory Standard()
+ * @method static TaxCategory TrainingServices()
+ * @method static TaxCategory WebsiteHosting()
+ */
+class TaxCategory extends PaddleEnum
 {
-    case DigitalGoods = 'digital-goods';
-    case Ebooks = 'ebooks';
-    case ImplementationServices = 'implementation-services';
-    case ProfessionalServices = 'professional-services';
-    case Saas = 'saas';
-    case SoftwareProgrammingServices = 'software-programming-services';
-    case Standard = 'standard';
-    case TrainingServices = 'training-services';
-    case WebsiteHosting = 'website-hosting';
+    private const DigitalGoods = 'digital-goods';
+    private const Ebooks = 'ebooks';
+    private const ImplementationServices = 'implementation-services';
+    private const ProfessionalServices = 'professional-services';
+    private const Saas = 'saas';
+    private const SoftwareProgrammingServices = 'software-programming-services';
+    private const Standard = 'standard';
+    private const TrainingServices = 'training-services';
+    private const WebsiteHosting = 'website-hosting';
 }

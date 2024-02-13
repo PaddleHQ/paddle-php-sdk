@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum CurrencyCodeAdjustments: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static CurrencyCodeAdjustments EUR()
+ * @method static CurrencyCodeAdjustments GBP()
+ * @method static CurrencyCodeAdjustments USD()
+ */
+class CurrencyCodeAdjustments extends PaddleEnum
 {
-    case EUR = 'EUR';
-    case GBP = 'GBP';
-    case USD = 'USD';
+    private const EUR = 'EUR';
+    private const GBP = 'GBP';
+    private const USD = 'USD';
 }

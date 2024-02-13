@@ -65,7 +65,7 @@ class ReportsClientTest extends TestCase
     {
         yield 'Basic Create' => [
             new CreateReport(
-                type: ReportType::Transactions,
+                type: ReportType::Transactions(),
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_basic'),
@@ -73,8 +73,8 @@ class ReportsClientTest extends TestCase
 
         yield 'Create with filters' => [
             new CreateReport(
-                type: ReportType::Transactions,
-                filters: [new ReportFilter(name: ReportFilterName::UpdatedAt, operator: ReportFilterOperator::Lt, value: '2023-12-30')],
+                type: ReportType::Transactions(),
+                filters: [new ReportFilter(name: ReportFilterName::UpdatedAt(), operator: ReportFilterOperator::Lt(), value: '2023-12-30')],
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
@@ -127,7 +127,7 @@ class ReportsClientTest extends TestCase
         ];
 
         yield 'Status Filtered' => [
-            new ListReports(statuses: [ReportStatus::Ready]),
+            new ListReports(statuses: [ReportStatus::Ready()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/reports?status=ready', Environment::SANDBOX->baseUrl()),
         ];

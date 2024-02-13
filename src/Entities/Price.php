@@ -54,7 +54,7 @@ class Price implements Entity
             productId: $data['product_id'],
             name: $data['name'] ?? null,
             description: $data['description'],
-            type: CatalogType::tryFrom($data['type'] ?? ''),
+            type: CatalogType::from($data['type'] ?? ''),
             billingCycle: isset($data['billing_cycle']) ? TimePeriod::from($data['billing_cycle']) : null,
             trialPeriod: isset($data['trial_period']) ? TimePeriod::from($data['trial_period']) : null,
             taxMode: isset($data['tax_mode']) ? TaxMode::from($data['tax_mode']) : null,

@@ -11,16 +11,30 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Transaction;
 
-enum TransactionCardType: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static TransactionCardType AmericanExpress()
+ * @method static TransactionCardType DinersClub()
+ * @method static TransactionCardType Discover()
+ * @method static TransactionCardType Jcb()
+ * @method static TransactionCardType Mada()
+ * @method static TransactionCardType Maestro()
+ * @method static TransactionCardType Mastercard()
+ * @method static TransactionCardType UnionPay()
+ * @method static TransactionCardType Unknown()
+ * @method static TransactionCardType Visa()
+ */
+class TransactionCardType extends PaddleEnum
 {
-    case AmericanExpress = 'american_express';
-    case DinersClub = 'diners_club';
-    case Discover = 'discover';
-    case Jcb = 'jcb';
-    case Mada = 'mada';
-    case Maestro = 'maestro';
-    case Mastercard = 'mastercard';
-    case UnionPay = 'union_pay';
-    case Unknown = 'unknown';
-    case Visa = 'visa';
+    private const AmericanExpress = 'american_express';
+    private const DinersClub = 'diners_club';
+    private const Discover = 'discover';
+    private const Jcb = 'jcb';
+    private const Mada = 'mada';
+    private const Maestro = 'maestro';
+    private const Mastercard = 'mastercard';
+    private const UnionPay = 'union_pay';
+    private const Unknown = 'unknown';
+    private const Visa = 'visa';
 }
