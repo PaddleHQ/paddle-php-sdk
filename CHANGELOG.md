@@ -8,6 +8,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [0.3.0] - 2024-02-13
+
+### Added
+
+- Support for installing within Symfony 7 projects
+- `EventTypeName` enum support for `customer.imported`, `address.imported` and `business.imported`
+- `ReportFilterName` enum support for `action`
+- `payment_method_id` to `TransactionPaymentAttempt` entity for Transaction payments
+- List credit balances for a customer now supports filtering by `currency_code`
+- Support for `receipt_data` on create and preview of a one-time charge for Subscriptions
+- Support for `receipt_data` on Transactions
+- Support for `import_meta` on Subscription notifications
+- Support for `import_meta` and `custom_data` on Discount notifications
+
+### Fixed
+
+- Using the correct arguments for testing a Notification list `from` in `NotificationsClientTest`
+- Refactored out duplicate entities where both `<Entity>` and `<Entity>WithIncludes` existed
+- Renamed `AdjustmentsAdjustmentCollection` to `AdjustmentCollection` so it aligns with naming conventions
+- Renamed Report objects for consistency within the SDK
+- PHPCS has been upgraded and configured for `nullable_type_declaration` as well as `ordered_types`
+- `ListNotification` operation uses consistent naming conventions with other operations
+- Correct type of `current_billing_period` for Subscription notifications to be nullable
+- Subscription preview fields `immediate_transaction`, `next_transaction` and `recurring_transaction_details` are optional
+- `Transaction` entity now re-uses `Adjustment` entity for the `adjustments` field
+- `SubscriptionNextTransaction` now maps `adjustments` to `SubscriptionAdjustmentPreview` objects
+- Shared objects between `SubscriptionAdjustmentItem` and `AdjustmentItem` have been consolidated into the `Shared` namespace
+- Conflicting request object `AdjustmentItem` has moved into the Operations namespace
+- Make `currentBillingPeriod` nullable for Subscription notifications
+- Status enums use consistent naming for `AdjustmentStatus`, `TransactionStatus` and `PaymentAttemptStatus`
+- Renamed `TotalAdjustments` to `AdjustmentTotals` to align with naming conventions
+
+### Deprecated
+
+- `stored_payment_method_id` on `TransactionPaymentAttempt`, use `payment_method_id` instead
+
+### Removed
+
+- Unused Subscription objects have been removed, `SubscriptionTransaction`, `SubscriptionAdjustment` and `SubscriptionsTransactionCollection`
+
 ## [0.2.2] - 2024-01-29
 
 ### Fixed
