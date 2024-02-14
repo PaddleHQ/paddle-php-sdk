@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
+use Paddle\SDK\PaddleEnum;
+
 /**
  * @method static SubscriptionProrationBillingMode ProratedImmediately()
  * @method static SubscriptionProrationBillingMode ProratedNextBillingPeriod()
@@ -18,7 +20,7 @@ namespace Paddle\SDK\Entities\Subscription;
  * @method static SubscriptionProrationBillingMode FullNextBillingPeriod()
  * @method static SubscriptionProrationBillingMode DoNotBill()
  */
-class SubscriptionProrationBillingMode extends \MyCLabs\Enum\Enum
+class SubscriptionProrationBillingMode extends PaddleEnum
 {
     private const ProratedImmediately = 'prorated_immediately';
     private const ProratedNextBillingPeriod = 'prorated_next_billing_period';

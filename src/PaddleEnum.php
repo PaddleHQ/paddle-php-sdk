@@ -21,4 +21,9 @@ class PaddleEnum extends Enum
             return $enum;
         }
     }
+
+    public function isKnown(): bool
+    {
+        return $this->getKey() !== 'Undefined';
+    }
 }
