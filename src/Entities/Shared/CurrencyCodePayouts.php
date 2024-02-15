@@ -11,19 +11,36 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum CurrencyCodePayouts: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static CurrencyCodePayouts AUD()
+ * @method static CurrencyCodePayouts CAD()
+ * @method static CurrencyCodePayouts CHF()
+ * @method static CurrencyCodePayouts CNY()
+ * @method static CurrencyCodePayouts CZK()
+ * @method static CurrencyCodePayouts DKK()
+ * @method static CurrencyCodePayouts EUR()
+ * @method static CurrencyCodePayouts GBP()
+ * @method static CurrencyCodePayouts HUF()
+ * @method static CurrencyCodePayouts PLN()
+ * @method static CurrencyCodePayouts SEK()
+ * @method static CurrencyCodePayouts USD()
+ * @method static CurrencyCodePayouts ZAR()
+ */
+class CurrencyCodePayouts extends PaddleEnum
 {
-    case AUD = 'AUD';
-    case CAD = 'CAD';
-    case CHF = 'CHF';
-    case CNY = 'CNY';
-    case CZK = 'CZK';
-    case DKK = 'DKK';
-    case EUR = 'EUR';
-    case GBP = 'GBP';
-    case HUF = 'HUF';
-    case PLN = 'PLN';
-    case SEK = 'SEK';
-    case USD = 'USD';
-    case ZAR = 'ZAR';
+    private const AUD = 'AUD';
+    private const CAD = 'CAD';
+    private const CHF = 'CHF';
+    private const CNY = 'CNY';
+    private const CZK = 'CZK';
+    private const DKK = 'DKK';
+    private const EUR = 'EUR';
+    private const GBP = 'GBP';
+    private const HUF = 'HUF';
+    private const PLN = 'PLN';
+    private const SEK = 'SEK';
+    private const USD = 'USD';
+    private const ZAR = 'ZAR';
 }

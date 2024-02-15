@@ -94,13 +94,13 @@ class NotificationsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListNotifications(statuses: [NotificationStatus::Delivered]),
+            new ListNotifications(statuses: [NotificationStatus::Delivered()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?status=delivered', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Multiple NotificationStatus Filtered' => [
-            new ListNotifications(statuses: [NotificationStatus::Delivered, NotificationStatus::NotAttempted]),
+            new ListNotifications(statuses: [NotificationStatus::Delivered(), NotificationStatus::NotAttempted()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?status=delivered,not_attempted', Environment::SANDBOX->baseUrl()),
         ];

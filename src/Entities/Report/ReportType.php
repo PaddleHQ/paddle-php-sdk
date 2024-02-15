@@ -11,10 +11,18 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-enum ReportType: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static ReportType Adjustments()
+ * @method static ReportType AdjustmentLineItems()
+ * @method static ReportType Transactions()
+ * @method static ReportType TransactionLineItems()
+ */
+class ReportType extends PaddleEnum
 {
-    case Adjustments = 'adjustments';
-    case AdjustmentLineItems = 'adjustment_line_items';
-    case Transactions = 'transactions';
-    case TransactionLineItems = 'transaction_line_items';
+    private const Adjustments = 'adjustments';
+    private const AdjustmentLineItems = 'adjustment_line_items';
+    private const Transactions = 'transactions';
+    private const TransactionLineItems = 'transaction_line_items';
 }

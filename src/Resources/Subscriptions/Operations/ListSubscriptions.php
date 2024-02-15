@@ -58,13 +58,13 @@ class ListSubscriptions implements HasParameters
 
     public function getParameters(): array
     {
-        $enumStringify = fn ($enum) => $enum->value;
+        $enumStringify = fn ($enum) => $enum->getValue();
 
         return array_merge(
             $this->pager?->getParameters() ?? [],
             array_filter([
                 'address_id' => implode(',', $this->addressIds),
-                'collection_mode' => $this->collectionMode?->value,
+                'collection_mode' => $this->collectionMode?->getValue(),
                 'customer_id' => implode(',', $this->customerIds),
                 'id' => implode(',', $this->ids),
                 'price_id' => implode(',', $this->priceIds),

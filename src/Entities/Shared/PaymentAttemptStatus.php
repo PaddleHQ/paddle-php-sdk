@@ -11,16 +11,30 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum PaymentAttemptStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static PaymentAttemptStatus Authorized()
+ * @method static PaymentAttemptStatus AuthorizedFlagged()
+ * @method static PaymentAttemptStatus Canceled()
+ * @method static PaymentAttemptStatus Captured()
+ * @method static PaymentAttemptStatus Error()
+ * @method static PaymentAttemptStatus ActionRequired()
+ * @method static PaymentAttemptStatus PendingNoActionRequired()
+ * @method static PaymentAttemptStatus Created()
+ * @method static PaymentAttemptStatus Unknown()
+ * @method static PaymentAttemptStatus Dropped()
+ */
+class PaymentAttemptStatus extends PaddleEnum
 {
-    case Authorized = 'authorized';
-    case AuthorizedFlagged = 'authorized_flagged';
-    case Canceled = 'canceled';
-    case Captured = 'captured';
-    case Error = 'error';
-    case ActionRequired = 'action_required';
-    case PendingNoActionRequired = 'pending_no_action_required';
-    case Created = 'created';
-    case Unknown = 'unknown';
-    case Dropped = 'dropped';
+    private const Authorized = 'authorized';
+    private const AuthorizedFlagged = 'authorized_flagged';
+    private const Canceled = 'canceled';
+    private const Captured = 'captured';
+    private const Error = 'error';
+    private const ActionRequired = 'action_required';
+    private const PendingNoActionRequired = 'pending_no_action_required';
+    private const Created = 'created';
+    private const Unknown = 'unknown';
+    private const Dropped = 'dropped';
 }

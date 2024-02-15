@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Discount;
 
-enum DiscountType: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static DiscountType Flat()
+ * @method static DiscountType FlatPerSeat()
+ * @method static DiscountType Percentage()
+ */
+class DiscountType extends PaddleEnum
 {
-    case Flat = 'flat';
-    case FlatPerSeat = 'flat_per_seat';
-    case Percentage = 'percentage';
+    private const Flat = 'flat';
+    private const FlatPerSeat = 'flat_per_seat';
+    private const Percentage = 'percentage';
 }

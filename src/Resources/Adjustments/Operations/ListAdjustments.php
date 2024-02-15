@@ -53,7 +53,7 @@ class ListAdjustments implements HasParameters
 
     public function getParameters(): array
     {
-        $enumStringify = fn ($enum) => $enum->value;
+        $enumStringify = fn ($enum) => $enum->getValue();
 
         return array_merge(
             $this->pager?->getParameters() ?? [],
@@ -63,7 +63,7 @@ class ListAdjustments implements HasParameters
                 'customer_id' => implode(',', $this->customerIds),
                 'transaction_id' => implode(',', $this->transactionIds),
                 'subscription_id' => implode(',', $this->subscriptionIds),
-                'action' => $this->action?->value,
+                'action' => $this->action?->getValue(),
             ]),
         );
     }

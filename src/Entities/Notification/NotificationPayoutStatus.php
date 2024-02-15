@@ -2,10 +2,23 @@
 
 declare(strict_types=1);
 
+/**
+ * |------
+ * | ! Generated code !
+ * | Altering this code will result in changes being overwritten |
+ * |-------------------------------------------------------------|.
+ */
+
 namespace Paddle\SDK\Entities\Notification;
 
-enum NotificationPayoutStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static NotificationPayoutStatus Unpaid()
+ * @method static NotificationPayoutStatus Paid()
+ */
+class NotificationPayoutStatus extends PaddleEnum
 {
-    case Unpaid = 'unpaid';
-    case Paid = 'paid';
+    private const Unpaid = 'unpaid';
+    private const Paid = 'paid';
 }

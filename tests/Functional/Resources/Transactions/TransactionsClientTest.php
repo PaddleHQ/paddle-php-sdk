@@ -92,7 +92,7 @@ class TransactionsClientTest extends TestCase
         );
 
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/minimal_entity')));
-        $this->client->transactions->create($operation, [Includes::Customer, Includes::Business]);
+        $this->client->transactions->create($operation, [Includes::Customer(), Includes::Business()]);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -142,10 +142,10 @@ class TransactionsClientTest extends TestCase
                         new TransactionNonCatalogPrice(
                             'Annual (per seat)',
                             'Annual (per seat)',
-                            new TimePeriod(Interval::Year, 1),
+                            new TimePeriod(Interval::Year(), 1),
                             null,
-                            TaxMode::AccountSetting,
-                            new Money('30000', CurrencyCode::USD),
+                            TaxMode::AccountSetting(),
+                            new Money('30000', CurrencyCode::USD()),
                             [],
                             new PriceQuantity(10, 999),
                             null,
@@ -164,16 +164,16 @@ class TransactionsClientTest extends TestCase
                 items: [
                     new TransactionCreateItem('pri_01gsz8x8sawmvhz1pv30nge1ke', 1),
                 ],
-                status: TransactionStatus::Billed,
+                status: TransactionStatus::Billed(),
                 customerId: 'ctm_01he849dseyj0zgrc589eeb1c7',
                 addressId: 'add_01hen28ebw1ew99y295jhd4n3n',
                 businessId: 'biz_01hen2ng2290g84twtefdn5s00',
-                currencyCode: CurrencyCode::GBP,
-                collectionMode: CollectionMode::Manual,
+                currencyCode: CurrencyCode::GBP(),
+                collectionMode: CollectionMode::Manual(),
                 discountId: 'dsc_01hen7bjzh12m0v2peer15d9qt',
                 billingDetails: new BillingDetails(
                     enableCheckout: true,
-                    paymentTerms: new TimePeriod(Interval::Month, 1),
+                    paymentTerms: new TimePeriod(Interval::Month(), 1),
                     purchaseOrderNumber: '10009',
                 ),
             ),
@@ -205,14 +205,14 @@ class TransactionsClientTest extends TestCase
     public static function updateOperationsProvider(): \Generator
     {
         yield 'Update Single' => [
-            new UpdateTransaction(status: TransactionStatus::Billed),
+            new UpdateTransaction(status: TransactionStatus::Billed()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
         ];
 
         yield 'Update Partial' => [
             new UpdateTransaction(
-                status: TransactionStatus::Billed,
+                status: TransactionStatus::Billed(),
                 customData: new CustomData(['completed_by' => 'Frank T']),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
@@ -266,13 +266,13 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListTransactions(statuses: [TransactionStatus::Billed]),
+            new ListTransactions(statuses: [TransactionStatus::Billed()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?status=billed', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'NotificationStatus Filtered Multiple' => [
-            new ListTransactions(statuses: [TransactionStatus::Billed, TransactionStatus::Completed]),
+            new ListTransactions(statuses: [TransactionStatus::Billed(), TransactionStatus::Completed()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?status=billed,completed', Environment::SANDBOX->baseUrl()),
         ];
@@ -296,7 +296,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Collection Mode Filtered' => [
-            new ListTransactions(collectionMode: CollectionMode::Automatic),
+            new ListTransactions(collectionMode: CollectionMode::Automatic()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?collection_mode=automatic', Environment::SANDBOX->baseUrl()),
         ];
@@ -308,7 +308,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Billed At Filtered With Comparator' => [
-            new ListTransactions(billedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
+            new ListTransactions(billedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT())),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?billed_at[GT]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
@@ -344,7 +344,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Updated At Filtered With Comparator' => [
-            new ListTransactions(updatedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
+            new ListTransactions(updatedAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT())),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?updated_at[GT]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
@@ -356,25 +356,25 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'Created At Filtered With Comparator' => [
-            new ListTransactions(createdAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT)),
+            new ListTransactions(createdAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GT())),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?created_at[GT]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Includes' => [
-            new ListTransactions(includes: [Includes::Customer]),
+            new ListTransactions(includes: [Includes::Customer()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?include=customer', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Includes Multiple' => [
-            new ListTransactions(includes: [Includes::Customer, Includes::Address, Includes::Discount]),
+            new ListTransactions(includes: [Includes::Customer(), Includes::Address(), Includes::Discount()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?include=customer,address,discount', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With Origins' => [
-            new ListTransactions(origins: [Origin::Web, Origin::Api, Origin::SubscriptionRecurring]),
+            new ListTransactions(origins: [Origin::Web(), Origin::Api(), Origin::SubscriptionRecurring()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/transactions?origin=web,api,subscription_recurring', Environment::SANDBOX->baseUrl()),
         ];
@@ -410,7 +410,7 @@ class TransactionsClientTest extends TestCase
         ];
 
         yield 'With Includes' => [
-            [Includes::Customer, Includes::Address, Includes::Business, Includes::Discount, Includes::AvailablePaymentMethods],
+            [Includes::Customer(), Includes::Address(), Includes::Business(), Includes::Discount(), Includes::AvailablePaymentMethods()],
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
             sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r?include=customer,address,business,discount,available_payment_methods', Environment::SANDBOX->baseUrl()),
         ];
@@ -455,10 +455,10 @@ class TransactionsClientTest extends TestCase
                         new TransactionNonCatalogPrice(
                             'Annual (per seat)',
                             'Annual (per seat)',
-                            new TimePeriod(Interval::Year, 1),
+                            new TimePeriod(Interval::Year(), 1),
                             null,
-                            TaxMode::AccountSetting,
-                            new Money('30000', CurrencyCode::USD),
+                            TaxMode::AccountSetting(),
+                            new Money('30000', CurrencyCode::USD()),
                             [],
                             new PriceQuantity(10, 999),
                             null,

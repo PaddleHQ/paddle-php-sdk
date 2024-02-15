@@ -97,7 +97,7 @@ $paddle = new Client('API_KEY');
 $product = $paddle->products->create(
     new CreateProduct(
         name: 'ChatApp Education',
-        taxCategory: TaxCategory::Standard,
+        taxCategory: TaxCategory::Standard(),
     ),
 );
 ```

@@ -11,11 +11,20 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionProrationBillingMode: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionProrationBillingMode ProratedImmediately()
+ * @method static SubscriptionProrationBillingMode ProratedNextBillingPeriod()
+ * @method static SubscriptionProrationBillingMode FullImmediately()
+ * @method static SubscriptionProrationBillingMode FullNextBillingPeriod()
+ * @method static SubscriptionProrationBillingMode DoNotBill()
+ */
+class SubscriptionProrationBillingMode extends PaddleEnum
 {
-    case ProratedImmediately = 'prorated_immediately';
-    case ProratedNextBillingPeriod = 'prorated_next_billing_period';
-    case FullImmediately = 'full_immediately';
-    case FullNextBillingPeriod = 'full_next_billing_period';
-    case DoNotBill = 'do_not_bill';
+    private const ProratedImmediately = 'prorated_immediately';
+    private const ProratedNextBillingPeriod = 'prorated_next_billing_period';
+    private const FullImmediately = 'full_immediately';
+    private const FullNextBillingPeriod = 'full_next_billing_period';
+    private const DoNotBill = 'do_not_bill';
 }

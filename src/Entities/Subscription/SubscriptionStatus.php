@@ -11,12 +11,22 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionStatus Active()
+ * @method static SubscriptionStatus Canceled()
+ * @method static SubscriptionStatus PastDue()
+ * @method static SubscriptionStatus Paused()
+ * @method static SubscriptionStatus Trialing()
+ * @method static SubscriptionStatus Inactive()
+ */
+class SubscriptionStatus extends PaddleEnum
 {
-    case Active = 'active';
-    case Canceled = 'canceled';
-    case PastDue = 'past_due';
-    case Paused = 'paused';
-    case Trialing = 'trialing';
-    case Inactive = 'inactive';
+    private const Active = 'active';
+    private const Canceled = 'canceled';
+    private const PastDue = 'past_due';
+    private const Paused = 'paused';
+    private const Trialing = 'trialing';
+    private const Inactive = 'inactive';
 }

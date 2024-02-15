@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionItemStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionItemStatus Active()
+ * @method static SubscriptionItemStatus Inactive()
+ * @method static SubscriptionItemStatus Trialing()
+ */
+class SubscriptionItemStatus extends PaddleEnum
 {
-    case Active = 'active';
-    case Inactive = 'inactive';
-    case Trialing = 'trialing';
+    private const Active = 'active';
+    private const Inactive = 'inactive';
+    private const Trialing = 'trialing';
 }

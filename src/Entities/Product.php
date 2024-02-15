@@ -44,7 +44,7 @@ class Product implements Entity
             id: $data['id'],
             name: $data['name'],
             description: $data['description'] ?? null,
-            type: CatalogType::tryFrom($data['type'] ?? ''),
+            type: CatalogType::from($data['type'] ?? ''),
             taxCategory: TaxCategory::from($data['tax_category']),
             imageUrl: $data['image_url'] ?? null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,

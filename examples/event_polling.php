@@ -39,7 +39,7 @@ foreach ($events as $event) {
     echo sprintf(
         "event: %s\t\t Type: %s\t\t Occurred At: %s\n",
         $event->eventId,
-        str_pad($event->eventType->value, 28),
+        str_pad($event->eventType->getValue(), 28),
         $event->occurredAt->format(Paddle\SDK\Entities\DateTime::PADDLE_RFC3339),
     );
 }

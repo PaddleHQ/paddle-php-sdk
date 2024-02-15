@@ -147,7 +147,7 @@ class BusinessesClientTest extends TestCase
                 customData: new CustomData([
                     'customer_reference_id' => 'abcd1234',
                 ]),
-                status: Status::Active,
+                status: Status::Active(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
@@ -200,7 +200,7 @@ class BusinessesClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListBusinesses(statuses: [Status::Archived]),
+            new ListBusinesses(statuses: [Status::Archived()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/businesses?status=archived', Environment::SANDBOX->baseUrl()),
         ];

@@ -11,10 +11,18 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum AdjustmentStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static AdjustmentStatus PendingApproval()
+ * @method static AdjustmentStatus Approved()
+ * @method static AdjustmentStatus Rejected()
+ * @method static AdjustmentStatus Reversed()
+ */
+class AdjustmentStatus extends PaddleEnum
 {
-    case PendingApproval = 'pending_approval';
-    case Approved = 'approved';
-    case Rejected = 'rejected';
-    case Reversed = 'reversed';
+    private const PendingApproval = 'pending_approval';
+    private const Approved = 'approved';
+    private const Rejected = 'rejected';
+    private const Reversed = 'reversed';
 }

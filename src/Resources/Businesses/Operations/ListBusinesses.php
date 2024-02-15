@@ -34,7 +34,7 @@ class ListBusinesses implements HasParameters
 
     public function getParameters(): array
     {
-        $enumStringify = fn ($enum) => $enum->value;
+        $enumStringify = fn ($enum) => $enum->getValue();
 
         return array_merge(
             $this->pager?->getParameters() ?? [],

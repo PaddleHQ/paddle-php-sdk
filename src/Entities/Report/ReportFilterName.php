@@ -11,12 +11,22 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-enum ReportFilterName: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static ReportFilterName Action()
+ * @method static ReportFilterName CollectionMode()
+ * @method static ReportFilterName CurrencyCode()
+ * @method static ReportFilterName Origin()
+ * @method static ReportFilterName Status()
+ * @method static ReportFilterName UpdatedAt()
+ */
+class ReportFilterName extends PaddleEnum
 {
-    case Action = 'action';
-    case CollectionMode = 'collection_mode';
-    case CurrencyCode = 'currency_code';
-    case Origin = 'origin';
-    case Status = 'status';
-    case UpdatedAt = 'updated_at';
+    private const Action = 'action';
+    private const CollectionMode = 'collection_mode';
+    private const CurrencyCode = 'currency_code';
+    private const Origin = 'origin';
+    private const Status = 'status';
+    private const UpdatedAt = 'updated_at';
 }

@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum CatalogType: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static CatalogType Standard()
+ * @method static CatalogType Custom()
+ */
+class CatalogType extends PaddleEnum
 {
-    case Standard = 'standard';
-    case Custom = 'custom';
+    private const Standard = 'standard';
+    private const Custom = 'custom';
 }

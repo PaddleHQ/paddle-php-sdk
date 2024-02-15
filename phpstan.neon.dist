@@ -5,3 +5,6 @@ parameters:
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
         - '#Method .+ should return .+ but returns Paddle\\SDK\\Entities\\Entity.#'
+        - '#Constant .+ is unused.#'
+        - '#Call to an undefined static method Paddle\\SDK\\PaddleEnum::Undefined\(\).#'
+        - '#Method Paddle\\SDK\\PaddleEnum::from\(\) should return static\(Paddle\\SDK\\PaddleEnum\) but returns MyCLabs\\Enum\\Enum<mixed>.#'

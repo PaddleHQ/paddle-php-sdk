@@ -71,7 +71,7 @@ class PricesClientTest extends TestCase
             new CreatePrice(
                 description: 'Monthly (per seat)',
                 productId: 'pro_01h7zcgmdc6tmwtjehp3sh7azf',
-                unitPrice: new Money('500', CurrencyCode::USD),
+                unitPrice: new Money('500', CurrencyCode::USD()),
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_basic'),
@@ -81,17 +81,17 @@ class PricesClientTest extends TestCase
             new CreatePrice(
                 description: 'Weekly (per seat)',
                 productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
-                unitPrice: new Money('1000', CurrencyCode::GBP),
+                unitPrice: new Money('1000', CurrencyCode::GBP()),
                 name: 'Weekly',
                 unitPriceOverrides: [
                     new UnitPriceOverride(
-                        [CountryCode::CA, CountryCode::US],
-                        new Money('5000', CurrencyCode::USD),
+                        [CountryCode::CA(), CountryCode::US()],
+                        new Money('5000', CurrencyCode::USD()),
                     ),
                 ],
-                taxMode: TaxMode::AccountSetting,
-                trialPeriod: new TimePeriod(Interval::Week, 1),
-                billingCycle: new TimePeriod(Interval::Year, 1),
+                taxMode: TaxMode::AccountSetting(),
+                trialPeriod: new TimePeriod(Interval::Week(), 1),
+                billingCycle: new TimePeriod(Interval::Year(), 1),
                 quantity: new PriceQuantity(1, 1),
                 customData: new CustomData(['foo' => 'bar']),
             ),
@@ -129,21 +129,21 @@ class PricesClientTest extends TestCase
         ];
 
         yield 'Update Partial' => [
-            new UpdatePrice(name: 'Annually', unitPrice: new Money('100000', CurrencyCode::GBP)),
+            new UpdatePrice(name: 'Annually', unitPrice: new Money('100000', CurrencyCode::GBP())),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
         ];
 
         yield 'Update All' => [
             new UpdatePrice(
-                name: 'Annually',
                 description: 'Annually (per seat)',
-                unitPrice: new Money('100000', CurrencyCode::GBP),
-                unitPriceOverrides: [new UnitPriceOverride([CountryCode::US], new Money('200000', CurrencyCode::USD))],
+                name: 'Annually',
+                billingCycle: new TimePeriod(Interval::Year(), 1),
+                trialPeriod: new TimePeriod(Interval::Month(), 1),
+                taxMode: TaxMode::External(),
+                unitPrice: new Money('100000', CurrencyCode::GBP()),
+                unitPriceOverrides: [new UnitPriceOverride([CountryCode::US()], new Money('200000', CurrencyCode::USD()))],
                 quantity: new PriceQuantity(1, 10),
-                trialPeriod: new TimePeriod(Interval::Month, 1),
-                billingCycle: new TimePeriod(Interval::Year, 1),
-                taxMode: TaxMode::External,
                 customData: new CustomData(['features' => ['reports' => true]]),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
@@ -197,7 +197,7 @@ class PricesClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListPrices(statuses: [Status::Archived]),
+            new ListPrices(statuses: [Status::Archived()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/prices?status=archived', Environment::SANDBOX->baseUrl()),
         ];
@@ -239,7 +239,7 @@ class PricesClientTest extends TestCase
         ];
 
         yield 'With Includes' => [
-            new ListPrices(includes: [Includes::Product]),
+            new ListPrices(includes: [Includes::Product()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/prices?include=product', Environment::SANDBOX->baseUrl()),
         ];
@@ -275,7 +275,7 @@ class PricesClientTest extends TestCase
         ];
 
         yield 'With Includes' => [
-            [Includes::Product],
+            [Includes::Product()],
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
             sprintf('%s/prices/pri_01h7zcgmdc6tmwtjehp3sh7azf?include=product', Environment::SANDBOX->baseUrl()),
         ];

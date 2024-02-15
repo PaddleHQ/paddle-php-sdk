@@ -2,12 +2,27 @@
 
 declare(strict_types=1);
 
+/**
+ * |------
+ * | ! Generated code !
+ * | Altering this code will result in changes being overwritten |
+ * |-------------------------------------------------------------|.
+ */
+
 namespace Paddle\SDK\Entities\Notification;
 
-enum NotificationStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static NotificationStatus NotAttempted()
+ * @method static NotificationStatus NeedsRetry()
+ * @method static NotificationStatus Delivered()
+ * @method static NotificationStatus Failed()
+ */
+class NotificationStatus extends PaddleEnum
 {
-    case NotAttempted = 'not_attempted';
-    case NeedsRetry = 'needs_retry';
-    case Delivered = 'delivered';
-    case Failed = 'failed';
+    private const NotAttempted = 'not_attempted';
+    private const NeedsRetry = 'needs_retry';
+    private const Delivered = 'delivered';
+    private const Failed = 'failed';
 }

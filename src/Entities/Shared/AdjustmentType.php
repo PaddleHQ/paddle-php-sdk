@@ -11,10 +11,18 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum AdjustmentType: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static AdjustmentType Full()
+ * @method static AdjustmentType Partial()
+ * @method static AdjustmentType Tax()
+ * @method static AdjustmentType Proration()
+ */
+class AdjustmentType extends PaddleEnum
 {
-    case Full = 'full';
-    case Partial = 'partial';
-    case Tax = 'tax';
-    case Proration = 'proration';
+    private const Full = 'full';
+    private const Partial = 'partial';
+    private const Tax = 'tax';
+    private const Proration = 'proration';
 }

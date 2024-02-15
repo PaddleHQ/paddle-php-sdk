@@ -27,7 +27,7 @@ class CreateAdjustment implements \JsonSerializable
         foreach ($this->items as $item) {
             $items[] = [
                 'item_id' => $item->itemId,
-                'type' => $item->type->value,
+                'type' => $item->type->getValue(),
                 'amount' => $item->amount,
             ];
         }

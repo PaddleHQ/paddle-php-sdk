@@ -64,10 +64,10 @@ class DiscountsClientTest extends TestCase
             new CreateDiscount(
                 '10',
                 'Nonprofit discount',
-                DiscountType::Percentage,
+                DiscountType::Percentage(),
                 true,
                 true,
-                CurrencyCode::USD,
+                CurrencyCode::USD(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_basic'),
@@ -77,10 +77,10 @@ class DiscountsClientTest extends TestCase
             new CreateDiscount(
                 '10',
                 'Nonprofit discount',
-                DiscountType::Percentage,
+                DiscountType::Percentage(),
                 true,
                 true,
-                CurrencyCode::USD,
+                CurrencyCode::USD(),
                 'ABCDE12345',
                 5,
                 1000,
@@ -128,12 +128,12 @@ class DiscountsClientTest extends TestCase
 
         yield 'Update All' => [
             new UpdateDiscount(
-                description: 'Nonprofit discount',
-                enabledForCheckout: true,
-                type: DiscountType::Percentage,
                 amount: '10',
+                description: 'Nonprofit discount',
+                type: DiscountType::Percentage(),
+                enabledForCheckout: true,
                 recur: true,
-                currencyCode: CurrencyCode::USD,
+                currencyCode: CurrencyCode::USD(),
                 code: 'ABCDE12345',
                 maximumRecurringIntervals: 5,
                 usageLimit: 1000,
@@ -142,7 +142,7 @@ class DiscountsClientTest extends TestCase
                     'pro_01gsz4s0w61y0pp88528f1wvvb',
                 ],
                 expiresAt: '2025-01-01 10:00:00',
-                status: DiscountStatus::Active,
+                status: DiscountStatus::Active(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
@@ -195,7 +195,7 @@ class DiscountsClientTest extends TestCase
         ];
 
         yield 'NotificationStatus Filtered' => [
-            new ListDiscounts(statuses: [Status::Archived]),
+            new ListDiscounts(statuses: [Status::Archived()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts?status=archived', Environment::SANDBOX->baseUrl()),
         ];

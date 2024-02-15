@@ -11,8 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
-enum SubscriptionResultAction: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static SubscriptionResultAction Credit()
+ * @method static SubscriptionResultAction Charge()
+ */
+class SubscriptionResultAction extends PaddleEnum
 {
-    case Credit = 'credit';
-    case Charge = 'charge';
+    private const Credit = 'credit';
+    private const Charge = 'charge';
 }

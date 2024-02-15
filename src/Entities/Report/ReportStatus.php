@@ -11,10 +11,18 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Report;
 
-enum ReportStatus: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static ReportStatus Pending()
+ * @method static ReportStatus Ready()
+ * @method static ReportStatus Failed()
+ * @method static ReportStatus Expired()
+ */
+class ReportStatus extends PaddleEnum
 {
-    case Pending = 'pending';
-    case Ready = 'ready';
-    case Failed = 'failed';
-    case Expired = 'expired';
+    private const Pending = 'pending';
+    private const Ready = 'ready';
+    private const Failed = 'failed';
+    private const Expired = 'expired';
 }

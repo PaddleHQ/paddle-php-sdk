@@ -69,13 +69,13 @@ class ListTransactions implements HasParameters
 
     public function getParameters(): array
     {
-        $enumStringify = fn ($enum) => $enum->value;
+        $enumStringify = fn ($enum) => $enum->getValue();
 
         return array_merge(
             $this->pager?->getParameters() ?? [],
             array_filter([
                 'billed_at' . $this->billedAt?->comparator() => $this->billedAt?->formatted(),
-                'collection_mode' => $this->collectionMode?->value,
+                'collection_mode' => $this->collectionMode?->getValue(),
                 'created_at' . $this->createdAt?->comparator() => $this->createdAt?->formatted(),
                 'customer_id' => implode(',', $this->customerIds),
                 'id' => implode(',', $this->ids),

@@ -11,12 +11,22 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Shared;
 
-enum TransactionOrigin: string
+use Paddle\SDK\PaddleEnum;
+
+/**
+ * @method static TransactionOrigin Api()
+ * @method static TransactionOrigin SubscriptionCharge()
+ * @method static TransactionOrigin SubscriptionPaymentMethodChange()
+ * @method static TransactionOrigin SubscriptionRecurring()
+ * @method static TransactionOrigin SubscriptionUpdate()
+ * @method static TransactionOrigin Web()
+ */
+class TransactionOrigin extends PaddleEnum
 {
-    case Api = 'api';
-    case SubscriptionCharge = 'subscription_charge';
-    case SubscriptionPaymentMethodChange = 'subscription_payment_method_change';
-    case SubscriptionRecurring = 'subscription_recurring';
-    case SubscriptionUpdate = 'subscription_update';
-    case Web = 'web';
+    private const Api = 'api';
+    private const SubscriptionCharge = 'subscription_charge';
+    private const SubscriptionPaymentMethodChange = 'subscription_payment_method_change';
+    private const SubscriptionRecurring = 'subscription_recurring';
+    private const SubscriptionUpdate = 'subscription_update';
+    private const Web = 'web';
 }

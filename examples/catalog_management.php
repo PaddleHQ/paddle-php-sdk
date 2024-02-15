@@ -41,7 +41,7 @@ $paddle = new Paddle\SDK\Client($apiKey, options: new Paddle\SDK\Options($enviro
 try {
     $product = $paddle->products->create(new Products\Operations\CreateProduct(
         name: 'Kitten Service',
-        taxCategory: TaxCategory::Standard,
+        taxCategory: TaxCategory::Standard(),
         description: 'Simply an awesome product',
         imageUrl: 'http://placekitten.com/200/300',
         customData: new CustomData(['foo' => 'bar']),
@@ -78,15 +78,15 @@ try {
     $price = $paddle->prices->create(new Prices\Operations\CreatePrice(
         description: 'Bear Hug',
         productId: $product->id,
-        unitPrice: new Money('1000', CurrencyCode::GBP),
+        unitPrice: new Money('1000', CurrencyCode::GBP()),
         unitPriceOverrides: [
             new UnitPriceOverride(
-                [CountryCode::CA, CountryCode::US],
-                new Money('5000', CurrencyCode::USD),
+                [CountryCode::CA(), CountryCode::US()],
+                new Money('5000', CurrencyCode::USD()),
             ),
         ],
-        trialPeriod: new TimePeriod(Interval::Week, 1),
-        billingCycle: new TimePeriod(Interval::Year, 1),
+        trialPeriod: new TimePeriod(Interval::Week(), 1),
+        billingCycle: new TimePeriod(Interval::Year(), 1),
         quantity: new PriceQuantity(1, 1),
         customData: new CustomData(['foo' => 'bar']),
     ));
@@ -102,7 +102,7 @@ echo sprintf("Created price '%s': %s \n", $price->id, $price->description);
 // └──────────────┘
 $update = new Prices\Operations\UpdatePrice(
     description: 'One-off Bear Hug',
-    unitPrice: new Money('500', CurrencyCode::GBP),
+    unitPrice: new Money('500', CurrencyCode::GBP()),
     customData: new CustomData(['beep' => 'boop']),
 );
 
@@ -125,7 +125,7 @@ echo sprintf("Updated price '%s': %s \n", $price->id, $price->description);
 // │ Get Product with Prices │
 // └─────────────────────────┘
 try {
-    $product = $paddle->products->get($product->id, [ProductIncludes::Prices]);
+    $product = $paddle->products->get($product->id, [ProductIncludes::Prices()]);
 } catch (ApiError|MalformedResponse $e) {
     var_dump($e);
     exit;
@@ -141,7 +141,7 @@ echo sprintf(
 // │ Get Price with Product │
 // └────────────────────────┘
 try {
-    $price = $paddle->prices->get($price->id, [PriceIncludes::Product]);
+    $price = $paddle->prices->get($price->id, [PriceIncludes::Product()]);
 } catch (ApiError|MalformedResponse $e) {
     var_dump($e);
     exit;
@@ -154,8 +154,8 @@ echo sprintf("Read price '%s' with product %s \n", $price->id, $price->product?-
 // └──────────────┘
 try {
     $products = $paddle->products->list(new Products\Operations\ListProducts(
-        includes: [ProductIncludes::Prices],
-        statuses: [Status::Active],
+        includes: [ProductIncludes::Prices()],
+        statuses: [Status::Active()],
     ));
 } catch (ApiError|MalformedResponse $e) {
     var_dump($e);

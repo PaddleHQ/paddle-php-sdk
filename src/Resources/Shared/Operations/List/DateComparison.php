@@ -16,7 +16,7 @@ class DateComparison
 
     public function comparator(): string
     {
-        return isset($this->comparator) ? sprintf('[%s]', $this->comparator->value) : '';
+        return isset($this->comparator) ? sprintf('[%s]', $this->comparator->getValue()) : '';
     }
 
     public function formatted(): string
