@@ -10,6 +10,9 @@ class PaddleEnum extends Enum
 {
     protected const Undefined = null;
 
+    /**
+     * @throws \UnexpectedValueException
+     */
     public static function from($value): static
     {
         try {
