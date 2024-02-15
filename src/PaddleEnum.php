@@ -15,6 +15,9 @@ class PaddleEnum extends Enum
         try {
             return parent::from($value);
         } catch (\UnexpectedValueException $e) {
+            if ($value === null) {
+                throw $e;
+            }
             $enum = self::Undefined();
             $enum->value = $value;
 
