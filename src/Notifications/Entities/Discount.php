@@ -9,17 +9,15 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities\Notification;
+namespace Paddle\SDK\Notifications\Entities;
 
-use Paddle\SDK\Entities\DateTime;
-use Paddle\SDK\Entities\Discount\DiscountStatus;
-use Paddle\SDK\Entities\Discount\DiscountType;
-use Paddle\SDK\Entities\Entity;
-use Paddle\SDK\Entities\Shared\CurrencyCode;
-use Paddle\SDK\Entities\Shared\CustomData;
-use Paddle\SDK\Entities\Shared\ImportMeta;
+use Paddle\SDK\Notifications\Entities\Discount\DiscountStatus;
+use Paddle\SDK\Notifications\Entities\Discount\DiscountType;
+use Paddle\SDK\Notifications\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Notifications\Entities\Shared\CustomData;
+use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
 
-class NotificationDiscount implements Entity
+class Discount implements Entity
 {
     /**
      * @internal

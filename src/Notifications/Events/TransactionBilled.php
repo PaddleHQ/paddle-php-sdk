@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Transaction;
+use Paddle\SDK\Notifications\Entities\Transaction;
 
 final class TransactionBilled extends Event
 {

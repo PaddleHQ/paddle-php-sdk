@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Notification\NotificationPayout;
+use Paddle\SDK\Notifications\Entities\Payout;
 
 final class PayoutPaid extends Event
 {
@@ -14,7 +14,7 @@ final class PayoutPaid extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        NotificationPayout $data,
+        Payout $data,
     ) {
         parent::__construct($eventId, $eventType, $occurredAt, $data);
     }

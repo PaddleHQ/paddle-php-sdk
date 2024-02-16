@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Php81\Rector\Class_\MyCLabsClassToEnumRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
@@ -22,6 +23,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         '*.json',
         '*/Fixture/*',
+        MyCLabsClassToEnumRector::class,
     ]);
 
     $rectorConfig->importNames();

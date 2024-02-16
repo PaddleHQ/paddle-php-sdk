@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Price;
+use Paddle\SDK\Notifications\Entities\Price;
 
 final class PriceCreated extends Event
 {

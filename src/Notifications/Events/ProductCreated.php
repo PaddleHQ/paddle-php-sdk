@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Product;
+use Paddle\SDK\Notifications\Entities\Product;
 
 final class ProductCreated extends Event
 {

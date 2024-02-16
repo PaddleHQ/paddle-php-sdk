@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Events;
 
-use Paddle\SDK\Entities\Adjustment;
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Notifications\Entities\Adjustment;
 
 final class AdjustmentUpdated extends Event
 {
