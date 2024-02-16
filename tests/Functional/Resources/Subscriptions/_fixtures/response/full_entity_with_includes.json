@@ -1,23 +1,23 @@
 {
   "data": {
-    "id": "sub_01heb0tj9w00j33bfbq3469cy0",
+    "id": "sub_01hp463gxfvndqjjyqn2n7tkth",
     "status": "active",
-    "customer_id": "ctm_01heaqwvb9kv4dv4v67m738dta",
-    "address_id": "add_01heaqx50ad2sbsmf68saya8v2",
+    "customer_id": "ctm_01hp462x4578nc20acj9g956yy",
+    "address_id": "add_01hp462x4jrb91ya7ee01pd0mf",
     "business_id": null,
     "currency_code": "USD",
-    "created_at": "2023-11-03T16:38:55.036Z",
-    "updated_at": "2023-11-24T16:38:53.111897Z",
-    "started_at": "2023-11-03T16:38:53.111897Z",
-    "first_billed_at": "2023-11-03T16:38:53.111897Z",
-    "next_billed_at": "2023-12-03T16:38:53.111897Z",
+    "created_at": "2024-02-08T11:02:04.975Z",
+    "updated_at": "2024-02-08T11:02:04.975Z",
+    "started_at": "2024-02-08T11:02:03.946454Z",
+    "first_billed_at": "2024-02-08T11:02:03.946454Z",
+    "next_billed_at": "2024-03-08T11:02:03.946454Z",
     "paused_at": null,
     "canceled_at": null,
     "collection_mode": "automatic",
     "billing_details": null,
     "current_billing_period": {
-      "starts_at": "2023-11-03T16:38:53.111897Z",
-      "ends_at": "2023-12-03T16:38:53.111897Z"
+      "starts_at": "2024-02-08T11:02:03.946454Z",
+      "ends_at": "2024-03-08T11:02:03.946454Z"
     },
     "billing_cycle": {
       "frequency": 1,
@@ -160,43 +160,20 @@
     "items": [
       {
         "status": "active",
-        "quantity": 5,
-        "recurring": true,
-        "created_at": "2023-11-03T16:38:55.036Z",
-        "updated_at": "2023-11-03T16:38:55.036Z",
-        "previously_billed_at": "2023-11-03T16:38:53.111897Z",
-        "next_billed_at": "2023-12-03T16:38:53.111897Z",
-        "trial_dates": null,
-        "price": {
-          "id": "pri_01heb0e913gej56emc8tjrkaqa",
-          "product_id": "pro_01heb0cesy14mwnpyps6ee3hda",
-          "description": "basic plan",
-          "tax_mode": "internal",
-          "billing_cycle": {
-            "frequency": 1,
-            "interval": "month"
-          },
-          "trial_period": null,
-          "unit_price": {
-            "amount": "4000",
-            "currency_code": "USD"
-          }
-        }
-      },
-      {
-        "status": "active",
         "quantity": 10,
         "recurring": true,
-        "created_at": "2023-11-03T16:38:55.036Z",
-        "updated_at": "2023-11-03T16:38:55.036Z",
-        "previously_billed_at": "2023-11-03T16:38:53.111897Z",
-        "next_billed_at": "2023-12-03T16:38:53.111897Z",
+        "created_at": "2024-02-08T11:02:04.975Z",
+        "updated_at": "2024-02-08T11:02:04.975Z",
+        "previously_billed_at": "2024-02-08T11:02:03.946454Z",
+        "next_billed_at": "2024-03-08T11:02:03.946454Z",
         "trial_dates": null,
         "price": {
-          "id": "pri_01heb0fkqcnj94ykp5c3r8e0ja",
-          "product_id": "pro_01heb0eqkjnw4pwgshghq87qga",
-          "description": "recurring addon",
-          "tax_mode": "internal",
+          "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "type": "standard",
+          "description": "Monthly (per seat)",
+          "name": "Monthly (per seat)",
+          "tax_mode": "account_setting",
           "billing_cycle": {
             "frequency": 1,
             "interval": "month"
@@ -205,18 +182,77 @@
           "unit_price": {
             "amount": "3000",
             "currency_code": "USD"
-          }
+          },
+          "unit_price_overrides": [],
+          "custom_data": {
+            "features": {
+              "crm": true,
+              "data_retention": false,
+              "reports": true
+            },
+            "suggested_addons": [
+              "pro_01h1vjes1y163xfj1rh1tkfb65",
+              "pro_01gsz97mq9pa4fkyy0wqenepkz"
+            ],
+            "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+          },
+          "status": "active",
+          "quantity": {
+            "minimum": 1,
+            "maximum": 999
+          },
+          "import_meta": null,
+          "created_at": "2023-02-23T13:55:22.538367Z",
+          "updated_at": "2023-11-09T14:07:16.051528Z"
+        }
+      },
+      {
+        "status": "active",
+        "quantity": 1,
+        "recurring": true,
+        "created_at": "2024-02-08T11:02:04.975Z",
+        "updated_at": "2024-02-08T11:02:04.975Z",
+        "previously_billed_at": "2024-02-08T11:02:03.946454Z",
+        "next_billed_at": "2024-03-08T11:02:03.946454Z",
+        "trial_dates": null,
+        "price": {
+          "id": "pri_01h1vjfevh5etwq3rb416a23h2",
+          "product_id": "pro_01h1vjes1y163xfj1rh1tkfb65",
+          "type": "standard",
+          "description": "Monthly (recurring addon)",
+          "name": null,
+          "tax_mode": "account_setting",
+          "billing_cycle": {
+            "frequency": 1,
+            "interval": "month"
+          },
+          "trial_period": null,
+          "unit_price": {
+            "amount": "10000",
+            "currency_code": "USD"
+          },
+          "unit_price_overrides": [],
+          "custom_data": null,
+          "status": "active",
+          "quantity": {
+            "minimum": 1,
+            "maximum": 100
+          },
+          "import_meta": null,
+          "created_at": "2023-06-01T13:31:12.625056Z",
+          "updated_at": "2023-08-30T10:34:33.862679Z"
         }
       }
     ],
     "custom_data": null,
     "management_urls": {
-      "update_payment_method": "https://buyer-portal.paddle.com/subscriptions/sub_01heb0tj9w00j33bfbq3469cy0/update-payment-method?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6InBnYV8wMWhlanBja2s1Z2trYmZhcWhhYXgyNnJlYSIsInNlbGxlci1pZCI6IjUwNiIsInR5cGUiOiJzdGFuZGFyZCIsInZlcnNpb24iOiIxIiwidXNhZ2UiOiJtYW5hZ2VtZW50X3VybCIsInNjb3BlIjoiY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQudXBkYXRlIGN1c3RvbWVyLnN1YnNjcmlwdGlvbi1wYXltZW50LnJlYWQgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLWNhbmNlbC5jcmVhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLnJlYWQiLCJpc3MiOiJndWVzdGFjY2Vzcy1zZXJ2aWNlIiwic3ViIjoiY3RtXzAxaGVhcXd2YjlrdjRkdjR2NjdtNzM4ZHR2IiwiZXhwIjoxNzMyNzE3OTEyLCJpYXQiOjE2OTkyODcwMjd9.YX52k0BnP5KqXmaCKK7MBsvXMnxXDw0q_ZYKV25zkjLSzmAYG0ME1flRqj8b5WcoeFJLI8z0UPAhtFqys30XCA",
-      "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01heb0tj9w00j33bfbq3469cy0/cancel?token=pga_eyJhbGciOiJFZERTQSIsImtpZCI6Imp3a18wMWhkazBuOHF3OG55NTJ5cGNocGNhazA1ayIsInR5cCI6IkpXVCJ9.eyJpZCI6InBnYV8wMWhlanBja2s1Z2trYmZhcWhhYXgyNnJlYSIsInNlbGxlci1pZCI6IjUwNiIsInR5cGUiOiJzdGFuZGFyZCIsInZlcnNpb24iOiIxIiwidXNhZ2UiOiJtYW5hZ2VtZW50X3VybCIsInNjb3BlIjoiY3VzdG9tZXIuc3Vic2NyaXB0aW9uLXBheW1lbnQudXBkYXRlIGN1c3RvbWVyLnN1YnNjcmlwdGlvbi1wYXltZW50LnJlYWQgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLWNhbmNlbC5jcmVhdGUgY3VzdG9tZXIuc3Vic2NyaXB0aW9uLnJlYWQiLCJpc3MiOiJndWVzdGFjY2Vzcy1zZXJ2aWNlIiwic3ViIjoiY3RtXzAxaGVhcXd2YjlrdjRkdjR2NjdtNzM4ZHR2IiwiZXhwIjoxNzMyNzE3OTEyLCJpYXQiOjE2OTkyODcwMjd9.YX52k0BnP5KqXmaCKK7MBsvXMnxXDw0q_ZYKV25zkjLSzmAYG0ME1flRqj8b5WcoeFJLI8z0UPAhtFqys30XCA"
+      "update_payment_method": "https://buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/update-payment-method",
+      "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/cancel"
     },
-    "discount": null
+    "discount": null,
+    "import_meta": null
   },
   "meta": {
-    "request_id": "1e465507-6d78-4553-9186-8ac8dfa02318"
+    "request_id": "b6752f6a-acbf-445c-8eb5-2cbb80b7a8e5"
   }
 }

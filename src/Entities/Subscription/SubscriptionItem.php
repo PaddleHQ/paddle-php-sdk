@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities\Subscription;
 
 use Paddle\SDK\Entities\DateTime;
+use Paddle\SDK\Entities\Price;
 
 class SubscriptionItem
 {
@@ -24,7 +25,7 @@ class SubscriptionItem
         public \DateTimeInterface|null $previouslyBilledAt,
         public \DateTimeInterface|null $nextBilledAt,
         public SubscriptionTimePeriod|null $trialDates,
-        public SubscriptionPrice $price,
+        public Price $price,
     ) {
     }
 
@@ -43,7 +44,7 @@ class SubscriptionItem
                 ? DateTime::from($data['next_billed_at'])
                 : null,
             trialDates: isset($data['trial_dates']) ? SubscriptionTimePeriod::from($data['trial_dates']) : null,
-            price: SubscriptionPrice::from($data['price']),
+            price: Price::from($data['price']),
         );
     }
 }
