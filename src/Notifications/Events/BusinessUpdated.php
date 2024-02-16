@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Events;
 
-use Paddle\SDK\Entities\Business;
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Notifications\Entities\Business;
 
 final class BusinessUpdated extends Event
 {

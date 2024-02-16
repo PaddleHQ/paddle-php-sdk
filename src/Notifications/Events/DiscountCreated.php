@@ -6,7 +6,7 @@ namespace Paddle\SDK\Notifications\Events;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Notification\NotificationDiscount;
+use Paddle\SDK\Notifications\Entities\Discount;
 
 final class DiscountCreated extends Event
 {
@@ -14,7 +14,7 @@ final class DiscountCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        NotificationDiscount $data,
+        Discount $data,
     ) {
         parent::__construct($eventId, $eventType, $occurredAt, $data);
     }

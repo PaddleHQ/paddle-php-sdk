@@ -2,23 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Entities\Notification;
+namespace Paddle\SDK\Notifications\Entities;
 
-use Paddle\SDK\Entities\DateTime;
-use Paddle\SDK\Entities\Entity;
-use Paddle\SDK\Entities\Shared\BillingDetails;
-use Paddle\SDK\Entities\Shared\CollectionMode;
-use Paddle\SDK\Entities\Shared\CurrencyCode;
-use Paddle\SDK\Entities\Shared\CustomData;
-use Paddle\SDK\Entities\Shared\ImportMeta;
-use Paddle\SDK\Entities\Shared\TimePeriod;
-use Paddle\SDK\Entities\Subscription\SubscriptionDiscount;
-use Paddle\SDK\Entities\Subscription\SubscriptionItem;
-use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChange;
-use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
-use Paddle\SDK\Entities\Subscription\SubscriptionTimePeriod;
+use Paddle\SDK\Notifications\Entities\Shared\BillingDetails;
+use Paddle\SDK\Notifications\Entities\Shared\CollectionMode;
+use Paddle\SDK\Notifications\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Notifications\Entities\Shared\CustomData;
+use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
+use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionDiscount;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionItem;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionScheduledChange;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionStatus;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionTimePeriod;
 
-class NotificationSubscription implements Entity
+class Subscription implements Entity
 {
     /**
      * @internal
@@ -27,6 +25,7 @@ class NotificationSubscription implements Entity
      */
     protected function __construct(
         public string $id,
+        public string|null $transactionId,
         public SubscriptionStatus $status,
         public string $customerId,
         public string $addressId,
@@ -55,6 +54,7 @@ class NotificationSubscription implements Entity
     {
         return new self(
             id: $data['id'],
+            transactionId: $data['transaction_id'] ?? null,
             status: SubscriptionStatus::from($data['status']),
             customerId: $data['customer_id'],
             addressId: $data['address_id'],

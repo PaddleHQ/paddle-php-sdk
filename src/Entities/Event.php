@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Notification\NotificationDiscount;
-use Paddle\SDK\Entities\Notification\NotificationSubscription;
+use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
 
 class Event implements Entity
 {
@@ -17,7 +16,7 @@ class Event implements Entity
         public string $eventId,
         public EventTypeName $eventType,
         public \DateTimeInterface $occurredAt,
-        public Entity $data,
+        public NotificationEntity $data,
     ) {
     }
 
@@ -25,15 +24,10 @@ class Event implements Entity
     {
         $type = explode('.', (string) $data['event_type'])[0] ?? '';
 
-        /** @var class-string<Entity> $entity */
-        $entity = match ($type) {
-            'discount' => NotificationDiscount::class,
-            'subscription' => NotificationSubscription::class,
-            'adjustment' => Adjustment::class,
-            default => sprintf('\Paddle\SDK\Entities\%s', ucfirst($type)),
-        };
+        /** @var class-string<NotificationEntity> $entity */
+        $entity = sprintf('\Paddle\SDK\Notifications\Entities\%s', ucfirst($type));
 
-        if (! class_exists($entity) || ! in_array(Entity::class, class_implements($entity), true)) {
+        if (! class_exists($entity) || ! in_array(NotificationEntity::class, class_implements($entity), true)) {
             throw new \UnexpectedValueException("Event type '{$type}' cannot be mapped to an object");
         }
 
