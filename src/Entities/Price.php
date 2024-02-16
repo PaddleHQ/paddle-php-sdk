@@ -36,7 +36,7 @@ class Price implements Entity
         public CatalogType|null $type,
         public TimePeriod|null $billingCycle,
         public TimePeriod|null $trialPeriod,
-        public TaxMode|null $taxMode,
+        public TaxMode $taxMode,
         public Money $unitPrice,
         public array $unitPriceOverrides,
         public PriceQuantity $quantity,
@@ -57,7 +57,7 @@ class Price implements Entity
             type: CatalogType::from($data['type'] ?? ''),
             billingCycle: isset($data['billing_cycle']) ? TimePeriod::from($data['billing_cycle']) : null,
             trialPeriod: isset($data['trial_period']) ? TimePeriod::from($data['trial_period']) : null,
-            taxMode: isset($data['tax_mode']) ? TaxMode::from($data['tax_mode']) : null,
+            taxMode: TaxMode::from($data['tax_mode']),
             unitPrice: Money::from($data['unit_price']),
             unitPriceOverrides: array_map(
                 fn (array $override): UnitPriceOverride => UnitPriceOverride::from($override),
