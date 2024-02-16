@@ -11,13 +11,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
-use Paddle\SDK\Entities\Collections\EventTypeCollection;
 use Paddle\SDK\Entities\NotificationSetting\NotificationSettingType;
 
 class NotificationSetting implements Entity
 {
     /**
      * @internal
+     *
+     * @param array<EventType> $subscribedEvents
      */
     protected function __construct(
         public string $id,
@@ -27,7 +28,7 @@ class NotificationSetting implements Entity
         public bool $active,
         public int $apiVersion,
         public bool $includeSensitiveFields,
-        public EventTypeCollection $subscribedEvents,
+        public array $subscribedEvents,
         public string $endpointSecretKey,
     ) {
     }
@@ -35,15 +36,15 @@ class NotificationSetting implements Entity
     public static function from(array $data): self
     {
         return new self(
-            $data['id'],
-            $data['description'],
-            NotificationSettingType::from($data['type']),
-            $data['destination'],
-            $data['active'],
-            $data['api_version'],
-            $data['include_sensitive_fields'],
-            EventTypeCollection::from($data['subscribed_events']),
-            $data['endpoint_secret_key'],
+            id: $data['id'],
+            description: $data['description'],
+            type: NotificationSettingType::from($data['type']),
+            destination: $data['destination'],
+            active: $data['active'],
+            apiVersion: $data['api_version'],
+            includeSensitiveFields: $data['include_sensitive_fields'],
+            subscribedEvents: array_map(fn (array $eventType): EventType => EventType::from($eventType), $data['subscribed_events'] ?? []),
+            endpointSecretKey: $data['endpoint_secret_key'],
         );
     }
 }

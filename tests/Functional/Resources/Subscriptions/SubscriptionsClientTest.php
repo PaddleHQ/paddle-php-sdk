@@ -14,6 +14,7 @@ use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
+use Paddle\SDK\Entities\Subscription\SubscriptionResumeEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChangeAction;
 use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
 use Paddle\SDK\Environment;
@@ -340,7 +341,7 @@ class SubscriptionsClientTest extends TestCase
         ];
 
         yield 'Update Single As Enum' => [
-            new ResumeSubscription(SubscriptionEffectiveFrom::NextBillingPeriod()),
+            new ResumeSubscription(SubscriptionResumeEffectiveFrom::Immediately()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_single_as_enum'),
         ];
