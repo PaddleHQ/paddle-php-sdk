@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\PricingPreview;
 
 class PricePreviewUnitTotalsFormatted
 {
-    public function __construct(
+    private function __construct(
         public string $subtotal,
         public string $discount,
         public string $tax,

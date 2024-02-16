@@ -16,7 +16,7 @@ class UnitPriceOverride
     /**
      * @param array<CountryCode> $countryCodes
      */
-    public function __construct(
+    private function __construct(
         public array $countryCodes,
         public Money $unitPrice,
     ) {

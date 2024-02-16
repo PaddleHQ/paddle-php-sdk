@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static Interval Month()
  * @method static Interval Year()
  */
-class Interval extends PaddleEnum
+final class Interval extends PaddleEnum
 {
     private const Day = 'day';
     private const Week = 'week';

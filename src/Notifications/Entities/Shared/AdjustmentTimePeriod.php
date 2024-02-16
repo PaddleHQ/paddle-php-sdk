@@ -15,7 +15,7 @@ use Paddle\SDK\Notifications\Entities\DateTime;
 
 class AdjustmentTimePeriod
 {
-    public function __construct(
+    private function __construct(
         public \DateTimeInterface $startsAt,
         public \DateTimeInterface $endsAt,
     ) {

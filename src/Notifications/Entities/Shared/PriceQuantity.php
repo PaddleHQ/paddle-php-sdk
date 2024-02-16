@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 
 class PriceQuantity
 {
-    public function __construct(
+    private function __construct(
         public int $minimum,
         public int $maximum,
     ) {

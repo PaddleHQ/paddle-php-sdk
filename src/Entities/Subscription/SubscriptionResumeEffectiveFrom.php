@@ -16,7 +16,7 @@ use Paddle\SDK\PaddleEnum;
 /**
  * @method static SubscriptionResumeEffectiveFrom Immediately()
  */
-class SubscriptionResumeEffectiveFrom extends PaddleEnum
+final class SubscriptionResumeEffectiveFrom extends PaddleEnum
 {
     private const Immediately = 'immediately';
 }

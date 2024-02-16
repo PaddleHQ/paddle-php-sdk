@@ -18,7 +18,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static DiscountType FlatPerSeat()
  * @method static DiscountType Percentage()
  */
-class DiscountType extends PaddleEnum
+final class DiscountType extends PaddleEnum
 {
     private const Flat = 'flat';
     private const FlatPerSeat = 'flat_per_seat';

@@ -25,7 +25,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static PaymentMethodType Unknown()
  * @method static PaymentMethodType WireTransfer()
  */
-class PaymentMethodType extends PaddleEnum
+final class PaymentMethodType extends PaddleEnum
 {
     private const Alipay = 'alipay';
     private const ApplePay = 'apple_pay';

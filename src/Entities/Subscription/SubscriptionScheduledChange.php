@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\DateTime;
 
 class SubscriptionScheduledChange
 {
-    public function __construct(
+    private function __construct(
         public SubscriptionScheduledChangeAction $action,
         public \DateTimeInterface $effectiveAt,
         public \DateTimeInterface|null $resumeAt,

@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 
 class SubscriptionResult
 {
-    public function __construct(
+    private function __construct(
         public SubscriptionResultAction $action,
         public string $amount,
         public CurrencyCode $currencyCode,

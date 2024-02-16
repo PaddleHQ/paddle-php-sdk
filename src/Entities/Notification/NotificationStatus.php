@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static NotificationStatus Delivered()
  * @method static NotificationStatus Failed()
  */
-class NotificationStatus extends PaddleEnum
+final class NotificationStatus extends PaddleEnum
 {
     private const NotAttempted = 'not_attempted';
     private const NeedsRetry = 'needs_retry';

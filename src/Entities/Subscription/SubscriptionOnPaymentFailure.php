@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SubscriptionOnPaymentFailure PreventChange()
  * @method static SubscriptionOnPaymentFailure ApplyChange()
  */
-class SubscriptionOnPaymentFailure extends PaddleEnum
+final class SubscriptionOnPaymentFailure extends PaddleEnum
 {
     private const PreventChange = 'prevent_change';
     private const ApplyChange = 'apply_change';

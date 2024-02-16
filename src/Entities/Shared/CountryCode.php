@@ -244,7 +244,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCode ZA()
  * @method static CountryCode ZM()
  */
-class CountryCode extends PaddleEnum
+final class CountryCode extends PaddleEnum
 {
     private const AD = 'AD';
     private const AE = 'AE';

@@ -17,7 +17,7 @@ use Paddle\SDK\Entities\Shared\AdjustmentType;
 
 class AdjustmentItem
 {
-    public function __construct(
+    private function __construct(
         public string $id,
         public string $itemId,
         public AdjustmentType $type,

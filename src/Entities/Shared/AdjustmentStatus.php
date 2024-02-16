@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static AdjustmentStatus Rejected()
  * @method static AdjustmentStatus Reversed()
  */
-class AdjustmentStatus extends PaddleEnum
+final class AdjustmentStatus extends PaddleEnum
 {
     private const PendingApproval = 'pending_approval';
     private const Approved = 'approved';

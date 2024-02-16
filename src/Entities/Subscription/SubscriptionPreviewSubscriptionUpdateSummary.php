@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Subscription;
 
 class SubscriptionPreviewSubscriptionUpdateSummary
 {
-    public function __construct(
+    private function __construct(
         public SubscriptionCredit $credit,
         public SubscriptionCharge $charge,
         public SubscriptionResult $result,

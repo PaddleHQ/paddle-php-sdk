@@ -6,10 +6,7 @@ namespace Paddle\SDK\Entities;
 
 class NotificationLog implements Entity
 {
-    /**
-     * @internal
-     */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public int $responseCode,
         public string|null $responseContentType,

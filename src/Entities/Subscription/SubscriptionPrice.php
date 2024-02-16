@@ -17,7 +17,7 @@ use Paddle\SDK\Entities\Shared\TimePeriod;
 
 class SubscriptionPrice
 {
-    public function __construct(
+    private function __construct(
         public string $id,
         public string $description,
         public string $productId,

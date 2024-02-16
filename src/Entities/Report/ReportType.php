@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportType Transactions()
  * @method static ReportType TransactionLineItems()
  */
-class ReportType extends PaddleEnum
+final class ReportType extends PaddleEnum
 {
     private const Adjustments = 'adjustments';
     private const AdjustmentLineItems = 'adjustment_line_items';

@@ -8,7 +8,7 @@ class DateTime extends \DateTimeImmutable
 {
     final public const PADDLE_RFC3339 = 'Y-m-d\TH:i:s.up';
 
-    public function __construct(string $datetime = 'now')
+    private function __construct(string $datetime = 'now')
     {
         // Ensure formatted dates are in UTC
         parent::__construct(datetime: $datetime, timezone: new \DateTimeZone('UTC'));

@@ -17,7 +17,7 @@ class TransactionDetailsPreview
      * @param array<TaxRatesUsed>               $taxRatesUsed
      * @param array<TransactionLineItemPreview> $lineItems
      */
-    public function __construct(
+    private function __construct(
         public array $taxRatesUsed,
         public TransactionTotals $totals,
         public array $lineItems,

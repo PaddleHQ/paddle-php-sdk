@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static NotificationOrigin Event()
  * @method static NotificationOrigin Replay()
  */
-class NotificationOrigin extends PaddleEnum
+final class NotificationOrigin extends PaddleEnum
 {
     private const Event = 'event';
     private const Replay = 'replay';

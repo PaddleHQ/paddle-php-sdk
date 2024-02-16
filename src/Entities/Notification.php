@@ -10,10 +10,7 @@ use Paddle\SDK\Entities\Notification\NotificationStatus;
 
 class Notification implements Entity
 {
-    /**
-     * @internal
-     */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public EventTypeName $type,
         public NotificationStatus $status,

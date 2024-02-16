@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Shared;
 
 class BillingDetailsUpdate
 {
-    public function __construct(
+    private function __construct(
         public bool $enableCheckout,
         public string $purchaseOrderNumber,
         public string $additionalInformation,

@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Business;
 
 class BusinessesContacts
 {
-    public function __construct(
+    private function __construct(
         public string $name,
         public string $email,
     ) {

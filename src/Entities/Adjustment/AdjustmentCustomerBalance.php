@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Adjustment;
 
 class AdjustmentCustomerBalance
 {
-    public function __construct(
+    private function __construct(
         public string $available,
         public string $reserved,
         public string $used,

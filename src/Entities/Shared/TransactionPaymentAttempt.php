@@ -18,7 +18,7 @@ class TransactionPaymentAttempt
     /**
      * @deprecated $storedPaymentMethodId
      */
-    public function __construct(
+    private function __construct(
         public string $paymentAttemptId,
         public string $paymentMethodId,
         public string $storedPaymentMethodId,

@@ -26,7 +26,7 @@ class SubscriptionPrice
     /**
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public string $productId,
         public string|null $name,

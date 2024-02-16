@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 
 class BillingDetails
 {
-    public function __construct(
+    private function __construct(
         public bool $enableCheckout,
         public TimePeriod $paymentTerms,
         public string|null $purchaseOrderNumber = null,

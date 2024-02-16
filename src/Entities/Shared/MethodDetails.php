@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Shared;
 
 class MethodDetails
 {
-    public function __construct(
+    private function __construct(
         public PaymentMethodType $type,
         public Card|null $card,
     ) {

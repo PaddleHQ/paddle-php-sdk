@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Shared;
 
 class ImportMeta
 {
-    public function __construct(
+    private function __construct(
         public readonly string|null $externalId,
         public readonly string $importedFrom,
     ) {

@@ -18,7 +18,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SubscriptionItemStatus Inactive()
  * @method static SubscriptionItemStatus Trialing()
  */
-class SubscriptionItemStatus extends PaddleEnum
+final class SubscriptionItemStatus extends PaddleEnum
 {
     private const Active = 'active';
     private const Inactive = 'inactive';

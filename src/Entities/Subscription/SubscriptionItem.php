@@ -16,7 +16,7 @@ use Paddle\SDK\Entities\Price;
 
 class SubscriptionItem
 {
-    public function __construct(
+    private function __construct(
         public SubscriptionItemStatus $status,
         public int $quantity,
         public bool $recurring,

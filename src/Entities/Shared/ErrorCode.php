@@ -32,7 +32,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ErrorCode TransactionNotPermitted()
  * @method static ErrorCode Unknown()
  */
-class ErrorCode extends PaddleEnum
+final class ErrorCode extends PaddleEnum
 {
     private const AlreadyCanceled = 'already_canceled';
     private const AlreadyRefunded = 'already_refunded';

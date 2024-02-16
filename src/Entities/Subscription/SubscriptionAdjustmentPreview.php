@@ -11,7 +11,7 @@ class SubscriptionAdjustmentPreview
     /**
      * @param array<SubscriptionAdjustmentItem> $items
      */
-    public function __construct(
+    private function __construct(
         public string $transactionId,
         public array $items,
         public AdjustmentTotals $totals,

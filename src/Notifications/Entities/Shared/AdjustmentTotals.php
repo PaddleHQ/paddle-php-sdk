@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 
 class AdjustmentTotals
 {
-    public function __construct(
+    private function __construct(
         public string $subtotal,
         public string $tax,
         public string $total,

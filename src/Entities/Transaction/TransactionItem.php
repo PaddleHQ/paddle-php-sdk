@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\Price;
 
 class TransactionItem
 {
-    public function __construct(
+    private function __construct(
         public string|null $priceId,
         public Price $price,
         public int $quantity,

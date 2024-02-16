@@ -9,7 +9,7 @@ use Paddle\SDK\Notifications\Entities\Shared\CurrencyCodePayouts;
 
 class Payout implements Entity
 {
-    public function __construct(
+    private function __construct(
         public string $id,
         public PayoutStatus $status,
         public string $amount,

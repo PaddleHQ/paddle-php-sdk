@@ -45,7 +45,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CurrencyCode UAH()
  * @method static CurrencyCode ZAR()
  */
-class CurrencyCode extends PaddleEnum
+final class CurrencyCode extends PaddleEnum
 {
     private const USD = 'USD';
     private const EUR = 'EUR';

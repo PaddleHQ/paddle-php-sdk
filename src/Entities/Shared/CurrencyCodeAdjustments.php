@@ -18,7 +18,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CurrencyCodeAdjustments GBP()
  * @method static CurrencyCodeAdjustments USD()
  */
-class CurrencyCodeAdjustments extends PaddleEnum
+final class CurrencyCodeAdjustments extends PaddleEnum
 {
     private const EUR = 'EUR';
     private const GBP = 'GBP';

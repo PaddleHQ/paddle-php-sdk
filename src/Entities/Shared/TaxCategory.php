@@ -24,7 +24,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static TaxCategory TrainingServices()
  * @method static TaxCategory WebsiteHosting()
  */
-class TaxCategory extends PaddleEnum
+final class TaxCategory extends PaddleEnum
 {
     private const DigitalGoods = 'digital-goods';
     private const Ebooks = 'ebooks';

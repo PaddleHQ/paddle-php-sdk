@@ -20,11 +20,9 @@ use Paddle\SDK\Entities\Shared\TaxCategory;
 class Product implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<Price> $prices
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public string $name,
         public string|null $description,

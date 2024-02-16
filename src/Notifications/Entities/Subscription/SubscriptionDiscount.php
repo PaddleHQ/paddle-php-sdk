@@ -15,7 +15,7 @@ use Paddle\SDK\Notifications\Entities\DateTime;
 
 class SubscriptionDiscount
 {
-    public function __construct(
+    private function __construct(
         public string $id,
         public \DateTimeInterface $startsAt,
         public \DateTimeInterface|null $endsAt,

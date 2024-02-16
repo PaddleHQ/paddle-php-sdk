@@ -26,12 +26,10 @@ use Paddle\SDK\Notifications\Entities\Transaction\TransactionTimePeriod;
 class Transaction implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<TransactionItem>           $items
      * @param array<TransactionPaymentAttempt> $payments
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public TransactionStatus $status,
         public string|null $customerId,
@@ -79,7 +77,7 @@ class Transaction implements Entity
             items: array_map(fn (array $item): TransactionItem => TransactionItem::from($item), $data['items'] ?? []),
             details: TransactionDetails::from($data['details']),
             payments: array_map(fn (array $payment): TransactionPaymentAttempt => TransactionPaymentAttempt::from($payment), $data['payments'] ?? []),
-            checkout: isset($data['checkout']) ? new Checkout($data['checkout']['url'] ?? null) : null,
+            checkout: isset($data['checkout']) ? Checkout::from($data['checkout']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
             billedAt: isset($data['billed_at']) ? DateTime::from($data['billed_at']) : null,

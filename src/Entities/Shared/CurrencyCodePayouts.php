@@ -28,7 +28,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CurrencyCodePayouts USD()
  * @method static CurrencyCodePayouts ZAR()
  */
-class CurrencyCodePayouts extends PaddleEnum
+final class CurrencyCodePayouts extends PaddleEnum
 {
     private const AUD = 'AUD';
     private const CAD = 'CAD';

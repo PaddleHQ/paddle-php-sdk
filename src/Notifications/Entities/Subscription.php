@@ -19,11 +19,9 @@ use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionTimePeriod;
 class Subscription implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<SubscriptionItem> $items
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public string|null $transactionId,
         public SubscriptionStatus $status,

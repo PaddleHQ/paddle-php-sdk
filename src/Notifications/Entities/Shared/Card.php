@@ -15,7 +15,7 @@ use Paddle\SDK\Notifications\Entities\Transaction\TransactionCardType;
 
 class Card
 {
-    public function __construct(
+    private function __construct(
         public TransactionCardType $type,
         public string $last4,
         public int $expiryMonth,

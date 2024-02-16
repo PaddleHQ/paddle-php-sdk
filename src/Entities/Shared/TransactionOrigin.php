@@ -21,7 +21,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static TransactionOrigin SubscriptionUpdate()
  * @method static TransactionOrigin Web()
  */
-class TransactionOrigin extends PaddleEnum
+final class TransactionOrigin extends PaddleEnum
 {
     private const Api = 'api';
     private const SubscriptionCharge = 'subscription_charge';

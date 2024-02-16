@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Shared;
 
 class TransactionTotalsAdjusted
 {
-    public function __construct(
+    private function __construct(
         public string $subtotal,
         public string $tax,
         public string $total,

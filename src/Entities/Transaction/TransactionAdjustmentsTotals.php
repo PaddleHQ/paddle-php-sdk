@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 
 class TransactionAdjustmentsTotals
 {
-    public function __construct(
+    private function __construct(
         public string $subtotal,
         public string $tax,
         public string $total,
