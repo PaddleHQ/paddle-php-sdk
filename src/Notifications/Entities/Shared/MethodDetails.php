@@ -14,7 +14,7 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 class MethodDetails
 {
     private function __construct(
-        public Type $type,
+        public PaymentMethodType $type,
         public Card|null $card,
     ) {
     }
@@ -22,7 +22,7 @@ class MethodDetails
     public static function from(array $data): self
     {
         return new self(
-            Type::from($data['type']),
+            PaymentMethodType::from($data['type']),
             isset($data['card']) ? Card::from($data['card']) : null,
         );
     }

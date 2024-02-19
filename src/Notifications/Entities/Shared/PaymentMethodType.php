@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// TODO: bad naming?!
+
 /**
  * |------
  * | ! Generated code !
@@ -14,19 +14,18 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 use Paddle\SDK\PaddleEnum;
 
 /**
- * @method static Type Alipay()
- * @method static Type ApplePay()
- * @method static Type Bancontact()
- * @method static Type Card()
- * @method static Type GooglePay()
- * @method static Type Ideal()
- * @method static Type Offline()
- * @method static Type Paypal()
- * @method static Type Unknown()
- * @method static Type WireTransfer()
- * @method static Type Visa()
+ * @method static PaymentMethodType Alipay()
+ * @method static PaymentMethodType ApplePay()
+ * @method static PaymentMethodType Bancontact()
+ * @method static PaymentMethodType Card()
+ * @method static PaymentMethodType GooglePay()
+ * @method static PaymentMethodType Ideal()
+ * @method static PaymentMethodType Offline()
+ * @method static PaymentMethodType Paypal()
+ * @method static PaymentMethodType Unknown()
+ * @method static PaymentMethodType WireTransfer()
  */
-final class Type extends PaddleEnum
+final class PaymentMethodType extends PaddleEnum
 {
     private const Alipay = 'alipay';
     private const ApplePay = 'apple_pay';
@@ -38,5 +37,4 @@ final class Type extends PaddleEnum
     private const Paypal = 'paypal';
     private const Unknown = 'unknown';
     private const WireTransfer = 'wire_transfer';
-    private const Visa = 'visa';
 }
