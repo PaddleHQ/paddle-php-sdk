@@ -19,11 +19,9 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 class PricePreview implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<AvailablePaymentMethods> $availablePaymentMethods
      */
-    protected function __construct(
+    private function __construct(
         public string|null $customerId,
         public string|null $addressId,
         public string|null $businessId,

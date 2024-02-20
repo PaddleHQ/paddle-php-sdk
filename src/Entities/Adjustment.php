@@ -21,11 +21,9 @@ use Paddle\SDK\Entities\Shared\PayoutTotalsAdjustment;
 class Adjustment implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<AdjustmentItem> $items
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public Action $action,
         public string $transactionId,

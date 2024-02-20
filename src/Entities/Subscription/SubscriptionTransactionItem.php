@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\Price;
 
 class SubscriptionTransactionItem
 {
-    public function __construct(
+    private function __construct(
         public string $priceId,
         public Price $price,
         public int $quantity,

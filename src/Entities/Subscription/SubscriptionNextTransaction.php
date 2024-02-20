@@ -18,7 +18,7 @@ class SubscriptionNextTransaction
     /**
      * @param array<SubscriptionAdjustmentPreview> $adjustments
      */
-    public function __construct(
+    private function __construct(
         public SubscriptionTimePeriod $billingPeriod,
         public TransactionDetailsPreview $details,
         public array $adjustments,

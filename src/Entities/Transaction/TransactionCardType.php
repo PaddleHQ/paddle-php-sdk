@@ -25,7 +25,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static TransactionCardType Unknown()
  * @method static TransactionCardType Visa()
  */
-class TransactionCardType extends PaddleEnum
+final class TransactionCardType extends PaddleEnum
 {
     private const AmericanExpress = 'american_express';
     private const DinersClub = 'diners_club';

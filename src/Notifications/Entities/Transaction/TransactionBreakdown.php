@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Transaction;
 
 class TransactionBreakdown
 {
-    public function __construct(
+    private function __construct(
         public string $credit,
         public string $refund,
         public string $chargeback,

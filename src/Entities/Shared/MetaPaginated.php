@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Shared;
 
 class MetaPaginated
 {
-    public function __construct(
+    private function __construct(
         public string $requestId,
         public Pagination $pagination,
     ) {

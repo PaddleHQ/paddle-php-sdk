@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 
 class Original
 {
-    public function __construct(
+    private function __construct(
         public string $amount,
         public CurrencyCodeAdjustments $currencyCode,
     ) {

@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CollectionMode Automatic()
  * @method static CollectionMode Manual()
  */
-class CollectionMode extends PaddleEnum
+final class CollectionMode extends PaddleEnum
 {
     private const Automatic = 'automatic';
     private const Manual = 'manual';

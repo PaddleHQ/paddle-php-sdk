@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Shared;
 
 class Checkout
 {
-    public function __construct(
+    private function __construct(
         public string|null $url,
     ) {
     }

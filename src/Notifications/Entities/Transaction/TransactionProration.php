@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Transaction;
 
 class TransactionProration
 {
-    public function __construct(
+    private function __construct(
         public string $rate,
         public TransactionTimePeriod|null $billingPeriod,
     ) {

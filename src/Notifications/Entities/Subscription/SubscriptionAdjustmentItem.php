@@ -17,7 +17,7 @@ use Paddle\SDK\Notifications\Entities\Shared\AdjustmentType;
 
 class SubscriptionAdjustmentItem
 {
-    public function __construct(
+    private function __construct(
         public string $itemId,
         public AdjustmentType $type,
         public string|null $amount,

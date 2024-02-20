@@ -20,7 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SubscriptionProrationBillingMode FullNextBillingPeriod()
  * @method static SubscriptionProrationBillingMode DoNotBill()
  */
-class SubscriptionProrationBillingMode extends PaddleEnum
+final class SubscriptionProrationBillingMode extends PaddleEnum
 {
     private const ProratedImmediately = 'prorated_immediately';
     private const ProratedNextBillingPeriod = 'prorated_next_billing_period';

@@ -23,7 +23,7 @@ class SubscriptionDetails
      * @param array<TaxRatesUsed>                    $taxRatesUsed
      * @param array<SubscriptionTransactionLineItem> $lineItems
      */
-    public function __construct(
+    private function __construct(
         public array $taxRatesUsed,
         public TransactionTotals $totals,
         public TransactionTotalsAdjusted $adjustedTotals,

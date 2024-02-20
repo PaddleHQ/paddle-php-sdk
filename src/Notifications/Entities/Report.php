@@ -18,11 +18,9 @@ use Paddle\SDK\Notifications\Entities\Report\ReportType;
 class Report implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<ReportFilter> $filters
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public ReportStatus $status,
         public int|null $rows,

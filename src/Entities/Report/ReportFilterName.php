@@ -21,7 +21,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportFilterName Status()
  * @method static ReportFilterName UpdatedAt()
  */
-class ReportFilterName extends PaddleEnum
+final class ReportFilterName extends PaddleEnum
 {
     private const Action = 'action';
     private const CollectionMode = 'collection_mode';

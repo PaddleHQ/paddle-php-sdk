@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\Discount;
 
 class PricePreviewDiscounts
 {
-    public function __construct(
+    private function __construct(
         public Discount $discount,
         public string $total,
         public string $formattedTotal,

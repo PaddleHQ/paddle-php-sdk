@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static DiscountStatus Expired()
  * @method static DiscountStatus Used()
  */
-class DiscountStatus extends PaddleEnum
+final class DiscountStatus extends PaddleEnum
 {
     private const Active = 'active';
     private const Archived = 'archived';

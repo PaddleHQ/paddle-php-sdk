@@ -20,12 +20,10 @@ use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPrice;
 class TransactionPreview implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<TransactionItemPreviewWithPrice> $items
      * @param array<AvailablePaymentMethods>         $availablePaymentMethods
      */
-    protected function __construct(
+    private function __construct(
         public string|null $customerId,
         public string|null $addressId,
         public string|null $businessId,

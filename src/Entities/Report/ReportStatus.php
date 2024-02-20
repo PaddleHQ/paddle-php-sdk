@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportStatus Failed()
  * @method static ReportStatus Expired()
  */
-class ReportStatus extends PaddleEnum
+final class ReportStatus extends PaddleEnum
 {
     private const Pending = 'pending';
     private const Ready = 'ready';

@@ -15,10 +15,7 @@ use Paddle\SDK\Entities\Event\EventTypeName;
 
 class EventType implements Entity
 {
-    /**
-     * @internal
-     */
-    protected function __construct(
+    private function __construct(
         public EventTypeName $name,
         public string $description,
         public string $group,

@@ -16,7 +16,7 @@ class PricePreviewDetails
     /**
      * @param array<PricePreviewLineItem> $lineItems
      */
-    public function __construct(
+    private function __construct(
         public array $lineItems,
     ) {
     }

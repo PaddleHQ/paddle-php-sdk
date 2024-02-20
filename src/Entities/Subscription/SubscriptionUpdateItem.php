@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Subscription;
 
 class SubscriptionUpdateItem
 {
-    public function __construct(
+    private function __construct(
         public string $priceId,
         public int $quantity,
     ) {

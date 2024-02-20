@@ -13,7 +13,7 @@ namespace Paddle\SDK\Entities\Subscription;
 
 class SubscriptionManagementUrls
 {
-    public function __construct(
+    private function __construct(
         public string|null $updatePaymentMethod,
         public string $cancel,
     ) {

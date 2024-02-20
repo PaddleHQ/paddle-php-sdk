@@ -24,11 +24,9 @@ use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 class Price implements Entity
 {
     /**
-     * @internal
-     *
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public string $productId,
         public string|null $name,

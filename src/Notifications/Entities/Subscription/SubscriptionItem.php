@@ -15,7 +15,7 @@ use Paddle\SDK\Notifications\Entities\DateTime;
 
 class SubscriptionItem
 {
-    public function __construct(
+    private function __construct(
         public SubscriptionItemStatus $status,
         public int $quantity,
         public bool $recurring,

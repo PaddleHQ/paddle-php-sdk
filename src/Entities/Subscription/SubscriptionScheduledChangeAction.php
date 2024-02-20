@@ -18,7 +18,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SubscriptionScheduledChangeAction Pause()
  * @method static SubscriptionScheduledChangeAction Resume()
  */
-class SubscriptionScheduledChangeAction extends PaddleEnum
+final class SubscriptionScheduledChangeAction extends PaddleEnum
 {
     private const Cancel = 'cancel';
     private const Pause = 'pause';

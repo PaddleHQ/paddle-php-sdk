@@ -56,7 +56,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static EventTypeName ReportCreated()
  * @method static EventTypeName ReportUpdated()
  */
-class EventTypeName extends PaddleEnum
+final class EventTypeName extends PaddleEnum
 {
     private const AddressCreated = 'address.created';
     private const AddressImported = 'address.imported';

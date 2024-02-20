@@ -19,7 +19,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static AdjustmentType Tax()
  * @method static AdjustmentType Proration()
  */
-class AdjustmentType extends PaddleEnum
+final class AdjustmentType extends PaddleEnum
 {
     private const Full = 'full';
     private const Partial = 'partial';

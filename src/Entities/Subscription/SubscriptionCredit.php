@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 
 class SubscriptionCredit
 {
-    public function __construct(
+    private function __construct(
         public string $amount,
         public CurrencyCode $currencyCode,
     ) {

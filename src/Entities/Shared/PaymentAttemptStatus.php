@@ -25,7 +25,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static PaymentAttemptStatus Unknown()
  * @method static PaymentAttemptStatus Dropped()
  */
-class PaymentAttemptStatus extends PaddleEnum
+final class PaymentAttemptStatus extends PaddleEnum
 {
     private const Authorized = 'authorized';
     private const AuthorizedFlagged = 'authorized_flagged';

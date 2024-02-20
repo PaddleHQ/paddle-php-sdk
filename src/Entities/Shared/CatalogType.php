@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CatalogType Standard()
  * @method static CatalogType Custom()
  */
-class CatalogType extends PaddleEnum
+final class CatalogType extends PaddleEnum
 {
     private const Standard = 'standard';
     private const Custom = 'custom';

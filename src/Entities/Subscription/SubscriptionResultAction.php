@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SubscriptionResultAction Credit()
  * @method static SubscriptionResultAction Charge()
  */
-class SubscriptionResultAction extends PaddleEnum
+final class SubscriptionResultAction extends PaddleEnum
 {
     private const Credit = 'credit';
     private const Charge = 'charge';

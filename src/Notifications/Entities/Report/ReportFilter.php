@@ -13,7 +13,7 @@ namespace Paddle\SDK\Notifications\Entities\Report;
 
 class ReportFilter
 {
-    public function __construct(
+    private function __construct(
         public ReportFilterName $name,
         public ReportFilterOperator|null $operator,
         public array|string $value,

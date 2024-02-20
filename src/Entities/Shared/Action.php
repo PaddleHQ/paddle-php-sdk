@@ -21,7 +21,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static Action ChargebackReverse()
  * @method static Action ChargebackWarning()
  */
-class Action extends PaddleEnum
+final class Action extends PaddleEnum
 {
     private const Credit = 'credit';
     private const CreditReverse = 'credit_reverse';

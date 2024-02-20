@@ -22,7 +22,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static TransactionStatus Canceled()
  * @method static TransactionStatus PastDue()
  */
-class TransactionStatus extends PaddleEnum
+final class TransactionStatus extends PaddleEnum
 {
     private const Draft = 'draft';
     private const Ready = 'ready';

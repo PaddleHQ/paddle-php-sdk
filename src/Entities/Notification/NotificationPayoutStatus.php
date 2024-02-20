@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static NotificationPayoutStatus Unpaid()
  * @method static NotificationPayoutStatus Paid()
  */
-class NotificationPayoutStatus extends PaddleEnum
+final class NotificationPayoutStatus extends PaddleEnum
 {
     private const Unpaid = 'unpaid';
     private const Paid = 'paid';

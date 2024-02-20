@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportFilterOperator Lt()
  * @method static ReportFilterOperator Gte()
  */
-class ReportFilterOperator extends PaddleEnum
+final class ReportFilterOperator extends PaddleEnum
 {
     private const Lt = 'lt';
     private const Gte = 'gte';

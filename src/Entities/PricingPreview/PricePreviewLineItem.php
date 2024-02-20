@@ -21,7 +21,7 @@ class PricePreviewLineItem
     /**
      * @param PricePreviewDiscounts[] $discounts
      */
-    public function __construct(
+    private function __construct(
         public Price $price,
         public int $quantity,
         public string $taxRate,

@@ -22,7 +22,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static AvailablePaymentMethods Ideal()
  * @method static AvailablePaymentMethods Paypal()
  */
-class AvailablePaymentMethods extends PaddleEnum
+final class AvailablePaymentMethods extends PaddleEnum
 {
     private const Alipay = 'alipay';
     private const ApplePay = 'apple_pay';

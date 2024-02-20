@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static Status Active()
  * @method static Status Archived()
  */
-class Status extends PaddleEnum
+final class Status extends PaddleEnum
 {
     private const Active = 'active';
     private const Archived = 'archived';

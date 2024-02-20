@@ -19,10 +19,7 @@ use Paddle\SDK\Notifications\Entities\Shared\TaxCategory;
 
 class Product implements Entity
 {
-    /**
-     * @internal
-     */
-    protected function __construct(
+    private function __construct(
         public string $id,
         public string|null $name,
         public string|null $description,

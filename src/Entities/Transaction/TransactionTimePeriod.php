@@ -15,7 +15,7 @@ use Paddle\SDK\Entities\DateTime;
 
 class TransactionTimePeriod
 {
-    public function __construct(
+    private function __construct(
         public \DateTimeInterface $startsAt,
         public \DateTimeInterface $endsAt,
     ) {

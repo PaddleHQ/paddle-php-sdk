@@ -17,7 +17,7 @@ use Paddle\SDK\Notifications\Entities\Shared\UnitTotals;
 
 class TransactionLineItem
 {
-    public function __construct(
+    private function __construct(
         public string $id,
         public string $priceId,
         public int $quantity,

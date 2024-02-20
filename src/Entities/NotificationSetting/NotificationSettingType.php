@@ -17,7 +17,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static NotificationSettingType Email()
  * @method static NotificationSettingType Url()
  */
-class NotificationSettingType extends PaddleEnum
+final class NotificationSettingType extends PaddleEnum
 {
     private const Email = 'email';
     private const Url = 'url';

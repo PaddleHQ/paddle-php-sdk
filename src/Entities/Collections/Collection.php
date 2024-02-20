@@ -10,7 +10,7 @@ abstract class Collection implements \Iterator
 {
     private int $pointer = 0;
 
-    public function __construct(
+    protected function __construct(
         protected array $items,
         protected Paginator|null $paginator = null,
     ) {
