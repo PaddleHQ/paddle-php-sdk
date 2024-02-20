@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.0.0] - 2024-02-20
+
+### Changed
+
+- Migrated away from native enums to reduce the risk of breaking changes
+- Made entities consistent with `array<Entity>` usage where Collections were used instead
+- Notification classes are split from main API classes to allow for long term backwards compatability
+- Subscription item `price` re-uses the `Price` entity
+- Dropped `@internal` on most entities to prevent IDE warnings, utilising private constructors instead
+- Events now utilise their type specific classes
+
+### Added
+
+- Update resume subscription `effective_from` field to accept RFC 3339 datetime or `immediately`
+- Subscription notifications support newly added price object fields
+
 ## [0.3.0] - 2024-02-13
 
 ### Added

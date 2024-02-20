@@ -31,12 +31,6 @@ To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-ba
 require_once 'vendor/autoload.php';
 ```
 
-## Before you begin
-
-If you've used this SDK, we'd love to hear how you found it! Email us at [team-dx@paddle.com](mailto:team-dx@paddle.com) with any thoughts.
-
-While in early access, we may introduce breaking changes. Where we can, we'll tag breaking changes and communicate ahead of time.
-
 ## Usage
 
 To authenticate, you'll need an API key. You can create and manage API keys in **Paddle > Developer tools > Authentication**.

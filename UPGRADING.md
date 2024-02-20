@@ -2,6 +2,41 @@
 
 All breaking changes prior to v1 will be documented in this file to assist with upgrading. 
 
+## v1.0.0
+
+Upgrading to this version introduces 4 changes that may require action
+
+1. Migrated away from native enums to reduce the risk of breaking changes
+
+If your implementation utilises any of the Enums defined in the Paddle SDK you will have to update their usage. 
+
+For example: 
+    `Status::Active` => `Status::Active()`
+    `$status === Status::Active` => `$status->equals(Status::Active())`
+
+2. Made entities consistent with `array<Entity>` usage where Collections were used instead
+
+There was some inconsistent typing for Entities that had properties consisting of a collection of another Entity. These fields 
+shouldn't impact usage of those properties but if you relied on any of the following types you will face breakages.
+
+ - `\Paddle\SDK\Entities\NotificationSetting` field `subscribedEvents` was `EventTypeCollection` and is now `array<EventType>`
+ - `\Paddle\SDK\Entities\Product` field `prices` was `PriceCollection` and is now `array<Price>`
+
+3. Subscription item `price` re-uses the `Price` entity
+
+The `\Paddle\SDK\Entities\Subscription\SubscriptionItem` `price` field type has changed to the main entity `\Paddle\SDK\Entities\Price`. 
+
+Any previous type hints for `\Paddle\SDK\Entities\Subscription\SubscriptionPrice` should be updated accordingly.
+
+4. Dropped `@internal` on most entities to prevent IDE warnings, utilising private constructors instead
+
+In the last major update we made change we introduced `@internal` doc blocks for entities which were hydrated from API responses.
+
+We noticed these started to highlight properties using constructor property promotion being highlighted as internal which wasn't the intention.
+
+We've dropped the `@internal` doc block and been stricter with private constructors. If you had relied on instantiating these entities directly 
+you may face breakages. This was not intentionally part of the public API for the package and thus has been restricted moving forward. 
+
 ## v0.3.0
 
 This version introduces several breaking changes. 
@@ -55,7 +90,7 @@ Any typing of the following classes should be updated accordingly:
 
 The type has changed when creating an Adjustment using the `CreateAdjustment` operation. To create an Adjustment you must now use the `\Paddle\SDK\Resources\Adjustments\Operations\Create\AdjustmentItem` instance for `items`.
 
-- Core entities (classes implementing `Entity`) are marked @internal and constructors are `protected`
+- Core entities (classes implementing `Entity`) are marked `@internal` and constructors are `protected`
 
 Any direct usage of these classes is not supported functionality by the SDK and has been removed to reduce the surface area for breaking changes.
 
