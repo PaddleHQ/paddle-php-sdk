@@ -34,7 +34,9 @@
                             "maximum": 999
                         },
                         "status": "active",
-                        "custom_data": null
+                        "custom_data": null,
+                        "created_at": "2023-08-16T14:38:08.3Z",
+                        "updated_at": "2023-08-16T14:38:08.3Z"
                     },
                     "quantity": 20,
                     "tax_rate": "0",
@@ -69,7 +71,9 @@
                         "tax_category": "standard",
                         "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
                         "status": "active",
-                        "custom_data": null
+                        "custom_data": null,
+                        "created_at": "2023-08-16T14:38:08.3Z",
+                        "updated_at": "2023-08-16T14:38:08.3Z"
                     },
                     "discounts": [
                         {
@@ -123,7 +127,9 @@
                             "maximum": 1
                         },
                         "status": "active",
-                        "custom_data": null
+                        "custom_data": null,
+                        "created_at": "2023-08-16T14:38:08.3Z",
+                        "updated_at": "2023-08-16T14:38:08.3Z"
                     },
                     "quantity": 1,
                     "tax_rate": "0",
@@ -158,7 +164,9 @@
                         "tax_category": "standard",
                         "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
                         "status": "active",
-                        "custom_data": null
+                        "custom_data": null,
+                        "created_at": "2023-08-16T14:38:08.3Z",
+                        "updated_at": "2023-08-16T14:38:08.3Z"
                     },
                     "discounts": [
                         {

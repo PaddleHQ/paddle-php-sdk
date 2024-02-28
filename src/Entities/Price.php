@@ -42,6 +42,8 @@ class Price implements Entity
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
         public Product|null $product,
+        public \DateTimeInterface $createdAt,
+        public \DateTimeInterface $updatedAt,
     ) {
     }
 
@@ -66,6 +68,8 @@ class Price implements Entity
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
             product: isset($data['product']) ? Product::from($data['product']) : null,
+            createdAt: DateTime::from($data['created_at']),
+            updatedAt: DateTime::from($data['updated_at']),
         );
     }
 }
