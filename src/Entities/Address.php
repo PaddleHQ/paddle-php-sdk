@@ -20,6 +20,7 @@ class Address implements Entity
 {
     private function __construct(
         public string $id,
+        public string $customerId,
         public string|null $description,
         public string|null $firstLine,
         public string|null $secondLine,
@@ -39,6 +40,7 @@ class Address implements Entity
     {
         return new self(
             id: $data['id'],
+            customerId: $data['customer_id'],
             description: $data['description'] ?? null,
             firstLine: $data['first_line'] ?? null,
             secondLine: $data['second_line'] ?? null,
