@@ -24,6 +24,7 @@ class Business implements Entity
     private function __construct(
         public string $id,
         public string $name,
+        public string $customerId,
         public string|null $companyNumber,
         public string|null $taxIdentifier,
         public Status $status,
@@ -40,6 +41,7 @@ class Business implements Entity
         return new self(
             id: $data['id'],
             name: $data['name'],
+            customerId: $data['customer_id'],
             companyNumber: $data['company_number'] ?? null,
             taxIdentifier: $data['tax_identifier'] ?? null,
             status: Status::from($data['status']),
