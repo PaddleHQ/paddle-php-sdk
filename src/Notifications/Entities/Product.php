@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Entities;
 
+use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Notifications\Entities\Shared\CatalogType;
 use Paddle\SDK\Notifications\Entities\Shared\CustomData;
 use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
@@ -28,8 +29,9 @@ class Product implements Entity
         public string|null $imageUrl,
         public CustomData|null $customData,
         public Status $status,
-        public \DateTimeInterface|null $createdAt,
         public ImportMeta|null $importMeta,
+        public \DateTimeInterface|null $createdAt,
+        public \DateTimeInterface|null $updatedAt,
     ) {
     }
 
@@ -44,8 +46,9 @@ class Product implements Entity
             imageUrl: $data['image_url'] ?? null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             status: Status::from($data['status']),
-            createdAt: isset($data['created_at']) ? DateTime::from($data['created_at']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            createdAt: isset($data['created_at']) ? DateTime::from($data['created_at']) : null,
+            updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
         );
     }
 }

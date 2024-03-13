@@ -56,8 +56,11 @@
         "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
       },
       "status": "active",
-      "created_at": "2023-02-23T12:43:46.605Z"
-    }
+      "created_at": "2023-08-16T14:38:08.3Z",
+      "updated_at": "2023-08-16T14:38:08.3Z"
+    },
+    "created_at": "2023-08-16T14:38:08.3Z",
+    "updated_at": "2023-08-16T14:38:08.3Z"
   },
   "meta": {
     "request_id": "aad79720-fb1b-4cf5-a770-15505251eb9e"

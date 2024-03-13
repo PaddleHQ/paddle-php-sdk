@@ -31,9 +31,10 @@ class Product implements Entity
         public string|null $imageUrl,
         public CustomData|null $customData,
         public Status $status,
-        public \DateTimeInterface|null $createdAt,
         public ImportMeta|null $importMeta,
         public array $prices,
+        public \DateTimeInterface $createdAt,
+        public \DateTimeInterface $updatedAt,
     ) {
     }
 
@@ -48,9 +49,10 @@ class Product implements Entity
             imageUrl: $data['image_url'] ?? null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             status: Status::from($data['status']),
-            createdAt: isset($data['created_at']) ? DateTime::from($data['created_at']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
             prices: array_map(fn (array $price): Price => Price::from($price), $data['prices'] ?? []),
+            createdAt: DateTime::from($data['created_at']),
+            updatedAt: DateTime::from($data['updated_at']),
         );
     }
 }

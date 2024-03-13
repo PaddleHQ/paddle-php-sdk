@@ -79,7 +79,9 @@
               "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
             },
             "status": "active",
-            "import_meta": null
+            "import_meta": null,
+            "created_at": "2023-08-16T14:38:08.3Z",
+            "updated_at": "2023-08-16T14:38:08.3Z"
           },
           "tax_rate": "0.08875",
           "unit_totals": {
@@ -115,7 +117,9 @@
             "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
             "custom_data": null,
             "status": "active",
-            "import_meta": null
+            "import_meta": null,
+            "created_at": "2023-08-16T14:38:08.3Z",
+            "updated_at": "2023-08-16T14:38:08.3Z"
           },
           "tax_rate": "0.08875",
           "unit_totals": {
@@ -196,7 +200,9 @@
                 "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
               },
               "status": "active",
-              "import_meta": null
+              "import_meta": null,
+              "created_at": "2023-08-16T14:38:08.3Z",
+              "updated_at": "2023-08-16T14:38:08.3Z"
             },
             "tax_rate": "0.08875",
             "unit_totals": {
@@ -232,7 +238,9 @@
               "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
               "custom_data": null,
               "status": "active",
-              "import_meta": null
+              "import_meta": null,
+              "created_at": "2023-08-16T14:38:08.3Z",
+              "updated_at": "2023-08-16T14:38:08.3Z"
             },
             "tax_rate": "0.08875",
             "unit_totals": {
@@ -315,7 +323,9 @@
                 "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
               },
               "status": "active",
-              "import_meta": null
+              "import_meta": null,
+              "created_at": "2023-08-16T14:38:08.3Z",
+              "updated_at": "2023-08-16T14:38:08.3Z"
             },
             "tax_rate": "0.08875",
             "unit_totals": {
@@ -351,7 +361,9 @@
               "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/SW3OevDQ92dUHSkN5a2x_icon3.png",
               "custom_data": null,
               "status": "active",
-              "import_meta": null
+              "import_meta": null,
+              "created_at": "2023-08-16T14:38:08.3Z",
+              "updated_at": "2023-08-16T14:38:08.3Z"
             },
             "tax_rate": "0.08875",
             "unit_totals": {
