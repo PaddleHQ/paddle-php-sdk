@@ -32,6 +32,7 @@ class Business implements Entity
         public \DateTimeInterface $updatedAt,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
+        public string|null $customerId,
     ) {
     }
 
@@ -48,6 +49,7 @@ class Business implements Entity
             updatedAt: DateTime::from($data['updated_at']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            customerId: $data['customer_id'] ?? null,
         );
     }
 }

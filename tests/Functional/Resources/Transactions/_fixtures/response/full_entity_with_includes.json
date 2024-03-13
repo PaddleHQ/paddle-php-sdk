@@ -176,6 +176,7 @@
     },
     "business": {
       "id": "biz_01hen2ng2290g84twtefdn5s00",
+      "customer_id": "ctm_01he849dseyj0zgrc589eeb1c7",
       "name": "Michael's Bizniz",
       "company_number": "",
       "tax_identifier": "",
@@ -187,6 +188,7 @@
     },
     "address": {
       "id": "add_01hen28ebw1ew99y295jhd4n3n",
+      "customer_id": "ctm_01he849dseyj0zgrc589eeb1c7",
       "description": "",
       "first_line": "1 Manual Collection Drive",
       "second_line": "",

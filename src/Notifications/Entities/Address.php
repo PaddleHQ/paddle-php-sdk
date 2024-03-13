@@ -32,6 +32,7 @@ class Address implements Entity
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
         public ImportMeta|null $importMeta,
+        public string|null $customerId,
     ) {
     }
 
@@ -51,6 +52,7 @@ class Address implements Entity
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            customerId: $data['customer_id'] ?? null,
         );
     }
 }
