@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.0.1] - 2024-03-13
+
+### Added
+
+- `Address` and `Business` entities now include `customer_id` property, see [related changelog](https://developer.paddle.com/changelog/2024/address-business-webhooks-customer-id?utm_source=dx&utm_medium=paddle-php-sdk).
+-  Two new report types `product_prices` and `discounts`, see [related changelog](https://developer.paddle.com/changelog/2024/product-prices-discounts-reports?utm_source=dx&utm_medium=paddle-php-sdk).
+- `Product` and `Prices` entities now support `created_at` and `updated_at` properties
+
 ## [1.0.0] - 2024-02-20
 
 ### Changed
