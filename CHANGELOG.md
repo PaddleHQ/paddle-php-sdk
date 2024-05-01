@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.1.0] - 2024-04-30
+
+### Added
+
+- New error code for payments `declined_not_retryable`, see [related changelog](https://developer.paddle.com/changelog/2024/declined-not-retryable-error-code?utm_source=dx&utm_medium=paddle-php-sdk).
+
 ## [1.0.1] - 2024-03-13
 
 ### Added

@@ -20,6 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ErrorCode BlockedCard()
  * @method static ErrorCode Canceled()
  * @method static ErrorCode Declined()
+ * @method static ErrorCode DeclinedNotRetryable()
  * @method static ErrorCode ExpiredCard()
  * @method static ErrorCode Fraud()
  * @method static ErrorCode InvalidAmount()
@@ -40,6 +41,7 @@ final class ErrorCode extends PaddleEnum
     private const BlockedCard = 'blocked_card';
     private const Canceled = 'canceled';
     private const Declined = 'declined';
+    private const DeclinedNotRetryable = 'declined_not_retryable';
     private const ExpiredCard = 'expired_card';
     private const Fraud = 'fraud';
     private const InvalidAmount = 'invalid_amount';
