@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+use Paddle\SDK\Entities\Discount\DiscountStatus;
+use Paddle\SDK\Entities\Discount\DiscountType;
+use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\ImportMeta;
-use Paddle\SDK\Entities\Shared\CurrencyCode;
-use Paddle\SDK\Entities\Discount\DiscountType;
-use Paddle\SDK\Entities\Discount\DiscountStatus;
 
 class Discount implements Entity
 {
