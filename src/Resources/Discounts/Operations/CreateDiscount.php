@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Discounts\Operations;
 
-use Paddle\SDK\Undefined;
-use Paddle\SDK\FiltersUndefined;
-use Paddle\SDK\Entities\Shared\CustomData;
-use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Discount\DiscountType;
+use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Undefined;
 
 class CreateDiscount implements \JsonSerializable
 {
