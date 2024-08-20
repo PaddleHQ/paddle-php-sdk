@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Discounts\Operations;
 
-use Paddle\SDK\Entities\Discount\DiscountStatus;
-use Paddle\SDK\Entities\Discount\DiscountType;
-use Paddle\SDK\Entities\Shared\CurrencyCode;
-use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
+use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Discount\DiscountType;
+use Paddle\SDK\Entities\Discount\DiscountStatus;
 
 class UpdateDiscount implements \JsonSerializable
 {
@@ -30,6 +31,7 @@ class UpdateDiscount implements \JsonSerializable
         public readonly array|Undefined|null $restrictTo = new Undefined(),
         public readonly string|Undefined|null $expiresAt = new Undefined(),
         public readonly DiscountStatus|Undefined $status = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
     ) {
     }
 
@@ -48,6 +50,7 @@ class UpdateDiscount implements \JsonSerializable
             'restrict_to' => $this->restrictTo,
             'expires_at' => $this->expiresAt,
             'status' => $this->status,
+            'custom_data' => $this->customData,
         ]);
     }
 }
