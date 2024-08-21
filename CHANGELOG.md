@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.1.1] - 2024-08-21
+
+### Fixed
+
+- Fixed `CreateDiscount` and `UpdateDiscount` to support custom data
+
 ## [1.1.0] - 2024-04-30
 
 ### Added
