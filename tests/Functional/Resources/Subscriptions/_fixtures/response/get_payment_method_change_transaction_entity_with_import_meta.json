@@ -1,0 +1,180 @@
+{
+    "data": {
+        "id": "txn_01h8by3n3w1zn9fsq9c93afsq3",
+        "status": "ready",
+        "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+        "address_id": "add_01h848pep46enq8y372x7maj0p",
+        "business_id": null,
+        "custom_data": null,
+        "origin": "subscription_payment_method_change",
+        "collection_mode": "automatic",
+        "subscription_id": "sub_01h8bxswamxysj44zt5n48njwh",
+        "invoice_id": null,
+        "invoice_number": null,
+        "discount_id": null,
+        "billing_details": null,
+        "billing_period": {
+            "starts_at": "2023-08-21T11:31:08.689295Z",
+            "ends_at": "2023-08-21T11:31:08.689295Z"
+        },
+        "currency_code": "USD",
+        "created_at": "2023-08-21T11:36:30.96803057Z",
+        "updated_at": "2023-08-21T11:36:30.96803057Z",
+        "billed_at": null,
+        "items": [
+            {
+                "price": {
+                    "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                    "description": "Monthly (per seat)",
+                    "name": "Monthly (per seat)",
+                    "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                    "billing_cycle": {
+                        "interval": "month",
+                        "frequency": 1
+                    },
+                    "trial_period": null,
+                    "tax_mode": "account_setting",
+                    "unit_price": {
+                        "amount": "3000",
+                        "currency_code": "USD"
+                    },
+                    "unit_price_overrides": [
+                        {
+                            "country_codes": ["AU"],
+                            "unit_price": {
+                                "amount": "5000",
+                                "currency_code": "AUD"
+                            }
+                        }
+                    ],
+                    "quantity": {
+                        "minimum": 10,
+                        "maximum": 999
+                    },
+                    "status": "active",
+                    "created_at": "2023-08-16T14:38:08.3Z",
+                    "updated_at": "2023-08-16T14:38:08.3Z"
+                },
+                "quantity": 30,
+                "proration": {
+                    "rate": "0",
+                    "billing_period": {
+                        "starts_at": "2023-08-21T11:31:08.689295Z",
+                        "ends_at": "2023-09-21T11:31:08.689295Z"
+                    }
+                }
+            }
+        ],
+        "details": {
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0.08875",
+                    "totals": {
+                        "subtotal": "0",
+                        "discount": "0",
+                        "tax": "0",
+                        "total": "0"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "0",
+                "tax": "0",
+                "discount": "0",
+                "total": "0",
+                "fee": null,
+                "credit": "0",
+                "credit_to_balance": "0",
+                "balance": "0",
+                "grand_total": "0",
+                "earnings": null,
+                "currency_code": "USD"
+            },
+            "adjusted_totals": {
+                "subtotal": "0",
+                "tax": "0",
+                "total": "0",
+                "grand_total": "0",
+                "fee": "0",
+                "earnings": "0",
+                "currency_code": "USD"
+            },
+            "payout_totals": null,
+            "adjusted_payout_totals": null,
+            "line_items": [
+                {
+                    "id": "txnitm_01h8by3nfc02fjtbda5gta732d",
+                    "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+                    "quantity": 30,
+                    "totals": {
+                        "subtotal": "0",
+                        "tax": "0",
+                        "discount": "0",
+                        "total": "0"
+                    },
+                    "product": {
+                        "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                        "name": "ChatApp Pro",
+                        "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                        "tax_category": "standard",
+                        "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                        "status": "active",
+                        "created_at": "2023-08-16T14:38:08.3Z",
+                        "updated_at": "2023-08-16T14:38:08.3Z"
+                    },
+                    "tax_rate": "0.08875",
+                    "unit_totals": {
+                        "subtotal": "0",
+                        "discount": "0",
+                        "tax": "0",
+                        "total": "0"
+                    },
+                    "proration": {
+                        "rate": "0",
+                        "billing_period": {
+                            "starts_at": "2023-08-21T11:31:08.689295Z",
+                            "ends_at": "2023-09-21T11:31:08.689295Z"
+                        }
+                    }
+                }
+            ]
+        },
+        "payments": [],
+        "checkout": {
+            "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01h8by3n3w1zn9fsq9c93afsq3"
+        },
+        "customer": {
+            "id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+            "name": "Sam Miller",
+            "email": "sam@example.com",
+            "locale": "en",
+            "marketing_consent": false,
+            "custom_data": null,
+            "status": "active",
+            "created_at": "2023-11-15T11:15:44.673Z",
+            "updated_at": "2023-11-15T11:15:44.673Z"
+        },
+        "address": {
+            "id": "add_01h848pep46enq8y372x7maj0p",
+            "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
+            "description": "Head Office",
+            "first_line": "4050 Jefferson Plaza, 41st Floor",
+            "second_line": "",
+            "city": "New York",
+            "postal_code": "10021",
+            "region": "NY",
+            "country_code": "US",
+            "status": "active",
+            "custom_data": null,
+            "created_at": "2023-11-15T11:15:44.673Z",
+            "updated_at": "2023-11-15T11:15:44.673Z"
+        },
+        "import_meta": {
+            "external_id": "9b95b0b8-e10f-441a-862e-1936a6d818ab",
+            "imported_from": "billing_platform"
+        }
+    },
+    "meta": {
+        "request_id": "e4747324-738b-4707-ac7a-7eaabb7c7a26"
+    }
+}

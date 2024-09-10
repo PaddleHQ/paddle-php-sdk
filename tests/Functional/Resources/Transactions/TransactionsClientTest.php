@@ -382,6 +382,27 @@ class TransactionsClientTest extends TestCase
 
     /**
      * @test
+     */
+    public function list_has_import_meta(): void
+    {
+        $this->mockClient->addResponse(
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+        );
+
+        $transactionCollection = $this->client->transactions->list(new ListTransactions());
+        $transactions = array_values(iterator_to_array($transactionCollection));
+
+        $transactionWithoutImportMeta = $transactions[0];
+        self::assertNull($transactionWithoutImportMeta->importMeta);
+
+        $transactionWithImportMeta = $transactions[1];
+        self::assertNotNull($transactionWithImportMeta->importMeta);
+        self::assertSame('billing_platform', $transactionWithImportMeta->importMeta->importedFrom);
+        self::assertSame('9b95b0b8-e10f-441a-862e-1936a6d818ab', $transactionWithImportMeta->importMeta->externalId);
+    }
+
+    /**
+     * @test
      *
      * @dataProvider getRequestProvider
      *
@@ -414,6 +435,34 @@ class TransactionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
             sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r?include=customer,address,business,discount,available_payment_methods', Environment::SANDBOX->baseUrl()),
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function get_has_import_meta(): void
+    {
+        $this->mockClient->addResponse(
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_with_import_meta')),
+        );
+        $transaction = $this->client->transactions->get('txn_01hen7bxc1p8ep4yk7n5jbzk9r');
+
+        self::assertNotNull($transaction->importMeta);
+        self::assertSame('billing_platform', $transaction->importMeta->importedFrom);
+        self::assertSame('9b95b0b8-e10f-441a-862e-1936a6d818ab', $transaction->importMeta->externalId);
+    }
+
+    /**
+     * @test
+     */
+    public function get_has_no_import_meta(): void
+    {
+        $this->mockClient->addResponse(
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+        );
+        $transaction = $this->client->transactions->get('txn_01hen7bxc1p8ep4yk7n5jbzk9r');
+
+        self::assertNull($transaction->importMeta);
     }
 
     /**
