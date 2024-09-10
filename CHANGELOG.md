@@ -10,7 +10,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ### Added
 
-- Added `product` to `subscription.items[]`
+- Added `product` to `subscription.items[]`, see [related changelog](https://developer.paddle.com/changelog/2024/subscription-items-product?utm_source=dx&utm_medium=paddle-php-sdk)
 
 ## [1.1.2] - 2024-08-23
 
