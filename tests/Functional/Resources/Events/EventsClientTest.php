@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
 use Paddle\SDK\Environment;
+use Paddle\SDK\Notifications\Entities\Product;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Events\Operations\ListEvents;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -76,5 +77,29 @@ class EventsClientTest extends TestCase
                 Environment::SANDBOX->baseUrl(),
             ),
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function list_handles_subscription_events_with_and_without_products(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+        $events = $this->client->events->list(new ListEvents());
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+
+        $subscriptionEvents = array_values(
+            array_filter(
+                iterator_to_array($events),
+                fn ($event) => (string) $event->eventType === 'subscription.updated',
+            ),
+        );
+
+        $subscriptionEvent = $subscriptionEvents[0];
+        self::assertNull($subscriptionEvent->data->items[0]->product);
+        self::assertInstanceOf(Product::class, $subscriptionEvent->data->items[1]->product);
     }
 }

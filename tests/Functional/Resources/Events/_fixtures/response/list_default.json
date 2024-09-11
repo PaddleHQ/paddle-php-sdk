@@ -79,7 +79,17 @@
                         "updated_at": "2023-11-24T14:12:05.53Z",
                         "trial_dates": null,
                         "next_billed_at": "2023-12-24T14:11:11.447004Z",
-                        "previously_billed_at": "2023-11-24T14:11:11.447004Z"
+                        "previously_billed_at": "2023-11-24T14:11:11.447004Z",
+                        "product": {
+                            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "name": "ChatApp Pro",
+                            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                            "tax_category": "standard",
+                            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                            "status": "active",
+                            "created_at": "2023-08-16T14:38:08.3Z",
+                            "updated_at": "2023-08-16T14:38:08.3Z"
+                        }
                     }
                 ],
                 "custom_data": null,
@@ -2773,9 +2783,9 @@
     "meta": {
         "pagination": {
             "per_page": 10,
-            "estimated_total": 5574,
+            "estimated_total": 10,
             "next": "http://sandbox-api.paddle.com/events?per_page=10&after=evt_01hfyd0v4xppkwmjaca5xyzh5d",
-            "has_more": true
+            "has_more": false
         },
         "request_id": "acca7502-1eaf-4a9e-9635-c6ab9844c8a5"
     }
