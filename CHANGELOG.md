@@ -13,6 +13,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added `product` to `subscription.items[]`, see [related changelog](https://developer.paddle.com/changelog/2024/subscription-items-product?utm_source=dx&utm_medium=paddle-php-sdk)
 - Added `import_meta` to `transaction`
 - Support for `createdAt` and `updatedAt` on Subscription notification prices
+- Support custom prices when updating and previewing subscriptions, see [related changelog](https://developer.paddle.com/changelog/2024/add-custom-items-subscription)
 
 ## [1.1.2] - 2024-08-23
 
