@@ -15,6 +15,7 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
 use Paddle\SDK\Entities\Shared\TaxMode;
+use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 
 class SubscriptionNonCatalogPriceWithProduct
@@ -31,6 +32,8 @@ class SubscriptionNonCatalogPriceWithProduct
         public array $unitPriceOverrides,
         public PriceQuantity $quantity,
         public CustomData|null $customData,
+        public TimePeriod|null $billingCycle = null,
+        public TimePeriod|null $trialPeriod = null,
     ) {
     }
 }

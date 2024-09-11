@@ -7,11 +7,22 @@ namespace Paddle\SDK\Tests\Functional\Resources\Subscriptions;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\Interval;
+use Paddle\SDK\Entities\Shared\Money;
+use Paddle\SDK\Entities\Shared\PriceQuantity;
+use Paddle\SDK\Entities\Shared\TaxCategory;
+use Paddle\SDK\Entities\Shared\TaxMode;
+use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
+use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPrice;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPriceWithProduct;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogProduct;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
 use Paddle\SDK\Entities\Subscription\SubscriptionResumeEffectiveFrom;
@@ -105,6 +116,43 @@ class SubscriptionsClientTest extends TestCase
                 items: [
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPrice(
+                            'some description',
+                            'some name',
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            'some description',
+                            'some name',
+                            new SubscriptionNonCatalogProduct(
+                                'some name',
+                                'some description',
+                                CatalogType::Custom(),
+                                TaxCategory::DigitalGoods(),
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
                 ],
                 customData: new CustomData(['early_access' => true]),
                 prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
@@ -575,6 +623,43 @@ class SubscriptionsClientTest extends TestCase
                 items: [
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPrice(
+                            'some description',
+                            'some name',
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            'some description',
+                            'some name',
+                            new SubscriptionNonCatalogProduct(
+                                'some name',
+                                'some description',
+                                CatalogType::Custom(),
+                                TaxCategory::DigitalGoods(),
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
                 ],
                 customData: new CustomData(['early_access' => true]),
                 prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
