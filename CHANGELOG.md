@@ -15,6 +15,10 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Support for `createdAt` and `updatedAt` on Subscription notification prices
 - Support custom prices when updating and previewing subscriptions, see [related changelog](https://developer.paddle.com/changelog/2024/add-custom-items-subscription)
 
+### Fixed
+
+- `PreviewPrice` operation no longer allows empty `items`
+
 ## [1.1.2] - 2024-08-23
 
 ### Fixed

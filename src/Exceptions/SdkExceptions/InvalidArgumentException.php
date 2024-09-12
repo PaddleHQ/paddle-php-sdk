@@ -8,6 +8,11 @@ use Paddle\SDK\Exceptions\SdkException;
 
 class InvalidArgumentException extends SdkException
 {
+    public static function arrayIsEmpty(string $field): self
+    {
+        return new self(sprintf('%s cannot be empty', $field));
+    }
+
     public static function arrayContainsInvalidTypes(string $field, string $expectedType, string $given): self
     {
         return new self(sprintf(
