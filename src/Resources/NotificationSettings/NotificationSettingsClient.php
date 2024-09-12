@@ -13,10 +13,12 @@ namespace Paddle\SDK\Resources\NotificationSettings;
 
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\NotificationSettingCollection;
+use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\NotificationSetting;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\NotificationSettings\Operations\CreateNotificationSetting;
+use Paddle\SDK\Resources\NotificationSettings\Operations\ListNotificationSettings;
 use Paddle\SDK\Resources\NotificationSettings\Operations\UpdateNotificationSetting;
 use Paddle\SDK\ResponseParser;
 
@@ -31,14 +33,15 @@ class NotificationSettingsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function list(): NotificationSettingCollection
+    public function list(ListNotificationSettings $listOperation = new ListNotificationSettings()): NotificationSettingCollection
     {
         $parser = new ResponseParser(
-            $this->client->getRaw('notification-settings'),
+            $this->client->getRaw('notification-settings', $listOperation),
         );
 
         return NotificationSettingCollection::from(
             $parser->getData(),
+            new Paginator($this->client, $parser->getPagination(), NotificationSettingCollection::class),
         );
     }
 

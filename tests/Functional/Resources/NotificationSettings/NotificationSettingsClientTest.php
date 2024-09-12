@@ -12,7 +12,10 @@ use Paddle\SDK\Entities\NotificationSetting\NotificationSettingType;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\NotificationSettings\Operations\CreateNotificationSetting;
+use Paddle\SDK\Resources\NotificationSettings\Operations\ListNotificationSettings;
 use Paddle\SDK\Resources\NotificationSettings\Operations\UpdateNotificationSetting;
+use Paddle\SDK\Resources\Shared\Operations\List\OrderBy;
+use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -173,11 +176,11 @@ class NotificationSettingsClientTest extends TestCase
      * @dataProvider listOperationsProvider
      */
     public function list_hits_expected_uri(
-        ResponseInterface $response,
+        ListNotificationSettings $listOperation,
         string $expectedUri,
     ): void {
-        $this->mockClient->addResponse($response);
-        $this->client->notificationSettings->list();
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+        $this->client->notificationSettings->list($listOperation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -188,9 +191,92 @@ class NotificationSettingsClientTest extends TestCase
     public static function listOperationsProvider(): \Generator
     {
         yield 'Default' => [
-            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            new ListNotificationSettings(),
             sprintf('%s/notification-settings', Environment::SANDBOX->baseUrl()),
         ];
+
+        yield 'With active filter true' => [
+            new ListNotificationSettings(null, true),
+            sprintf('%s/notification-settings?active=true', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'With active filter false' => [
+            new ListNotificationSettings(null, false),
+            sprintf('%s/notification-settings?active=false', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'With default pagination' => [
+            new ListNotificationSettings(
+                new Pager(),
+            ),
+            sprintf('%s/notification-settings?order_by=id[asc]&per_page=50', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'With pagination after' => [
+            new ListNotificationSettings(
+                new Pager('ntfset_01gkpjp8bkm3tm53kdgkx6sms7'),
+            ),
+            sprintf(
+                '%s/notification-settings?after=ntfset_01gkpjp8bkm3tm53kdgkx6sms7&order_by=id[asc]&per_page=50',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'With pagination after, order by ID asc' => [
+            new ListNotificationSettings(
+                new Pager('ntfset_02gkpjp8bkm3tm53kdgkx6sms7', OrderBy::idAscending()),
+            ),
+            sprintf(
+                '%s/notification-settings?after=ntfset_02gkpjp8bkm3tm53kdgkx6sms7&order_by=id[asc]&per_page=50',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'With pagination after, order by ID desc' => [
+            new ListNotificationSettings(
+                new Pager('ntfset_03gkpjp8bkm3tm53kdgkx6sms7', OrderBy::idDescending()),
+            ),
+            sprintf(
+                '%s/notification-settings?after=ntfset_03gkpjp8bkm3tm53kdgkx6sms7&order_by=id[desc]&per_page=50',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'With pagination after, order by ID asc, per page' => [
+            new ListNotificationSettings(
+                new Pager('ntfset_04gkpjp8bkm3tm53kdgkx6sms7', OrderBy::idDescending(), 10),
+            ),
+            sprintf(
+                '%s/notification-settings?after=ntfset_04gkpjp8bkm3tm53kdgkx6sms7&order_by=id[desc]&per_page=10',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+    }
+
+    /** @test */
+    public function it_can_paginate(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_paginated_page_one')));
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_paginated_page_two')));
+
+        $collection = $this->client->notificationSettings->list();
+
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/notification-settings',
+            urldecode((string) $request->getUri()),
+        );
+
+        $allNotificationSettings = iterator_to_array($collection);
+        self::assertCount(2, $allNotificationSettings);
+
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/notification-settings?after=ntfset_01gkpjp8bkm3tm53kdgkx6sms7',
+            urldecode((string) $request->getUri()),
+        );
     }
 
     /**
