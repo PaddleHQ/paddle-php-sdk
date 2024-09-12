@@ -1,9 +1,9 @@
 # Paddle PHP SDK
 
 [![Build Status](https://github.com/PaddleHQ/paddle-php-sdk/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/PaddleHQ/paddle-php-sdk/actions/?query=branch%3Amain)
-[![Latest Stable Version](http://poser.pugx.org/paddlehq/paddle-php-sdk/v)](https://packagist.org/packages/paddlehq/paddle-php-sdk)
-[![Total Downloads](http://poser.pugx.org/paddlehq/paddle-php-sdk/downloads)](https://packagist.org/packages/paddlehq/paddle-php-sdk)
-[![License](http://poser.pugx.org/paddlehq/paddle-php-sdk/license)](https://packagist.org/packages/paddlehq/paddle-php-sdk)
+[![Latest Stable Version](https://poser.pugx.org/paddlehq/paddle-php-sdk/v)](https://packagist.org/packages/paddlehq/paddle-php-sdk)
+[![Total Downloads](https://poser.pugx.org/paddlehq/paddle-php-sdk/downloads)](https://packagist.org/packages/paddlehq/paddle-php-sdk)
+[![License](https://poser.pugx.org/paddlehq/paddle-php-sdk/license)](https://packagist.org/packages/paddlehq/paddle-php-sdk)
 
 [Paddle Billing](https://www.paddle.com/billing?utm_source=dx&utm_medium=paddle-php-sdk) is a complete digital product sales and subscription management platform, designed for modern software businesses. It helps you increase your revenue, retain customers, and scale your operations.
 
