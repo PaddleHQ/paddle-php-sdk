@@ -45,7 +45,12 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "status": "active"
                         },
                         "status": "active",
                         "quantity": 10,
@@ -1759,7 +1764,12 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "status": "active"
                         },
                         "status": "active",
                         "quantity": 10,
@@ -1784,7 +1794,12 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "status": "active"
                         },
                         "status": "active",
                         "quantity": 1,
