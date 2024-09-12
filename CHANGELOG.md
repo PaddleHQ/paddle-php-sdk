@@ -14,6 +14,10 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added `import_meta` to `transaction`
 - Support for `createdAt` and `updatedAt` on Subscription notification prices
 
+### Fixed
+
+- `PreviewPrice` operation no longer allows empty `items`
+
 ## [1.1.2] - 2024-08-23
 
 ### Fixed
