@@ -15,6 +15,8 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Support for `createdAt` and `updatedAt` on Subscription notification prices
 - Support custom prices when updating and previewing subscriptions, see [related changelog](https://developer.paddle.com/changelog/2024/add-custom-items-subscription)
 - `TransactionsClient::getInvoicePDF` now supports `disposition` parameter, see [related changelog](https://developer.paddle.com/changelog/2024/invoice-pdf-open-in-browser)
+- Support notification settings pagination, see [related changelog](https://developer.paddle.com/changelog/2024/notification-settings-pagination)
+- Support notification settings `active` filter
 
 ### Fixed
 
