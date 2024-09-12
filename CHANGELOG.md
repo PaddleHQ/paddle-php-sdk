@@ -13,6 +13,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added `product` to `subscription.items[]`, see [related changelog](https://developer.paddle.com/changelog/2024/subscription-items-product?utm_source=dx&utm_medium=paddle-php-sdk)
 - Added `import_meta` to `transaction`
 - Support for `createdAt` and `updatedAt` on Subscription notification prices
+- `TransactionsClient::getInvoicePDF` now supports `disposition` parameter, see [related changelog](https://developer.paddle.com/changelog/2024/invoice-pdf-open-in-browser)
 
 ## [1.1.2] - 2024-08-23
 
