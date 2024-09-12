@@ -14,6 +14,7 @@ namespace Paddle\SDK\Resources\Transactions;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\Collections\TransactionCollection;
+use Paddle\SDK\Entities\Shared\Disposition;
 use Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Entities\TransactionData;
 use Paddle\SDK\Entities\TransactionPreview;
@@ -128,10 +129,12 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function getInvoicePDF(string $id): TransactionData
+    public function getInvoicePDF(string $id, Disposition|null $disposition = null): TransactionData
     {
+        $params = $disposition === null ? [] : ['disposition' => $disposition->getValue()];
+
         $parser = new ResponseParser(
-            $this->client->getRaw("/transactions/{$id}/invoice"),
+            $this->client->getRaw("/transactions/{$id}/invoice", $params),
         );
 
         return TransactionData::from($parser->getData());
