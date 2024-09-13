@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Entities\Subscription;
 
+use Paddle\SDK\Notifications\Entities\DateTime;
 use Paddle\SDK\Notifications\Entities\Shared\CatalogType;
 use Paddle\SDK\Notifications\Entities\Shared\CustomData;
 use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
@@ -41,6 +42,8 @@ class SubscriptionPrice
         public Status|null $status,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
+        public \DateTimeInterface|null $createdAt,
+        public \DateTimeInterface|null $updatedAt,
     ) {
     }
 
@@ -64,6 +67,8 @@ class SubscriptionPrice
             status: isset($data['status']) ? Status::from($data['status']) : null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            createdAt: isset($data['created_at']) ? DateTime::from($data['created_at']) : null,
+            updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
         );
     }
 }
