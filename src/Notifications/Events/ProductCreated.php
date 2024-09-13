@@ -15,9 +15,9 @@ final class ProductCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Product $data,
+        public readonly Product $product,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $product);
     }
 
     /**

@@ -15,9 +15,9 @@ final class ReportUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Report $data,
+        public readonly Report $report,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $report);
     }
 
     /**

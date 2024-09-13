@@ -15,9 +15,9 @@ final class PayoutPaid extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Payout $data,
+        public readonly Payout $payout,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $payout);
     }
 
     /**

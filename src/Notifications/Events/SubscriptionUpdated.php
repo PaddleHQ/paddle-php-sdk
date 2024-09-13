@@ -15,9 +15,9 @@ final class SubscriptionUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Subscription $data,
+        public readonly Subscription $subscription,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $subscription);
     }
 
     /**

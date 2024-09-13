@@ -9,14 +9,11 @@ use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
 
 abstract class Event implements Entity
 {
-    /**
-     * @internal
-     */
     protected function __construct(
-        public string $eventId,
-        public EventTypeName $eventType,
-        public \DateTimeInterface $occurredAt,
-        public NotificationEntity $data,
+        public readonly string $eventId,
+        public readonly EventTypeName $eventType,
+        public readonly \DateTimeInterface $occurredAt,
+        public readonly NotificationEntity $data,
     ) {
     }
 

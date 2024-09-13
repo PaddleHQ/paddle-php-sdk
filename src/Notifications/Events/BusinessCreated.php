@@ -15,9 +15,9 @@ final class BusinessCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Business $data,
+        public readonly Business $business,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $business);
     }
 
     /**

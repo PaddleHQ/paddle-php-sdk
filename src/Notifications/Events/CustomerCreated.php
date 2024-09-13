@@ -15,9 +15,9 @@ final class CustomerCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Customer $data,
+        public readonly Customer $customer,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $customer);
     }
 
     /**

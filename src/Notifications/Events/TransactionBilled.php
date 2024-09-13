@@ -15,9 +15,9 @@ final class TransactionBilled extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Transaction $data,
+        public readonly Transaction $transaction,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $transaction);
     }
 
     /**

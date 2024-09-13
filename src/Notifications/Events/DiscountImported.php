@@ -15,9 +15,9 @@ final class DiscountImported extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Discount $data,
+        public readonly Discount $discount,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $discount);
     }
 
     /**

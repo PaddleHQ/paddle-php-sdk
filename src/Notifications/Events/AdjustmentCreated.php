@@ -15,9 +15,9 @@ final class AdjustmentCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Adjustment $data,
+        public readonly Adjustment $adjustment,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $adjustment);
     }
 
     /**

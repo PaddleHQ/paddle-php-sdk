@@ -15,9 +15,9 @@ final class AddressCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Address $data,
+        public readonly Address $address,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $address);
     }
 
     /**
