@@ -362,7 +362,14 @@
                                 "billing_cycle": {
                                     "interval": "year",
                                     "frequency": 1
-                                }
+                                },
+                                "quantity": {
+                                    "maximum": 999,
+                                    "minimum": 1
+                                },
+                                "status": "active",
+                                "created_at": "2023-04-24T14:11:13.014124Z",
+                                "updated_at": "2023-11-24T14:12:05.528Z"
                             },
                             "status": "trialing",
                             "quantity": 1,
