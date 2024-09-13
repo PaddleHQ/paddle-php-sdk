@@ -155,7 +155,7 @@ class EventsClientTest extends TestCase
         $price2 = $subscriptionEvent->data->items[1]->price;
         self::assertNull($price2->status);
         self::assertNull($price2->quantity);
-        self::assertNull($price2->createdAt);
-        self::assertNull($price2->updatedAt);
+        self::assertSame('2023-04-24T14:11:13.014+00:00', $price1->createdAt->format(\DATE_RFC3339_EXTENDED));
+        self::assertSame('2023-11-24T14:12:05.528+00:00', $price1->updatedAt->format(\DATE_RFC3339_EXTENDED));
     }
 }
