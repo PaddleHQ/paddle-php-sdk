@@ -10,6 +10,7 @@ use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
+use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
 use Paddle\SDK\FiltersUndefined;
@@ -21,7 +22,7 @@ class PreviewUpdateSubscription implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<SubscriptionItems> $items
+     * @param array<SubscriptionItems|SubscriptionItemsWithPrice> $items
      */
     public function __construct(
         public readonly string|Undefined $customerId = new Undefined(),

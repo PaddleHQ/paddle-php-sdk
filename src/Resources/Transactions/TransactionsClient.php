@@ -21,6 +21,7 @@ use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\GetTransactionInvoice;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
 use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
 use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
@@ -128,10 +129,10 @@ class TransactionsClient
      * @throws ApiError\TransactionApiError On a transaction specific API error
      * @throws MalformedResponse            If the API response was not parsable
      */
-    public function getInvoicePDF(string $id): TransactionData
+    public function getInvoicePDF(string $id, GetTransactionInvoice $getOperation = new GetTransactionInvoice()): TransactionData
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/transactions/{$id}/invoice"),
+            $this->client->getRaw("/transactions/{$id}/invoice", $getOperation),
         );
 
         return TransactionData::from($parser->getData());

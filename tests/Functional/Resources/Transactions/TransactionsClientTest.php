@@ -11,6 +11,7 @@ use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\Disposition;
 use Paddle\SDK\Entities\Shared\Interval;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
@@ -29,6 +30,7 @@ use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
 use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\GetTransactionInvoice;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
 use Paddle\SDK\Resources\Transactions\Operations\List\Origin;
 use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
@@ -529,11 +531,13 @@ class TransactionsClientTest extends TestCase
      * @dataProvider getInvoicePDFOperationsProvider
      */
     public function get_invoice_pdf_hits_expected_uri(
+        string $id,
+        GetTransactionInvoice $getOperation,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
         $this->mockClient->addResponse($response);
-        $this->client->transactions->getInvoicePDF('txn_01hen7bxc1p8ep4yk7n5jbzk9r');
+        $this->client->transactions->getInvoicePDF($id, $getOperation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -544,8 +548,24 @@ class TransactionsClientTest extends TestCase
     public static function getInvoicePDFOperationsProvider(): \Generator
     {
         yield 'Default' => [
+            'txn_01hen7bxc1p8ep4yk7n5jbzk9r',
+            new GetTransactionInvoice(),
             new Response(200, body: self::readRawJsonFixture('response/get_invoice_pdf_default')),
             sprintf('%s/transactions/txn_01hen7bxc1p8ep4yk7n5jbzk9r/invoice', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Disposition Inline' => [
+            'txn_02hen7bxc1p8ep4yk7n5jbzk9r',
+            new GetTransactionInvoice(Disposition::Inline()),
+            new Response(200, body: self::readRawJsonFixture('response/get_invoice_pdf_default')),
+            sprintf('%s/transactions/txn_02hen7bxc1p8ep4yk7n5jbzk9r/invoice?disposition=inline', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Disposition Attachment' => [
+            'txn_03hen7bxc1p8ep4yk7n5jbzk9r',
+            new GetTransactionInvoice(Disposition::Attachment()),
+            new Response(200, body: self::readRawJsonFixture('response/get_invoice_pdf_default')),
+            sprintf('%s/transactions/txn_03hen7bxc1p8ep4yk7n5jbzk9r/invoice?disposition=attachment', Environment::SANDBOX->baseUrl()),
         ];
     }
 }
