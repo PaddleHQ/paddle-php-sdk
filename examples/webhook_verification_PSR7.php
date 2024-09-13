@@ -24,8 +24,7 @@ $isVerified = (new Verifier())->verify($request, new Secret('WEBHOOK_SECRET_KEY'
 if ($isVerified) {
     echo "Webhook is verified\n";
 
-    $data = json_decode((string) $request->getBody(), true, JSON_THROW_ON_ERROR);
-    $notification = Notification::from($data);
+    $notification = Notification::fromRequest($request);
     $id = $notification->id;
     $event = $notification->event;
     $eventId = $event->eventId;
