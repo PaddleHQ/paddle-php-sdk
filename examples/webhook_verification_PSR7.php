@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
  */
 
 use GuzzleHttp\Psr7\ServerRequest;
-use Paddle\SDK\Notifications\Notification;
+use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Notifications\Notification\TransactionUpdatedNotification;
 use Paddle\SDK\Notifications\Secret;
 use Paddle\SDK\Notifications\Verifier;
@@ -24,8 +24,8 @@ $isVerified = (new Verifier())->verify($request, new Secret('WEBHOOK_SECRET_KEY'
 if ($isVerified) {
     echo "Webhook is verified\n";
 
-    $notification = Notification::fromRequest($request);
-    $id = $notification->id;
+    $notification = Event::notificationFromRequest($request);
+    $notification_id = $notification->getNotificationId();
     $eventId = $notification->eventId;
     $eventType = $notification->eventType;
     $occurredAt = $notification->occurredAt;

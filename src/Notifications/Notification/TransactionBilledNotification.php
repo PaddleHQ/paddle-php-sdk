@@ -4,27 +4,38 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Notification;
 
-use Paddle\SDK\Entities\Event;
+use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\Transaction;
 use Paddle\SDK\Notifications\Events\TransactionBilled;
-use Paddle\SDK\Notifications\Notification;
 
-final class TransactionBilledNotification extends Notification
+final class TransactionBilledNotification extends TransactionBilled implements NotificationInterface
 {
-    public readonly Transaction $transaction;
+    private function __construct(
+        string $eventId,
+        EventTypeName $eventType,
+        \DateTimeInterface $occurredAt,
+        Transaction $transaction,
+        public readonly string $notification_id,
+    ) {
+        parent::__construct($eventId, $eventType, $occurredAt, $transaction);
+    }
 
-    private function __construct(string $id, TransactionBilled $event)
+    public function getNotificationId(): string
     {
-        $this->transaction = $event->transaction;
-
-        parent::__construct($id, $event);
+        return $this->notification_id;
     }
 
     /**
-     * @param TransactionBilled $event
+     * @param (Transaction) $data
      */
-    protected static function fromEvent(string $id, Event $event): static
-    {
-        return new self($id, $event);
+    public static function fromNotification(
+        string $eventId,
+        EventTypeName $eventType,
+        \DateTimeInterface $occurredAt,
+        Entity $data,
+        string $notification_id,
+    ): self {
+        return new self($eventId, $eventType, $occurredAt, $data, $notification_id);
     }
 }

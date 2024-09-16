@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Tests\Unit\Notifications;
+namespace Paddle\SDK\Tests\Unit\Entities;
 
+use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Notifications\Entities\Business;
-use Paddle\SDK\Notifications\Notification;
 use Paddle\SDK\Notifications\Notification\BusinessUpdatedNotification;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 
-class NotificationTest extends TestCase
+class EventTest extends TestCase
 {
     use ReadsFixtures;
 
@@ -21,11 +21,11 @@ class NotificationTest extends TestCase
     {
         $data = self::readJsonFixture('notification_business_updated');
 
-        $notification = Notification::from($data);
-
-        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notification->id);
+        $notification = Event::notificationFrom($data);
 
         self::assertInstanceOf(BusinessUpdatedNotification::class, $notification);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notification->notification_id);
 
         self::assertSame('evt_01h8bzakzx3hm2fmen703n5q45', $notification->eventId);
         self::assertSame('2023-08-21T11:57:47.390+00:00', $notification->occurredAt->format(DATE_RFC3339_EXTENDED));
@@ -51,8 +51,10 @@ class NotificationTest extends TestCase
             ->method('getBody')
             ->willReturn($requestStream);
 
-        $notification = Notification::fromRequest($request);
+        $notification = Event::notificationFromRequest($request);
 
-        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notification->id);
+        self::assertInstanceOf(BusinessUpdatedNotification::class, $notification);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notification->notification_id);
     }
 }

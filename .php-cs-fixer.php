@@ -36,7 +36,8 @@ return $config->setRules([
     'concat_space' => [
         'spacing' => 'one',
     ],
-    'self_accessor' => true,
+    // Disable self_accessor to allow self intersection return types.
+    // 'self_accessor' => true,
     'nullable_type_declaration' => ['syntax' => 'union'],
     'ordered_types' => [
         'null_adjustment' => 'always_last',

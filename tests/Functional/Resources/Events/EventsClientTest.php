@@ -7,12 +7,14 @@ namespace Paddle\SDK\Tests\Functional\Resources\Events;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Notifications\Entities\Product;
 use Paddle\SDK\Notifications\Entities\Shared\Interval;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionPrice;
+use Paddle\SDK\Notifications\Notification\NotificationInterface;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Events\Operations\ListEvents;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -81,6 +83,22 @@ class EventsClientTest extends TestCase
                 Environment::SANDBOX->baseUrl(),
             ),
         ];
+    }
+
+    /** @test */
+    public function list_does_not_have_notification_id(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+
+        /** @var Event[] $events */
+        $events = array_values(iterator_to_array($this->client->events->list(new ListEvents())));
+
+        self::assertCount(10, $events);
+
+        foreach ($events as $event) {
+            self::assertInstanceOf(Event::class, $event);
+            self::assertNotInstanceOf(NotificationInterface::class, $event);
+        }
     }
 
     /**

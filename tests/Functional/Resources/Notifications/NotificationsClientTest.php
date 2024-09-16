@@ -7,8 +7,12 @@ namespace Paddle\SDK\Tests\Functional\Resources\Notifications;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Event;
+use Paddle\SDK\Entities\Notification;
 use Paddle\SDK\Entities\Notification\NotificationStatus;
 use Paddle\SDK\Environment;
+use Paddle\SDK\Notifications\Notification\BusinessUpdatedNotification;
+use Paddle\SDK\Notifications\Notification\NotificationInterface;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Notifications\Operations\ListNotifications;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -137,6 +141,28 @@ class NotificationsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/notifications?to=2023-12-25T00:00:00.000000Z&from=2023-12-24T00:00:00.000000Z', Environment::SANDBOX->baseUrl()),
         ];
+    }
+
+    /** @test */
+    public function list_payloads_have_notification_id(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+
+        /** @var Notification[] $notifications */
+        $notifications = array_values(iterator_to_array($this->client->notifications->list(new ListNotifications())));
+
+        self::assertCount(5, $notifications);
+
+        foreach ($notifications as $notification) {
+            self::assertInstanceOf(Event::class, $notification->payload);
+            self::assertInstanceOf(NotificationInterface::class, $notification->payload);
+            self::assertNotEmpty($notification->payload->getNotificationId());
+        }
+
+        $notificationPayload = $notifications[0]->payload;
+        self::assertInstanceOf(BusinessUpdatedNotification::class, $notificationPayload);
+        self::assertEquals('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notificationPayload->getNotificationId());
+        self::assertEquals('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notificationPayload->notification_id);
     }
 
     /** @test */

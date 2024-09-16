@@ -9,9 +9,9 @@ use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\Product;
 
-final class ProductUpdated extends Event
+class ProductUpdated extends Event
 {
-    private function __construct(
+    protected function __construct(
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
@@ -28,7 +28,7 @@ final class ProductUpdated extends Event
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         Entity $data,
-    ): static {
+    ): self {
         return new self($eventId, $eventType, $occurredAt, $data);
     }
 }

@@ -4,27 +4,38 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Notification;
 
-use Paddle\SDK\Entities\Event;
+use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Notifications\Entities\Business;
+use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Events\BusinessUpdated;
-use Paddle\SDK\Notifications\Notification;
 
-final class BusinessUpdatedNotification extends Notification
+final class BusinessUpdatedNotification extends BusinessUpdated implements NotificationInterface
 {
-    public readonly Business $business;
+    private function __construct(
+        string $eventId,
+        EventTypeName $eventType,
+        \DateTimeInterface $occurredAt,
+        Business $entity,
+        public readonly string $notification_id,
+    ) {
+        parent::__construct($eventId, $eventType, $occurredAt, $entity);
+    }
 
-    private function __construct(string $id, BusinessUpdated $event)
+    public function getNotificationId(): string
     {
-        $this->business = $event->business;
-
-        parent::__construct($id, $event);
+        return $this->notification_id;
     }
 
     /**
-     * @param BusinessUpdated $event
+     * @param Business $data
      */
-    protected static function fromEvent(string $id, Event $event): static
-    {
-        return new self($id, $event);
+    public static function fromNotification(
+        string $eventId,
+        EventTypeName $eventType,
+        \DateTimeInterface $occurredAt,
+        Entity $data,
+        string $notification_id,
+    ): self {
+        return new self($eventId, $eventType, $occurredAt, $data, $notification_id);
     }
 }
