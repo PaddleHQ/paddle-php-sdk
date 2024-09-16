@@ -6,17 +6,16 @@ namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
+use Psr\Http\Message\ServerRequestInterface;
 
 abstract class Event implements Entity
 {
-    /**
-     * @internal
-     */
     protected function __construct(
         public string $eventId,
         public EventTypeName $eventType,
         public \DateTimeInterface $occurredAt,
         public NotificationEntity $data,
+        public string|null $notificationId = null,
     ) {
     }
 
@@ -45,7 +44,17 @@ abstract class Event implements Entity
             EventTypeName::from($data['event_type']),
             DateTime::from($data['occurred_at']),
             $entity::from($data['data']),
+            $data['notification_id'] ?? null,
         );
+    }
+
+    public static function fromRequest(ServerRequestInterface $request): self
+    {
+        return self::from(json_decode(
+            (string) $request->getBody(),
+            true,
+            JSON_THROW_ON_ERROR,
+        ));
     }
 
     abstract public static function fromEvent(
@@ -53,5 +62,6 @@ abstract class Event implements Entity
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         NotificationEntity $data,
+        string|null $notificationId = null,
     ): static;
 }
