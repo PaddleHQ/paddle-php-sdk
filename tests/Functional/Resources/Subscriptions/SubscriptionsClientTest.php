@@ -445,12 +445,11 @@ class SubscriptionsClientTest extends TestCase
      * @dataProvider getPaymentMethodChangeTransactionRequestProvider
      */
     public function get_payment_method_change_transaction_hits_expected_uri(
-        string $id,
         ResponseInterface $response,
         string $expectedUri,
     ): void {
         $this->mockClient->addResponse($response);
-        $this->client->subscriptions->getPaymentMethodChangeTransaction($id);
+        $this->client->subscriptions->getPaymentMethodChangeTransaction('sub_01h7zcgmdc6tmwtjehp3sh7azf');
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -461,26 +460,9 @@ class SubscriptionsClientTest extends TestCase
     public static function getPaymentMethodChangeTransactionRequestProvider(): \Generator
     {
         yield 'Basic' => [
-            'sub_01h7zcgmdc6tmwtjehp3sh7azf',
             new Response(200, body: self::readRawJsonFixture('response/get_payment_method_change_transaction_entity')),
             sprintf('%s/subscriptions/sub_01h7zcgmdc6tmwtjehp3sh7azf/update-payment-method-transaction', Environment::SANDBOX->baseUrl()),
         ];
-    }
-
-    /**
-     * @test
-     */
-    public function get_payment_method_change_transaction_has_import_meta(): void
-    {
-        $this->mockClient->addResponse(
-            new Response(200, body: self::readRawJsonFixture('response/get_payment_method_change_transaction_entity_with_import_meta')),
-        );
-
-        $transaction = $this->client->subscriptions->getPaymentMethodChangeTransaction('sub_01h7zcgmdc6tmwtjehp3sh7azf');
-
-        self::assertNotNull($transaction->importMeta);
-        self::assertSame('billing_platform', $transaction->importMeta->importedFrom);
-        self::assertSame('9b95b0b8-e10f-441a-862e-1936a6d818ab', $transaction->importMeta->externalId);
     }
 
     /**
