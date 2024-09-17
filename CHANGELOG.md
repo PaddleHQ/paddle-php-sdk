@@ -16,6 +16,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - `TransactionsClient::getInvoicePDF` now supports `disposition` parameter, see [related changelog](https://developer.paddle.com/changelog/2024/invoice-pdf-open-in-browser)
 - Support notification settings pagination, see [related changelog](https://developer.paddle.com/changelog/2024/notification-settings-pagination)
 - Support notification settings `active` filter
+- Support for `notification_id` on notification events
 
 ### Fixed
 
