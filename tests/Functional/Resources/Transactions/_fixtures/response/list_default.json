@@ -497,10 +497,6 @@
       "payments": [],
       "checkout": {
         "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01h8bh3jn3a1kfwk4kdw6rf3gp"
-      },
-      "import_meta": {
-        "external_id": "9b95b0b8-e10f-441a-862e-1936a6d818ab",
-        "imported_from": "billing_platform"
       }
     },
     {

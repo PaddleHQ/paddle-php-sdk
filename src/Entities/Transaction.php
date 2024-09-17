@@ -17,7 +17,6 @@ use Paddle\SDK\Entities\Shared\Checkout;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
-use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\TransactionOrigin;
 use Paddle\SDK\Entities\Shared\TransactionPaymentAttempt;
 use Paddle\SDK\Entities\Shared\TransactionStatus;
@@ -65,7 +64,6 @@ class Transaction implements Entity
         public Customer|null $customer,
         public Discount|null $discount,
         public array $availablePaymentMethods,
-        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -102,7 +100,6 @@ class Transaction implements Entity
             customer: isset($data['customer']) ? Customer::from($data['customer']) : null,
             discount: isset($data['discount']) ? Discount::from($data['discount']) : null,
             availablePaymentMethods: array_map(fn (string $item): AvailablePaymentMethods => AvailablePaymentMethods::from($item), $data['available_payment_methods'] ?? []),
-            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }
