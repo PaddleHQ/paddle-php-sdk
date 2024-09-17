@@ -15,10 +15,10 @@ final class PriceCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Price $data,
+        public readonly Price $price,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $price, $notificationId);
     }
 
     /**

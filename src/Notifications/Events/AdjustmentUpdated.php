@@ -15,10 +15,10 @@ final class AdjustmentUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Adjustment $data,
+        public readonly Adjustment $adjustment,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $adjustment, $notificationId);
     }
 
     /**

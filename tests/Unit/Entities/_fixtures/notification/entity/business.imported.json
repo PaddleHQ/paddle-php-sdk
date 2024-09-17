@@ -1,0 +1,21 @@
+{
+    "id": "biz_01hv8hkr641vmpwytx38znv56k",
+    "name": "HighFly LLC.",
+    "status": "active",
+    "contacts": [
+        {
+            "name": "Blair Lopez",
+            "email": "blair@example.com"
+        }
+    ],
+    "created_at": "2024-04-12T07:05:50.887Z",
+    "updated_at": "2024-04-12T07:05:50.887Z",
+    "custom_data": null,
+    "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+    "import_meta": {
+        "external_id": "1fc0727f-d3d5-43a0-907a-f3c002535ca0",
+        "imported_from": "billing_platform"
+    },
+    "company_number": "555829503785",
+    "tax_identifier": "555810433"
+}

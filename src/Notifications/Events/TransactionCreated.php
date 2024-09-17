@@ -15,10 +15,10 @@ final class TransactionCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Transaction $data,
+        public readonly Transaction $transaction,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $transaction, $notificationId);
     }
 
     /**

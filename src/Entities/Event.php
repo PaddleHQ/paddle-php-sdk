@@ -25,7 +25,7 @@ abstract class Event implements Entity
         $entity = $type[0] ?? 'Unknown';
         $identifier = str_replace('_', '', ucwords(implode('_', $type), '_'));
 
-        /** @var class-string<Event> $entity */
+        /** @var class-string<Event> $event */
         $event = sprintf('\Paddle\SDK\Notifications\Events\%s', $identifier);
 
         if (! class_exists($event) || ! is_subclass_of($event, self::class)) {

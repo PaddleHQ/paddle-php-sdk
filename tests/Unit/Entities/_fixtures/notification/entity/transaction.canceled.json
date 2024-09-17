@@ -1,0 +1,269 @@
+{
+    "id": "txn_01hv8m0mnx3sj85e7gxc6kga03",
+    "items": [
+        {
+            "price": {
+                "id": "pri_01gsz91wy9k1yn7kx82aafwvea",
+                "name": "Annual (per seat)",
+                "type": "standard",
+                "status": "active",
+                "quantity": {
+                    "maximum": 100,
+                    "minimum": 1
+                },
+                "tax_mode": "account_setting",
+                "created_at": "2023-02-23T13:57:54.249913Z",
+                "product_id": "pro_01gsz4vmqbjk3x4vvtafffd540",
+                "unit_price": {
+                    "amount": "50000",
+                    "currency_code": "USD"
+                },
+                "updated_at": "2024-04-05T14:32:00.471447Z",
+                "custom_data": null,
+                "description": "Annual",
+                "trial_period": null,
+                "billing_cycle": {
+                    "interval": "year",
+                    "frequency": 1
+                },
+                "unit_price_overrides": [],
+                "import_meta": null
+            },
+            "quantity": 50,
+            "proration": null
+        },
+        {
+            "price": {
+                "id": "pri_01gsz96z29d88jrmsf2ztbfgjg",
+                "name": "Annual (recurring addon)",
+                "type": "standard",
+                "status": "active",
+                "quantity": {
+                    "maximum": 1,
+                    "minimum": 1
+                },
+                "tax_mode": "account_setting",
+                "created_at": "2023-02-23T14:00:40.265185Z",
+                "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                "unit_price": {
+                    "amount": "300000",
+                    "currency_code": "USD"
+                },
+                "updated_at": "2024-03-25T14:31:18.587603Z",
+                "custom_data": null,
+                "description": "Annual (recurring addon)",
+                "trial_period": null,
+                "billing_cycle": {
+                    "interval": "year",
+                    "frequency": 1
+                },
+                "unit_price_overrides": [],
+                "import_meta": null
+            },
+            "quantity": 1,
+            "proration": null
+        },
+        {
+            "price": {
+                "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                "name": "One-time addon",
+                "type": "standard",
+                "status": "active",
+                "quantity": {
+                    "maximum": 1,
+                    "minimum": 1
+                },
+                "tax_mode": "account_setting",
+                "created_at": "2023-02-23T14:01:28.391712Z",
+                "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                "unit_price": {
+                    "amount": "19900",
+                    "currency_code": "USD"
+                },
+                "updated_at": "2024-04-09T07:23:10.921392Z",
+                "custom_data": null,
+                "description": "One-time addon",
+                "trial_period": null,
+                "billing_cycle": null,
+                "unit_price_overrides": [],
+                "import_meta": null
+            },
+            "quantity": 1,
+            "proration": null
+        }
+    ],
+    "origin": "api",
+    "status": "canceled",
+    "details": {
+        "totals": {
+            "fee": null,
+            "tax": "225239",
+            "total": "2763149",
+            "credit": "0",
+            "balance": "2763149",
+            "discount": "281990",
+            "earnings": null,
+            "subtotal": "2819900",
+            "grand_total": "2763149",
+            "currency_code": "USD",
+            "credit_to_balance": "0"
+        },
+        "line_items": [
+            {
+                "id": "txnitm_01hv8vzz0sjdj6grvpxyyjsmvf",
+                "totals": {
+                    "tax": "199687",
+                    "total": "2449687",
+                    "discount": "250000",
+                    "subtotal": "2500000"
+                },
+                "product": {
+                    "id": "pro_01gsz4vmqbjk3x4vvtafffd540",
+                    "name": "AeroEdit Enterprise",
+                    "type": "standard",
+                    "status": "active",
+                    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/Ws808ziTS76a6YbnMkiK_enterprise.png",
+                    "created_at": "2023-02-23T12:44:34.923Z",
+                    "updated_at": "2024-04-05T15:58:28.309Z",
+                    "custom_data": {
+                        "features": {
+                            "sso": true,
+                            "route_planning": true,
+                            "payment_by_invoice": true,
+                            "aircraft_performance": true,
+                            "compliance_monitoring": true,
+                            "flight_log_management": true
+                        },
+                        "suggested_addons": [],
+                        "upgrade_description": "Ready to reach new heights? Upgrade to enterprise to unlock single sign-on, payment by invoice, and dedicated account management."
+                    },
+                    "description": "The ultimate solution for organizations, featuring all Pro capabilities plus multi-user support, advanced data storage capabilities, plus personalized onboarding, dedicated account management, and the ability to pay via invoice.",
+                    "tax_category": "standard",
+                    "import_meta": null
+                },
+                "price_id": "pri_01gsz91wy9k1yn7kx82aafwvea",
+                "quantity": 50,
+                "tax_rate": "0.08875",
+                "unit_totals": {
+                    "tax": "3994",
+                    "total": "48994",
+                    "discount": "5000",
+                    "subtotal": "50000"
+                }
+            },
+            {
+                "id": "txnitm_01hv8vzz0sjdj6grvpy1fzm46f",
+                "totals": {
+                    "tax": "23962",
+                    "total": "293962",
+                    "discount": "30000",
+                    "subtotal": "300000"
+                },
+                "product": {
+                    "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+                    "name": "VIP support",
+                    "type": "standard",
+                    "status": "active",
+                    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/qgyipKJwRtq98YNboipo_vip-support.png",
+                    "created_at": "2023-02-23T13:58:17.615Z",
+                    "updated_at": "2024-04-05T15:44:02.893Z",
+                    "custom_data": null,
+                    "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your AeroEdit subscription.",
+                    "tax_category": "standard",
+                    "import_meta": null
+                },
+                "price_id": "pri_01gsz96z29d88jrmsf2ztbfgjg",
+                "quantity": 1,
+                "tax_rate": "0.08875",
+                "unit_totals": {
+                    "tax": "23962",
+                    "total": "293962",
+                    "discount": "30000",
+                    "subtotal": "300000"
+                }
+            },
+            {
+                "id": "txnitm_01hv8vzz0sjdj6grvpy6g84gyw",
+                "totals": {
+                    "tax": "1590",
+                    "total": "19500",
+                    "discount": "1990",
+                    "subtotal": "19900"
+                },
+                "product": {
+                    "id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                    "name": "Custom domains",
+                    "type": "standard",
+                    "status": "active",
+                    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/XIG7UXoJQHmlIAiKcnkA_custom-domains.png",
+                    "created_at": "2023-02-23T14:01:02.441Z",
+                    "updated_at": "2024-04-05T15:43:28.971Z",
+                    "custom_data": null,
+                    "description": "Make AeroEdit truly your own with custom domains. Custom domains reinforce your brand identity and make it easy for your team to access your account.",
+                    "tax_category": "standard",
+                    "import_meta": null
+                },
+                "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                "quantity": 1,
+                "tax_rate": "0.08875",
+                "unit_totals": {
+                    "tax": "1590",
+                    "total": "19500",
+                    "discount": "1990",
+                    "subtotal": "19900"
+                }
+            }
+        ],
+        "payout_totals": null,
+        "tax_rates_used": [
+            {
+                "totals": {
+                    "tax": "225239",
+                    "total": "2763149",
+                    "discount": "281990",
+                    "subtotal": "2819900"
+                },
+                "tax_rate": "0.08875"
+            }
+        ],
+        "adjusted_totals": {
+            "fee": "0",
+            "tax": "225239",
+            "total": "2763149",
+            "earnings": "0",
+            "subtotal": "2537910",
+            "grand_total": "2763149",
+            "currency_code": "USD"
+        }
+    },
+    "checkout": {
+        "url": null
+    },
+    "payments": [],
+    "billed_at": "2024-04-12T10:30:27.198043Z",
+    "address_id": "add_01hv8gq3318ktkfengj2r75gfx",
+    "created_at": "2024-04-12T07:40:38.00704Z",
+    "invoice_id": "inv_01hv8m0nn5nbvdejcvv9cpg8jf",
+    "updated_at": "2024-04-12T10:31:27.360716923Z",
+    "business_id": null,
+    "custom_data": null,
+    "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+    "discount_id": "dsc_01gtgztp8fpchantd5g1wrksa3",
+    "currency_code": "USD",
+    "billing_period": {
+        "ends_at": "2025-04-11T23:59:00Z",
+        "starts_at": "2024-04-12T00:00:00Z"
+    },
+    "invoice_number": "325-10567",
+    "billing_details": {
+        "payment_terms": {
+            "interval": "day",
+            "frequency": 14
+        },
+        "enable_checkout": false,
+        "purchase_order_number": "PO-123",
+        "additional_information": null
+    },
+    "collection_mode": "manual",
+    "subscription_id": "sub_01hv8xqmay5w5rfsnzkxzgy0yp"
+}

@@ -1,0 +1,28 @@
+{
+    "id": "biz_01hv8hkr641vmpwytx38znv56k",
+    "name": "Uplift Inc.",
+    "status": "active",
+    "contacts": [
+        {
+            "name": "Parker Jones",
+            "email": "parker@example.com"
+        },
+        {
+            "name": "Jo Riley",
+            "email": "jo@example.com"
+        },
+        {
+            "name": "Jesse Garcia",
+            "email": "jo@example.com"
+        }
+    ],
+    "created_at": "2024-04-12T06:58:37.892Z",
+    "updated_at": "2024-04-12T07:01:03.510528Z",
+    "custom_data": {
+        "crm_id": "eb9b8d9b-7dd6-48e6-8c39-8557bba5eaa9"
+    },
+    "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+    "import_meta": null,
+    "company_number": "555775291485",
+    "tax_identifier": "555952383"
+}

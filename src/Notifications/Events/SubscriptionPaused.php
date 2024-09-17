@@ -15,10 +15,10 @@ final class SubscriptionPaused extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Subscription $data,
+        public readonly Subscription $subscription,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $subscription, $notificationId);
     }
 
     /**

@@ -15,10 +15,10 @@ final class CustomerUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Customer $data,
+        public readonly Customer $customer,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $customer, $notificationId);
     }
 
     /**

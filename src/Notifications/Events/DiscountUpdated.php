@@ -15,10 +15,10 @@ final class DiscountUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Discount $data,
+        public readonly Discount $discount,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $discount, $notificationId);
     }
 
     /**

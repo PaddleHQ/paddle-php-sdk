@@ -1,0 +1,18 @@
+{
+    "id": "biz_01hv8hkr641vmpwytx38znv56k",
+    "name": "Uplift Inc.",
+    "status": "active",
+    "contacts": [
+        {
+            "name": "Parker Jones",
+            "email": "parker@example.com"
+        }
+    ],
+    "created_at": "2024-04-12T06:58:37.892Z",
+    "updated_at": "2024-04-12T06:58:37.892Z",
+    "custom_data": null,
+    "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+    "import_meta": null,
+    "company_number": "555775291485",
+    "tax_identifier": "555952383"
+}

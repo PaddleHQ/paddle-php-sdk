@@ -15,10 +15,10 @@ final class PayoutCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Payout $data,
+        public readonly Payout $payout,
         string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data, $notificationId);
+        parent::__construct($eventId, $eventType, $occurredAt, $payout, $notificationId);
     }
 
     /**
