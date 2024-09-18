@@ -1,0 +1,30 @@
+{
+    "id": "pri_01hv0vax6rv18t4tamj848ne4d",
+    "name": "Monthly (per seat)",
+    "type": "standard",
+    "status": "active",
+    "quantity": {
+        "maximum": 100,
+        "minimum": 1
+    },
+    "tax_mode": "account_setting",
+    "product_id": "pro_01htz88xpr0mm7b3ta2pjkr7w2",
+    "unit_price": {
+        "amount": "500",
+        "currency_code": "USD"
+    },
+    "custom_data": null,
+    "description": "Monthly (per seat) with 14 day trial",
+    "import_meta": null,
+    "trial_period": {
+        "interval": "day",
+        "frequency": 14
+    },
+    "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+    },
+    "unit_price_overrides": [],
+    "created_at": "2024-04-09T07:14:38.424504286Z",
+    "updated_at": "2024-04-09T07:14:38.424504359Z"
+}

@@ -15,9 +15,10 @@ final class PriceCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Price $data,
+        public readonly Price $price,
+        string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $price, $notificationId);
     }
 
     /**
@@ -28,7 +29,8 @@ final class PriceCreated extends Event
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         Entity $data,
+        string|null $notificationId = null,
     ): static {
-        return new self($eventId, $eventType, $occurredAt, $data);
+        return new self($eventId, $eventType, $occurredAt, $data, $notificationId);
     }
 }

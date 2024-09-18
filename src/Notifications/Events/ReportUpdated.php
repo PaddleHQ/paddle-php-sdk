@@ -15,9 +15,10 @@ final class ReportUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Report $data,
+        public readonly Report $report,
+        string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $report, $notificationId);
     }
 
     /**
@@ -28,7 +29,8 @@ final class ReportUpdated extends Event
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         Entity $data,
+        string|null $notificationId = null,
     ): static {
-        return new self($eventId, $eventType, $occurredAt, $data);
+        return new self($eventId, $eventType, $occurredAt, $data, $notificationId);
     }
 }

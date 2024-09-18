@@ -1,0 +1,22 @@
+{
+    "id": "dsc_01hv6scyf7qdnzcdq01t2y8dx4",
+    "code": "SPRINGSALE",
+    "type": "percentage",
+    "recur": true,
+    "amount": "10",
+    "status": "active",
+    "created_at": "2024-04-11T14:36:14.695Z",
+    "expires_at": "2024-12-03T00:00:00Z",
+    "updated_at": "2024-04-11T14:41:22.343Z",
+    "custom_data": null,
+    "description": "Seasonal sale",
+    "import_meta": null,
+    "restrict_to": [
+        "pro_01gsz4t5hdjse780zja8vvr7jg",
+        "pro_01gsz4s0w61y0pp88528f1wvvb"
+    ],
+    "usage_limit": null,
+    "currency_code": null,
+    "enabled_for_checkout": true,
+    "maximum_recurring_intervals": 3
+}

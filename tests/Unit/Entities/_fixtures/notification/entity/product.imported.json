@@ -1,0 +1,16 @@
+{
+    "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+    "name": "VIP support",
+    "tax_category": "standard",
+    "type": "standard",
+    "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your AeroEdit subscription.",
+    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/qgyipKJwRtq98YNboipo_vip-support.png",
+    "custom_data": null,
+    "status": "active",
+    "import_meta": {
+        "external_id": "16a2c842-8ddc-11ee-b9d1-0242ac120002",
+        "imported_from": "billing_platform"
+    },
+    "created_at": "2024-01-28T10:54:46.181Z",
+    "updated_at": "2024-01-28T10:54:46.181Z"
+}
