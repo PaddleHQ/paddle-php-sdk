@@ -20,7 +20,7 @@ class TransactionPaymentAttempt
      */
     private function __construct(
         public string $paymentAttemptId,
-        public string $paymentMethodId,
+        public string|null $paymentMethodId,
         public string $storedPaymentMethodId,
         public string $amount,
         public PaymentAttemptStatus $status,
