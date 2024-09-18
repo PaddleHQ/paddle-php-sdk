@@ -20,6 +20,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Fixed
 
 - `PreviewPrice` operation no longer allows empty `items`
+- Transaction `payment_method_id` can be `string` or `null`
 
 ## [1.1.2] - 2024-08-23
 

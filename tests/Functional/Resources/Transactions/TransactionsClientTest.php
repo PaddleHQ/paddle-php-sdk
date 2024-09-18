@@ -420,6 +420,21 @@ class TransactionsClientTest extends TestCase
 
     /**
      * @test
+     */
+    public function get_has_payments_with_and_without_payment_method_id(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/full_entity')));
+        $transaction = $this->client->transactions->get('txn_01hen7bxc1p8ep4yk7n5jbzk9r');
+
+        $paymentWithPaymentMethodId = $transaction->payments[0];
+        self::assertSame('paymtd_01hkm9xwqpbbpr1ksmvg3sx3v1', $paymentWithPaymentMethodId->paymentMethodId);
+
+        $paymentWithoutPaymentMethodId = $transaction->payments[1];
+        self::assertNull($paymentWithoutPaymentMethodId->paymentMethodId);
+    }
+
+    /**
+     * @test
      *
      * @dataProvider previewOperationsProvider
      */

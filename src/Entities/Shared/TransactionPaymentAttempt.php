@@ -35,7 +35,7 @@ class TransactionPaymentAttempt
     {
         return new self(
             $data['payment_attempt_id'],
-            $data['payment_method_id'],
+            $data['payment_method_id'] ?? null,
             $data['stored_payment_method_id'],
             $data['amount'],
             PaymentAttemptStatus::from($data['status']),
