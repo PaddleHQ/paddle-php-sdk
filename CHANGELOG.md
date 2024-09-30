@@ -10,7 +10,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ### Added
 
-- Added `AdjustmentsClient::getCreditNotePDF`, see [related changelog](https://developer.paddle.com/changelog/2024/generate-adjustments-credit-notes)
+- Added `AdjustmentsClient::getCreditNote`, see [related changelog](https://developer.paddle.com/changelog/2024/generate-adjustments-credit-notes)
 
 ## [1.2.0] - 2024-09-18
 
