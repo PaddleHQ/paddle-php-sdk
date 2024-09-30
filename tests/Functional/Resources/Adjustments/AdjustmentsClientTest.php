@@ -10,10 +10,12 @@ use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Entities\Shared\AdjustmentType;
+use Paddle\SDK\Entities\Shared\Disposition;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Adjustments\Operations\Create\AdjustmentItem;
 use Paddle\SDK\Resources\Adjustments\Operations\CreateAdjustment;
+use Paddle\SDK\Resources\Adjustments\Operations\GetAdjustmentCreditNote;
 use Paddle\SDK\Resources\Adjustments\Operations\ListAdjustments;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
@@ -206,6 +208,68 @@ class AdjustmentsClientTest extends TestCase
             new ListAdjustments(action: Action::Refund()),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/adjustments?action=refund', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function get_credit_note_pdf_has_pdf_url(): void
+    {
+        $fixture = self::readRawJsonFixture('response/get_credit_note_pdf_default');
+        $this->mockClient->addResponse(new Response(200, body: $fixture));
+
+        $creditNote = $this->client->adjustments->getCreditNote(
+            'adj_01h8c65c2ggq5nxswnnwv78e75',
+            new GetAdjustmentCreditNote(),
+        );
+
+        $expectedCreditNoteUrl = 'https://paddle-production-invoice-service-pdfs.s3.amazonaws.com/credit_notes/15839/crdnt_01j4scmgpbtbxap16573dtck9n/credit_notes_296-10016_Paddle-com.pdf';
+
+        self::assertSame($expectedCreditNoteUrl, $creditNote->url);
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider getCreditNotePDFOperationsProvider
+     */
+    public function get_credit_note_pdf_hits_expected_uri(
+        string $id,
+        GetAdjustmentCreditNote $getOperation,
+        ResponseInterface $response,
+        string $expectedUri,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->adjustments->getCreditNote($id, $getOperation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+    }
+
+    public static function getCreditNotePDFOperationsProvider(): \Generator
+    {
+        yield 'Default' => [
+            'adj_01h8c65c2ggq5nxswnnwv78e75',
+            new GetAdjustmentCreditNote(),
+            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_pdf_default')),
+            sprintf('%s/adjustments/adj_01h8c65c2ggq5nxswnnwv78e75/credit-note', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Disposition Inline' => [
+            'adj_01h8c65c2ggq5nxswnnwv78e75',
+            new GetAdjustmentCreditNote(Disposition::Inline()),
+            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_pdf_default')),
+            sprintf('%s/adjustments/adj_01h8c65c2ggq5nxswnnwv78e75/credit-note?disposition=inline', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Disposition Attachment' => [
+            'adj_01h8c65c2ggq5nxswnnwv78e75',
+            new GetAdjustmentCreditNote(Disposition::Attachment()),
+            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_pdf_default')),
+            sprintf('%s/adjustments/adj_01h8c65c2ggq5nxswnnwv78e75/credit-note?disposition=attachment', Environment::SANDBOX->baseUrl()),
         ];
     }
 }
