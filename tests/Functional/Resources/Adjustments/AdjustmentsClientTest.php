@@ -214,9 +214,9 @@ class AdjustmentsClientTest extends TestCase
     /**
      * @test
      */
-    public function get_credit_note_pdf_has_pdf_url(): void
+    public function get_credit_note_has_correct_url(): void
     {
-        $fixture = self::readRawJsonFixture('response/get_credit_note_pdf_default');
+        $fixture = self::readRawJsonFixture('response/get_credit_note_default');
         $this->mockClient->addResponse(new Response(200, body: $fixture));
 
         $creditNote = $this->client->adjustments->getCreditNote(
@@ -232,9 +232,9 @@ class AdjustmentsClientTest extends TestCase
     /**
      * @test
      *
-     * @dataProvider getCreditNotePDFOperationsProvider
+     * @dataProvider getCreditNoteOperationsProvider
      */
-    public function get_credit_note_pdf_hits_expected_uri(
+    public function get_credit_note_hits_expected_uri(
         string $id,
         GetAdjustmentCreditNote $getOperation,
         ResponseInterface $response,
@@ -249,26 +249,26 @@ class AdjustmentsClientTest extends TestCase
         self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
     }
 
-    public static function getCreditNotePDFOperationsProvider(): \Generator
+    public static function getCreditNoteOperationsProvider(): \Generator
     {
         yield 'Default' => [
             'adj_01h8c65c2ggq5nxswnnwv78e75',
             new GetAdjustmentCreditNote(),
-            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_pdf_default')),
+            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_default')),
             sprintf('%s/adjustments/adj_01h8c65c2ggq5nxswnnwv78e75/credit-note', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Disposition Inline' => [
             'adj_01h8c65c2ggq5nxswnnwv78e75',
             new GetAdjustmentCreditNote(Disposition::Inline()),
-            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_pdf_default')),
+            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_default')),
             sprintf('%s/adjustments/adj_01h8c65c2ggq5nxswnnwv78e75/credit-note?disposition=inline', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'Disposition Attachment' => [
             'adj_01h8c65c2ggq5nxswnnwv78e75',
             new GetAdjustmentCreditNote(Disposition::Attachment()),
-            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_pdf_default')),
+            new Response(200, body: self::readRawJsonFixture('response/get_credit_note_default')),
             sprintf('%s/adjustments/adj_01h8c65c2ggq5nxswnnwv78e75/credit-note?disposition=attachment', Environment::SANDBOX->baseUrl()),
         ];
     }
