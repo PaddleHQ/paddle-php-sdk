@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+use Paddle\SDK\Entities\NotificationSetting\NotificationSettingTrafficSource;
 use Paddle\SDK\Entities\NotificationSetting\NotificationSettingType;
 
 class NotificationSetting implements Entity
@@ -28,6 +29,7 @@ class NotificationSetting implements Entity
         public bool $includeSensitiveFields,
         public array $subscribedEvents,
         public string $endpointSecretKey,
+        public NotificationSettingTrafficSource $trafficSource,
     ) {
     }
 
@@ -43,6 +45,7 @@ class NotificationSetting implements Entity
             includeSensitiveFields: $data['include_sensitive_fields'],
             subscribedEvents: array_map(fn (array $eventType): EventType => EventType::from($eventType), $data['subscribed_events'] ?? []),
             endpointSecretKey: $data['endpoint_secret_key'],
+            trafficSource: NotificationSettingTrafficSource::from($data['traffic_source']),
         );
     }
 }
