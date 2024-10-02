@@ -32,6 +32,7 @@ use Paddle\SDK\Resources\Prices\PricesClient;
 use Paddle\SDK\Resources\PricingPreviews\PricingPreviewsClient;
 use Paddle\SDK\Resources\Products\ProductsClient;
 use Paddle\SDK\Resources\Reports\ReportsClient;
+use Paddle\SDK\Resources\SimulationRuns\SimulationRunsClient;
 use Paddle\SDK\Resources\Simulations\SimulationsClient;
 use Paddle\SDK\Resources\SimulationTypes\SimulationTypesClient;
 use Paddle\SDK\Resources\Subscriptions\SubscriptionsClient;
@@ -75,6 +76,7 @@ class Client
     public readonly NotificationLogsClient $notificationLogs;
     public readonly ReportsClient $reports;
     public readonly SimulationsClient $simulations;
+    public readonly SimulationRunsClient $simulationRuns;
     public readonly SimulationTypesClient $simulationTypes;
 
     private readonly HttpAsyncClient $httpClient;
@@ -120,6 +122,7 @@ class Client
         $this->notificationLogs = new NotificationLogsClient($this);
         $this->reports = new ReportsClient($this);
         $this->simulations = new SimulationsClient($this);
+        $this->simulationRuns = new SimulationRunsClient($this);
         $this->simulationTypes = new SimulationTypesClient($this);
     }
 
