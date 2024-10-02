@@ -28,7 +28,7 @@ class PreviewPrice implements \JsonSerializable
         public readonly AddressPreview|Undefined|null $address = new Undefined(),
         public readonly string|Undefined|null $customerIpAddress = new Undefined(),
     ) {
-        if (count($this->items) === 0) {
+        if ($this->items === []) {
             throw InvalidArgumentException::arrayIsEmpty('items');
         }
 
