@@ -32,6 +32,7 @@ use Paddle\SDK\Resources\Prices\PricesClient;
 use Paddle\SDK\Resources\PricingPreviews\PricingPreviewsClient;
 use Paddle\SDK\Resources\Products\ProductsClient;
 use Paddle\SDK\Resources\Reports\ReportsClient;
+use Paddle\SDK\Resources\Simulations\SimulationsClient;
 use Paddle\SDK\Resources\Subscriptions\SubscriptionsClient;
 use Paddle\SDK\Resources\Transactions\TransactionsClient;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -73,6 +74,7 @@ class Client
     public readonly NotificationsClient $notifications;
     public readonly NotificationLogsClient $notificationLogs;
     public readonly ReportsClient $reports;
+    public readonly SimulationsClient $simulations;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -116,6 +118,7 @@ class Client
         $this->notifications = new NotificationsClient($this);
         $this->notificationLogs = new NotificationLogsClient($this);
         $this->reports = new ReportsClient($this);
+        $this->simulations = new SimulationsClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
