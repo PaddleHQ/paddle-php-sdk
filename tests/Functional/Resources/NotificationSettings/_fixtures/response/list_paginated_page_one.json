@@ -100,7 +100,8 @@
                     "available_versions": [1]
                 }
             ],
-            "endpoint_secret_key": "pdl_ntfset_01gkpjp8bkm3tm53kdgkx6sms7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI"
+            "endpoint_secret_key": "pdl_ntfset_01gkpjp8bkm3tm53kdgkx6sms7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI",
+            "traffic_source": "platform"
         }
     ],
     "meta": {

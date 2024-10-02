@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Entities\NotificationSetting\NotificationSettingTrafficSource;
 use Paddle\SDK\Entities\NotificationSetting\NotificationSettingType;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
@@ -203,6 +204,11 @@ class NotificationSettingsClientTest extends TestCase
         yield 'With active filter false' => [
             new ListNotificationSettings(null, false),
             sprintf('%s/notification-settings?active=false', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'With traffic_source filter platform' => [
+            new ListNotificationSettings(trafficSource: NotificationSettingTrafficSource::Platform()),
+            sprintf('%s/notification-settings?traffic_source=platform', Environment::SANDBOX->baseUrl()),
         ];
 
         yield 'With default pagination' => [

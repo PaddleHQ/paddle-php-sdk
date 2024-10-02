@@ -53,7 +53,7 @@ class Adjustment implements Entity
             creditAppliedToBalance: $data['credit_applied_to_balance'] ?? null,
             currencyCode: CurrencyCode::from($data['currency_code']),
             status: AdjustmentStatus::from($data['status']),
-            items: array_map(fn (array $item) => AdjustmentItem::from($item), $data['items']),
+            items: array_map(fn (array $item): AdjustmentItem => AdjustmentItem::from($item), $data['items']),
             totals: AdjustmentTotals::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,
             createdAt: DateTime::from($data['created_at']),
