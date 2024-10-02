@@ -10,6 +10,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ### Added
 
+- Added simulations api [related changelog](https://developer.paddle.com/changelog/2024/webhook-simulator?utm_source=dx&utm_medium=paddle-php-sdk)
 - Added `traffic_source` property to `NotificationSetting` entity
 - Support notification settings `traffic_source` filter
 - Support new payment methods `offline`, `unknown`, `wire_transfer`
