@@ -12,10 +12,11 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 - Added `traffic_source` property to `NotificationSetting` entity
 - Support notification settings `traffic_source` filter
+- Support new payment methods `offline`, `unknown`, `wire_transfer`
 
 ### Fixed
 
-- Dropped `receipt_data` on create and preview of a one-time charge for Subscriptions and Transactions.
+- Dropped `receipt_data` on create and preview of a one-time charge for Subscriptions and Transactions
 
 # [1.3.1] - 2024-09-30
 
