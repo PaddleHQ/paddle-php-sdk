@@ -27,7 +27,7 @@ class Price implements Entity
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
     private function __construct(
-        public string $id,
+        public string|null $id,
         public string $productId,
         public string|null $name,
         public string $description,

@@ -16,7 +16,7 @@ use Paddle\SDK\Entities\Product;
 class TransactionLineItemPreview
 {
     private function __construct(
-        public string $priceId,
+        public string|null $priceId,
         public int $quantity,
         public string $taxRate,
         public UnitTotals $unitTotals,

@@ -10,10 +10,12 @@ use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TransactionStatus;
-use Paddle\SDK\Entities\Transaction\TransactionCreateItem;
-use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice;
+use Paddle\SDK\Entities\Transaction\TransactionCreateItem as EntityTransactionCreateItem;
+use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice as EntityTransactionCreateItemWithPrice;
 use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
+use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
 use Paddle\SDK\Undefined;
 
 class CreateTransaction implements \JsonSerializable
@@ -21,7 +23,7 @@ class CreateTransaction implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<TransactionCreateItem|TransactionCreateItemWithPrice> $items
+     * @param array<TransactionCreateItem|TransactionCreateItemWithPrice|EntityTransactionCreateItem|EntityTransactionCreateItemWithPrice> $items
      */
     public function __construct(
         public readonly array $items,

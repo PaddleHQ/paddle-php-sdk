@@ -43,7 +43,7 @@
             },
             {
                 "price": {
-                    "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                    "id": null,
                     "description": "One-time charge",
                     "name": "One-time charge",
                     "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
@@ -104,7 +104,7 @@
             },
             "line_items": [
                 {
-                    "price_id": "pri_01gsz8z1q1n00f12qt82y31smh",
+                    "price_id": null,
                     "quantity": 20,
                     "totals": {
                         "subtotal": "600000",
