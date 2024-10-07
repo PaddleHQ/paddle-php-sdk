@@ -1,0 +1,50 @@
+{
+    "items": [
+        {
+            "quantity": 20,
+            "price": {
+                "description": "Annual (per seat)",
+                "name": "Annual (per seat)",
+                "product": {
+                    "custom_data": [],
+                    "description": "Some description",
+                    "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                    "name": "Annual (per seat)",
+                    "tax_category": "digital-goods"
+                },
+                "billing_cycle": {
+                    "interval": "year",
+                    "frequency": 1
+                },
+                "trial_period": null,
+                "tax_mode": "account_setting",
+                "unit_price": {
+                    "amount": "30000",
+                    "currency_code": "USD"
+                },
+                "unit_price_overrides": [],
+                "quantity": {
+                    "minimum": 10,
+                    "maximum": 999
+                },
+                "custom_data": null
+            },
+            "include_in_totals": true
+        },
+        {
+            "include_in_totals": true,
+            "price": {
+                "description": "Annual (per seat)",
+                "product": {
+                    "name": "Annual (per seat)",
+                    "tax_category": "digital-goods"
+                },
+                "unit_price": {
+                    "amount": "30000",
+                    "currency_code": "USD"
+                }
+            },
+            "quantity": 20
+        }
+    ]
+}

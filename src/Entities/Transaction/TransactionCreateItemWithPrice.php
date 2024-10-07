@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Transaction;
 
-
 /**
  * @deprecated Replaced by \Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice
  */

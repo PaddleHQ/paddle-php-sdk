@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Transactions\Operations\Create;
+namespace Paddle\SDK\Resources\Transactions\Operations\Update;
 
 use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPrice;
 use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPriceWithProduct;
 
-class TransactionCreateItemWithPrice
+class TransactionUpdateItemWithPrice
 {
     public function __construct(
         public TransactionNonCatalogPrice|TransactionNonCatalogPriceWithProduct $price,

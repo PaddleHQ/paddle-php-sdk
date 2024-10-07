@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\Transactions\Operations\Preview;
 
 use Paddle\SDK\FiltersUndefined;
-use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionNonCatalogPrice;
-use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionNonCatalogPriceWithProduct;
+use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPriceWithProduct;
 use Paddle\SDK\Undefined;
 
 class TransactionItemPreviewWithNonCatalogPrice implements \JsonSerializable

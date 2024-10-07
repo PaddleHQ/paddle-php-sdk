@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Transactions\Operations\Create;
+namespace Paddle\SDK\Resources\Transactions\Operations\Price;
 
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Money;
@@ -24,13 +24,13 @@ class TransactionNonCatalogPrice implements \JsonSerializable
         public string $description,
         public Money $unitPrice,
         public string $productId,
-        public string|null|Undefined $name = new Undefined(),
-        public TimePeriod|null|Undefined $billingCycle = new Undefined(),
-        public TimePeriod|null|Undefined $trialPeriod = new Undefined(),
+        public string|Undefined|null $name = new Undefined(),
+        public TimePeriod|Undefined|null $billingCycle = new Undefined(),
+        public TimePeriod|Undefined|null $trialPeriod = new Undefined(),
         public TaxMode|Undefined $taxMode = new Undefined(),
         public array|Undefined $unitPriceOverrides = new Undefined(),
         public PriceQuantity|Undefined $quantity = new Undefined(),
-        public CustomData|null|Undefined $customData = new Undefined(),
+        public CustomData|Undefined|null $customData = new Undefined(),
     ) {
     }
 

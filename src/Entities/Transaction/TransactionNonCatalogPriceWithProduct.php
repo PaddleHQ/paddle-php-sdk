@@ -19,7 +19,7 @@ use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 
 /**
- * @deprecated Replaced by \Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionNonCatalogPriceWithProduct
+ * @deprecated Replaced by \Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPriceWithProduct
  */
 class TransactionNonCatalogPriceWithProduct
 {
