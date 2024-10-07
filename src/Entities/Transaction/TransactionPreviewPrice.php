@@ -9,8 +9,11 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities;
+namespace Paddle\SDK\Entities\Transaction;
 
+use Paddle\SDK\Entities\DateTime;
+use Paddle\SDK\Entities\Entity;
+use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\ImportMeta;
@@ -21,13 +24,13 @@ use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 
-class Price implements Entity
+class TransactionPreviewPrice implements Entity
 {
     /**
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
     private function __construct(
-        public string $id,
+        public string|null $id,
         public string $productId,
         public string|null $name,
         public string $description,

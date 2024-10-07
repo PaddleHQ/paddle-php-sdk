@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Transactions;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Price;
 use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -24,6 +25,7 @@ use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice as Deprecated
 use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice as DeprecatedTransactionItemPreviewWithNonCatalogPrice;
 use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId as DeprecatedTransactionItemPreviewWithPriceId;
 use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPrice as DeprecatedTransactionNonCatalogPrice;
+use Paddle\SDK\Entities\Transaction\TransactionPreviewPrice;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
@@ -581,6 +583,32 @@ class TransactionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
             self::readRawJsonFixture('request/preview_with_non_catalog_price'),
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function it_has_prices_with_and_without_id_on_preview(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/preview_entity')),);
+        $preview = $this->client->transactions->preview(
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithPriceId('pri_01gsz8z1q1n00f12qt82y31smh', 1, true),
+                ],
+            ),
+        );
+
+        $price = $preview->items[0]->price;
+        self::assertInstanceOf(Price::class, $price);
+        self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $price->id);
+
+        $transactionPreviewPrice = $preview->items[1]->price;
+        self::assertInstanceOf(TransactionPreviewPrice::class, $transactionPreviewPrice);
+        self::assertNull($transactionPreviewPrice->id);
+
+        self::assertNull($preview->details->lineItems[0]->priceId);
+        self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $preview->details->lineItems[1]->priceId);
     }
 
     /**
