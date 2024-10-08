@@ -17,6 +17,7 @@ use Paddle\SDK\Entities\Collections\SimulationRunCollection;
 use Paddle\SDK\Entities\SimulationRun;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
+use Paddle\SDK\Resources\SimulationRuns\Operations\GetSimulationRuns;
 use Paddle\SDK\Resources\SimulationRuns\Operations\ListSimulationRuns;
 use Paddle\SDK\ResponseParser;
 
@@ -47,10 +48,10 @@ class SimulationRunsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function get(string $simulationId, string $id): SimulationRun
+    public function get(string $simulationId, string $id, GetSimulationRuns $getSimulationRuns = new GetSimulationRuns()): SimulationRun
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/simulations/{$simulationId}/runs/{$id}"),
+            $this->client->getRaw("/simulations/{$simulationId}/runs/{$id}", $getSimulationRuns),
         );
 
         return SimulationRun::from($parser->getData());

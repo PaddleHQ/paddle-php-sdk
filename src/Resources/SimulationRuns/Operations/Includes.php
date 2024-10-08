@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\SimulationRuns\Operations\List;
+namespace Paddle\SDK\Resources\SimulationRuns\Operations;
 
 use Paddle\SDK\PaddleEnum;
 

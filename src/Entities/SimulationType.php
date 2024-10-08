@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Event\EventTypeName;
-use Paddle\SDK\Entities\Simulation\SimulationType as SimulationTypeName;
+use Paddle\SDK\Entities\Simulation\SimulationKind;
 
 class SimulationType implements Entity
 {
@@ -21,7 +21,7 @@ class SimulationType implements Entity
         public string $label,
         public string $description,
         public string $group,
-        public SimulationTypeName $type,
+        public SimulationKind $type,
         public array $events,
     ) {
     }
@@ -33,7 +33,7 @@ class SimulationType implements Entity
             label: $data['label'],
             description: $data['description'],
             group: $data['group'],
-            type: SimulationTypeName::from($data['type']),
+            type: SimulationKind::from($data['type']),
             events: array_map(fn (string $event): EventTypeName => EventTypeName::from($event), $data['events']),
         );
     }
