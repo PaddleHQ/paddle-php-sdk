@@ -7,7 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Simulations;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
-use Paddle\SDK\Entities\Simulation\SimulationSingleEventType;
+use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Notifications\Entities\EntityFactory;
@@ -63,7 +63,7 @@ class SimulationsClientTest extends TestCase
         yield 'Basic Create' => [
             new CreateSimulation(
                 notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
-                type: SimulationSingleEventType::AddressCreated(),
+                type: EventTypeName::AddressCreated(),
                 name: 'New US address created for CRM',
                 payload: EntityFactory::create('address.created', json_decode(self::readRawJsonFixture('request/address_created_payload'), true)),
             ),
@@ -112,7 +112,7 @@ class SimulationsClientTest extends TestCase
         yield 'Update All' => [
             new UpdateSimulation(
                 notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
-                type: SimulationSingleEventType::AdjustmentUpdated(),
+                type: EventTypeName::AdjustmentUpdated(),
                 name: 'Refund approved',
                 status: SimulationStatus::Active(),
                 payload: EntityFactory::create('adjustment.updated', json_decode(self::readRawJsonFixture('request/adjustment_updated_payload'), true)),
