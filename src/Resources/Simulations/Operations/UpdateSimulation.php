@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Simulations\Operations;
 
-use Paddle\SDK\Entities\Shared\JSONObject;
 use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\Entities\Simulation\SimulationSingleEventType;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
 use Paddle\SDK\Undefined;
 
 class UpdateSimulation implements \JsonSerializable
@@ -20,7 +20,7 @@ class UpdateSimulation implements \JsonSerializable
         public readonly SimulationSingleEventType|SimulationScenarioType|Undefined $type = new Undefined(),
         public readonly string|Undefined $name = new Undefined(),
         public readonly SimulationStatus|Undefined $status = new Undefined(),
-        public readonly JSONObject|Undefined|null $payload = new Undefined(),
+        public readonly NotificationEntity|Undefined|null $payload = new Undefined(),
     ) {
     }
 
