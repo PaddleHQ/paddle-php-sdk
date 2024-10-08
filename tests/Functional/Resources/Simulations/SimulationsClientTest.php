@@ -7,10 +7,10 @@ namespace Paddle\SDK\Tests\Functional\Resources\Simulations;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
-use Paddle\SDK\Entities\Shared\JSONObject;
 use Paddle\SDK\Entities\Simulation\SimulationSingleEventType;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\Environment;
+use Paddle\SDK\Notifications\Entities\EntityFactory;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\OrderBy;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -65,8 +65,7 @@ class SimulationsClientTest extends TestCase
                 notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
                 type: SimulationSingleEventType::AddressCreated(),
                 name: 'New US address created for CRM',
-                payload: new JSONObject(json_decode(self::readRawJsonFixture('request/address_created_payload'), true),
-                ),
+                payload: EntityFactory::create('address.created', json_decode(self::readRawJsonFixture('request/address_created_payload'), true)),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_basic'),
@@ -116,8 +115,7 @@ class SimulationsClientTest extends TestCase
                 type: SimulationSingleEventType::AdjustmentUpdated(),
                 name: 'Refund approved',
                 status: SimulationStatus::Active(),
-                payload: new JSONObject(json_decode(self::readRawJsonFixture('request/adjustment_updated_payload'), true),
-                ),
+                payload: EntityFactory::create('adjustment.updated', json_decode(self::readRawJsonFixture('request/adjustment_updated_payload'), true)),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_adjustment_updated')),
             self::readRawJsonFixture('request/update_full'),
