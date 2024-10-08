@@ -20,7 +20,7 @@ class UpdateSimulation implements \JsonSerializable
         public readonly SimulationSingleEventType|SimulationScenarioType|Undefined $type = new Undefined(),
         public readonly string|Undefined $name = new Undefined(),
         public readonly SimulationStatus|Undefined $status = new Undefined(),
-        public readonly JSONObject|Undefined $payload = new Undefined(),
+        public readonly JSONObject|Undefined|null $payload = new Undefined(),
     ) {
     }
 

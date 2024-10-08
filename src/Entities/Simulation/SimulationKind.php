@@ -14,10 +14,10 @@ namespace Paddle\SDK\Entities\Simulation;
 use Paddle\SDK\PaddleEnum;
 
 /**
- * @method static SimulationType Scenario()
- * @method static SimulationType SingleEvent()
+ * @method static SimulationKind Scenario()
+ * @method static SimulationKind SingleEvent()
  */
-final class SimulationType extends PaddleEnum
+final class SimulationKind extends PaddleEnum
 {
     private const Scenario = 'scenario';
     private const SingleEvent = 'single_event';
