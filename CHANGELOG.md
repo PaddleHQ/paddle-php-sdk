@@ -18,6 +18,30 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Fixed
 
 - Dropped `receipt_data` on create and preview of a one-time charge for Subscriptions and Transactions
+- `TransactionsClient::preview()` `TransactionPreview` response now allows null price ID for non-catalog prices:
+  - `TransactionPreview` `items[]->price` can now return `Price` (with `id`) or `TransactionPreviewPrice` (with nullable `id`)
+  - `TransactionPreview` `details->lineItems[]->priceId` is now nullable
+
+### Added
+- `TransactionsClient::create()` now supports operation items with optional properties:
+  - `Resources\Transactions\Operations\Create\TransactionCreateItem`
+  - `Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice`
+- `TransactionsClient::update()` now supports operation items with optional properties:
+  - `Resources\Transactions\Operations\Update\TransactionUpdateItem`
+  - `Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice`
+- `TransactionsClient::preview()` now supports operation items with optional properties:
+  - `Resources\Transactions\Operations\Preview\TransactionItemPreviewWithNonCatalogPrice`
+  - `Resources\Transactions\Operations\Preview\TransactionItemPreviewWithPriceId`
+
+### Deprecated
+- `TransactionsClient::create()` operation items have been deprecated:
+  - `Entities\Transaction\TransactionCreateItem`
+  - `Entities\Transaction\TransactionCreateItemWithPrice`
+- `TransactionsClient::update()` operation items have been deprecated:
+  - `Entities\Transaction\TransactionUpdateTransactionItem`
+- `TransactionsClient::preview()` operation items have been deprecated:
+  - `Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice`
+  - `Entities\Transaction\TransactionItemPreviewWithPriceId`
 
 # [1.3.1] - 2024-09-30
 

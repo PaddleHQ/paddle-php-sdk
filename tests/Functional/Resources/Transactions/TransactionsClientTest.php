@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Transactions;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Price;
 use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -15,26 +16,40 @@ use Paddle\SDK\Entities\Shared\Disposition;
 use Paddle\SDK\Entities\Shared\Interval;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
+use Paddle\SDK\Entities\Shared\TaxCategory;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction;
-use Paddle\SDK\Entities\Transaction\TransactionCreateItem;
-use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice;
-use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice;
-use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId;
-use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPrice;
+use Paddle\SDK\Entities\Transaction\TransactionCreateItem as DeprecatedTransactionCreateItem;
+use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice as DeprecatedTransactionCreateItemWithPrice;
+use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice as DeprecatedTransactionItemPreviewWithNonCatalogPrice;
+use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId as DeprecatedTransactionItemPreviewWithPriceId;
+use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPrice as DeprecatedTransactionNonCatalogPrice;
+use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPriceWithProduct as DeprecatedTransactionNonCatalogPriceWithProduct;
+use Paddle\SDK\Entities\Transaction\TransactionNonCatalogProduct as DeprecatedTransactionNonCatalogProduct;
+use Paddle\SDK\Entities\Transaction\TransactionPreviewPrice;
+use Paddle\SDK\Entities\Transaction\TransactionUpdateTransactionItem as DeprecatedTransactionUpdateTransactionItem;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
 use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
+use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
+use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\GetTransactionInvoice;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
 use Paddle\SDK\Resources\Transactions\Operations\List\Origin;
 use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
+use Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionItemPreviewWithNonCatalogPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionItemPreviewWithPriceId;
 use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPriceWithProduct;
+use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogProduct;
+use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItem;
+use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -137,11 +152,87 @@ class TransactionsClientTest extends TestCase
             self::readRawJsonFixture('request/create_basic'),
         ];
 
+        yield 'Basic Create (deprecated)' => [
+            new CreateTransaction(
+                items: [
+                    new DeprecatedTransactionCreateItem('pri_01he5kxqey1k8ankgef29cj4bv', 1),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_basic'),
+        ];
+
         yield 'Create with non catalog price' => [
             new CreateTransaction(
                 items: [
                     new TransactionCreateItemWithPrice(
                         new TransactionNonCatalogPrice(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                        ),
+                        20,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_non_catalog_price'),
+        ];
+
+        yield 'Create with non catalog price and product' => [
+            new CreateTransaction(
+                items: [
+                    new TransactionCreateItemWithPrice(
+                        new TransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            new TransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                TaxCategory::DigitalGoods(),
+                                'Some description',
+                                'https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png',
+                                new CustomData([]),
+                            ),
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                        ),
+                        20,
+                    ),
+                    new TransactionItemPreviewWithNonCatalogPrice(
+                        new TransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            new TransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                TaxCategory::DigitalGoods(),
+                            ),
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_multiple_non_catalog_price_and_product'),
+        ];
+
+        yield 'Create with non catalog price (deprecated)' => [
+            new CreateTransaction(
+                items: [
+                    new DeprecatedTransactionCreateItemWithPrice(
+                        new DeprecatedTransactionNonCatalogPrice(
                             'Annual (per seat)',
                             'Annual (per seat)',
                             new TimePeriod(Interval::Year(), 1),
@@ -159,6 +250,36 @@ class TransactionsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_with_non_catalog_price'),
+        ];
+
+        yield 'Create with non catalog price and product (deprecated)' => [
+            new CreateTransaction(
+                items: [
+                    new DeprecatedTransactionCreateItemWithPrice(
+                        new DeprecatedTransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            new Money('30000', CurrencyCode::USD()),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                            new DeprecatedTransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                'Some description',
+                                TaxCategory::DigitalGoods(),
+                                'https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png',
+                                new CustomData([]),
+                            ),
+                        ),
+                        20,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_non_catalog_price_and_product'),
         ];
 
         yield 'Create Manually Collected' => [
@@ -210,6 +331,100 @@ class TransactionsClientTest extends TestCase
             new UpdateTransaction(status: TransactionStatus::Billed()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
+        ];
+
+        yield 'Update with catalog price' => [
+            new UpdateTransaction(
+                status: TransactionStatus::Billed(),
+                items: [
+                    new TransactionUpdateItem(
+                        'pri_01he5kxqey1k8ankgef29cj4bv',
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_with_catalog_price'),
+        ];
+
+        yield 'Update with catalog price (deprecated)' => [
+            new UpdateTransaction(
+                status: TransactionStatus::Billed(),
+                items: [
+                    new DeprecatedTransactionUpdateTransactionItem(
+                        'pri_01he5kxqey1k8ankgef29cj4bv',
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_with_catalog_price'),
+        ];
+
+        yield 'Update with non catalog price' => [
+            new UpdateTransaction(
+                items: [
+                    new TransactionUpdateItemWithPrice(
+                        new TransactionNonCatalogPrice(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                        ),
+                        20,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/update_with_non_catalog_price'),
+        ];
+
+        yield 'Update with non catalog price and product' => [
+            new UpdateTransaction(
+                items: [
+                    new TransactionUpdateItemWithPrice(
+                        new TransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            new TransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                TaxCategory::DigitalGoods(),
+                                'Some description',
+                                'https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png',
+                                new CustomData([]),
+                            ),
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                        ),
+                        20,
+                    ),
+                    new TransactionItemPreviewWithNonCatalogPrice(
+                        new TransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            new TransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                TaxCategory::DigitalGoods(),
+                            ),
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/update_with_non_catalog_price_and_product'),
         ];
 
         yield 'Update Partial' => [
@@ -465,11 +680,107 @@ class TransactionsClientTest extends TestCase
             self::readRawJsonFixture('request/preview_basic'),
         ];
 
+        yield 'Basic Preview (deprecated)' => [
+            new PreviewTransaction(
+                items: [
+                    new DeprecatedTransactionItemPreviewWithPriceId('pri_01he5kxqey1k8ankgef29cj4bv', 1, true),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_basic'),
+        ];
+
         yield 'Preview with non catalog price' => [
             new PreviewTransaction(
                 items: [
                     new TransactionItemPreviewWithNonCatalogPrice(
                         new TransactionNonCatalogPrice(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_non_catalog_price'),
+        ];
+
+        yield 'Preview with basic non catalog price' => [
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithNonCatalogPrice(
+                        new TransactionNonCatalogPrice(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_basic_non_catalog_price'),
+        ];
+
+        yield 'Preview with non catalog price and product' => [
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithNonCatalogPrice(
+                        new TransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            new TransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                TaxCategory::DigitalGoods(),
+                                'Some description',
+                                'https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png',
+                                new CustomData([]),
+                            ),
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                        ),
+                        20,
+                        true,
+                    ),
+                    new TransactionItemPreviewWithNonCatalogPrice(
+                        new TransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            new Money('30000', CurrencyCode::USD()),
+                            new TransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                TaxCategory::DigitalGoods(),
+                            ),
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_multiple_non_catalog_price_and_product'),
+        ];
+
+        yield 'Preview with non catalog price (deprecated)' => [
+            new PreviewTransaction(
+                items: [
+                    new DeprecatedTransactionItemPreviewWithNonCatalogPrice(
+                        new DeprecatedTransactionNonCatalogPrice(
                             'Annual (per seat)',
                             'Annual (per seat)',
                             new TimePeriod(Interval::Year(), 1),
@@ -489,6 +800,88 @@ class TransactionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
             self::readRawJsonFixture('request/preview_with_non_catalog_price'),
         ];
+
+        yield 'Preview with non catalog price and product ID (deprecated)' => [
+            new PreviewTransaction(
+                items: [
+                    new DeprecatedTransactionItemPreviewWithNonCatalogPrice(
+                        new DeprecatedTransactionNonCatalogPrice(
+                            'Annual (per seat)',
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            new Money('30000', CurrencyCode::USD()),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_non_catalog_price'),
+        ];
+
+        yield 'Preview with non catalog price and product (deprecated)' => [
+            new PreviewTransaction(
+                items: [
+                    new DeprecatedTransactionItemPreviewWithNonCatalogPrice(
+                        new DeprecatedTransactionNonCatalogPriceWithProduct(
+                            'Annual (per seat)',
+                            'Annual (per seat)',
+                            new TimePeriod(Interval::Year(), 1),
+                            null,
+                            TaxMode::AccountSetting(),
+                            new Money('30000', CurrencyCode::USD()),
+                            [],
+                            new PriceQuantity(10, 999),
+                            null,
+                            new DeprecatedTransactionNonCatalogProduct(
+                                'Annual (per seat)',
+                                'Some description',
+                                TaxCategory::DigitalGoods(),
+                                'https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png',
+                                new CustomData([]),
+                            ),
+                        ),
+                        20,
+                        true,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_non_catalog_price_and_product'),
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function it_has_prices_with_and_without_id_on_preview(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/preview_entity')));
+        $preview = $this->client->transactions->preview(
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithPriceId('pri_01gsz8z1q1n00f12qt82y31smh', 1, true),
+                ],
+            ),
+        );
+
+        $price = $preview->items[0]->price;
+        self::assertInstanceOf(Price::class, $price);
+        self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $price->id);
+
+        $transactionPreviewPrice = $preview->items[1]->price;
+        self::assertInstanceOf(TransactionPreviewPrice::class, $transactionPreviewPrice);
+        self::assertNull($transactionPreviewPrice->id);
+
+        self::assertNull($preview->details->lineItems[0]->priceId);
+        self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $preview->details->lineItems[1]->priceId);
     }
 
     /**
