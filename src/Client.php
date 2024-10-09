@@ -41,6 +41,7 @@ use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
@@ -172,7 +173,16 @@ class Client
         $request = $this->requestFactory->createRequest($method, $uri);
 
         $serializer = new Serializer(
-            [new BackedEnumNormalizer(), new JsonSerializableNormalizer(), new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter())],
+            [
+                new BackedEnumNormalizer(),
+                new JsonSerializableNormalizer(),
+                new ObjectNormalizer(
+                    nameConverter: new CamelCaseToSnakeCaseNameConverter(),
+                    defaultContext: (new ObjectNormalizerContextBuilder())
+                        ->withPreserveEmptyObjects(true)
+                        ->toArray(),
+                ),
+            ],
             [new JsonEncoder()],
         );
 

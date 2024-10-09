@@ -23,6 +23,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `details->lineItems[]->priceId` is now nullable
   - `items[]->priceId` is now nullable
   - `details->lineItems[]->product` can now return `Product` (with `id`) or `TransactionPreviewProduct` (with nullable `id`)
+- Empty custom data array will now serialize to empty JSON object `{}`
 
 ### Added
 - `TransactionsClient::create()` now supports operation items with optional properties:
