@@ -1,0 +1,58 @@
+{
+    "data": {
+        "id": "ntfsim_01j82fs5pvrdse93e1kawqy2fr",
+        "notification_setting_id": "ntfset_01j82d983j814ypzx7m1fw2jpz",
+        "name": "Refund approved",
+        "type": "adjustment.updated",
+        "status": "active",
+        "payload": {
+            "id": "adj_01hvgf2s84dr6reszzg29zbvcm",
+            "action": "refund",
+            "transaction_id": "txn_01hvcc93znj3mpqt1tenkjb04y",
+            "subscription_id": "sub_01hvccbx32q2gb40sqx7n42430",
+            "customer_id": "ctm_01hrffh7gvp29kc7xahm8wddwa",
+            "reason": "error",
+            "credit_applied_to_balance": null,
+            "currency_code": "USD",
+            "status": "approved",
+            "items": [
+                {
+                    "id": "adjitm_01hvgf2s84dr6reszzg2gx70gj",
+                    "item_id": "txnitm_01hvcc94b7qgz60qmrqmbm19zw",
+                    "type": "partial",
+                    "amount": "100",
+                    "proration": null,
+                    "totals": {
+                        "subtotal": "92",
+                        "tax": "8",
+                        "total": "100"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "92",
+                "tax": "8",
+                "total": "100",
+                "fee": "5",
+                "earnings": "87",
+                "currency_code": "USD"
+            },
+            "payout_totals": {
+                "subtotal": "92",
+                "tax": "8",
+                "total": "100",
+                "fee": "5",
+                "earnings": "87",
+                "currency_code": "USD"
+            },
+            "created_at": "2024-04-15T08:48:20.239695Z",
+            "updated_at": "2024-04-15T08:48:20.239695Z"
+        },
+        "last_run_at": "2024-09-18T11:55:18.261049Z",
+        "created_at": "2024-09-18T11:55:15.547675Z",
+        "updated_at": "2024-09-18T12:07:08.475015Z"
+    },
+    "meta": {
+        "request_id": "ab96e6ec-6a2b-4f3a-9e65-3cf7ac29ea99"
+    }
+}

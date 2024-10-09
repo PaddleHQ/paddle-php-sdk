@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "id": "ntfsimrun_01j82gvz2cgw08p7mak3gcd3a3",
+            "status": "completed",
+            "type": "subscription_creation",
+            "created_at": "2024-09-18T12:14:15.628606Z",
+            "updated_at": "2024-09-18T12:14:27.244695Z"
+        },
+        {
+            "id": "ntfsimrun_01j82gjx7fxdc27bsqxf311cbe",
+            "status": "completed",
+            "type": "subscription_creation",
+            "created_at": "2024-09-18T12:09:18.831870Z",
+            "updated_at": "2024-09-18T12:09:30.613445Z"
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "per_page": 50,
+            "estimated_total": 2,
+            "next": "https://api.paddle.dev/simulations/ntfsim_01j82g2mggsgjpb3mjg0xq6p5k/runs?after=ntfsimrun_01j82gjx7fxdc27bsqxf311cbe",
+            "has_more": false
+        },
+        "request_id": "12a52c1d-e899-4401-baf4-e836e3178062"
+    }
+}

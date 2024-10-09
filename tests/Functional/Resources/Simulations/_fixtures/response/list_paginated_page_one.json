@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": "ntfsim_01j82fs5pvrdse93e1kawqy2fr",
+            "notification_setting_id": "ntfset_01j8259dtga48jwekrv2pmk0kp",
+            "name": "Refund or chargeback created",
+            "type": "adjustment.created",
+            "status": "active",
+            "payload": null,
+            "last_run_at": "2024-09-18T11:55:18.261049Z",
+            "created_at": "2024-09-18T11:55:15.547675Z",
+            "updated_at": "2024-09-18T11:55:18.261225Z"
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "per_page": 1,
+            "estimated_total": 2,
+            "next": "https://api.paddle.dev/simulations?after=ntfsim_01j82fs5pvrdse93e1kawqy2fr",
+            "has_more": true
+        },
+        "request_id": "ad095054-41bc-4907-907d-da18310aea49"
+    }
+}
