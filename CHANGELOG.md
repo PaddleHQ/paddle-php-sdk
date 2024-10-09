@@ -18,9 +18,11 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Fixed
 
 - Dropped `receipt_data` on create and preview of a one-time charge for Subscriptions and Transactions
-- `TransactionsClient::preview()` `TransactionPreview` response now allows null price ID for non-catalog prices:
-  - `TransactionPreview` `items[]->price` can now return `Price` (with `id`) or `TransactionPreviewPrice` (with nullable `id`)
-  - `TransactionPreview` `details->lineItems[]->priceId` is now nullable
+- `TransactionsClient::preview()` `TransactionPreview` response now allows null IDs for non-catalog prices and products:
+  - `items[]->price` can now return `Price` (with `id`) or `TransactionPreviewPrice` (with nullable `id`)
+  - `details->lineItems[]->priceId` is now nullable
+  - `items[]->priceId` is now nullable
+  - `details->lineItems[]->product` can now return `Product` (with `id`) or `TransactionPreviewProduct` (with nullable `id`)
 
 ### Added
 - `TransactionsClient::create()` now supports operation items with optional properties:

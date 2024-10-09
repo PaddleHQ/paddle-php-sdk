@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities\Shared;
 
 use Paddle\SDK\Entities\Product;
+use Paddle\SDK\Entities\Transaction\TransactionPreviewProduct;
 
 class TransactionLineItemPreview
 {
@@ -21,19 +22,21 @@ class TransactionLineItemPreview
         public string $taxRate,
         public UnitTotals $unitTotals,
         public Totals $totals,
-        public Product $product,
+        public Product|TransactionPreviewProduct $product,
     ) {
     }
 
     public static function from(array $data): self
     {
         return new self(
-            $data['price_id'],
+            $data['price_id'] ?? null,
             $data['quantity'],
             $data['tax_rate'],
             UnitTotals::from($data['unit_totals']),
             Totals::from($data['totals']),
-            Product::from($data['product']),
+            isset($data['product']['id'])
+                ? Product::from($data['product'])
+                : TransactionPreviewProduct::from($data['product']),
         );
     }
 }
