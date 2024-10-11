@@ -173,16 +173,7 @@ class Client
         $request = $this->requestFactory->createRequest($method, $uri);
 
         $serializer = new Serializer(
-            [
-                new BackedEnumNormalizer(),
-                new JsonSerializableNormalizer(),
-                new ObjectNormalizer(
-                    nameConverter: new CamelCaseToSnakeCaseNameConverter(),
-                    defaultContext: [
-                        AbstractObjectNormalizer::PRESERVE_EMPTY_OBJECTS => true,
-                    ],
-                ),
-            ],
+            [new BackedEnumNormalizer(), new JsonSerializableNormalizer(), new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter())],
             [new JsonEncoder()],
         );
 
