@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Price;
+use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -29,6 +30,7 @@ use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPrice as DeprecatedTran
 use Paddle\SDK\Entities\Transaction\TransactionNonCatalogPriceWithProduct as DeprecatedTransactionNonCatalogPriceWithProduct;
 use Paddle\SDK\Entities\Transaction\TransactionNonCatalogProduct as DeprecatedTransactionNonCatalogProduct;
 use Paddle\SDK\Entities\Transaction\TransactionPreviewPrice;
+use Paddle\SDK\Entities\Transaction\TransactionPreviewProduct;
 use Paddle\SDK\Entities\Transaction\TransactionUpdateTransactionItem as DeprecatedTransactionUpdateTransactionItem;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
@@ -875,13 +877,28 @@ class TransactionsClientTest extends TestCase
         $price = $preview->items[0]->price;
         self::assertInstanceOf(Price::class, $price);
         self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $price->id);
+        self::assertSame('pro_01gsz4t5hdjse780zja8vvr7jg', $price->productId);
 
         $transactionPreviewPrice = $preview->items[1]->price;
         self::assertInstanceOf(TransactionPreviewPrice::class, $transactionPreviewPrice);
         self::assertNull($transactionPreviewPrice->id);
+        self::assertSame('pro_01gsz97mq9pa4fkyy0wqenepkz', $transactionPreviewPrice->productId);
+
+        $transactionPreviewPriceWithoutProductId = $preview->items[2]->price;
+        self::assertInstanceOf(TransactionPreviewPrice::class, $transactionPreviewPriceWithoutProductId);
+        self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $price->id);
+        self::assertNull($transactionPreviewPriceWithoutProductId->productId);
 
         self::assertNull($preview->details->lineItems[0]->priceId);
         self::assertSame('pri_01gsz8z1q1n00f12qt82y31smh', $preview->details->lineItems[1]->priceId);
+
+        $product = $preview->details->lineItems[1]->product;
+        self::assertInstanceOf(Product::class, $product);
+        self::assertSame('pro_01gsz97mq9pa4fkyy0wqenepkz', $product->id);
+
+        $previewProduct = $preview->details->lineItems[0]->product;
+        self::assertInstanceOf(TransactionPreviewProduct::class, $previewProduct);
+        self::assertNull($previewProduct->id);
     }
 
     /**

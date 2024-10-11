@@ -13,7 +13,6 @@ namespace Paddle\SDK\Entities\Transaction;
 
 use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Entities\Entity;
-use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\ImportMeta;
@@ -31,7 +30,7 @@ class TransactionPreviewPrice implements Entity
      */
     private function __construct(
         public string|null $id,
-        public string $productId,
+        public string|null $productId,
         public string|null $name,
         public string $description,
         public CatalogType|null $type,
@@ -44,7 +43,6 @@ class TransactionPreviewPrice implements Entity
         public Status $status,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
-        public Product|null $product,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
     ) {
@@ -53,8 +51,8 @@ class TransactionPreviewPrice implements Entity
     public static function from(array $data): self
     {
         return new self(
-            id: $data['id'],
-            productId: $data['product_id'],
+            id: $data['id'] ?? null,
+            productId: $data['product_id'] ?? null,
             name: $data['name'] ?? null,
             description: $data['description'],
             type: CatalogType::from($data['type'] ?? ''),
@@ -70,7 +68,6 @@ class TransactionPreviewPrice implements Entity
             status: Status::from($data['status']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
-            product: isset($data['product']) ? Product::from($data['product']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
         );
