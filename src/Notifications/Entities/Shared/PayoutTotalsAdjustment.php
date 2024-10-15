@@ -11,14 +11,19 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Entities\Shared;
 
-class PayoutTotalsAdjustment
+use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Undefined;
+
+class PayoutTotalsAdjustment implements \JsonSerializable
 {
+    use FiltersUndefined;
+
     private function __construct(
         public string $subtotal,
         public string $tax,
         public string $total,
         public string $fee,
-        public ChargebackFee|null $chargebackFee,
+        public ChargebackFee|Undefined|null $chargebackFee,
         public string $earnings,
         public CurrencyCodePayouts $currencyCode,
     ) {
@@ -31,9 +36,22 @@ class PayoutTotalsAdjustment
             tax: $data['tax'],
             total: $data['total'],
             fee: $data['fee'],
-            chargebackFee: isset($data['chargeback_fee']) ? ChargebackFee::from($data['chargeback_fee']) : null,
+            chargebackFee: isset($data['chargeback_fee']) ? ChargebackFee::from($data['chargeback_fee']) : new Undefined(),
             earnings: $data['earnings'],
             currencyCode: CurrencyCodePayouts::from($data['currency_code']),
         );
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->filterUndefined([
+            'subtotal' => $this->subtotal,
+            'tax' => $this->tax,
+            'total' => $this->total,
+            'fee' => $this->fee,
+            'chargeback_fee' => $this->chargebackFee,
+            'earnings' => $this->earnings,
+            'currency_code' => $this->currencyCode,
+        ]);
     }
 }

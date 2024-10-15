@@ -10,9 +10,12 @@ use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Environment;
+use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\Product;
 use Paddle\SDK\Notifications\Entities\Shared\Interval;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionPrice;
+use Paddle\SDK\Notifications\Entities\UndefinedEntity;
+use Paddle\SDK\Notifications\Events\UndefinedEvent;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Events\Operations\ListEvents;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -157,5 +160,38 @@ class EventsClientTest extends TestCase
         self::assertNull($price2->quantity);
         self::assertSame('2023-04-24T14:11:13.014+00:00', $price1->createdAt->format(\DATE_RFC3339_EXTENDED));
         self::assertSame('2023-11-24T14:12:05.528+00:00', $price1->updatedAt->format(\DATE_RFC3339_EXTENDED));
+    }
+
+    /**
+     * @test
+     */
+    public function list_handles_unknown_events(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+        $events = $this->client->events->list(new ListEvents());
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+
+        $undefinedEvents = array_values(
+            array_filter(
+                iterator_to_array($events),
+                fn ($event) => (string) $event->eventType === 'unknown_entity.updated',
+            ),
+        );
+
+        $undefinedEvent = $undefinedEvents[0];
+        self::assertInstanceOf(UndefinedEvent::class, $undefinedEvent);
+        self::assertSame($undefinedEvent->entity, $undefinedEvent->data);
+        self::assertInstanceOf(UndefinedEntity::class, $undefinedEvent->entity);
+        self::assertInstanceOf(UndefinedEntity::class, $undefinedEvent->data);
+        self::assertInstanceOf(Entity::class, $undefinedEvent->data);
+        self::assertEquals(
+            [
+                'key' => 'value',
+            ],
+            $undefinedEvent->entity->data,
+        );
     }
 }
