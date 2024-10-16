@@ -38,7 +38,7 @@ class Adjustment implements Entity
         public array $items,
         public AdjustmentTotals $totals,
         public PayoutTotalsAdjustment|null $payoutTotals,
-        public array|null $taxRatesUsed,
+        public array $taxRatesUsed,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface|null $updatedAt,
     ) {
@@ -59,9 +59,7 @@ class Adjustment implements Entity
             items: array_map(fn (array $item): AdjustmentItem => AdjustmentItem::from($item), $data['items']),
             totals: AdjustmentTotals::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,
-            taxRatesUsed: isset($data['tax_rates_used'])
-                ? array_map(fn (array $taxRateUsed): AdjustmentTaxRatesUsed => AdjustmentTaxRatesUsed::from($taxRateUsed), $data['tax_rates_used'] ?? [])
-                : null,
+            taxRatesUsed: array_map(fn (array $taxRateUsed): AdjustmentTaxRatesUsed => AdjustmentTaxRatesUsed::from($taxRateUsed), $data['tax_rates_used'] ?? []),
             createdAt: DateTime::from($data['created_at']),
             updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
         );

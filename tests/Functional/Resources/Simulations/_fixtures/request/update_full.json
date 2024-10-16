@@ -8,7 +8,7 @@
         "action": "refund",
         "transaction_id": "txn_01hvcc93znj3mpqt1tenkjb04y",
         "subscription_id": "sub_01hvccbx32q2gb40sqx7n42430",
-        "tax_rates_used": null,
+        "tax_rates_used": [],
         "customer_id": "ctm_01hrffh7gvp29kc7xahm8wddwa",
         "reason": "error",
         "credit_applied_to_balance": null,
@@ -37,6 +37,13 @@
             "currency_code": "USD"
         },
         "payout_totals": {
+            "chargeback_fee": {
+                "amount": "1",
+                "original": {
+                    "amount": "2",
+                    "currency_code": "USD"
+                }
+            },
             "subtotal": "92",
             "tax": "8",
             "total": "100",
