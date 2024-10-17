@@ -70,6 +70,22 @@ class SimulationsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_basic'),
         ];
+
+        yield 'Undefined' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: EventTypeName::from('unknown_entity.created'),
+                name: 'Some Simulation',
+                payload: EntityFactory::create('unknown_entity.created', ['some' => 'data']),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'name' => 'Some Simulation',
+                'type' => 'unknown_entity.created',
+                'payload' => ['some' => 'data'],
+            ]),
+        ];
     }
 
     /**

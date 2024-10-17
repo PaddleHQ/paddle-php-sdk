@@ -14,6 +14,9 @@ class EntityFactory
 
         /** @var class-string<Entity> $entity */
         $entity = sprintf('\Paddle\SDK\Notifications\Entities\%s', ucfirst($entity));
+        if (! class_exists($entity)) {
+            $entity = UndefinedEntity::class;
+        }
 
         if (! class_exists($entity) || ! in_array(Entity::class, class_implements($entity), true)) {
             throw new \UnexpectedValueException("Event type '{$identifier}' cannot be mapped to an object");

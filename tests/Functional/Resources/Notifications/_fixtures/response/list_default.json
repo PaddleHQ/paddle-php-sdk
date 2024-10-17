@@ -452,6 +452,28 @@
             "retry_at": null,
             "times_attempted": 1,
             "notification_setting_id": "ntfset_01h7zcdzf04a7wvyja9k9p1n3p"
+        },
+        {
+            "id": "ntf_01h8441jz6fr97hv7zemswj8cw",
+            "type": "unknown_entity.updated",
+            "status": "delivered",
+            "payload": {
+                "data": {
+                    "key": "value"
+                },
+                "event_id": "evt_01h8441jx8x1q971q9ksksqh82",
+                "event_type": "unknown_entity.updated",
+                "occurred_at": "2023-08-18T10:46:18.792661Z",
+                "notification_id": "ntf_01h8441jz6fr97hv7zemswj8cw"
+            },
+            "occurred_at": "2023-08-18T10:46:18.792661Z",
+            "delivered_at": "2023-08-18T10:46:19.396422Z",
+            "replayed_at": null,
+            "origin": "event",
+            "last_attempt_at": "2023-08-18T10:46:18.887423Z",
+            "retry_at": null,
+            "times_attempted": 1,
+            "notification_setting_id": "ntfset_01h7zcdzf04a7wvyja9k9p1n3p"
         }
     ],
     "meta": {

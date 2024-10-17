@@ -336,6 +336,27 @@ class EventTest extends TestCase
     /**
      * @test
      */
+    public function it_creates_event_for_undefined_entity(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'unknown_event.created',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => [
+                'some' => 'data',
+            ],
+        ]);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $event->notificationId);
+
+        self::assertInstanceOf(Event::class, $event);
+        self::assertInstanceOf(Entity::class, $event->data);
+    }
+
+    /**
+     * @test
+     */
     public function it_creates_entity_from_data(): void
     {
         $event = Event::from(self::readJsonFixture('notification/business.updated'));
