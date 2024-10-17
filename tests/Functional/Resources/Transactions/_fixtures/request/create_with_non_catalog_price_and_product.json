@@ -6,7 +6,7 @@
                 "description": "Annual (per seat)",
                 "name": "Annual (per seat)",
                 "product": {
-                    "custom_data": [],
+                    "custom_data": {},
                     "description": "Some description",
                     "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
                     "name": "Annual (per seat)",

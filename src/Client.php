@@ -43,6 +43,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -177,7 +178,9 @@ class Client
         );
 
         if ($payload !== null) {
-            $body = $serializer->serialize($payload, 'json');
+            $body = $serializer->serialize($payload, 'json', [
+                AbstractObjectNormalizer::PRESERVE_EMPTY_OBJECTS => true,
+            ]);
 
             $request = $request->withBody(
                 // Satisfies empty body requests.
