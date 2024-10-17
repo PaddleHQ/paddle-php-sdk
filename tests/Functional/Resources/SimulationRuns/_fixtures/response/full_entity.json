@@ -1,0 +1,12 @@
+{
+    "data": {
+        "id": "ntfsimrun_01j82h13n87yq2sfv187hm2r0p",
+        "status": "pending",
+        "type": "subscription_creation",
+        "created_at": "2024-09-18T12:17:04.168467Z",
+        "updated_at": "2024-09-18T12:17:04.168467Z"
+    },
+    "meta": {
+        "request_id": "2201997e-d23b-4a49-acdb-8a9f8cc72ff6"
+    }
+}

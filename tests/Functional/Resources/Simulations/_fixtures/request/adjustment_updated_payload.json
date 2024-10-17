@@ -1,0 +1,50 @@
+{
+  "id": "adj_01hvgf2s84dr6reszzg29zbvcm",
+  "action": "refund",
+  "transaction_id": "txn_01hvcc93znj3mpqt1tenkjb04y",
+  "subscription_id": "sub_01hvccbx32q2gb40sqx7n42430",
+  "customer_id": "ctm_01hrffh7gvp29kc7xahm8wddwa",
+  "reason": "error",
+  "credit_applied_to_balance": null,
+  "currency_code": "USD",
+  "status": "approved",
+  "items": [
+    {
+      "id": "adjitm_01hvgf2s84dr6reszzg2gx70gj",
+      "item_id": "txnitm_01hvcc94b7qgz60qmrqmbm19zw",
+      "type": "partial",
+      "amount": "100",
+      "proration": null,
+      "totals": {
+        "subtotal": "92",
+        "tax": "8",
+        "total": "100"
+      }
+    }
+  ],
+  "totals": {
+    "subtotal": "92",
+    "tax": "8",
+    "total": "100",
+    "fee": "5",
+    "earnings": "87",
+    "currency_code": "USD"
+  },
+  "payout_totals": {
+    "chargeback_fee": {
+      "amount": "1",
+      "original": {
+        "amount": "2",
+        "currency_code": "USD"
+      }
+    },
+    "subtotal": "92",
+    "tax": "8",
+    "total": "100",
+    "fee": "5",
+    "earnings": "87",
+    "currency_code": "USD"
+  },
+  "created_at": "2024-04-15T08:48:20.239695Z",
+  "updated_at": "2024-04-15T08:48:20.239695Z"
+}

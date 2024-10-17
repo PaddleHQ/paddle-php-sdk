@@ -1,0 +1,70 @@
+{
+    "data": [
+        {
+            "id": "ntfsimevt_03j82hf8jrwjsf9337a35tqghx",
+            "status": "success",
+            "event_type": "adjustment.updated",
+            "payload": {
+                "id": "adj_01hvgf2s84dr6reszzg29zbvcm",
+                "items": [
+                    {
+                        "id": "adjitm_01hvgf2s84dr6reszzg2gx70gj",
+                        "type": "partial",
+                        "amount": "100",
+                        "totals": {
+                            "tax": "8",
+                            "total": "100",
+                            "subtotal": "92"
+                        },
+                        "item_id": "txnitm_01hvcc94b7qgz60qmrqmbm19zw",
+                        "proration": null
+                    }
+                ],
+                "action": "refund",
+                "reason": "error",
+                "status": "pending_approval",
+                "totals": {
+                    "fee": "5",
+                    "tax": "8",
+                    "total": "100",
+                    "earnings": "87",
+                    "subtotal": "92",
+                    "currency_code": "USD"
+                },
+                "created_at": "2024-04-15T08:48:20.239695Z",
+                "updated_at": "2024-04-15T08:48:20.239695Z",
+                "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+                "currency_code": "USD",
+                "payout_totals": {
+                    "fee": "5",
+                    "tax": "8",
+                    "total": "100",
+                    "earnings": "87",
+                    "subtotal": "92",
+                    "currency_code": "USD"
+                },
+                "transaction_id": "txn_01hvcc93znj3mpqt1tenkjb04y",
+                "subscription_id": "sub_01hvccbx32q2gb40sqx7n42430",
+                "credit_applied_to_balance": null
+            },
+            "request": {
+                "body": "{\"event_id\":\"ntfsimevt_01j82hf8jrwjsf9337a35tqghp\",\"event_type\":\"adjustment.updated\",\"occurred_at\":\"2024-09-18T12:24:47.960617Z\",\"data\":{\"id\":\"adj_01hvgf2s84dr6reszzg29zbvcm\",\"items\":[{\"id\":\"adjitm_01hvgf2s84dr6reszzg2gx70gj\",\"type\":\"partial\",\"amount\":\"100\",\"totals\":{\"tax\":\"8\",\"total\":\"100\",\"subtotal\":\"92\"},\"item_id\":\"txnitm_01hvcc94b7qgz60qmrqmbm19zw\",\"proration\":null}],\"action\":\"refund\",\"reason\":\"error\",\"status\":\"pending_approval\",\"totals\":{\"fee\":\"5\",\"tax\":\"8\",\"total\":\"100\",\"earnings\":\"87\",\"subtotal\":\"92\",\"currency_code\":\"USD\"},\"created_at\":\"2024-04-15T08:48:20.239695Z\",\"updated_at\":\"2024-04-15T08:48:20.239695Z\",\"customer_id\":\"ctm_01hv6y1jedq4p1n0yqn5ba3ky4\",\"currency_code\":\"USD\",\"payout_totals\":{\"fee\":\"5\",\"tax\":\"8\",\"total\":\"100\",\"earnings\":\"87\",\"subtotal\":\"92\",\"currency_code\":\"USD\"},\"transaction_id\":\"txn_01hvcc93znj3mpqt1tenkjb04y\",\"subscription_id\":\"sub_01hvccbx32q2gb40sqx7n42430\",\"credit_applied_to_balance\":null}}"
+            },
+            "response": {
+                "body": "{\"status\":\"NOTICE\",\"message\":\"Unknown source ID. If you just created that source, it can take a minute to propagate. Be assured that if the source is valid, the webhook was handled successfully. Check your dashboard to inspect the request: https://dashboard.hookdeck.com/\",\"request_id\":\"req_6ob9lGLoCA2qKWS6VGXR\"}",
+                "status_code": 200
+            },
+            "created_at": "2024-09-18T13:24:47.960617Z",
+            "updated_at": "2024-09-18T13:24:48.309530Z"
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "per_page": 1,
+            "estimated_total": 2,
+            "next": "https://api.paddle.dev/simulations/ntfsim_01j82g2mggsgjpb3mjg0xq6p5k/runs/ntfsimrun_01j82h13n87yq2sfv187hm2r0p/events?after=ntfsimevt_03j82hf8jrwjsf9337a35tqghx",
+            "has_more": false
+        },
+        "request_id": "f1726ebc-383d-45da-ab71-2c811b3c6ce8"
+    }
+}

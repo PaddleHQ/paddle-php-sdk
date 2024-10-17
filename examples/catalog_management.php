@@ -24,7 +24,7 @@ use Paddle\SDK\Resources\Products\Operations\List\Includes as ProductIncludes;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$environment = Paddle\SDK\Environment::tryFrom(getenv('PAD') ?: '') ?? Paddle\SDK\Environment::SANDBOX;
+$environment = Paddle\SDK\Environment::tryFrom(getenv('PADDLE_ENVIRONMENT') ?: '') ?? Paddle\SDK\Environment::SANDBOX;
 $apiKey = getenv('PADDLE_API_KEY') ?: null;
 
 if (is_null($apiKey)) {

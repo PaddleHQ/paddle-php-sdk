@@ -17,6 +17,7 @@ use Http\Client\HttpAsyncClient;
 use Http\Discovery\HttpAsyncClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\Authentication\Bearer;
+use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
@@ -32,6 +33,10 @@ use Paddle\SDK\Resources\Prices\PricesClient;
 use Paddle\SDK\Resources\PricingPreviews\PricingPreviewsClient;
 use Paddle\SDK\Resources\Products\ProductsClient;
 use Paddle\SDK\Resources\Reports\ReportsClient;
+use Paddle\SDK\Resources\SimulationRunEvents\SimulationRunEventsClient;
+use Paddle\SDK\Resources\SimulationRuns\SimulationRunsClient;
+use Paddle\SDK\Resources\Simulations\SimulationsClient;
+use Paddle\SDK\Resources\SimulationTypes\SimulationTypesClient;
 use Paddle\SDK\Resources\Subscriptions\SubscriptionsClient;
 use Paddle\SDK\Resources\Transactions\TransactionsClient;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -45,6 +50,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -73,6 +79,10 @@ class Client
     public readonly NotificationsClient $notifications;
     public readonly NotificationLogsClient $notificationLogs;
     public readonly ReportsClient $reports;
+    public readonly SimulationsClient $simulations;
+    public readonly SimulationRunsClient $simulationRuns;
+    public readonly SimulationRunEventsClient $simulationRunEvents;
+    public readonly SimulationTypesClient $simulationTypes;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -116,6 +126,10 @@ class Client
         $this->notifications = new NotificationsClient($this);
         $this->notificationLogs = new NotificationLogsClient($this);
         $this->reports = new ReportsClient($this);
+        $this->simulations = new SimulationsClient($this);
+        $this->simulationRuns = new SimulationRunsClient($this);
+        $this->simulationRunEvents = new SimulationRunEventsClient($this);
+        $this->simulationTypes = new SimulationTypesClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
@@ -173,7 +187,12 @@ class Client
         $request = $this->requestFactory->createRequest($method, $uri);
 
         $serializer = new Serializer(
-            [new BackedEnumNormalizer(), new JsonSerializableNormalizer(), new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter())],
+            [
+                new BackedEnumNormalizer(),
+                new DateTimeNormalizer([DateTimeNormalizer::FORMAT_KEY => DateTime::PADDLE_RFC3339]),
+                new JsonSerializableNormalizer(),
+                new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter()),
+            ],
             [new JsonEncoder()],
         );
 

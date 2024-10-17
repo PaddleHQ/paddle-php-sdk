@@ -2801,6 +2801,14 @@
                 "updated_at": "2023-11-23T15:33:19.238230688Z",
                 "billed_at": "2023-11-23T15:33:01.930479Z"
             }
+        },
+        {
+            "event_id": "evt_01hfyd0v4xppkwmjaca5xyzh5d",
+            "event_type": "unknown_entity.updated",
+            "occurred_at": "2023-11-23T15:33:19.645134Z",
+            "data": {
+                "key": "value"
+            }
         }
     ],
     "meta": {
