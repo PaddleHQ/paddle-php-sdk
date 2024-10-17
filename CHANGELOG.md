@@ -25,6 +25,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `items[]->priceId` is now nullable
   - `details->lineItems[]->product` can now return `Product` (with `id`) or `TransactionPreviewProduct` (with nullable `id`)
 - Empty custom data array will now serialize to empty JSON object `{}`
+- `EventsClient::list` and `Notification->payload` will now return `UndefinedEvent` for unknown event types.
 
 ### Added
 - `TransactionsClient::create()` now supports operation items with optional properties:
