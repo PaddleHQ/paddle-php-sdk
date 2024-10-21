@@ -16,7 +16,7 @@ test:
 
 .PHONY: stan
 stan:
-	$(call command, /app/vendor/bin/phpstan, analyse src)
+	$(call command, /app/vendor/bin/phpstan, analyse src --memory-limit 256M)
 
 .PHONY: rector
 rector:
