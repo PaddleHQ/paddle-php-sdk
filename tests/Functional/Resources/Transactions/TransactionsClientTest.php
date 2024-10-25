@@ -212,7 +212,7 @@ class TransactionsClientTest extends TestCase
                         ),
                         20,
                     ),
-                    new TransactionItemPreviewWithNonCatalogPrice(
+                    new TransactionCreateItemWithPrice(
                         new TransactionNonCatalogPriceWithProduct(
                             'Annual (per seat)',
                             new Money('30000', CurrencyCode::USD()),
@@ -222,7 +222,6 @@ class TransactionsClientTest extends TestCase
                             ),
                         ),
                         20,
-                        true,
                     ),
                 ],
             ),
@@ -411,7 +410,7 @@ class TransactionsClientTest extends TestCase
                         ),
                         20,
                     ),
-                    new TransactionItemPreviewWithNonCatalogPrice(
+                    new TransactionUpdateItemWithPrice(
                         new TransactionNonCatalogPriceWithProduct(
                             'Annual (per seat)',
                             new Money('30000', CurrencyCode::USD()),
@@ -421,7 +420,6 @@ class TransactionsClientTest extends TestCase
                             ),
                         ),
                         20,
-                        true,
                     ),
                 ],
             ),

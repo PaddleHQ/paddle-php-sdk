@@ -31,7 +31,6 @@
             }
         },
         {
-            "include_in_totals": true,
             "price": {
                 "description": "Annual (per seat)",
                 "product": {
