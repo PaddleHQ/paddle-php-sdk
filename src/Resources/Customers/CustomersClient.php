@@ -122,7 +122,7 @@ class CustomersClient
     public function createAuthToken(string $id): CustomerAuthToken
     {
         $parser = new ResponseParser(
-            $this->client->postRaw("/customers/{$id}/auth-token"),
+            $this->client->postRaw("/customers/{$id}/auth-token", null),
         );
 
         return CustomerAuthToken::from($parser->getData());

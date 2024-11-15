@@ -252,3 +252,6 @@ class PaymentMethodsClientTest extends TestCase
         self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
     }
 }
+
+
+

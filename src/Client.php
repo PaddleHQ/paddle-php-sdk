@@ -156,7 +156,7 @@ class Client
         return $this->requestRaw('PATCH', $uri, $payload);
     }
 
-    public function postRaw(string|UriInterface $uri, array|\JsonSerializable $payload = [], array|HasParameters $parameters = []): ResponseInterface
+    public function postRaw(string|UriInterface $uri, array|\JsonSerializable|null $payload = [], array|HasParameters $parameters = []): ResponseInterface
     {
         if ($parameters) {
             $parameters = $parameters instanceof HasParameters ? $parameters->getParameters() : $parameters;
