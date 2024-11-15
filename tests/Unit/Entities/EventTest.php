@@ -5,7 +5,13 @@ declare(strict_types=1);
 namespace Paddle\SDK\Tests\Unit\Entities;
 
 use Paddle\SDK\Entities\Event;
+use Paddle\SDK\Notifications\Entities\DeletedPaymentMethod;
 use Paddle\SDK\Notifications\Entities\Entity;
+use Paddle\SDK\Notifications\Entities\PaymentMethod;
+use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodDeletionReason;
+use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodOrigin;
+use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
+use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -152,6 +158,18 @@ class EventTest extends TestCase
                 'discount',
                 \Paddle\SDK\Notifications\Events\DiscountUpdated::class,
                 \Paddle\SDK\Notifications\Entities\Discount::class,
+            ],
+            [
+                'payment_method.saved',
+                'paymentMethod',
+                PaymentMethodSaved::class,
+                PaymentMethod::class,
+            ],
+            [
+                'payment_method.deleted',
+                'paymentMethod',
+                PaymentMethodDeleted::class,
+                DeletedPaymentMethod::class,
             ],
             [
                 'payout.created',
@@ -393,5 +411,72 @@ class EventTest extends TestCase
         $notification = Event::fromRequest($request);
 
         self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notification->notificationId);
+    }
+
+    /**
+     * @test
+     */
+    public function it_creates_payment_method(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'payment_method.saved',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/payment_method.saved'),
+        ]);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $event->notificationId);
+
+        self::assertInstanceOf(PaymentMethodSaved::class, $event);
+        self::assertInstanceOf(Entity::class, $event->data);
+        self::assertSame($event->data, $event->paymentMethod);
+        self::assertSame('evt_01h8bzakzx3hm2fmen703n5q45', $event->eventId);
+        self::assertSame('2023-08-21T11:57:47.390+00:00', $event->occurredAt->format(DATE_RFC3339_EXTENDED));
+        self::assertSame('payment_method.saved', $event->eventType->getValue());
+
+        $paymentMethod = $event->paymentMethod;
+        self::assertInstanceOf(PaymentMethod::class, $paymentMethod);
+
+        self::assertSame('paymtd_01hs8zx6x377xfsfrt2bqsevbw', $paymentMethod->id);
+        self::assertSame('ctm_01hv6y1jedq4p1n0yqn5ba3ky4', $paymentMethod->customerId);
+        self::assertSame('add_01hv8gq3318ktkfengj2r75gfx', $paymentMethod->addressId);
+        self::assertEquals(SavedPaymentMethodOrigin::SavedDuringPurchase(), $paymentMethod->origin);
+        self::assertSame('2024-05-02T02:55:25.198+00:00', $paymentMethod->savedAt->format(DATE_RFC3339_EXTENDED));
+        self::assertSame('2024-05-02T02:55:25.198+00:00', $paymentMethod->updatedAt->format(DATE_RFC3339_EXTENDED));
+    }
+
+    /**
+     * @test
+     */
+    public function it_creates_deleted_payment_method(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'payment_method.deleted',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/payment_method.deleted'),
+        ]);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $event->notificationId);
+
+        self::assertInstanceOf(PaymentMethodDeleted::class, $event);
+        self::assertInstanceOf(Entity::class, $event->data);
+        self::assertSame($event->data, $event->paymentMethod);
+        self::assertSame('evt_01h8bzakzx3hm2fmen703n5q45', $event->eventId);
+        self::assertSame('2023-08-21T11:57:47.390+00:00', $event->occurredAt->format(DATE_RFC3339_EXTENDED));
+        self::assertSame('payment_method.deleted', $event->eventType->getValue());
+
+        $paymentMethod = $event->paymentMethod;
+        self::assertInstanceOf(DeletedPaymentMethod::class, $paymentMethod);
+
+        self::assertSame('paymtd_01hs8zx6x377xfsfrt2bqsevbw', $paymentMethod->id);
+        self::assertSame('ctm_01hv6y1jedq4p1n0yqn5ba3ky4', $paymentMethod->customerId);
+        self::assertSame('add_01hv8gq3318ktkfengj2r75gfx', $paymentMethod->addressId);
+        self::assertEquals(SavedPaymentMethodOrigin::SavedDuringPurchase(), $paymentMethod->origin);
+        self::assertEquals(SavedPaymentMethodDeletionReason::ReplacedByNewerVersion(), $paymentMethod->deletionReason);
+        self::assertSame('2024-05-02T02:55:25.198+00:00', $paymentMethod->savedAt->format(DATE_RFC3339_EXTENDED));
+        self::assertSame('2024-05-03T12:24:18.826+00:00', $paymentMethod->updatedAt->format(DATE_RFC3339_EXTENDED));
     }
 }

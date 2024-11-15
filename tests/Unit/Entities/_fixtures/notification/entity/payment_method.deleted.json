@@ -1,0 +1,10 @@
+{
+    "id": "paymtd_01hs8zx6x377xfsfrt2bqsevbw",
+    "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+    "address_id": "add_01hv8gq3318ktkfengj2r75gfx",
+    "deletion_reason": "replaced_by_newer_version",
+    "type": "card",
+    "origin": "saved_during_purchase",
+    "saved_at": "2024-05-02T02:55:25.198953Z",
+    "updated_at": "2024-05-03T12:24:18.826338Z"
+}

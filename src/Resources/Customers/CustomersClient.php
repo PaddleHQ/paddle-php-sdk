@@ -16,6 +16,7 @@ use Paddle\SDK\Entities\Collections\CreditBalanceCollection;
 use Paddle\SDK\Entities\Collections\CustomerCollection;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\Customer;
+use Paddle\SDK\Entities\CustomerAuthToken;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
@@ -111,5 +112,19 @@ class CustomersClient
         );
 
         return CreditBalanceCollection::from($parser->getData());
+    }
+
+    /**
+     * @throws ApiError                  On a generic API error
+     * @throws ApiError\CustomerApiError On a customer specific API error
+     * @throws MalformedResponse         If the API response was not parsable
+     */
+    public function createAuthToken(string $id): CustomerAuthToken
+    {
+        $parser = new ResponseParser(
+            $this->client->postRaw("/customers/{$id}/auth-token"),
+        );
+
+        return CustomerAuthToken::from($parser->getData());
     }
 }

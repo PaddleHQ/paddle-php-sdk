@@ -243,4 +243,30 @@ class CustomersClientTest extends TestCase
             sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/credit-balances', Environment::SANDBOX->baseUrl()),
         ];
     }
+
+    /**
+     * @test
+     */
+    public function create_auth_token_hits_expected_uri_and_parses_response(): void
+    {
+        $expectedUri = sprintf('%s/customers/ctm_01h8441jn5pcwrfhwh78jqt8hk/auth-token', Environment::SANDBOX->baseUrl());
+        $response = new Response(200, body: self::readRawJsonFixture('response/auth_token'));
+
+        $this->mockClient->addResponse($response);
+        $authToken = $this->client->customers->createAuthToken('ctm_01h8441jn5pcwrfhwh78jqt8hk');
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+
+        self::assertSame(
+            'pca_01hwyzq8hmdwed5p4jc4hnv6bh_01hwwggymjn0yhhb2gr4p91276_6xaav4lydudt6bgmuefeaf2xnu3umegx',
+            $authToken->customerAuthToken,
+        );
+        self::assertSame(
+            '2024-05-03T10:34:12.345+00:00',
+            $authToken->expiresAt->format(DATE_RFC3339_EXTENDED),
+        );
+    }
 }

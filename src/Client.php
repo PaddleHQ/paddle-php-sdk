@@ -29,6 +29,7 @@ use Paddle\SDK\Resources\EventTypes\EventTypesClient;
 use Paddle\SDK\Resources\NotificationLogs\NotificationLogsClient;
 use Paddle\SDK\Resources\Notifications\NotificationsClient;
 use Paddle\SDK\Resources\NotificationSettings\NotificationSettingsClient;
+use Paddle\SDK\Resources\PaymentMethods\PaymentMethodsClient;
 use Paddle\SDK\Resources\Prices\PricesClient;
 use Paddle\SDK\Resources\PricingPreviews\PricingPreviewsClient;
 use Paddle\SDK\Resources\Products\ProductsClient;
@@ -75,6 +76,7 @@ class Client
     public readonly EventTypesClient $eventTypes;
     public readonly EventsClient $events;
     public readonly PricingPreviewsClient $pricingPreviews;
+    public readonly PaymentMethodsClient $paymentMethods;
     public readonly NotificationSettingsClient $notificationSettings;
     public readonly NotificationsClient $notifications;
     public readonly NotificationLogsClient $notificationLogs;
@@ -122,6 +124,7 @@ class Client
         $this->eventTypes = new EventTypesClient($this);
         $this->events = new EventsClient($this);
         $this->pricingPreviews = new PricingPreviewsClient($this);
+        $this->paymentMethods = new PaymentMethodsClient($this);
         $this->notificationSettings = new NotificationSettingsClient($this);
         $this->notifications = new NotificationsClient($this);
         $this->notificationLogs = new NotificationLogsClient($this);
