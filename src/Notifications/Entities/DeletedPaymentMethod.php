@@ -24,8 +24,8 @@ class DeletedPaymentMethod implements Entity
         public string $addressId,
         public SavedPaymentMethodType $type,
         public SavedPaymentMethodOrigin $origin,
-        public \DateTimeInterface|null $savedAt,
-        public \DateTimeInterface|null $updatedAt,
+        public \DateTimeInterface $savedAt,
+        public \DateTimeInterface $updatedAt,
         public SavedPaymentMethodDeletionReason $deletionReason,
     ) {
     }
@@ -38,8 +38,8 @@ class DeletedPaymentMethod implements Entity
             addressId: $data['address_id'],
             type: SavedPaymentMethodType::from($data['type']),
             origin: SavedPaymentMethodOrigin::from($data['origin']),
-            savedAt: isset($data['saved_at']) ? DateTime::from($data['saved_at']) : null,
-            updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
+            savedAt: DateTime::from($data['saved_at']),
+            updatedAt: DateTime::from($data['updated_at']),
             deletionReason: SavedPaymentMethodDeletionReason::from($data['deletion_reason']),
         );
     }

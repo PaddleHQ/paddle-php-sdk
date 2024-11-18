@@ -26,8 +26,8 @@ class PaymentMethod implements Entity
         public Card|null $card,
         public Paypal|null $paypal,
         public SavedPaymentMethodOrigin $origin,
-        public \DateTimeInterface|null $savedAt,
-        public \DateTimeInterface|null $updatedAt,
+        public \DateTimeInterface $savedAt,
+        public \DateTimeInterface $updatedAt,
     ) {
     }
 
@@ -41,8 +41,8 @@ class PaymentMethod implements Entity
             card: isset($data['card']) ? Card::from($data['card']) : null,
             paypal: isset($data['paypal']) ? Paypal::from($data['paypal']) : null,
             origin: SavedPaymentMethodOrigin::from($data['origin']),
-            savedAt: isset($data['saved_at']) ? DateTime::from($data['saved_at']) : null,
-            updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
+            savedAt: DateTime::from($data['saved_at']),
+            updatedAt: DateTime::from($data['updated_at']),
         );
     }
 }
