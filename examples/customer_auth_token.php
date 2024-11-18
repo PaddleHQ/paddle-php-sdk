@@ -23,7 +23,7 @@ $paddle = new Paddle\SDK\Client($apiKey, options: new Paddle\SDK\Options($enviro
 // │ Create Customer Auth Token │
 // └────────────────────────────┘
 try {
-    $authToken = $paddle->customers->createAuthToken($customerId);
+    $authToken = $paddle->customers->generateAuthToken($customerId);
 } catch (ApiError|MalformedResponse $e) {
     var_dump($e);
     exit;

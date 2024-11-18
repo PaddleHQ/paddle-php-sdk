@@ -253,7 +253,7 @@ class CustomersClientTest extends TestCase
         $response = new Response(200, body: self::readRawJsonFixture('response/auth_token'));
 
         $this->mockClient->addResponse($response);
-        $authToken = $this->client->customers->createAuthToken('ctm_01h8441jn5pcwrfhwh78jqt8hk');
+        $authToken = $this->client->customers->generateAuthToken('ctm_01h8441jn5pcwrfhwh78jqt8hk');
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);

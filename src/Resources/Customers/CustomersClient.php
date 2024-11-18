@@ -119,7 +119,7 @@ class CustomersClient
      * @throws ApiError\CustomerApiError On a customer specific API error
      * @throws MalformedResponse         If the API response was not parsable
      */
-    public function createAuthToken(string $id): CustomerAuthToken
+    public function generateAuthToken(string $id): CustomerAuthToken
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/customers/{$id}/auth-token", null),

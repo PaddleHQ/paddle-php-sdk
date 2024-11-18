@@ -14,7 +14,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `Client->paymentMethods->list()`
   - `Client->paymentMethods->get()`
   - `Client->paymentMethods->delete()`
-  - `Client->customers->createAuthToken()`
+  - `Client->customers->generateAuthToken()`
 
 ## [1.4.0] - 2024-10-17
 
