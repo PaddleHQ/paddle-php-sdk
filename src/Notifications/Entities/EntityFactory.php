@@ -28,7 +28,7 @@ class EntityFactory
         $identifier = self::snakeToPascalCase(implode('_', $type));
 
         /** @var class-string<Entity> $entity */
-        $entity = sprintf('\Paddle\SDK\Notifications\Entities\%s', ucfirst($entity));
+        $entity = sprintf('\Paddle\SDK\Notifications\Entities\%s', $entity);
         if (! class_exists($entity)) {
             $entity = UndefinedEntity::class;
         }
