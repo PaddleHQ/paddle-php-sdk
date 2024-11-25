@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Php81\Rector\Class_\MyCLabsClassToEnumRector;
+use Rector\Php81\Rector\MethodCall\MyCLabsMethodCallToEnumConstRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
@@ -24,6 +25,7 @@ return static function (RectorConfig $rectorConfig): void {
         '*.json',
         '*/Fixture/*',
         MyCLabsClassToEnumRector::class,
+        MyCLabsMethodCallToEnumConstRector::class,
     ]);
 
     $rectorConfig->importNames();
