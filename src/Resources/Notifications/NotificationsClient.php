@@ -63,7 +63,7 @@ class NotificationsClient
     public function replay(string $id): string
     {
         $parser = new ResponseParser(
-            $this->client->postRaw("/notifications/{$id}"),
+            $this->client->postRaw("/notifications/{$id}/replay"),
         );
 
         $data = $parser->getData();
