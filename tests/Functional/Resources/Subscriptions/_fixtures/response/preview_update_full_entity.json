@@ -128,13 +128,7 @@
             "tax": "2529",
             "total": "31029"
           },
-          "proration": {
-            "rate": "1",
-            "billing_period": {
-              "starts_at": "2024-02-08T11:02:03.946454Z",
-              "ends_at": "2024-03-08T11:02:03.946454Z"
-            }
-          }
+          "proration": null
         }
       ]
     },
@@ -249,13 +243,7 @@
               "tax": "2529",
               "total": "31029"
             },
-            "proration": {
-              "rate": "1",
-              "billing_period": {
-                "starts_at": "2024-03-08T11:02:03.946454Z",
-                "ends_at": "2024-04-08T11:02:03.946454Z"
-              }
-            }
+            "proration": null
           }
         ]
       },
@@ -372,13 +360,7 @@
               "tax": "2529",
               "total": "31027"
             },
-            "proration": {
-              "rate": "0.99993",
-              "billing_period": {
-                "starts_at": "2024-02-08T11:05:53.763Z",
-                "ends_at": "2024-03-08T11:02:03.946454Z"
-              }
-            }
+            "proration": null
           }
         ]
       },

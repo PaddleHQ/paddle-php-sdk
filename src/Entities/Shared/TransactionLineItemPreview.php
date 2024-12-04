@@ -13,6 +13,7 @@ namespace Paddle\SDK\Entities\Shared;
 
 use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Transaction\TransactionPreviewProduct;
+use Paddle\SDK\Entities\Transaction\TransactionProration;
 
 class TransactionLineItemPreview
 {
@@ -23,6 +24,7 @@ class TransactionLineItemPreview
         public UnitTotals $unitTotals,
         public Totals $totals,
         public Product|TransactionPreviewProduct $product,
+        public TransactionProration|null $proration,
     ) {
     }
 
@@ -37,6 +39,7 @@ class TransactionLineItemPreview
             isset($data['product']['id'])
                 ? Product::from($data['product'])
                 : TransactionPreviewProduct::from($data['product']),
+            isset($data['proration']) ? TransactionProration::from($data['proration']) : null,
         );
     }
 }
