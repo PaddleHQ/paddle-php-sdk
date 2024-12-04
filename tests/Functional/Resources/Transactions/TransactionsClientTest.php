@@ -650,6 +650,30 @@ class TransactionsClientTest extends TestCase
 
     /**
      * @test
+     */
+    public function get_returns_nullable_proration(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/full_entity')));
+        $transaction = $this->client->transactions->get('txn_01hen7bxc1p8ep4yk7n5jbzk9r');
+
+        $lineItemProration = $transaction->details->lineItems[0]->proration;
+        self::assertNotNull($lineItemProration);
+        self::assertEquals('1', $lineItemProration->rate);
+        self::assertEquals(
+            '2024-02-08T11:02:03+00:00',
+            $lineItemProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-03-08T11:02:03+00:00',
+            $lineItemProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullLineItemProration = $transaction->details->lineItems[1]->proration;
+        self::assertNull($nullLineItemProration);
+    }
+
+    /**
+     * @test
      *
      * @dataProvider previewOperationsProvider
      */
@@ -897,6 +921,36 @@ class TransactionsClientTest extends TestCase
         $previewProduct = $preview->details->lineItems[0]->product;
         self::assertInstanceOf(TransactionPreviewProduct::class, $previewProduct);
         self::assertNull($previewProduct->id);
+    }
+
+    /**
+     * @test
+     */
+    public function preview_returns_nullable_proration(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/preview_entity')));
+        $preview = $this->client->transactions->preview(
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithPriceId('pri_01gsz8z1q1n00f12qt82y31smh', 1, true),
+                ],
+            ),
+        );
+
+        $lineItemProration = $preview->details->lineItems[0]->proration;
+        self::assertNotNull($lineItemProration);
+        self::assertEquals('1', $lineItemProration->rate);
+        self::assertEquals(
+            '2024-02-08T11:02:03+00:00',
+            $lineItemProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-03-08T11:02:03+00:00',
+            $lineItemProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullLineItemProration = $preview->details->lineItems[1]->proration;
+        self::assertNull($nullLineItemProration);
     }
 
     /**

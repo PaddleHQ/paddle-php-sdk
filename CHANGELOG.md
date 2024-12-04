@@ -16,6 +16,8 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Fixed
 
 - `Client->notifications->replay()` now calls the correct endpoint
+- Subscription transaction line items now include proration (`nextTransaction`, `recurringTransactionDetails`, `immediateTransaction`)
+- Transaction preview line items now include proration
 
 ## [1.5.0] - 2024-11-18
 
