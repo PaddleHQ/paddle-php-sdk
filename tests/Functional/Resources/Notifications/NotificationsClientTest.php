@@ -170,7 +170,7 @@ class NotificationsClientTest extends TestCase
         self::assertInstanceOf(RequestInterface::class, $request);
         self::assertEquals('POST', $request->getMethod());
         self::assertEquals(
-            sprintf('%s/notifications/nft_01h8441jn5pcwrfhwh78jqt8hk', Environment::SANDBOX->baseUrl()),
+            sprintf('%s/notifications/nft_01h8441jn5pcwrfhwh78jqt8hk/replay', Environment::SANDBOX->baseUrl()),
             urldecode((string) $request->getUri()),
         );
         self::assertSame('ntf_01h46h1s2zabpkdks7yt4vkgkc', $replayId);
