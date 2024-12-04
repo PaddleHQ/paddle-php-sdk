@@ -8,6 +8,11 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ## [Unreleased]
 
+### Added
+
+- Support for customer portal sessions, see [related changelog](https://developer.paddle.com/changelog/2024/customer-portal-sessions?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->customerPortalSessions->create()`
+
 ### Fixed
 
 - `Client->notifications->replay()` now calls the correct endpoint
