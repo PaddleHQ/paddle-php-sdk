@@ -13,6 +13,7 @@ namespace Paddle\SDK\Notifications\Entities;
 
 use Paddle\SDK\Notifications\Entities\Adjustment\AdjustmentItem;
 use Paddle\SDK\Notifications\Entities\Adjustment\AdjustmentTaxRatesUsed;
+use Paddle\SDK\Notifications\Entities\Adjustment\AdjustmentType;
 use Paddle\SDK\Notifications\Entities\Shared\Action;
 use Paddle\SDK\Notifications\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Notifications\Entities\Shared\AdjustmentTotals;
@@ -41,6 +42,7 @@ class Adjustment implements Entity
         public array $taxRatesUsed,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface|null $updatedAt,
+        public AdjustmentType|null $type,
     ) {
     }
 
@@ -62,6 +64,7 @@ class Adjustment implements Entity
             taxRatesUsed: array_map(fn (array $taxRateUsed): AdjustmentTaxRatesUsed => AdjustmentTaxRatesUsed::from($taxRateUsed), $data['tax_rates_used'] ?? []),
             createdAt: DateTime::from($data['created_at']),
             updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
+            type: isset($data['type']) ? AdjustmentType::from($data['type']) : null,
         );
     }
 }

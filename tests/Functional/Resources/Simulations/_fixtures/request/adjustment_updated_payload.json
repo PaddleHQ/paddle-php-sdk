@@ -1,6 +1,7 @@
 {
   "id": "adj_01hvgf2s84dr6reszzg29zbvcm",
   "action": "refund",
+  "type": "partial",
   "transaction_id": "txn_01hvcc93znj3mpqt1tenkjb04y",
   "subscription_id": "sub_01hvccbx32q2gb40sqx7n42430",
   "customer_id": "ctm_01hrffh7gvp29kc7xahm8wddwa",

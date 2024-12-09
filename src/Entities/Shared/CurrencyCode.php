@@ -43,6 +43,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CurrencyCode TRY()
  * @method static CurrencyCode TWD()
  * @method static CurrencyCode UAH()
+ * @method static CurrencyCode VND()
  * @method static CurrencyCode ZAR()
  */
 final class CurrencyCode extends PaddleEnum
@@ -76,5 +77,6 @@ final class CurrencyCode extends PaddleEnum
     private const TRY = 'TRY';
     private const TWD = 'TWD';
     private const UAH = 'UAH';
+    private const VND = 'VND';
     private const ZAR = 'ZAR';
 }

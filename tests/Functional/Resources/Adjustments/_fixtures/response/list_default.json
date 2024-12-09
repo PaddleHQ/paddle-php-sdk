@@ -3,6 +3,7 @@
         {
             "id": "adj_01h8c65c2ggq5nxswnnwv78e75",
             "action": "refund",
+            "type": "partial",
             "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
             "subscription_id": "sub_01h8bxswamxysj44zt5n48njwh",
             "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
@@ -55,6 +56,7 @@
         {
             "id": "adj_01h8bxezh16gm6t8rx21dx271b",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h8bx69629a16wwm9z8rjmak3",
             "subscription_id": "sub_01h8bx8fmywym11t6swgzba704",
@@ -114,6 +116,7 @@
         {
             "id": "adj_01h7jgzjqt2s8sab70e03ptkhv",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h7jgd9bkwjscj3ae15g5d3vs",
             "subscription_id": "sub_01h7ht5z5wdg9pz18jx1fagp8k",
@@ -173,6 +176,7 @@
         {
             "id": "adj_01h7jf6ptkfsc93hzc20fgf8wy",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h7je77vc1qmzxntem45ebb5q",
             "subscription_id": "sub_01h7ht5z5wdg9pz18jx1fagp8k",
@@ -232,6 +236,7 @@
         {
             "id": "adj_01h468w41ttb2j2bh8av74gwt1",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h468crc3b3fe98a5ft53recb",
             "subscription_id": "sub_01h468kv3jhs5jk330gszncsgt",

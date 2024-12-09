@@ -2,6 +2,7 @@
     "data": {
         "id": "adj_01h8c65c2ggq5nxswnnwv78e75",
         "action": "refund",
+        "type": "partial",
         "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
         "subscription_id": "sub_01h8bxswamxysj44zt5n48njwh",
         "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
