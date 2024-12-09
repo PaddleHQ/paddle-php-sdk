@@ -42,7 +42,7 @@ class Adjustment implements Entity
         public array $taxRatesUsed,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface|null $updatedAt,
-        public AdjustmentType|null $type,
+        public AdjustmentType $type,
     ) {
     }
 
@@ -64,7 +64,7 @@ class Adjustment implements Entity
             taxRatesUsed: array_map(fn (array $taxRateUsed): AdjustmentTaxRatesUsed => AdjustmentTaxRatesUsed::from($taxRateUsed), $data['tax_rates_used'] ?? []),
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
-            type: isset($data['type']) ? AdjustmentType::from($data['type']) : null,
+            type: AdjustmentType::from($data['type']),
         );
     }
 }
