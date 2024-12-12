@@ -12,6 +12,8 @@ use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodDeletionReason;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodOrigin;
 use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
 use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
+use Paddle\SDK\Notifications\Events\SubscriptionActivated;
+use Paddle\SDK\Notifications\Events\SubscriptionCanceled;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -222,13 +224,13 @@ class EventTest extends TestCase
             [
                 'subscription.activated',
                 'subscription',
-                \Paddle\SDK\Notifications\Events\SubscriptionActivated::class,
+                SubscriptionActivated::class,
                 \Paddle\SDK\Notifications\Entities\Subscription::class,
             ],
             [
                 'subscription.canceled',
                 'subscription',
-                \Paddle\SDK\Notifications\Events\SubscriptionCanceled::class,
+                SubscriptionCanceled::class,
                 \Paddle\SDK\Notifications\Entities\Subscription::class,
             ],
             [
@@ -478,5 +480,49 @@ class EventTest extends TestCase
         self::assertEquals(SavedPaymentMethodDeletionReason::ReplacedByNewerVersion(), $paymentMethod->deletionReason);
         self::assertSame('2024-05-02T02:55:25.198+00:00', $paymentMethod->savedAt->format(DATE_RFC3339_EXTENDED));
         self::assertSame('2024-05-03T12:24:18.826+00:00', $paymentMethod->updatedAt->format(DATE_RFC3339_EXTENDED));
+    }
+
+    /**
+     * @test
+     */
+    public function it_supports_subscription_discount(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'subscription.activated',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/subscription.activated'),
+        ]);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $event->notificationId);
+
+        self::assertInstanceOf(SubscriptionActivated::class, $event);
+        self::assertInstanceOf(Entity::class, $event->data);
+        self::assertSame($event->data, $event->subscription);
+        self::assertEquals('2024-04-12T10:18:47+00:00', $event->subscription->discount->startsAt->format(DATE_RFC3339));
+        self::assertEquals('2024-05-12T10:18:47+00:00', $event->subscription->discount->endsAt->format(DATE_RFC3339));
+    }
+
+    /**
+     * @test
+     */
+    public function it_supports_nullable_subscription_discount_starts_at_and_ends_at(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'subscription.canceled',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/subscription.canceled'),
+        ]);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $event->notificationId);
+
+        self::assertInstanceOf(SubscriptionCanceled::class, $event);
+        self::assertInstanceOf(Entity::class, $event->data);
+        self::assertSame($event->data, $event->subscription);
+        self::assertNull($event->subscription->discount->startsAt);
+        self::assertNull($event->subscription->discount->endsAt);
     }
 }

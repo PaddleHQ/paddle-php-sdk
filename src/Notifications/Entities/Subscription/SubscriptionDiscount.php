@@ -17,7 +17,7 @@ class SubscriptionDiscount
 {
     private function __construct(
         public string $id,
-        public \DateTimeInterface $startsAt,
+        public \DateTimeInterface|null $startsAt,
         public \DateTimeInterface|null $endsAt,
     ) {
     }
@@ -26,7 +26,7 @@ class SubscriptionDiscount
     {
         return new self(
             $data['id'],
-            DateTime::from($data['starts_at']),
+            isset($data['starts_at']) ? DateTime::from($data['starts_at']) : null,
             isset($data['ends_at']) ? DateTime::from($data['ends_at']) : null,
         );
     }
