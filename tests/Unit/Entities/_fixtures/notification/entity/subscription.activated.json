@@ -117,7 +117,11 @@
         }
     ],
     "status": "active",
-    "discount": null,
+    "discount": {
+        "id": "dsc_01hv6scyf7qdnzcdq01t2y8dx4",
+        "starts_at": "2024-04-12T10:18:47.635628Z",
+        "ends_at": "2024-05-12T10:18:47.635628Z"
+    },
     "paused_at": null,
     "address_id": "add_01hv8gq3318ktkfengj2r75gfx",
     "created_at": "2024-04-12T10:18:48.831Z",

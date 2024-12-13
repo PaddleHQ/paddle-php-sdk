@@ -323,7 +323,11 @@
         "update_payment_method": null,
         "cancel": "https://sandbox-buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/cancel"
       },
-      "discount": null,
+      "discount": {
+        "id": "dsc_01hv6scyf7qdnzcdq01t2y8dx4",
+        "starts_at": null,
+        "ends_at": null
+      },
       "import_meta": null
     },
     {
@@ -467,7 +471,11 @@
         "update_payment_method": "https://buyer-portal.paddle.com/subscriptions/sub_01hn0epy6nc46wt9hw92pp2kmt/update-payment-method",
         "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01hn0epy6nc46wt9hw92pp2kmt/cancel"
       },
-      "discount": null,
+      "discount": {
+        "id": "dsc_01hv6scyf7qdnzcdq01t2y8dx4",
+        "starts_at": "2024-04-12T10:18:47.635628Z",
+        "ends_at": "2024-05-12T10:18:47.635628Z"
+      },
       "import_meta": null
     }
   ],

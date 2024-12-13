@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.7.1] - 2024-12-13
+
+### Fixed
+
+- Subscription discount now supports null `starts_at`
+
 ## [1.7.0] - 2024-12-11
 
 ### Added
