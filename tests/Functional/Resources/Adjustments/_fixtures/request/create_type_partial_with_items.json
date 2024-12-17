@@ -1,0 +1,13 @@
+{
+    "action": "refund",
+    "type": "partial",
+    "items": [
+        {
+            "item_id": "txnitm_01h8bxryv3065dyh6103p3yg28",
+            "type": "partial",
+            "amount": "100"
+        }
+    ],
+    "reason": "error",
+    "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5"
+}

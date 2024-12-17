@@ -22,21 +22,27 @@ class CreateAdjustment implements \JsonSerializable
      */
     public function __construct(
         public readonly Action $action,
-        public readonly array|Undefined $items,
+        public readonly array|Undefined|null $items,
         public readonly string $reason,
         public readonly string $transactionId,
         public readonly AdjustmentType|Undefined $type = new Undefined(),
     ) {
-        if ($this->type === AdjustmentType::Partial() && ($this->items instanceof Undefined || empty($this->items))) {
+        $typeIsFull = AdjustmentType::Full()->equals($this->type);
+
+        if (! $typeIsFull && ($this->items instanceof Undefined || empty($this->items))) {
             throw InvalidArgumentException::arrayIsEmpty('items');
+        }
+
+        if ($typeIsFull && is_array($this->items)) {
+            throw new InvalidArgumentException('items are not allowed when the adjustment type is full');
         }
     }
 
     public function jsonSerialize(): array
     {
-        $items = [];
+        if (is_array($this->items)) {
+            $items = [];
 
-        if (! $this->items instanceof Undefined) {
             foreach ($this->items as $item) {
                 $items[] = [
                     'item_id' => $item->itemId,
@@ -44,6 +50,8 @@ class CreateAdjustment implements \JsonSerializable
                     'amount' => $item->amount,
                 ];
             }
+        } else {
+            $items = $this->items;
         }
 
         return $this->filterUndefined([
