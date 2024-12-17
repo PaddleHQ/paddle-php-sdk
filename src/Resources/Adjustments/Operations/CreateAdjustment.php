@@ -38,6 +38,16 @@ class CreateAdjustment implements \JsonSerializable
         }
     }
 
+    public static function full(Action $action, string $reason, string $transactionId): self
+    {
+        return new self($action, new Undefined(), $reason, $transactionId, AdjustmentType::Full());
+    }
+
+    public static function partial(Action $action, array $items, string $reason, string $transactionId): self
+    {
+        return new self($action, $items, $reason, $transactionId, AdjustmentType::Partial());
+    }
+
     public function jsonSerialize(): array
     {
         if (is_array($this->items)) {

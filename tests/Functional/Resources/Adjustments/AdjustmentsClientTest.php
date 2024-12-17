@@ -19,7 +19,6 @@ use Paddle\SDK\Resources\Adjustments\Operations\GetAdjustmentCreditNote;
 use Paddle\SDK\Resources\Adjustments\Operations\ListAdjustments;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
-use Paddle\SDK\Undefined;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -103,7 +102,7 @@ class AdjustmentsClientTest extends TestCase
         ];
 
         yield 'Partial type with items' => [
-            new CreateAdjustment(
+            CreateAdjustment::partial(
                 Action::Refund(),
                 [new AdjustmentItem(
                     'txnitm_01h8bxryv3065dyh6103p3yg28',
@@ -112,19 +111,16 @@ class AdjustmentsClientTest extends TestCase
                 )],
                 'error',
                 'txn_01h8bxpvx398a7zbawb77y0kp5',
-                \Paddle\SDK\Entities\Adjustment\AdjustmentType::Partial(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_type_partial_with_items'),
         ];
 
         yield 'Full type with no items' => [
-            new CreateAdjustment(
+            CreateAdjustment::full(
                 Action::Refund(),
-                new Undefined(),
                 'error',
                 'txn_01h8bxpvx398a7zbawb77y0kp5',
-                \Paddle\SDK\Entities\Adjustment\AdjustmentType::Full(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_type_full_with_no_items'),
