@@ -24,6 +24,7 @@ use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPrice;
 use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPriceWithProduct;
 use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogProduct;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
+use Paddle\SDK\Entities\Subscription\SubscriptionOnResume;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
 use Paddle\SDK\Entities\Subscription\SubscriptionResumeEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChangeAction;
@@ -355,6 +356,18 @@ class SubscriptionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/pause_full'),
         ];
+
+        yield 'On resume continue existing billing period' => [
+            new PauseSubscription(SubscriptionEffectiveFrom::Immediately(), new \DateTime('2023-10-09T16:30:00Z'), SubscriptionOnResume::ContinueExistingBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_resume_existing_billing_period'),
+        ];
+
+        yield 'On resume start new billing period' => [
+            new PauseSubscription(SubscriptionEffectiveFrom::Immediately(), new \DateTime('2023-10-09T16:30:00Z'), SubscriptionOnResume::StartNewBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_resume_new_billing_period'),
+        ];
     }
 
     /**
@@ -398,6 +411,18 @@ class SubscriptionsClientTest extends TestCase
             new ResumeSubscription(new \DateTime('2023-10-09T16:30:00Z')),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_single_as_date'),
+        ];
+
+        yield 'On resume continue existing billing period' => [
+            new ResumeSubscription(SubscriptionResumeEffectiveFrom::Immediately(), SubscriptionOnResume::ContinueExistingBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_existing_billing_period'),
+        ];
+
+        yield 'On resume start new billing period' => [
+            new ResumeSubscription(SubscriptionResumeEffectiveFrom::Immediately(), SubscriptionOnResume::StartNewBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_new_billing_period'),
         ];
     }
 
