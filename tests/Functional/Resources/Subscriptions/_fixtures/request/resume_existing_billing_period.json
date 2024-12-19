@@ -1,0 +1,4 @@
+{
+    "effective_from": "immediately",
+    "on_resume": "continue_existing_billing_period"
+}
