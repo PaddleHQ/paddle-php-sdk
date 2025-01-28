@@ -52,6 +52,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static EventTypeName TransactionPastDue()
  * @method static EventTypeName TransactionPaymentFailed()
  * @method static EventTypeName TransactionReady()
+ * @method static EventTypeName TransactionRevised()
  * @method static EventTypeName TransactionUpdated()
  * @method static EventTypeName ReportCreated()
  * @method static EventTypeName ReportUpdated()
@@ -103,6 +104,7 @@ final class EventTypeName extends PaddleEnum
     private const TransactionPastDue = 'transaction.past_due';
     private const TransactionPaymentFailed = 'transaction.payment_failed';
     private const TransactionReady = 'transaction.ready';
+    private const TransactionRevised = 'transaction.revised';
     private const TransactionUpdated = 'transaction.updated';
     private const ReportCreated = 'report.created';
     private const ReportUpdated = 'report.updated';

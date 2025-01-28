@@ -57,6 +57,14 @@
             ]
         },
         {
+            "name": "transaction.revised",
+            "description": "Occurs when a transaction is revised.",
+            "group": "Transaction",
+            "available_versions": [
+                1
+            ]
+        },
+        {
             "name": "transaction.updated",
             "description": "Occurs when a transaction is updated.",
             "group": "Transaction",

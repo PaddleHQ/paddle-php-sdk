@@ -507,6 +507,16 @@
             ]
         },
         {
+            "name": "transaction.revised",
+            "label": "transaction.revised",
+            "description": "Occurs when a transaction is revised.",
+            "group": "Transaction",
+            "type": "single_event",
+            "events": [
+                "transaction.revised"
+            ]
+        },
+        {
             "name": "transaction.updated",
             "label": "transaction.updated",
             "description": "Occurs when a transaction is updated.",

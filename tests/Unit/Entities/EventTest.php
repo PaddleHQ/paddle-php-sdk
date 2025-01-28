@@ -10,6 +10,7 @@ use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\PaymentMethod;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodDeletionReason;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodOrigin;
+use Paddle\SDK\Notifications\Entities\UndefinedEntity;
 use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
 use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
 use Paddle\SDK\Notifications\Events\SubscriptionActivated;
@@ -324,6 +325,12 @@ class EventTest extends TestCase
                 \Paddle\SDK\Notifications\Entities\Transaction::class,
             ],
             [
+                'transaction.revised',
+                'transaction',
+                \Paddle\SDK\Notifications\Events\TransactionRevised::class,
+                \Paddle\SDK\Notifications\Entities\Transaction::class,
+            ],
+            [
                 'transaction.updated',
                 'transaction',
                 \Paddle\SDK\Notifications\Events\TransactionUpdated::class,
@@ -372,6 +379,29 @@ class EventTest extends TestCase
 
         self::assertInstanceOf(Event::class, $event);
         self::assertInstanceOf(Entity::class, $event->data);
+        self::assertInstanceOf(UndefinedEntity::class, $event->data);
+    }
+
+    /**
+     * @test
+     */
+    public function it_creates_event_for_undefined_event_with_known_entity(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'transaction.unknown_event',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => [
+                'some' => 'data',
+            ],
+        ]);
+
+        self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $event->notificationId);
+
+        self::assertInstanceOf(Event::class, $event);
+        self::assertInstanceOf(Entity::class, $event->data);
+        self::assertInstanceOf(UndefinedEntity::class, $event->data);
     }
 
     /**

@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Transactions;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Entities\Price;
 use Paddle\SDK\Entities\Product;
 use Paddle\SDK\Entities\Shared\BillingDetails;
@@ -50,6 +51,10 @@ use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPrice;
 use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogPriceWithProduct;
 use Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogProduct;
+use Paddle\SDK\Resources\Transactions\Operations\Revise\TransactionReviseAddress;
+use Paddle\SDK\Resources\Transactions\Operations\Revise\TransactionReviseBusiness;
+use Paddle\SDK\Resources\Transactions\Operations\Revise\TransactionReviseCustomer;
+use Paddle\SDK\Resources\Transactions\Operations\ReviseTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
@@ -599,6 +604,25 @@ class TransactionsClientTest extends TestCase
 
     /**
      * @test
+     */
+    public function list_with_and_without_revised_at(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+        $collection = $this->client->transactions->list(new ListTransactions());
+
+        /** @var array<string,Transaction> $listMap */
+        $listMap = iterator_to_array($collection);
+
+        self::assertNull($listMap['txn_01h8bm0f0gwa622zpcvw49hwc1']->revisedAt);
+
+        self::assertEquals(
+            '2023-07-26T15:35:06.739403Z',
+            $listMap['txn_01h69ddtrb11km0wk46dn607ya']->revisedAt->format(DateTime::PADDLE_RFC3339),
+        );
+    }
+
+    /**
+     * @test
      *
      * @dataProvider getRequestProvider
      *
@@ -994,6 +1018,74 @@ class TransactionsClientTest extends TestCase
             new GetTransactionInvoice(Disposition::Attachment()),
             new Response(200, body: self::readRawJsonFixture('response/get_invoice_pdf_default')),
             sprintf('%s/transactions/txn_03hen7bxc1p8ep4yk7n5jbzk9r/invoice?disposition=attachment', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider reviseOperationsProvider
+     */
+    public function it_uses_expected_payload_on_revise(
+        ReviseTransaction $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->transactions->revise('txn_01h7zcgmdc6tmwtjehp3sh7azf', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/transactions/txn_01h7zcgmdc6tmwtjehp3sh7azf/revise',
+            urldecode((string) $request->getUri()),
+        );
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function reviseOperationsProvider(): \Generator
+    {
+        yield 'Customer revision' => [
+            new ReviseTransaction(customer: new TransactionReviseCustomer(name: 'Sam Miller')),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/revise_customer'),
+        ];
+
+        yield 'Basic revision' => [
+            new ReviseTransaction(
+                address: new TransactionReviseAddress(
+                    firstLine: '3811 Ditmars Blvd',
+                ),
+                business: new TransactionReviseBusiness(
+                    name: 'Some Business',
+                ),
+                customer: new TransactionReviseCustomer(
+                    name: 'Sam Miller',
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/revise_basic'),
+        ];
+
+        yield 'Full revision' => [
+            new ReviseTransaction(
+                address: new TransactionReviseAddress(
+                    firstLine: '3811 Ditmars Blvd',
+                    secondLine: null,
+                    city: 'Some City',
+                    region: 'Some Region',
+                ),
+                business: new TransactionReviseBusiness(
+                    name: 'Some Business',
+                    taxIdentifier: 'AB0123456789',
+                ),
+                customer: new TransactionReviseCustomer(
+                    name: 'Sam Miller',
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/revise_full'),
         ];
     }
 }
