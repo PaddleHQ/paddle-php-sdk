@@ -25,6 +25,7 @@ use Paddle\SDK\Resources\Transactions\Operations\GetTransactionInvoice;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
 use Paddle\SDK\Resources\Transactions\Operations\ListTransactions;
 use Paddle\SDK\Resources\Transactions\Operations\PreviewTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\ReviseTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
 use Paddle\SDK\ResponseParser;
 
@@ -136,5 +137,19 @@ class TransactionsClient
         );
 
         return TransactionData::from($parser->getData());
+    }
+
+    /**
+     * @throws ApiError                     On a generic API error
+     * @throws ApiError\TransactionApiError On a transaction specific API error
+     * @throws MalformedResponse            If the API response was not parsable
+     */
+    public function revise(string $id, ReviseTransaction $operation): Transaction
+    {
+        $parser = new ResponseParser(
+            $this->client->postRaw("/transactions/{$id}/revise", $operation),
+        );
+
+        return Transaction::from($parser->getData());
     }
 }

@@ -52,6 +52,7 @@ class Transaction implements Entity
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
         public \DateTimeInterface|null $billedAt,
+        public \DateTimeInterface|null $revisedAt,
     ) {
     }
 
@@ -80,6 +81,7 @@ class Transaction implements Entity
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
             billedAt: isset($data['billed_at']) ? DateTime::from($data['billed_at']) : null,
+            revisedAt: isset($data['revised_at']) ? DateTime::from($data['revised_at']) : null,
         );
     }
 }
