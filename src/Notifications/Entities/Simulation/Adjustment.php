@@ -39,7 +39,7 @@ class Adjustment implements SimulationEntity
         public readonly array|Undefined $items = new Undefined(),
         public readonly AdjustmentTotals|Undefined $totals = new Undefined(),
         public readonly PayoutTotalsAdjustment|Undefined|null $payoutTotals = new Undefined(),
-        public readonly array|Undefined $taxRatesUsed = new Undefined(),
+        public readonly array|Undefined|null $taxRatesUsed = new Undefined(),
         public readonly \DateTimeInterface|Undefined $createdAt = new Undefined(),
         public readonly \DateTimeInterface|Undefined|null $updatedAt = new Undefined(),
         public readonly AdjustmentType|Undefined|null $type = new Undefined(),
