@@ -20,7 +20,7 @@ class Report implements SimulationEntity
     /**
      * @param array<ReportFilter> $filters
      */
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly ReportStatus|Undefined $status = new Undefined(),
         public readonly int|Undefined|null $rows = new Undefined(),

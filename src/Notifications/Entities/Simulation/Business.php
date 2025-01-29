@@ -21,7 +21,7 @@ class Business implements SimulationEntity
     /**
      * @param array<BusinessesContacts> $contacts
      */
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly string|Undefined $name = new Undefined(),
         public readonly string|Undefined|null $companyNumber = new Undefined(),

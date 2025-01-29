@@ -16,7 +16,7 @@ class PaymentMethod implements SimulationEntity
     use OptionalProperties;
     use FiltersUndefined;
 
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly string|Undefined $customerId = new Undefined(),
         public readonly string|Undefined $addressId = new Undefined(),

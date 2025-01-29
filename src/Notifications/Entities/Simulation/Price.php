@@ -26,7 +26,7 @@ class Price implements SimulationEntity
     /**
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly string|Undefined $productId = new Undefined(),
         public readonly string|Undefined|null $name = new Undefined(),

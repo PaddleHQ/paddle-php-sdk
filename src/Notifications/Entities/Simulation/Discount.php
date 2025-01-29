@@ -19,7 +19,7 @@ class Discount implements SimulationEntity
     use OptionalProperties;
     use FiltersUndefined;
 
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly DiscountStatus|Undefined $status = new Undefined(),
         public readonly string|Undefined $description = new Undefined(),

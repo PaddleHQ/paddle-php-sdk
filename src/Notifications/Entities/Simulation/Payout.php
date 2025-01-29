@@ -15,7 +15,7 @@ class Payout implements SimulationEntity
     use OptionalProperties;
     use FiltersUndefined;
 
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly PayoutStatus|Undefined $status = new Undefined(),
         public readonly string|Undefined $amount = new Undefined(),

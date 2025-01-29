@@ -29,7 +29,7 @@ class Transaction implements SimulationEntity
      * @param array<TransactionItem>           $items
      * @param array<TransactionPaymentAttempt> $payments
      */
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly TransactionStatus|Undefined $status = new Undefined(),
         public readonly string|Undefined|null $customerId = new Undefined(),

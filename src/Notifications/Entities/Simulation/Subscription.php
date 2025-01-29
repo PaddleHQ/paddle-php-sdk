@@ -28,7 +28,7 @@ class Subscription implements SimulationEntity
     /**
      * @param array<SubscriptionItem> $items
      */
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly string|Undefined|null $transactionId = new Undefined(),
         public readonly SubscriptionStatus|Undefined $status = new Undefined(),

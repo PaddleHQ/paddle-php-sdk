@@ -26,7 +26,7 @@ class Adjustment implements SimulationEntity
      * @param array<AdjustmentItem>         $items
      * @param array<AdjustmentTaxRatesUsed> $taxRatesUsed
      */
-    private function __construct(
+    public function __construct(
         public readonly string|Undefined $id = new Undefined(),
         public readonly Action|Undefined $action = new Undefined(),
         public readonly string|Undefined $transactionId = new Undefined(),
