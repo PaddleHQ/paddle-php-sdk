@@ -24,8 +24,7 @@ abstract class Event implements Entity
 
     public static function from(array $data): self
     {
-        $type = explode('.', (string) $data['event_type']);
-        $identifier = str_replace('_', '', ucwords(implode('_', $type), '_'));
+        $identifier = EventNameResolver::resolve((string) $data['event_type']);
 
         /** @var class-string<Event> $event */
         $event = sprintf('\Paddle\SDK\Notifications\Events\%s', $identifier);
