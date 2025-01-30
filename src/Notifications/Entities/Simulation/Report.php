@@ -12,7 +12,7 @@ use Paddle\SDK\Notifications\Entities\Report\ReportType;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Report implements SimulationEntity
+final class Report implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

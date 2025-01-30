@@ -14,7 +14,7 @@ use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Discount implements SimulationEntity
+final class Discount implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

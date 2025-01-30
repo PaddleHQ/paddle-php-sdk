@@ -18,7 +18,7 @@ use Paddle\SDK\Notifications\Entities\Shared\UnitPriceOverride;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Price implements SimulationEntity
+final class Price implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

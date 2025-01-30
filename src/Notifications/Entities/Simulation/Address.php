@@ -13,7 +13,7 @@ use Paddle\SDK\Notifications\Entities\Shared\Status;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Address implements SimulationEntity
+final class Address implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

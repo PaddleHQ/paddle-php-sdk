@@ -20,7 +20,7 @@ use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionStatus;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionTimePeriod;
 use Paddle\SDK\Undefined;
 
-class Subscription implements SimulationEntity
+final class Subscription implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

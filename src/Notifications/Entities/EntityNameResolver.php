@@ -7,7 +7,7 @@ namespace Paddle\SDK\Notifications\Entities;
 /**
  * @internal
  */
-class EntityNameResolver
+final class EntityNameResolver
 {
     public static function resolve(string $eventType): string
     {

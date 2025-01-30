@@ -10,7 +10,7 @@ use Paddle\SDK\Notifications\Entities\Shared\CurrencyCodePayouts;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Payout implements SimulationEntity
+final class Payout implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

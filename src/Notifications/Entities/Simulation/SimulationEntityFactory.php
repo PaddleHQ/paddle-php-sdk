@@ -9,7 +9,7 @@ use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\EntityNameResolver;
 use Paddle\SDK\Notifications\Entities\UndefinedEntity;
 
-class SimulationEntityFactory
+final class SimulationEntityFactory
 {
     /**
      * @var array<string,int>

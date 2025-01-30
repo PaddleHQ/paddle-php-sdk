@@ -17,7 +17,7 @@ use Paddle\SDK\Notifications\Entities\Shared\PayoutTotalsAdjustment;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Adjustment implements SimulationEntity
+final class Adjustment implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

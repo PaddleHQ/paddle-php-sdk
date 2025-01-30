@@ -20,7 +20,7 @@ use Paddle\SDK\Notifications\Entities\Transaction\TransactionItem;
 use Paddle\SDK\Notifications\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\Undefined;
 
-class Transaction implements SimulationEntity
+final class Transaction implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

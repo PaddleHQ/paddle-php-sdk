@@ -10,7 +10,7 @@ use Paddle\SDK\Notifications\Entities\UndefinedEntity;
 /**
  * @internal
  */
-class SimulationEntityNameResolver
+final class SimulationEntityNameResolver
 {
     public static function resolve(string $eventType): string
     {

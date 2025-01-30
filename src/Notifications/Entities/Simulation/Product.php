@@ -14,7 +14,7 @@ use Paddle\SDK\Notifications\Entities\Shared\TaxCategory;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class Product implements SimulationEntity
+final class Product implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

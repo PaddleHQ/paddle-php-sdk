@@ -12,7 +12,7 @@ use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodType;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class DeletedPaymentMethod implements SimulationEntity
+final class DeletedPaymentMethod implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;

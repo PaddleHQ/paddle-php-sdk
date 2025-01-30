@@ -11,7 +11,7 @@ use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodType;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
 use Paddle\SDK\Undefined;
 
-class PaymentMethod implements SimulationEntity
+final class PaymentMethod implements SimulationEntity
 {
     use OptionalProperties;
     use FiltersUndefined;
