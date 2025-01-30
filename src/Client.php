@@ -60,7 +60,7 @@ use Symfony\Component\Uid\Ulid;
 
 class Client
 {
-    private const SDK_VERSION = '1.8.0';
+    private const SDK_VERSION = '1.9.0';
 
     public readonly LoggerInterface $logger;
     public readonly Options $options;
