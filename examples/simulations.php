@@ -5,7 +5,10 @@ declare(strict_types=1);
 use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
-use Paddle\SDK\Notifications\Entities\Address;
+use Paddle\SDK\Notifications\Entities\DateTime;
+use Paddle\SDK\Notifications\Entities\Shared\CountryCode;
+use Paddle\SDK\Notifications\Entities\Shared\Status;
+use Paddle\SDK\Notifications\Entities\Simulation\Address;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Simulations\Operations\CreateSimulation;
 use Paddle\SDK\Resources\Simulations\Operations\ListSimulations;
@@ -54,20 +57,20 @@ try {
             notificationSettingId: $notificationSettingId,
             type: EventTypeName::AddressCreated(),
             name: 'Simulate Address Creation',
-            payload: Address::from([
-                'id' => 'add_01hv8gq3318ktkfengj2r75gfx',
-                'country_code' => 'US',
-                'status' => 'active',
-                'created_at' => '2024-04-12T06:42:58.785000Z',
-                'updated_at' => '2024-04-12T06:42:58.785000Z',
-                'customer_id' => 'ctm_01hv6y1jedq4p1n0yqn5ba3ky4',
-                'description' => 'Head Office',
-                'first_line' => '4050 Jefferson Plaza, 41st Floor',
-                'second_line' => null,
-                'city' => 'New York',
-                'postal_code' => '10021',
-                'region' => 'NY',
-            ]),
+            payload: new Address(
+                id: 'add_01hv8gq3318ktkfengj2r75gfx',
+                description: 'Head Office',
+                firstLine: '4050 Jefferson Plaza, 41st Floor',
+                secondLine: null,
+                city: 'New York',
+                postalCode: '10021',
+                region: 'NY',
+                countryCode: CountryCode::US(),
+                status: Status::Active(),
+                createdAt: DateTime::from('2024-04-12T06:42:58.785000Z'),
+                updatedAt: DateTime::from('2024-04-12T06:42:58.785000Z'),
+                customerId: 'ctm_01hv6y1jedq4p1n0yqn5ba3ky4',
+            ),
         ),
     );
 } catch (ApiError|MalformedResponse $e) {
@@ -103,20 +106,39 @@ try {
         $simulationId,
         new UpdateSimulation(
             type: EventTypeName::AddressCreated(),
-            payload: Address::from([
-                'id' => 'add_01hv8gq3318ktkfengj2r75gfx',
-                'country_code' => 'US',
-                'status' => 'active',
-                'created_at' => '2024-04-12T06:42:58.785000Z',
-                'updated_at' => '2024-04-12T06:42:58.785000Z',
-                'customer_id' => 'ctm_01hv6y1jedq4p1n0yqn5ba3ky4',
-                'description' => 'Head Office',
-                'first_line' => '4050 Jefferson Plaza, 41st Floor',
-                'second_line' => null,
-                'city' => 'New York',
-                'postal_code' => '10021',
-                'region' => 'NY',
-            ]),
+            payload: new Address(
+                id: 'add_01hv8gq3318ktkfengj2r75gfx',
+                description: 'Head Office',
+                firstLine: '4050 Jefferson Plaza, 41st Floor',
+                secondLine: null,
+                city: 'New York',
+                postalCode: '10021',
+                region: 'NY',
+                countryCode: CountryCode::US(),
+                status: Status::Active(),
+                createdAt: DateTime::from('2024-04-12T06:42:58.785000Z'),
+                updatedAt: DateTime::from('2024-04-12T06:42:58.785000Z'),
+                customerId: 'ctm_01hv6y1jedq4p1n0yqn5ba3ky4',
+            ),
+        ),
+    );
+} catch (ApiError|MalformedResponse $e) {
+    var_dump($e);
+    exit;
+}
+
+// ┌───
+// │ Update Simulation - Partial Payload │
+// └─────────────────────────────────────┘
+try {
+    $simulation = $paddle->simulations->update(
+        $simulationId,
+        new UpdateSimulation(
+            type: EventTypeName::AddressCreated(),
+            payload: new Address(
+                id: 'add_01hv8gq3318ktkfengj2r75gfx',
+                description: 'Head Office',
+            ),
         ),
     );
 } catch (ApiError|MalformedResponse $e) {

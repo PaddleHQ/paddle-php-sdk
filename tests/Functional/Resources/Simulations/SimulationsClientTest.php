@@ -11,6 +11,7 @@ use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Notifications\Entities\EntityFactory;
+use Paddle\SDK\Notifications\Entities\Simulation;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\OrderBy;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -86,6 +87,79 @@ class SimulationsClientTest extends TestCase
                 'payload' => ['some' => 'data'],
             ]),
         ];
+
+        $simulationEntities = [
+            [
+                new Simulation\Address(id: 'add_01hv8gq3318ktkfengj2r75gfx'),
+                ['id' => 'add_01hv8gq3318ktkfengj2r75gfx'],
+            ],
+            [
+                new Simulation\Adjustment(id: 'adj_01hvgf2s84dr6reszzg29zbvcm'),
+                ['id' => 'adj_01hvgf2s84dr6reszzg29zbvcm'],
+            ],
+            [
+                new Simulation\Business(id: 'biz_01hv8hkr641vmpwytx38znv56k'),
+                ['id' => 'biz_01hv8hkr641vmpwytx38znv56k'],
+            ],
+            [
+                new Simulation\Customer(id: 'ctm_01h844p3h41s12zs5mn4axja51'),
+                ['id' => 'ctm_01h844p3h41s12zs5mn4axja51'],
+            ],
+            [
+                new Simulation\DeletedPaymentMethod(id: 'paymtd_01hs8zx6x377xfsfrt2bqsevbw'),
+                ['id' => 'paymtd_01hs8zx6x377xfsfrt2bqsevbw'],
+            ],
+            [
+                new Simulation\Discount(id: 'dsc_01hv6scyf7qdnzcdq01t2y8dx4'),
+                ['id' => 'dsc_01hv6scyf7qdnzcdq01t2y8dx4'],
+            ],
+            [
+                new Simulation\PaymentMethod(id: 'paymtd_01hs8zx6x377xfsfrt2bqsevbw'),
+                ['id' => 'paymtd_01hs8zx6x377xfsfrt2bqsevbw'],
+            ],
+            [
+                new Simulation\Payout(id: 'pay_01gsz4vmqbjk3x4vvtafffd540'),
+                ['id' => 'pay_01gsz4vmqbjk3x4vvtafffd540'],
+            ],
+            [
+                new Simulation\Price(id: 'pri_01hv0vax6rv18t4tamj848ne4d'),
+                ['id' => 'pri_01hv0vax6rv18t4tamj848ne4d'],
+            ],
+            [
+                new Simulation\Product(id: 'pro_01htz88xpr0mm7b3ta2pjkr7w2'),
+                ['id' => 'pro_01htz88xpr0mm7b3ta2pjkr7w2'],
+            ],
+            [
+                new Simulation\Report(id: 'rep_01hvgdpayq6kjzyk4hz5m02cpn'),
+                ['id' => 'rep_01hvgdpayq6kjzyk4hz5m02cpn'],
+            ],
+            [
+                new Simulation\Subscription(id: 'sub_01hv8x29kz0t586xy6zn1a62ny'),
+                ['id' => 'sub_01hv8x29kz0t586xy6zn1a62ny'],
+            ],
+            [
+                new Simulation\Transaction(id: 'txn_01h69ddtrb11km0wk46dn607ya'),
+                ['id' => 'txn_01h69ddtrb11km0wk46dn607ya'],
+            ],
+        ];
+
+        foreach ($simulationEntities as [$simulationEntity, $expectedPayload]) {
+            yield 'Partial payload for ' . $simulationEntity::class => [
+                new CreateSimulation(
+                    notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                    type: EventTypeName::from('transaction.created'),
+                    name: 'Some Simulation',
+                    payload: $simulationEntity,
+                ),
+                new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+                json_encode([
+                    'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                    'name' => 'Some Simulation',
+                    'type' => 'transaction.created',
+                    'payload' => $expectedPayload,
+                ]),
+            ];
+        }
     }
 
     /**
