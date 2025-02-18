@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.9.1] - 2025-02-18
+
+### Fixed
+
+- An error where `stored_payment_method_id` was not returned for past due subscriptions when using `getPaymentMethodChangeTransaction`
+
 ## [1.9.0] - 2025-01-30
 
 ### Added
