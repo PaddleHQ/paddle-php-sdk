@@ -17,7 +17,6 @@ use Http\Client\HttpAsyncClient;
 use Http\Discovery\HttpAsyncClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\Authentication\Bearer;
-use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
@@ -48,14 +47,6 @@ use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
-use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
-use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Uid\Ulid;
 
 class Client
@@ -192,20 +183,8 @@ class Client
 
         $request = $this->requestFactory->createRequest($method, $uri);
 
-        $serializer = new Serializer(
-            [
-                new BackedEnumNormalizer(),
-                new DateTimeNormalizer([DateTimeNormalizer::FORMAT_KEY => DateTime::PADDLE_RFC3339]),
-                new JsonSerializableNormalizer(),
-                new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter()),
-            ],
-            [new JsonEncoder()],
-        );
-
         if ($payload !== null) {
-            $body = $serializer->serialize($payload, 'json', [
-                AbstractObjectNormalizer::PRESERVE_EMPTY_OBJECTS => true,
-            ]);
+            $body = JsonEncoder::default()->encode($payload);
 
             $request = $request->withBody(
                 // Satisfies empty body requests.

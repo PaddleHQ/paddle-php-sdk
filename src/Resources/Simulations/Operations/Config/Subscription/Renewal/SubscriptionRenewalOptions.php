@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal;
+
+use Paddle\SDK\Entities\Simulation\Config\Option\DunningExhaustedAction;
+use Paddle\SDK\Entities\Simulation\Config\Option\PaymentOutcome;
+use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Undefined;
+
+class SubscriptionRenewalOptions implements \JsonSerializable
+{
+    use FiltersUndefined;
+
+    public function __construct(
+        public readonly PaymentOutcome|Undefined $paymentOutcome = new Undefined(),
+        public readonly DunningExhaustedAction|Undefined|null $dunningExhaustedAction = new Undefined(),
+    ) {
+    }
+
+    public function jsonSerialize(): \stdClass
+    {
+        return (object) $this->filterUndefined([
+            'payment_outcome' => $this->paymentOutcome,
+            'dunning_exhausted_action' => $this->dunningExhaustedAction,
+        ]);
+    }
+}

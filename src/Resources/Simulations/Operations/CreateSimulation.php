@@ -8,6 +8,7 @@ use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
+use Paddle\SDK\Resources\Simulations\Operations\Config\SimulationConfigCreate;
 use Paddle\SDK\Undefined;
 
 class CreateSimulation implements \JsonSerializable
@@ -19,6 +20,7 @@ class CreateSimulation implements \JsonSerializable
         public readonly EventTypeName|SimulationScenarioType $type,
         public readonly string $name,
         public readonly NotificationEntity|Undefined $payload = new Undefined(),
+        public readonly SimulationConfigCreate|Undefined $config = new Undefined(),
     ) {
     }
 
@@ -29,6 +31,7 @@ class CreateSimulation implements \JsonSerializable
             'type' => $this->type,
             'name' => $this->name,
             'payload' => $this->payload,
+            'config' => $this->config,
         ]);
     }
 }

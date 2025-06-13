@@ -9,6 +9,7 @@ use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
+use Paddle\SDK\Resources\Simulations\Operations\Config\SimulationConfigCreate;
 use Paddle\SDK\Undefined;
 
 class UpdateSimulation implements \JsonSerializable
@@ -21,6 +22,7 @@ class UpdateSimulation implements \JsonSerializable
         public readonly string|Undefined $name = new Undefined(),
         public readonly SimulationStatus|Undefined $status = new Undefined(),
         public readonly NotificationEntity|Undefined|null $payload = new Undefined(),
+        public readonly SimulationConfigCreate|Undefined|null $config = new Undefined(),
     ) {
     }
 
@@ -32,6 +34,7 @@ class UpdateSimulation implements \JsonSerializable
             'name' => $this->name,
             'status' => $this->status,
             'payload' => $this->payload,
+            'config' => $this->config,
         ]);
     }
 }

@@ -8,6 +8,10 @@ use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Entities\Simulation\Config\Option\CustomerSimulatedAs;
+use Paddle\SDK\Entities\Simulation\Config\Option\DunningExhaustedAction;
+use Paddle\SDK\Entities\Simulation\Config\Option\PaymentOutcome;
+use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Notifications\Entities\EntityFactory;
@@ -15,6 +19,19 @@ use Paddle\SDK\Notifications\Entities\Simulation;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\OrderBy;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationConfig;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationEntities;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationConfig;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationEntities;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationItem;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationOptions;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseConfig;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseEntities;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalConfig;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalEntities;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalOptions;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeConfig;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeEntities;
 use Paddle\SDK\Resources\Simulations\Operations\CreateSimulation;
 use Paddle\SDK\Resources\Simulations\Operations\ListSimulations;
 use Paddle\SDK\Resources\Simulations\Operations\UpdateSimulation;
@@ -339,6 +356,312 @@ class SimulationsClientTest extends TestCase
         yield 'Default' => [
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             sprintf('%s/simulations/ntfsim_01j82g2mggsgjpb3mjg0xq6p5k', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider createOperationsWithConfigProvider
+     */
+    public function it_uses_expected_payload_on_create_with_config(
+        CreateSimulation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->simulations->create($operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('POST', $request->getMethod());
+        self::assertEquals(Environment::SANDBOX->baseUrl() . '/simulations', urldecode((string) $request->getUri()));
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function createOperationsWithConfigProvider(): \Generator
+    {
+        yield 'Subscription Creation with Full Config' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: SimulationScenarioType::SubscriptionCreation(),
+                name: 'Create a subscription creation simulation with config',
+                config: new SubscriptionCreationConfig(
+                    entities: new SubscriptionCreationEntities(
+                        customerId: 'ctm_01grnn4zta5a1mf02jjze7y2ys',
+                        addressId: 'add_01gm302t81w94gyjpjpqypkzkf',
+                        businessId: 'biz_01grrebrzaee2qj2fqqhmcyzaj',
+                        paymentMethodId: 'paymtd_01hkm9xwqpbbpr1ksmvg3sx3v1',
+                        discountId: 'dsc_01gv5kpg05xp104ek2fmgjwttf',
+                        items: [
+                            new SubscriptionCreationItem('pri_01gsz8z1q1n00f12qt82y31smh', 5),
+                        ],
+                    ),
+                    options: new SubscriptionCreationOptions(
+                        customerSimulatedAs: CustomerSimulatedAs::ExistingEmailMatched(),
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'type' => 'subscription_creation',
+                'name' => 'Create a subscription creation simulation with config',
+                'config' => [
+                    'subscription_creation' => [
+                        'entities' => [
+                            'customer_id' => 'ctm_01grnn4zta5a1mf02jjze7y2ys',
+                            'address_id' => 'add_01gm302t81w94gyjpjpqypkzkf',
+                            'business_id' => 'biz_01grrebrzaee2qj2fqqhmcyzaj',
+                            'payment_method_id' => 'paymtd_01hkm9xwqpbbpr1ksmvg3sx3v1',
+                            'discount_id' => 'dsc_01gv5kpg05xp104ek2fmgjwttf',
+                            'items' => [
+                                ['price_id' => 'pri_01gsz8z1q1n00f12qt82y31smh', 'quantity' => 5],
+                            ],
+                        ],
+                        'options' => [
+                            'customer_simulated_as' => 'existing_email_matched',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Subscription Renewal with Success Outcome' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: SimulationScenarioType::SubscriptionRenewal(),
+                name: 'Create a subscription renewal simulation with subscription ID',
+                config: new SubscriptionRenewalConfig(
+                    entities: new SubscriptionRenewalEntities(
+                        subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                    ),
+                    options: new SubscriptionRenewalOptions(
+                        paymentOutcome: PaymentOutcome::Success(),
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'type' => 'subscription_renewal',
+                'name' => 'Create a subscription renewal simulation with subscription ID',
+                'config' => [
+                    'subscription_renewal' => [
+                        'entities' => [
+                            'subscription_id' => 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                        ],
+                        'options' => [
+                            'payment_outcome' => 'success',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Subscription Renewal with Failed Outcome' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: SimulationScenarioType::SubscriptionRenewal(),
+                name: 'Create a failed subscription renewal simulation with subscription ID',
+                config: new SubscriptionRenewalConfig(
+                    entities: new SubscriptionRenewalEntities(
+                        subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                    ),
+                    options: new SubscriptionRenewalOptions(
+                        paymentOutcome: PaymentOutcome::Failed(),
+                        dunningExhaustedAction: DunningExhaustedAction::SubscriptionCanceled(),
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'type' => 'subscription_renewal',
+                'name' => 'Create a failed subscription renewal simulation with subscription ID',
+                'config' => [
+                    'subscription_renewal' => [
+                        'entities' => [
+                            'subscription_id' => 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                        ],
+                        'options' => [
+                            'payment_outcome' => 'failed',
+                            'dunning_exhausted_action' => 'subscription_canceled',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Subscription Pause' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: SimulationScenarioType::SubscriptionPause(),
+                name: 'Create a subscription pause simulation',
+                config: new SubscriptionPauseConfig(
+                    entities: new SubscriptionPauseEntities(
+                        subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'type' => 'subscription_pause',
+                'name' => 'Create a subscription pause simulation',
+                'config' => [
+                    'subscription_pause' => [
+                        'entities' => [
+                            'subscription_id' => 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Subscription Resume' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: SimulationScenarioType::SubscriptionResume(),
+                name: 'Create a subscription resume simulation',
+                config: new SubscriptionResumeConfig(
+                    entities: new SubscriptionResumeEntities(
+                        subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'type' => 'subscription_resume',
+                'name' => 'Create a subscription resume simulation',
+                'config' => [
+                    'subscription_resume' => [
+                        'entities' => [
+                            'subscription_id' => 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Subscription Cancellation' => [
+            new CreateSimulation(
+                notificationSettingId: 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                type: SimulationScenarioType::SubscriptionCancellation(),
+                name: 'Create a subscription cancellation simulation',
+                config: new SubscriptionCancellationConfig(
+                    entities: new SubscriptionCancellationEntities(
+                        subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config')),
+            json_encode([
+                'notification_setting_id' => 'ntfset_01j82d983j814ypzx7m1fw2jpz',
+                'type' => 'subscription_cancellation',
+                'name' => 'Create a subscription cancellation simulation',
+                'config' => [
+                    'subscription_cancellation' => [
+                        'entities' => [
+                            'subscription_id' => 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider updateOperationsWithConfigProvider
+     */
+    public function it_uses_expected_payload_on_update_with_config(
+        UpdateSimulation $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->simulations->update('ntfsim_01j82g2mggsgjpb3mjg0xq6p5k', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('PATCH', $request->getMethod());
+        self::assertEquals(Environment::SANDBOX->baseUrl() . '/simulations/ntfsim_01j82g2mggsgjpb3mjg0xq6p5k', urldecode((string) $request->getUri()));
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function updateOperationsWithConfigProvider(): \Generator
+    {
+        yield 'Update with Subscription Creation Config' => [
+            new UpdateSimulation(
+                name: 'Updated subscription creation simulation',
+                status: SimulationStatus::Active(),
+                config: new SubscriptionCreationConfig(
+                    entities: new SubscriptionCreationEntities(
+                        customerId: 'ctm_01grnn4zta5a1mf02jjze7y2ys',
+                        items: [
+                            new SubscriptionCreationItem('pri_01gsz8z1q1n00f12qt82y31smh', 3),
+                        ],
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            json_encode([
+                'name' => 'Updated subscription creation simulation',
+                'status' => 'active',
+                'config' => [
+                    'subscription_creation' => [
+                        'entities' => [
+                            'customer_id' => 'ctm_01grnn4zta5a1mf02jjze7y2ys',
+                            'items' => [
+                                ['price_id' => 'pri_01gsz8z1q1n00f12qt82y31smh', 'quantity' => 3],
+                            ],
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Update with Subscription Renewal Config' => [
+            new UpdateSimulation(
+                name: 'Updated subscription renewal simulation',
+                config: new SubscriptionRenewalConfig(
+                    entities: new SubscriptionRenewalEntities(
+                        subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                    ),
+                    options: new SubscriptionRenewalOptions(
+                        paymentOutcome: PaymentOutcome::RecoveredUpdatedPaymentMethod(),
+                    ),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            json_encode([
+                'name' => 'Updated subscription renewal simulation',
+                'config' => [
+                    'subscription_renewal' => [
+                        'entities' => [
+                            'subscription_id' => 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                        ],
+                        'options' => [
+                            'payment_outcome' => 'recovered_updated_payment_method',
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+
+        yield 'Update with null config to clear' => [
+            new UpdateSimulation(
+                name: 'Simulation with cleared config',
+                config: null,
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            json_encode([
+                'name' => 'Simulation with cleared config',
+                'config' => null,
+            ]),
         ];
     }
 }
