@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation;
 
-use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
+use Paddle\SDK\Entities\Simulation\Config\Option\EffectiveFrom;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
@@ -13,7 +13,7 @@ class SubscriptionCancellationOptions implements \JsonSerializable
     use FiltersUndefined;
 
     public function __construct(
-        public readonly SubscriptionEffectiveFrom|Undefined $effectiveFrom = new Undefined(),
+        public readonly EffectiveFrom|Undefined $effectiveFrom = new Undefined(),
         public readonly bool|Undefined $hasPastDueTransactions = new Undefined(),
     ) {
     }

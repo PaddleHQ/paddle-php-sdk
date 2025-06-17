@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause;
 
+use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Resources\Simulations\Operations\Config\SimulationConfigCreate;
 use Paddle\SDK\Undefined;
@@ -16,6 +17,11 @@ class SubscriptionPauseConfig implements SimulationConfigCreate
         public readonly SubscriptionPauseEntities|Undefined $entities = new Undefined(),
         public readonly SubscriptionPauseOptions|Undefined $options = new Undefined(),
     ) {
+    }
+
+    public static function getScenarioType(): SimulationScenarioType
+    {
+        return SimulationScenarioType::SubscriptionPause();
     }
 
     public function jsonSerialize(): array

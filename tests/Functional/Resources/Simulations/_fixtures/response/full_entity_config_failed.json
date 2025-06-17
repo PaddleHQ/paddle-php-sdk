@@ -2,7 +2,7 @@
     "data": {
         "id": "ntfsim_01j82g2mggsgjpb3mjg0xq6p5k",
         "notification_setting_id": "ntfset_01j82d983j814ypzx7m1fw2jpz",
-        "name": "Create a subscription renewal simulation with failed outcome",
+        "name": "Subscription renewal simulation with failed outcome",
         "type": "subscription_renewal",
         "status": "active",
         "payload": null,

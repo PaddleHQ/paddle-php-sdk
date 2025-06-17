@@ -2,26 +2,26 @@
     "data": {
         "id": "sim_01h04vsc0qhwtsbsxh3422wjs4",
         "notification_setting_id": "ntfset_01j82d983j814ypzx7m1fw2jpz",
-        "name": "Create a subscription resume simulation with successful outcome",
+        "name": "Subscription resume simulation with success outcome",
         "type": "subscription_resume",
         "status": "active",
+        "payload": null,
         "config": {
             "subscription_resume": {
                 "entities": {
                     "subscription_id": "sub_01h04vsc0qhwtsbsxh3422wjs4"
                 },
                 "options": {
-                    "payment_outcome": "successful",
+                    "payment_outcome": "success",
                     "dunning_exhausted_action": null
                 }
             }
         },
-        "payload": null,
         "last_run_at": null,
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-01-01T00:00:00Z"
     },
     "meta": {
-        "request_id": "72351248-13bf-45be-befe-b3a5b5234588"
+        "request_id": "req_01h04vsc0qhwtsbsxh3422wjs4"
     }
 }

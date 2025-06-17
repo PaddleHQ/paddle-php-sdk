@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation;
 
+use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Resources\Simulations\Operations\Config\SimulationConfigCreate;
 use Paddle\SDK\Undefined;
@@ -16,6 +17,11 @@ class SubscriptionCancellationConfig implements SimulationConfigCreate
         public readonly SubscriptionCancellationEntities|Undefined $entities = new Undefined(),
         public readonly SubscriptionCancellationOptions|Undefined $options = new Undefined(),
     ) {
+    }
+
+    public static function getScenarioType(): SimulationScenarioType
+    {
+        return SimulationScenarioType::SubscriptionCancellation();
     }
 
     public function jsonSerialize(): array
