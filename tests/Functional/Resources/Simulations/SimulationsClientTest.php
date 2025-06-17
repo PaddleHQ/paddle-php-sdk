@@ -439,7 +439,7 @@ class SimulationsClientTest extends TestCase
 
     public static function configDataProvider(): \Generator
     {
-        yield 'Subscription creation simulation - new customer' => [
+        yield 'Subscription creation simulation - transaction ID and new customer' => [
             SimulationScenarioType::SubscriptionCreation(),
             new SubscriptionCreationConfig(
                 entities: new SubscriptionCreationEntities(
@@ -449,6 +449,26 @@ class SimulationsClientTest extends TestCase
                     paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
                     transactionId: 'txn_01h04vsc0qhwtsbsxh3422wjs4',
+                ),
+                options: new SubscriptionCreationOptions(
+                    customerSimulatedAs: CustomerSimulatedAs::New(),
+                    businessSimulatedAs: BusinessSimulatedAs::New(),
+                    discountSimulatedAs: DiscountSimulatedAs::NotProvided(),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config_subscription_creation_txn_id')),
+            self::readJsonFixture('request/config/subscription_creation_txn_id'),
+        ];
+
+        yield 'Subscription creation simulation - items and new customer' => [
+            SimulationScenarioType::SubscriptionCreation(),
+            new SubscriptionCreationConfig(
+                entities: new SubscriptionCreationEntities(
+                    customerId: 'ctm_01h04vsc0qhwtsbsxh3422wjs4',
+                    addressId: 'add_01h04vsc0qhwtsbsxh3422wjs4',
+                    businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
+                    paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
+                    discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
                     items: [
                         new SubscriptionCreationItem(
                             priceId: 'pri_01h04vsc0qhwtsbsxh3422wjs4',
@@ -475,7 +495,6 @@ class SimulationsClientTest extends TestCase
                     businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
                     paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
-                    transactionId: 'txn_01h04vsc0qhwtsbsxh3422wjs4',
                     items: [
                         new SubscriptionCreationItem(
                             priceId: 'pri_01h04vsc0qhwtsbsxh3422wjs4',
@@ -502,7 +521,6 @@ class SimulationsClientTest extends TestCase
                     businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
                     paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
-                    transactionId: 'txn_01h04vsc0qhwtsbsxh3422wjs4',
                     items: [
                         new SubscriptionCreationItem(
                             priceId: 'pri_01h04vsc0qhwtsbsxh3422wjs4',

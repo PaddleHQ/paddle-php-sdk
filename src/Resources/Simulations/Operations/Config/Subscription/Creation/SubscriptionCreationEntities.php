@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation;
 
+use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
@@ -23,6 +24,9 @@ class SubscriptionCreationEntities implements \JsonSerializable
         public readonly string|Undefined|null $transactionId = new Undefined(),
         public readonly array|Undefined|null $items = new Undefined(),
     ) {
+        if (is_string($transactionId) && is_array($items)) {
+            throw InvalidArgumentException::incompatibleArguments('transactionId', 'items');
+        }
     }
 
     public function jsonSerialize(): \stdClass

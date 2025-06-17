@@ -6,17 +6,12 @@
             "business_id": "biz_01h04vsc0qhwtsbsxh3422wjs4",
             "payment_method_id": "paymtd_01h04vsc0qhwtsbsxh3422wjs4",
             "discount_id": "dsc_01h04vsc0qhwtsbsxh3422wjs4",
-            "items": [
-                {
-                    "price_id": "pri_01h04vsc0qhwtsbsxh3422wjs4",
-                    "quantity": 1
-                }
-            ]
+            "transaction_id": "txn_01h04vsc0qhwtsbsxh3422wjs4"
         },
         "options": {
-            "customer_simulated_as": "existing_email_matched",
-            "business_simulated_as": "not_provided",
-            "discount_simulated_as": "entered_by_customer"
+            "customer_simulated_as": "new",
+            "business_simulated_as": "new",
+            "discount_simulated_as": "not_provided"
         }
     }
 }
