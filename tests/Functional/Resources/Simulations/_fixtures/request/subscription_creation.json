@@ -1,0 +1,23 @@
+{
+    "notification_setting_id": "ntfset_01j82d983j814ypzx7m1fw2jpz",
+    "name": "Create a subscription simulation",
+    "type": "subscription_creation",
+    "config": {
+        "subscription_creation": {
+            "entities": {
+                "customer_id": "ctm_01h04vsc0qhwtsbsxh3422wjs4",
+                "address_id": "add_01h04vsc0qhwtsbsxh3422wjs4",
+                "business_id": "biz_01h04vsc0qhwtsbsxh3422wjs4",
+                "payment_method_id": "pmt_01h04vsc0qhwtsbsxh3422wjs4",
+                "discount_id": "dsc_01h04vsc0qhwtsbsxh3422wjs4",
+                "transaction_id": "txn_01h04vsc0qhwtsbsxh3422wjs4",
+                "items": [
+                    {
+                        "price_id": "pri_01h04vsc0qhwtsbsxh3422wjs4",
+                        "quantity": 1
+                    }
+                ]
+            }
+        }
+    }
+}

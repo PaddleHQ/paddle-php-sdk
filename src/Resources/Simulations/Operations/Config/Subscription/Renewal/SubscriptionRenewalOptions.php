@@ -26,4 +26,33 @@ class SubscriptionRenewalOptions implements \JsonSerializable
             'dunning_exhausted_action' => $this->dunningExhaustedAction,
         ]);
     }
+
+    public static function forSuccessfulPayment(): self
+    {
+        return new self(
+            PaymentOutcome::Success(),
+        );
+    }
+
+    public static function forFailedPayment(DunningExhaustedAction|Undefined $dunningExhaustedAction = new Undefined()): self
+    {
+        return new self(
+            PaymentOutcome::Failed(),
+            $dunningExhaustedAction,
+        );
+    }
+
+    public static function forRecoveredExistingPaymentMethod(): self
+    {
+        return new self(
+            PaymentOutcome::RecoveredExistingPaymentMethod(),
+        );
+    }
+
+    public static function forRecoveredUpdatedPaymentMethod(): self
+    {
+        return new self(
+            PaymentOutcome::RecoveredUpdatedPaymentMethod(),
+        );
+    }
 }

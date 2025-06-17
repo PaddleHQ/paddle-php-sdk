@@ -14,7 +14,7 @@ class SubscriptionCancellationEntities
     public static function from(array $data): self
     {
         return new self(
-            subscriptionId: $data['subscriptionId'],
+            subscriptionId: $data['subscription_id'],
         );
     }
 }
