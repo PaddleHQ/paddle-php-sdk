@@ -636,7 +636,7 @@ class SimulationsClientTest extends TestCase
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
                 options: SubscriptionResumeOptions::forFailedPayment(
-                    DunningExhaustedAction::SubscriptionCanceled(),
+                    DunningExhaustedAction::SubscriptionPaused(),
                 ),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_failed')),
