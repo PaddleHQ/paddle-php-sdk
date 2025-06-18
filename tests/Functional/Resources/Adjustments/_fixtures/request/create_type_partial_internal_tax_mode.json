@@ -1,15 +1,11 @@
 {
     "action": "refund",
+    "type": "partial",
     "items": [
         {
             "item_id": "txnitm_01h8bxryv3065dyh6103p3yg28",
             "type": "partial",
             "amount": "100"
-        },
-        {
-            "item_id": "txnitm_01h8bxryv3065dyh6103p3yg29",
-            "type": "full",
-            "amount": "1949"
         }
     ],
     "reason": "error",
