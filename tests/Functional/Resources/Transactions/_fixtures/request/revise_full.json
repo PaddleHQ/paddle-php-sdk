@@ -1,0 +1,15 @@
+{
+    "customer": {
+        "name": "Sam Miller"
+    },
+    "business": {
+        "name": "Some Business",
+        "tax_identifier": "AB0123456789"
+    },
+    "address": {
+        "first_line": "3811 Ditmars Blvd",
+        "second_line": null,
+        "city": "Some City",
+        "region": "Some Region"
+    }
+}

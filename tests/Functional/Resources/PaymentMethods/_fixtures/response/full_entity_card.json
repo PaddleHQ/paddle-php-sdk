@@ -1,0 +1,22 @@
+{
+    "data": {
+        "id": "paymtd_01hs8zx6x377xfsfrt2bqsevbw",
+        "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+        "address_id": "add_01hv8h6jj90jjz0d71m6hj4r9z",
+        "type": "card",
+        "card": {
+            "type": "visa",
+            "last4": "0002",
+            "expiry_month": 1,
+            "expiry_year": 2025,
+            "cardholder_name": "Sam Miller"
+        },
+        "paypal": null,
+        "origin": "subscription",
+        "saved_at": "2024-05-03T11:50:23.422Z",
+        "updated_at": "2024-05-04T11:50:23.422Z"
+    },
+    "meta": {
+        "request_id": "03dae283-b7e9-47dc-b8c0-229576d90139"
+    }
+}

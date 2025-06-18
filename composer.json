@@ -35,9 +35,9 @@
     "monolog/monolog": "^3.5",
     "php-http/curl-client": "^2.3",
     "php-http/mock-client": "^1.6",
-    "phpstan/phpstan": "^1.11",
+    "phpstan/phpstan": "^1.12",
     "phpunit/phpunit": "^9.5 || ^10.0",
-    "rector/rector": "dev-main",
+    "rector/rector": "^1.2",
     "symfony/var-dumper": "^6.3"
   },
   "autoload": {

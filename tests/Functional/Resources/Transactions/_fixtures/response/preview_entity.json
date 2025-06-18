@@ -43,10 +43,45 @@
             },
             {
                 "price": {
-                    "id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                    "id": null,
                     "description": "One-time charge",
                     "name": "One-time charge",
                     "product_id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+                    "billing_cycle": null,
+                    "trial_period": null,
+                    "tax_mode": "account_setting",
+                    "unit_price": {
+                        "amount": "19900",
+                        "currency_code": "USD"
+                    },
+                    "unit_price_overrides": [
+                        {
+                            "country_codes": ["AU"],
+                            "unit_price": {
+                                "amount": "40000",
+                                "currency_code": "AUD"
+                            }
+                        }
+                    ],
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 1
+                    },
+                    "status": "active",
+                    "custom_data": null,
+                    "created_at": "2023-08-16T14:38:08.3Z",
+                    "updated_at": "2023-08-16T14:38:08.3Z"
+                },
+                "quantity": 1,
+                "proration": null,
+                "include_in_totals": false
+            },
+            {
+                "price": {
+                    "id": "pri_01gsz8z1q1n00f12qt82y31smh",
+                    "description": "One-time charge",
+                    "name": "One-time charge",
+                    "product_id": null,
                     "billing_cycle": null,
                     "trial_period": null,
                     "tax_mode": "account_setting",
@@ -104,7 +139,7 @@
             },
             "line_items": [
                 {
-                    "price_id": "pri_01gsz8z1q1n00f12qt82y31smh",
+                    "price_id": null,
                     "quantity": 20,
                     "totals": {
                         "subtotal": "600000",
@@ -113,7 +148,7 @@
                         "total": "540000"
                     },
                     "product": {
-                        "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                        "id": null,
                         "name": "ChatApp Pro",
                         "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
                         "tax_category": "standard",
@@ -129,10 +164,17 @@
                         "tax": "0",
                         "discount": "3000",
                         "total": "27000"
+                    },
+                    "proration": {
+                        "rate": "1",
+                        "billing_period": {
+                            "starts_at": "2024-02-08T11:02:03.946454Z",
+                            "ends_at": "2024-03-08T11:02:03.946454Z"
+                        }
                     }
                 },
                 {
-                    "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+                    "price_id": "pri_01gsz8z1q1n00f12qt82y31smh",
                     "quantity": 1,
                     "totals": {
                         "subtotal": "19900",
@@ -157,7 +199,8 @@
                         "tax": "0",
                         "discount": "1990",
                         "total": "17910"
-                    }
+                    },
+                    "proration": null
                 }
             ]
         },

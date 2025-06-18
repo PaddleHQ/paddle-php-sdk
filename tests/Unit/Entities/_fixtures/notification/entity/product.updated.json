@@ -1,0 +1,27 @@
+{
+    "id": "pro_01htz88xpr0mm7b3ta2pjkr7w2",
+    "name": "AeroEdit for learner pilots",
+    "type": "standard",
+    "status": "active",
+    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/bT1XUOJAQhOUxGs83cbk_pro.png",
+    "custom_data": {
+        "features": {
+            "sso": false,
+            "route_planning": true,
+            "payment_by_invoice": false,
+            "aircraft_performance": true,
+            "compliance_monitoring": false,
+            "flight_log_management": true
+        },
+        "suggested_addons": [
+            "pro_01h1vjes1y163xfj1rh1tkfb65",
+            "pro_01gsz97mq9pa4fkyy0wqenepkz"
+        ],
+        "upgrade_description": null
+    },
+    "description": "Essential tools for student pilots to manage flight logs, analyze performance, and plan routes, and ensure compliance. Valid student pilot certificate from the FAA required.",
+    "import_meta": null,
+    "tax_category": "standard",
+    "created_at": "2024-04-08T16:22:16.024Z",
+    "updated_at": "2024-04-08T16:27:59.074Z"
+}

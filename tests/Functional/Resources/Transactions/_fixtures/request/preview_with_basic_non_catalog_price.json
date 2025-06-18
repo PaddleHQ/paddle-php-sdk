@@ -1,0 +1,16 @@
+{
+    "items": [
+        {
+            "quantity": 20,
+            "price": {
+                "description": "Annual (per seat)",
+                "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                "unit_price": {
+                    "amount": "30000",
+                    "currency_code": "USD"
+                }
+            },
+            "include_in_totals": true
+        }
+    ]
+}

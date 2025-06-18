@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Adjustment\AdjustmentItem;
+use Paddle\SDK\Entities\Adjustment\AdjustmentTaxRatesUsed;
+use Paddle\SDK\Entities\Adjustment\AdjustmentType;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Entities\Shared\AdjustmentTotals;
@@ -21,7 +23,8 @@ use Paddle\SDK\Entities\Shared\PayoutTotalsAdjustment;
 class Adjustment implements Entity
 {
     /**
-     * @param array<AdjustmentItem> $items
+     * @param array<AdjustmentItem>         $items
+     * @param array<AdjustmentTaxRatesUsed> $taxRatesUsed
      */
     private function __construct(
         public string $id,
@@ -36,8 +39,10 @@ class Adjustment implements Entity
         public array $items,
         public AdjustmentTotals $totals,
         public PayoutTotalsAdjustment|null $payoutTotals,
+        public array $taxRatesUsed,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface|null $updatedAt,
+        public AdjustmentType $type,
     ) {
     }
 
@@ -53,11 +58,13 @@ class Adjustment implements Entity
             creditAppliedToBalance: $data['credit_applied_to_balance'] ?? null,
             currencyCode: CurrencyCode::from($data['currency_code']),
             status: AdjustmentStatus::from($data['status']),
-            items: array_map(fn (array $item) => AdjustmentItem::from($item), $data['items']),
+            items: array_map(fn (array $item): AdjustmentItem => AdjustmentItem::from($item), $data['items']),
             totals: AdjustmentTotals::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,
+            taxRatesUsed: array_map(fn (array $taxRateUsed): AdjustmentTaxRatesUsed => AdjustmentTaxRatesUsed::from($taxRateUsed), $data['tax_rates_used'] ?? []),
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
+            type: AdjustmentType::from($data['type']),
         );
     }
 }

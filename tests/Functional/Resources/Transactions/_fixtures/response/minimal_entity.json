@@ -18,6 +18,7 @@
     "created_at": "2023-11-07T10:51:19.601401071Z",
     "updated_at": "2023-11-07T10:51:19.601401071Z",
     "billed_at": null,
+    "revised_at": null,
     "items": [
       {
         "price": {

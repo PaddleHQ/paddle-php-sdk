@@ -29,6 +29,7 @@
     "created_at": "2023-11-07T15:45:39.297512Z",
     "updated_at": "2023-11-07T15:45:45.086499Z",
     "billed_at": "2023-11-07T15:45:39.201442Z",
+    "revised_at": null,
     "items": [
       {
         "price": {
@@ -155,11 +156,100 @@
             "tax": "486",
             "discount": "10",
             "total": "2915"
+          },
+          "proration": {
+            "rate": "1",
+            "billing_period": {
+              "starts_at": "2024-02-08T11:02:03.946454Z",
+              "ends_at": "2024-03-08T11:02:03.946454Z"
+            }
           }
+        },
+        {
+          "id": "txnitm_01hen7bxecbsbdd65s8qhyv7jw",
+          "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "quantity": 1,
+          "totals": {
+            "subtotal": "2439",
+            "tax": "486",
+            "discount": "10",
+            "total": "2915"
+          },
+          "product": {
+            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "name": "ChatApp Pro",
+            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+            "tax_category": "standard",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+            "custom_data": {
+              "features": {
+                "crm": true,
+                "data_retention": false,
+                "reports": true
+              },
+              "suggested_addons": [
+                "pro_01h1vjes1y163xfj1rh1tkfb65",
+                "pro_01gsz97mq9pa4fkyy0wqenepkz"
+              ],
+              "upgrade_description": "Move from Basic to Pro to take advantage of advanced reporting and a CRM that's right where you're chatting."
+            },
+            "status": "active",
+            "created_at": "2023-08-16T14:38:08.3Z",
+            "updated_at": "2023-08-16T14:38:08.3Z"
+          },
+          "tax_rate": "0.2",
+          "unit_totals": {
+            "subtotal": "2439",
+            "tax": "486",
+            "discount": "10",
+            "total": "2915"
+          },
+          "proration": null
         }
       ]
     },
-    "payments": [],
+    "payments": [
+      {
+        "payment_attempt_id": "1f8e8302-b6fa-4290-b457-4c201eb3d53f",
+        "payment_method_id": "paymtd_01hkm9xwqpbbpr1ksmvg3sx3v1",
+        "stored_payment_method_id": "5f85a637-efa7-4c6b-88ec-9cc05301bb48",
+        "amount": "40000",
+        "status": "captured",
+        "error_code": null,
+        "method_details": {
+          "type": "card",
+          "card": {
+            "type": "visa",
+            "last4": "4242",
+            "expiry_month": 1,
+            "expiry_year": 2024,
+            "cardholder_name": "Joe Bloggs"
+          }
+        },
+        "created_at": "2023-08-18T21:13:07.18821Z",
+        "captured_at": "2023-08-18T21:13:09.477933Z"
+      },
+      {
+        "payment_attempt_id": "1f8e8302-b6fa-4290-b457-4c201eb3d53f",
+        "payment_method_id": null,
+        "stored_payment_method_id": "5f85a637-efa7-4c6b-88ec-9cc05301bb48",
+        "amount": "40000",
+        "status": "captured",
+        "error_code": null,
+        "method_details": {
+          "type": "card",
+          "card": {
+            "type": "visa",
+            "last4": "4242",
+            "expiry_month": 1,
+            "expiry_year": 2024,
+            "cardholder_name": "Joe Bloggs"
+          }
+        },
+        "created_at": "2023-08-18T21:13:07.18821Z",
+        "captured_at": "2023-08-18T21:13:09.477933Z"
+      }
+    ],
     "checkout": {
       "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hen7bxc1p8ep4yk7n5jbzk9r"
     }

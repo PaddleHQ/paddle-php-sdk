@@ -56,7 +56,6 @@ class Transaction implements Entity
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
         public \DateTimeInterface|null $billedAt,
-        public string|null $receiptData,
         public Address|null $address,
         public array $adjustments,
         public TransactionAdjustmentsTotals|null $adjustmentsTotals,
@@ -64,6 +63,7 @@ class Transaction implements Entity
         public Customer|null $customer,
         public Discount|null $discount,
         public array $availablePaymentMethods,
+        public \DateTimeInterface|null $revisedAt,
     ) {
     }
 
@@ -92,7 +92,6 @@ class Transaction implements Entity
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
             billedAt: isset($data['billed_at']) ? DateTime::from($data['billed_at']) : null,
-            receiptData: $data['receipt_data'] ?? null,
             address: isset($data['address']) ? Address::from($data['address']) : null,
             adjustments: array_map(fn (array $adjustment): Adjustment => Adjustment::from($adjustment), $data['adjustments'] ?? []),
             adjustmentsTotals: isset($data['adjustments_totals']) ? TransactionAdjustmentsTotals::from($data['adjustments_totals']) : null,
@@ -100,6 +99,7 @@ class Transaction implements Entity
             customer: isset($data['customer']) ? Customer::from($data['customer']) : null,
             discount: isset($data['discount']) ? Discount::from($data['discount']) : null,
             availablePaymentMethods: array_map(fn (string $item): AvailablePaymentMethods => AvailablePaymentMethods::from($item), $data['available_payment_methods'] ?? []),
+            revisedAt: isset($data['revised_at']) ? DateTime::from($data['revised_at']) : null,
         );
     }
 }

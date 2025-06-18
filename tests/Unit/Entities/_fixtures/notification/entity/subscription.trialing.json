@@ -1,0 +1,122 @@
+{
+    "id": "sub_01hv8x29kz0t586xy6zn1a62ny",
+    "items": [
+        {
+            "price": {
+                "id": "pri_01hv0vax6rv18t4tamj848ne4d",
+                "name": "Monthly (per seat)",
+                "type": "standard",
+                "status": "active",
+                "quantity": {
+                    "maximum": 100,
+                    "minimum": 1
+                },
+                "tax_mode": "account_setting",
+                "created_at": "2024-04-09T07:14:38.424504Z",
+                "product_id": "pro_01htz88xpr0mm7b3ta2pjkr7w2",
+                "unit_price": {
+                    "amount": "500",
+                    "currency_code": "USD"
+                },
+                "updated_at": "2024-04-09T07:15:53.950721Z",
+                "custom_data": null,
+                "description": "Monthly (per seat) with 14 day trial",
+                "import_meta": null,
+                "trial_period": {
+                    "interval": "day",
+                    "frequency": 14
+                },
+                "billing_cycle": {
+                    "interval": "month",
+                    "frequency": 1
+                },
+                "unit_price_overrides": [
+                    {
+                        "unit_price": {
+                            "amount": "700",
+                            "currency_code": "EUR"
+                        },
+                        "country_codes": [
+                            "IE",
+                            "FR",
+                            "DE"
+                        ]
+                    },
+                    {
+                        "unit_price": {
+                            "amount": "600",
+                            "currency_code": "GBP"
+                        },
+                        "country_codes": [
+                            "GB"
+                        ]
+                    }
+                ]
+            },
+            "product": {
+                "id": "pro_01htz88xpr0mm7b3ta2pjkr7w2",
+                "name": "AeroEdit for learner pilots",
+                "type": "standard",
+                "tax_category": "standard",
+                "description": "Essential tools for student pilots to manage flight logs, analyze performance, and plan routes, and ensure compliance. Valid student pilot certificate from the FAA required.",
+                "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/bT1XUOJAQhOUxGs83cbk_pro.png",
+                "custom_data": {
+                    "features": {
+                        "aircraft_performance": true,
+                        "compliance_monitoring": false,
+                        "flight_log_management": true,
+                        "payment_by_invoice": false,
+                        "route_planning": true,
+                        "sso": false
+                    },
+                    "suggested_addons": [
+                        "pro_01h1vjes1y163xfj1rh1tkfb65",
+                        "pro_01gsz97mq9pa4fkyy0wqenepkz"
+                    ],
+                    "upgrade_description": null
+                },
+                "status": "active",
+                "import_meta": null,
+                "created_at": "2024-04-08T16:22:16.024Z",
+                "updated_at": "2024-04-08T16:27:59.074Z"
+            },
+            "status": "trialing",
+            "quantity": 10,
+            "recurring": true,
+            "created_at": "2024-04-12T11:30:29.648Z",
+            "updated_at": "2024-04-12T11:30:29.648Z",
+            "trial_dates": {
+                "ends_at": "2024-04-26T11:30:29.637Z",
+                "starts_at": "2024-04-12T11:30:29.637Z"
+            },
+            "next_billed_at": "2024-04-26T11:30:29.637Z",
+            "previously_billed_at": null
+        }
+    ],
+    "status": "trialing",
+    "discount": null,
+    "paused_at": null,
+    "address_id": "add_01hv8gq3318ktkfengj2r75gfx",
+    "created_at": "2024-04-12T11:30:29.648Z",
+    "started_at": "2024-04-12T11:30:29.637Z",
+    "updated_at": "2024-04-12T11:30:29.648Z",
+    "business_id": null,
+    "canceled_at": null,
+    "custom_data": null,
+    "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+    "import_meta": null,
+    "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+    },
+    "currency_code": "USD",
+    "next_billed_at": "2024-04-26T11:30:29.637Z",
+    "billing_details": null,
+    "collection_mode": "automatic",
+    "first_billed_at": null,
+    "scheduled_change": null,
+    "current_billing_period": {
+        "ends_at": "2024-04-26T11:30:29.637Z",
+        "starts_at": "2024-04-12T11:30:29.637Z"
+    }
+}

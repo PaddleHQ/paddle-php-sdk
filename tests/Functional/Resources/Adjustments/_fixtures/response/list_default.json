@@ -3,6 +3,7 @@
         {
             "id": "adj_01h8c65c2ggq5nxswnnwv78e75",
             "action": "refund",
+            "type": "partial",
             "transaction_id": "txn_01h8bxpvx398a7zbawb77y0kp5",
             "subscription_id": "sub_01h8bxswamxysj44zt5n48njwh",
             "customer_id": "ctm_01h8441jn5pcwrfhwh78jqt8hk",
@@ -39,12 +40,23 @@
                 "earnings": "87",
                 "currency_code": "USD"
             },
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0.08875",
+                    "totals": {
+                        "subtotal": "59900",
+                        "tax": "5315",
+                        "total": "65215"
+                    }
+                }
+            ],
             "created_at": "2023-08-21T13:57:15.489634Z",
             "updated_at": "2023-08-21T13:57:15.489634Z"
         },
         {
             "id": "adj_01h8bxezh16gm6t8rx21dx271b",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h8bx69629a16wwm9z8rjmak3",
             "subscription_id": "sub_01h8bx8fmywym11t6swgzba704",
@@ -88,12 +100,23 @@
                 "earnings": "141771",
                 "currency_code": "USD"
             },
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0.08875",
+                    "totals": {
+                        "subtotal": "59900",
+                        "tax": "5315",
+                        "total": "65215"
+                    }
+                }
+            ],
             "created_at": "2023-08-21T11:25:13.138521Z",
             "updated_at": "2023-08-21T11:25:13.138521Z"
         },
         {
             "id": "adj_01h7jgzjqt2s8sab70e03ptkhv",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h7jgd9bkwjscj3ae15g5d3vs",
             "subscription_id": "sub_01h7ht5z5wdg9pz18jx1fagp8k",
@@ -137,12 +160,23 @@
                 "earnings": "56356",
                 "currency_code": "USD"
             },
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0.08875",
+                    "totals": {
+                        "subtotal": "59900",
+                        "tax": "5315",
+                        "total": "65215"
+                    }
+                }
+            ],
             "created_at": "2023-08-11T14:46:04.811464Z",
             "updated_at": "2023-08-11T14:46:05.13404Z"
         },
         {
             "id": "adj_01h7jf6ptkfsc93hzc20fgf8wy",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h7je77vc1qmzxntem45ebb5q",
             "subscription_id": "sub_01h7ht5z5wdg9pz18jx1fagp8k",
@@ -186,12 +220,23 @@
                 "earnings": "28151",
                 "currency_code": "USD"
             },
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0.08875",
+                    "totals": {
+                        "subtotal": "59900",
+                        "tax": "5315",
+                        "total": "65215"
+                    }
+                }
+            ],
             "created_at": "2023-08-11T14:15:01.225381Z",
             "updated_at": "2023-08-11T14:15:03.54843Z"
         },
         {
             "id": "adj_01h468w41ttb2j2bh8av74gwt1",
             "action": "credit",
+            "type": "partial",
             "credit_applied_to_balance": true,
             "transaction_id": "txn_01h468crc3b3fe98a5ft53recb",
             "subscription_id": "sub_01h468kv3jhs5jk330gszncsgt",
@@ -253,6 +298,16 @@
                 "earnings": "42608",
                 "currency_code": "USD"
             },
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0.08875",
+                    "totals": {
+                        "subtotal": "59900",
+                        "tax": "5315",
+                        "total": "65215"
+                    }
+                }
+            ],
             "created_at": "2023-06-30T13:46:24.240375Z",
             "updated_at": "2023-06-30T13:46:24.240376Z"
         }

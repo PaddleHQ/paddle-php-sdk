@@ -14,6 +14,9 @@ namespace Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 
+/**
+ * @deprecated Replaced by \Paddle\SDK\Resources\Transactions\Operations\Price\TransactionNonCatalogProduct
+ */
 class TransactionNonCatalogProduct
 {
     public function __construct(

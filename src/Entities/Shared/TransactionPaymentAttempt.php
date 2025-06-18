@@ -20,8 +20,8 @@ class TransactionPaymentAttempt
      */
     private function __construct(
         public string $paymentAttemptId,
-        public string $paymentMethodId,
-        public string $storedPaymentMethodId,
+        public string|null $paymentMethodId,
+        public string|null $storedPaymentMethodId,
         public string $amount,
         public PaymentAttemptStatus $status,
         public ErrorCode|null $errorCode,
@@ -35,8 +35,8 @@ class TransactionPaymentAttempt
     {
         return new self(
             $data['payment_attempt_id'],
-            $data['payment_method_id'],
-            $data['stored_payment_method_id'],
+            $data['payment_method_id'] ?? null,
+            $data['stored_payment_method_id'] ?? null,
             $data['amount'],
             PaymentAttemptStatus::from($data['status']),
             isset($data['error_code']) ? ErrorCode::from($data['error_code']) : null,

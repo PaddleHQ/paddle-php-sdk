@@ -17,10 +17,12 @@ use Http\Client\HttpAsyncClient;
 use Http\Discovery\HttpAsyncClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\Authentication\Bearer;
+use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
+use Paddle\SDK\Resources\CustomerPortalSessions\CustomerPortalSessionsClient;
 use Paddle\SDK\Resources\Customers\CustomersClient;
 use Paddle\SDK\Resources\Discounts\DiscountsClient;
 use Paddle\SDK\Resources\Events\EventsClient;
@@ -28,10 +30,15 @@ use Paddle\SDK\Resources\EventTypes\EventTypesClient;
 use Paddle\SDK\Resources\NotificationLogs\NotificationLogsClient;
 use Paddle\SDK\Resources\Notifications\NotificationsClient;
 use Paddle\SDK\Resources\NotificationSettings\NotificationSettingsClient;
+use Paddle\SDK\Resources\PaymentMethods\PaymentMethodsClient;
 use Paddle\SDK\Resources\Prices\PricesClient;
 use Paddle\SDK\Resources\PricingPreviews\PricingPreviewsClient;
 use Paddle\SDK\Resources\Products\ProductsClient;
 use Paddle\SDK\Resources\Reports\ReportsClient;
+use Paddle\SDK\Resources\SimulationRunEvents\SimulationRunEventsClient;
+use Paddle\SDK\Resources\SimulationRuns\SimulationRunsClient;
+use Paddle\SDK\Resources\Simulations\SimulationsClient;
+use Paddle\SDK\Resources\SimulationTypes\SimulationTypesClient;
 use Paddle\SDK\Resources\Subscriptions\SubscriptionsClient;
 use Paddle\SDK\Resources\Transactions\TransactionsClient;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -43,7 +50,9 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -51,7 +60,7 @@ use Symfony\Component\Uid\Ulid;
 
 class Client
 {
-    private const SDK_VERSION = '1.1.0';
+    private const SDK_VERSION = '1.9.1';
 
     public readonly LoggerInterface $logger;
     public readonly Options $options;
@@ -61,6 +70,7 @@ class Client
     public readonly TransactionsClient $transactions;
     public readonly AdjustmentsClient $adjustments;
     public readonly CustomersClient $customers;
+    public readonly CustomerPortalSessionsClient $customerPortalSessions;
     public readonly AddressesClient $addresses;
     public readonly BusinessesClient $businesses;
     public readonly DiscountsClient $discounts;
@@ -68,10 +78,15 @@ class Client
     public readonly EventTypesClient $eventTypes;
     public readonly EventsClient $events;
     public readonly PricingPreviewsClient $pricingPreviews;
+    public readonly PaymentMethodsClient $paymentMethods;
     public readonly NotificationSettingsClient $notificationSettings;
     public readonly NotificationsClient $notifications;
     public readonly NotificationLogsClient $notificationLogs;
     public readonly ReportsClient $reports;
+    public readonly SimulationsClient $simulations;
+    public readonly SimulationRunsClient $simulationRuns;
+    public readonly SimulationRunEventsClient $simulationRunEvents;
+    public readonly SimulationTypesClient $simulationTypes;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -105,16 +120,22 @@ class Client
         $this->adjustments = new AdjustmentsClient($this);
         $this->customers = new CustomersClient($this);
         $this->addresses = new AddressesClient($this);
+        $this->customerPortalSessions = new CustomerPortalSessionsClient($this);
         $this->businesses = new BusinessesClient($this);
         $this->discounts = new DiscountsClient($this);
         $this->subscriptions = new SubscriptionsClient($this);
         $this->eventTypes = new EventTypesClient($this);
         $this->events = new EventsClient($this);
         $this->pricingPreviews = new PricingPreviewsClient($this);
+        $this->paymentMethods = new PaymentMethodsClient($this);
         $this->notificationSettings = new NotificationSettingsClient($this);
         $this->notifications = new NotificationsClient($this);
         $this->notificationLogs = new NotificationLogsClient($this);
         $this->reports = new ReportsClient($this);
+        $this->simulations = new SimulationsClient($this);
+        $this->simulationRuns = new SimulationRunsClient($this);
+        $this->simulationRunEvents = new SimulationRunEventsClient($this);
+        $this->simulationTypes = new SimulationTypesClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
@@ -138,7 +159,7 @@ class Client
         return $this->requestRaw('PATCH', $uri, $payload);
     }
 
-    public function postRaw(string|UriInterface $uri, array|\JsonSerializable $payload = [], array|HasParameters $parameters = []): ResponseInterface
+    public function postRaw(string|UriInterface $uri, array|\JsonSerializable|null $payload = [], array|HasParameters $parameters = []): ResponseInterface
     {
         if ($parameters) {
             $parameters = $parameters instanceof HasParameters ? $parameters->getParameters() : $parameters;
@@ -172,12 +193,19 @@ class Client
         $request = $this->requestFactory->createRequest($method, $uri);
 
         $serializer = new Serializer(
-            [new BackedEnumNormalizer(), new JsonSerializableNormalizer(), new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter())],
+            [
+                new BackedEnumNormalizer(),
+                new DateTimeNormalizer([DateTimeNormalizer::FORMAT_KEY => DateTime::PADDLE_RFC3339]),
+                new JsonSerializableNormalizer(),
+                new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter()),
+            ],
             [new JsonEncoder()],
         );
 
         if ($payload !== null) {
-            $body = $serializer->serialize($payload, 'json');
+            $body = $serializer->serialize($payload, 'json', [
+                AbstractObjectNormalizer::PRESERVE_EMPTY_OBJECTS => true,
+            ]);
 
             $request = $request->withBody(
                 // Satisfies empty body requests.

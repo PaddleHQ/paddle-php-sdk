@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Tests\Functional\Resources\Prices;
+namespace Paddle\SDK\Tests\Functional\Resources\PricingPreviews;
 
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;

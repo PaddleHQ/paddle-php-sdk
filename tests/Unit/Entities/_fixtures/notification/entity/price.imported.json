@@ -1,0 +1,30 @@
+{
+    "id": "pri_01gsz95g2zrkagg294kpstx54r",
+    "product_id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+    "type": "standard",
+    "description": "Monthly (recurring addon)",
+    "name": "Monthly (recurring addon)",
+    "billing_cycle": {
+        "interval": "month",
+        "frequency": 1
+    },
+    "trial_period": null,
+    "tax_mode": "account_setting",
+    "unit_price": {
+        "amount": "25000",
+        "currency_code": "USD"
+    },
+    "unit_price_overrides": [],
+    "custom_data": null,
+    "status": "active",
+    "quantity": {
+        "minimum": 1,
+        "maximum": 1
+    },
+    "import_meta": {
+        "external_id": "fc1ba9bc-8ddb-11ee-b9d1-0242ac120002",
+        "imported_from": "billing_platform"
+    },
+    "created_at": "2024-01-01T13:31:34.071379Z",
+    "updated_at": "2024-01-01T13:31:34.071379Z"
+}

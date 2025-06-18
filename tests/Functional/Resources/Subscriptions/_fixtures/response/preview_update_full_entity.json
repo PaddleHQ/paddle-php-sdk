@@ -128,13 +128,7 @@
             "tax": "2529",
             "total": "31029"
           },
-          "proration": {
-            "rate": "1",
-            "billing_period": {
-              "starts_at": "2024-02-08T11:02:03.946454Z",
-              "ends_at": "2024-03-08T11:02:03.946454Z"
-            }
-          }
+          "proration": null
         }
       ]
     },
@@ -249,13 +243,7 @@
               "tax": "2529",
               "total": "31029"
             },
-            "proration": {
-              "rate": "1",
-              "billing_period": {
-                "starts_at": "2024-03-08T11:02:03.946454Z",
-                "ends_at": "2024-04-08T11:02:03.946454Z"
-              }
-            }
+            "proration": null
           }
         ]
       },
@@ -372,13 +360,7 @@
               "tax": "2529",
               "total": "31027"
             },
-            "proration": {
-              "rate": "0.99993",
-              "billing_period": {
-                "starts_at": "2024-02-08T11:05:53.763Z",
-                "ends_at": "2024-03-08T11:02:03.946454Z"
-              }
-            }
+            "proration": null
           }
         ]
       },
@@ -480,6 +462,16 @@
           "import_meta": null,
           "created_at": "2023-02-23T13:55:22.538367Z",
           "updated_at": "2023-11-09T14:07:16.051528Z"
+        },
+        "product": {
+          "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "name": "ChatApp Pro",
+          "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+          "tax_category": "standard",
+          "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+          "status": "active",
+          "created_at": "2023-08-16T14:38:08.3Z",
+          "updated_at": "2023-08-16T14:38:08.3Z"
         }
       },
       {
@@ -517,6 +509,16 @@
           "import_meta": null,
           "created_at": "2023-02-23T13:59:52.159927Z",
           "updated_at": "2023-05-05T08:00:09.676093Z"
+        },
+        "product": {
+          "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "name": "ChatApp Pro",
+          "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+          "tax_category": "standard",
+          "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+          "status": "active",
+          "created_at": "2023-08-16T14:38:08.3Z",
+          "updated_at": "2023-08-16T14:38:08.3Z"
         }
       }
     ],

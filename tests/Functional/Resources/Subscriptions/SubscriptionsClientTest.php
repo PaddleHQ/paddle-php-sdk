@@ -7,12 +7,24 @@ namespace Paddle\SDK\Tests\Functional\Resources\Subscriptions;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\Interval;
+use Paddle\SDK\Entities\Shared\Money;
+use Paddle\SDK\Entities\Shared\PriceQuantity;
+use Paddle\SDK\Entities\Shared\TaxCategory;
+use Paddle\SDK\Entities\Shared\TaxMode;
+use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
+use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPrice;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPriceWithProduct;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogProduct;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
+use Paddle\SDK\Entities\Subscription\SubscriptionOnResume;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
 use Paddle\SDK\Entities\Subscription\SubscriptionResumeEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChangeAction;
@@ -105,6 +117,43 @@ class SubscriptionsClientTest extends TestCase
                 items: [
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPrice(
+                            'some description',
+                            'some name',
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            'some description',
+                            'some name',
+                            new SubscriptionNonCatalogProduct(
+                                'some name',
+                                'some description',
+                                CatalogType::Custom(),
+                                TaxCategory::DigitalGoods(),
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
                 ],
                 customData: new CustomData(['early_access' => true]),
                 prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
@@ -307,6 +356,18 @@ class SubscriptionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/pause_full'),
         ];
+
+        yield 'On resume continue existing billing period' => [
+            new PauseSubscription(SubscriptionEffectiveFrom::Immediately(), new \DateTime('2023-10-09T16:30:00Z'), SubscriptionOnResume::ContinueExistingBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_resume_existing_billing_period'),
+        ];
+
+        yield 'On resume start new billing period' => [
+            new PauseSubscription(SubscriptionEffectiveFrom::Immediately(), new \DateTime('2023-10-09T16:30:00Z'), SubscriptionOnResume::StartNewBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/pause_resume_new_billing_period'),
+        ];
     }
 
     /**
@@ -350,6 +411,18 @@ class SubscriptionsClientTest extends TestCase
             new ResumeSubscription(new \DateTime('2023-10-09T16:30:00Z')),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/resume_single_as_date'),
+        ];
+
+        yield 'On resume continue existing billing period' => [
+            new ResumeSubscription(SubscriptionResumeEffectiveFrom::Immediately(), SubscriptionOnResume::ContinueExistingBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_existing_billing_period'),
+        ];
+
+        yield 'On resume start new billing period' => [
+            new ResumeSubscription(SubscriptionResumeEffectiveFrom::Immediately(), SubscriptionOnResume::StartNewBillingPeriod()),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/resume_new_billing_period'),
         ];
     }
 
@@ -557,6 +630,43 @@ class SubscriptionsClientTest extends TestCase
                 items: [
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPrice(
+                            'some description',
+                            'some name',
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            'some description',
+                            'some name',
+                            new SubscriptionNonCatalogProduct(
+                                'some name',
+                                'some description',
+                                CatalogType::Custom(),
+                                TaxCategory::DigitalGoods(),
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            new CustomData(['key' => 'value']),
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
                 ],
                 customData: new CustomData(['early_access' => true]),
                 prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
@@ -598,7 +708,7 @@ class SubscriptionsClientTest extends TestCase
                     new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
                 ],
             ),
-            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
             self::readRawJsonFixture('request/preview_one_time_charge_minimal'),
         ];
 
@@ -611,8 +721,106 @@ class SubscriptionsClientTest extends TestCase
                     new SubscriptionItems('pri_01h7zd9mzfq79850w4ryc39v38', 845),
                 ],
             ),
-            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
             self::readRawJsonFixture('request/preview_one_time_charge_full'),
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function get_with_includes_returns_nullable_proration(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')));
+        $subscription = $this->client->subscriptions->get('sub_01h8bx8fmywym11t6swgzba704');
+
+        $recurringTransactionProration = $subscription->recurringTransactionDetails->lineItems[0]->proration;
+        self::assertNotNull($recurringTransactionProration);
+        self::assertEquals('1', $recurringTransactionProration->rate);
+        self::assertEquals(
+            '2024-02-08T11:02:03+00:00',
+            $recurringTransactionProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-03-08T11:02:03+00:00',
+            $recurringTransactionProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullRecurringTransactionProration = $subscription->recurringTransactionDetails->lineItems[1]->proration;
+        self::assertNull($nullRecurringTransactionProration);
+
+        $nextTransactionProration = $subscription->nextTransaction->details->lineItems[0]->proration;
+        self::assertNotNull($nextTransactionProration);
+        self::assertEquals('1', $nextTransactionProration->rate);
+        self::assertEquals(
+            '2023-12-03T16:38:53+00:00',
+            $nextTransactionProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-01-03T16:38:53+00:00',
+            $nextTransactionProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullNextTransactionProration = $subscription->nextTransaction->details->lineItems[1]->proration;
+        self::assertNull($nullNextTransactionProration);
+    }
+
+    /**
+     * @test
+     */
+    public function preview_returns_nullable_proration(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')));
+        $subscriptionPreview = $this->client->subscriptions->previewUpdate(
+            'sub_01h8bx8fmywym11t6swgzba704',
+            new PreviewUpdateSubscription(
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
+            ),
+        );
+
+        $recurringTransactionProration = $subscriptionPreview->recurringTransactionDetails->lineItems[0]->proration;
+        self::assertNotNull($recurringTransactionProration);
+        self::assertEquals('1', $recurringTransactionProration->rate);
+        self::assertEquals(
+            '2024-02-08T11:02:03+00:00',
+            $recurringTransactionProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-03-08T11:02:03+00:00',
+            $recurringTransactionProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullRecurringTransactionProration = $subscriptionPreview->recurringTransactionDetails->lineItems[1]->proration;
+        self::assertNull($nullRecurringTransactionProration);
+
+        $nextTransactionProration = $subscriptionPreview->nextTransaction->details->lineItems[0]->proration;
+        self::assertNotNull($nextTransactionProration);
+        self::assertEquals('1', $nextTransactionProration->rate);
+        self::assertEquals(
+            '2024-03-08T11:02:03+00:00',
+            $nextTransactionProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-04-08T11:02:03+00:00',
+            $nextTransactionProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullNextTransactionProration = $subscriptionPreview->nextTransaction->details->lineItems[1]->proration;
+        self::assertNull($nullNextTransactionProration);
+
+        $immediateTransactionProration = $subscriptionPreview->immediateTransaction->details->lineItems[0]->proration;
+        self::assertNotNull($immediateTransactionProration);
+        self::assertEquals('0.99993', $immediateTransactionProration->rate);
+        self::assertEquals(
+            '2024-02-08T11:05:53+00:00',
+            $immediateTransactionProration->billingPeriod->startsAt->format(DATE_RFC3339),
+        );
+        self::assertEquals(
+            '2024-03-08T11:02:03+00:00',
+            $immediateTransactionProration->billingPeriod->endsAt->format(DATE_RFC3339),
+        );
+
+        $nullImmediateTransactionProration = $subscriptionPreview->immediateTransaction->details->lineItems[1]->proration;
+        self::assertNull($nullImmediateTransactionProration);
     }
 }

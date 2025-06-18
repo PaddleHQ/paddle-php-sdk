@@ -32,7 +32,6 @@ class CreateOneTimeCharge implements \JsonSerializable
             'effective_from' => $this->effectiveFrom,
             'items' => $this->items,
             'on_payment_failure' => $this->onPaymentFailure,
-            'receipt_data' => $this->receiptData,
         ]);
     }
 }

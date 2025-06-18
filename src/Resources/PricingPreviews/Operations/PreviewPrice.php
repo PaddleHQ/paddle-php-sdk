@@ -7,6 +7,7 @@ namespace Paddle\SDK\Resources\PricingPreviews\Operations;
 use Paddle\SDK\Entities\PricingPreview\PricePreviewItem;
 use Paddle\SDK\Entities\Shared\AddressPreview;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
@@ -27,6 +28,13 @@ class PreviewPrice implements \JsonSerializable
         public readonly AddressPreview|Undefined|null $address = new Undefined(),
         public readonly string|Undefined|null $customerIpAddress = new Undefined(),
     ) {
+        if ($this->items === []) {
+            throw InvalidArgumentException::arrayIsEmpty('items');
+        }
+
+        if ($invalid = array_filter($this->items, fn ($value): bool => ! $value instanceof PricePreviewItem)) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('items', PricePreviewItem::class, implode(', ', $invalid));
+        }
     }
 
     public function jsonSerialize(): array

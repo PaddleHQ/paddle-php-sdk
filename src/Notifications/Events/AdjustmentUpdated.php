@@ -15,9 +15,10 @@ final class AdjustmentUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Adjustment $data,
+        public readonly Adjustment $adjustment,
+        string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $adjustment, $notificationId);
     }
 
     /**
@@ -28,7 +29,8 @@ final class AdjustmentUpdated extends Event
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         Entity $data,
+        string|null $notificationId = null,
     ): static {
-        return new self($eventId, $eventType, $occurredAt, $data);
+        return new self($eventId, $eventType, $occurredAt, $data, $notificationId);
     }
 }

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Notifications\Entities\Subscription;
 
 use Paddle\SDK\Notifications\Entities\DateTime;
+use Paddle\SDK\Notifications\Entities\Product;
 
 class SubscriptionItem
 {
@@ -25,6 +26,7 @@ class SubscriptionItem
         public \DateTimeInterface|null $nextBilledAt,
         public SubscriptionTimePeriod|null $trialDates,
         public SubscriptionPrice $price,
+        public Product|null $product,
     ) {
     }
 
@@ -44,6 +46,7 @@ class SubscriptionItem
                 : null,
             trialDates: isset($data['trial_dates']) ? SubscriptionTimePeriod::from($data['trial_dates']) : null,
             price: SubscriptionPrice::from($data['price']),
+            product: isset($data['product']) ? Product::from($data['product']) : null,
         );
     }
 }

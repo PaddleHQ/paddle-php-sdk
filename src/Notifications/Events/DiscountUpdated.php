@@ -15,9 +15,10 @@ final class DiscountUpdated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Discount $data,
+        public readonly Discount $discount,
+        string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $discount, $notificationId);
     }
 
     /**
@@ -28,7 +29,8 @@ final class DiscountUpdated extends Event
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         Entity $data,
+        string|null $notificationId = null,
     ): static {
-        return new self($eventId, $eventType, $occurredAt, $data);
+        return new self($eventId, $eventType, $occurredAt, $data, $notificationId);
     }
 }

@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Paddle\SDK\Notifications\Entities;
 
 use Paddle\SDK\Notifications\Entities\Adjustment\AdjustmentItem;
+use Paddle\SDK\Notifications\Entities\Adjustment\AdjustmentTaxRatesUsed;
+use Paddle\SDK\Notifications\Entities\Adjustment\AdjustmentType;
 use Paddle\SDK\Notifications\Entities\Shared\Action;
 use Paddle\SDK\Notifications\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Notifications\Entities\Shared\AdjustmentTotals;
@@ -21,7 +23,8 @@ use Paddle\SDK\Notifications\Entities\Shared\PayoutTotalsAdjustment;
 class Adjustment implements Entity
 {
     /**
-     * @param array<AdjustmentItem> $items
+     * @param array<AdjustmentItem>         $items
+     * @param array<AdjustmentTaxRatesUsed> $taxRatesUsed
      */
     private function __construct(
         public string $id,
@@ -36,8 +39,10 @@ class Adjustment implements Entity
         public array $items,
         public AdjustmentTotals $totals,
         public PayoutTotalsAdjustment|null $payoutTotals,
+        public array $taxRatesUsed,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface|null $updatedAt,
+        public AdjustmentType|null $type,
     ) {
     }
 
@@ -56,8 +61,10 @@ class Adjustment implements Entity
             items: array_map(fn (array $item): AdjustmentItem => AdjustmentItem::from($item), $data['items']),
             totals: AdjustmentTotals::from($data['totals']),
             payoutTotals: isset($data['payout_totals']) ? PayoutTotalsAdjustment::from($data['payout_totals']) : null,
+            taxRatesUsed: array_map(fn (array $taxRateUsed): AdjustmentTaxRatesUsed => AdjustmentTaxRatesUsed::from($taxRateUsed), $data['tax_rates_used'] ?? []),
             createdAt: DateTime::from($data['created_at']),
             updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
+            type: isset($data['type']) ? AdjustmentType::from($data['type']) : null,
         );
     }
 }

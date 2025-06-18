@@ -13,7 +13,74 @@
     "scheduled_change": null,
     "items": [
         { "price_id": "pri_01gsz91wy9k1yn7kx82aafwvea", "quantity": 1 },
-        { "price_id": "pri_01gsz91wy9k1yn7kx82bafwvea", "quantity": 5 }
+        { "price_id": "pri_01gsz91wy9k1yn7kx82bafwvea", "quantity": 5 },
+        {
+            "price": {
+                "custom_data": {
+                    "key": "value"
+                },
+                "description": "some description",
+                "name": "some name",
+                "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                "quantity": {
+                    "maximum": 3,
+                    "minimum": 1
+                },
+                "tax_mode": "account_setting",
+                "unit_price": {
+                    "amount": "1",
+                    "currency_code": "GBP"
+                },
+                "unit_price_overrides": [],
+                "billing_cycle": {
+                    "frequency": 1,
+                    "interval": "day"
+                },
+                "trial_period": {
+                    "frequency": 2,
+                    "interval": "day"
+                }
+            },
+            "quantity": 2
+        },
+        {
+            "price": {
+                "custom_data": {
+                    "key": "value"
+                },
+                "description": "some description",
+                "name": "some name",
+                "product": {
+                    "custom_data": {
+                        "key": "value"
+                    },
+                    "description": "some description",
+                    "image_url": "https://www.example.com/image.jpg",
+                    "name": "some name",
+                    "tax_category": "digital-goods",
+                    "type": "custom"
+                },
+                "quantity": {
+                    "maximum": 3,
+                    "minimum": 1
+                },
+                "tax_mode": "account_setting",
+                "unit_price": {
+                    "amount": "1",
+                    "currency_code": "GBP"
+                },
+                "unit_price_overrides": [],
+                "billing_cycle": {
+                    "frequency": 1,
+                    "interval": "day"
+                },
+                "trial_period": {
+                    "frequency": 2,
+                    "interval": "day"
+                }
+            },
+            "quantity": 2
+        }
     ],
     "proration_billing_mode": "full_immediately",
     "custom_data": {

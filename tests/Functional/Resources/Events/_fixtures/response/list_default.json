@@ -45,7 +45,14 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "status": "active",
+                            "created_at": "2023-04-24T14:11:13.014124Z",
+                            "updated_at": "2023-11-24T14:12:05.528Z"
                         },
                         "status": "active",
                         "quantity": 10,
@@ -70,7 +77,9 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "created_at": "2023-04-24T14:11:13.014124Z",
+                            "updated_at": "2023-11-24T14:12:05.528Z"
                         },
                         "status": "active",
                         "quantity": 1,
@@ -79,7 +88,17 @@
                         "updated_at": "2023-11-24T14:12:05.53Z",
                         "trial_dates": null,
                         "next_billed_at": "2023-12-24T14:11:11.447004Z",
-                        "previously_billed_at": "2023-11-24T14:11:11.447004Z"
+                        "previously_billed_at": "2023-11-24T14:11:11.447004Z",
+                        "product": {
+                            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                            "name": "ChatApp Pro",
+                            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                            "tax_category": "standard",
+                            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                            "status": "active",
+                            "created_at": "2023-08-16T14:38:08.3Z",
+                            "updated_at": "2023-08-16T14:38:08.3Z"
+                        }
                     }
                 ],
                 "custom_data": null,
@@ -738,7 +757,7 @@
                             "type": "card"
                         },
                         "payment_attempt_id": "afa07161-601d-4a65-8c1a-6993ae1ae027",
-                        "payment_method_id": "paymtd_01hkm9xwqpbbpr1ksmvg3sx3v1",
+                        "payment_method_id": null,
                         "stored_payment_method_id": "d3218a38-1cff-44a7-8a47-6a809a5ae9ad"
                     }
                 ],
@@ -1749,7 +1768,14 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "status": "active",
+                            "created_at": "2023-04-24T14:11:13.014124Z",
+                            "updated_at": "2023-11-24T14:12:05.528Z"
                         },
                         "status": "active",
                         "quantity": 10,
@@ -1774,7 +1800,14 @@
                             "billing_cycle": {
                                 "interval": "month",
                                 "frequency": 1
-                            }
+                            },
+                            "quantity": {
+                                "maximum": 999,
+                                "minimum": 1
+                            },
+                            "status": "active",
+                            "created_at": "2023-04-24T14:11:13.014124Z",
+                            "updated_at": "2023-11-24T14:12:05.528Z"
                         },
                         "status": "active",
                         "quantity": 1,
@@ -2768,14 +2801,22 @@
                 "updated_at": "2023-11-23T15:33:19.238230688Z",
                 "billed_at": "2023-11-23T15:33:01.930479Z"
             }
+        },
+        {
+            "event_id": "evt_01hfyd0v4xppkwmjaca5xyzh5d",
+            "event_type": "unknown_entity.updated",
+            "occurred_at": "2023-11-23T15:33:19.645134Z",
+            "data": {
+                "key": "value"
+            }
         }
     ],
     "meta": {
         "pagination": {
             "per_page": 10,
-            "estimated_total": 5574,
+            "estimated_total": 10,
             "next": "http://sandbox-api.paddle.com/events?per_page=10&after=evt_01hfyd0v4xppkwmjaca5xyzh5d",
-            "has_more": true
+            "has_more": false
         },
         "request_id": "acca7502-1eaf-4a9e-9635-c6ab9844c8a5"
     }

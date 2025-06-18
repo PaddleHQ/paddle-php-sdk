@@ -13,6 +13,8 @@ use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\Entities\Transaction\TransactionUpdateTransactionItem;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItem;
+use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice;
 use Paddle\SDK\Undefined;
 
 class UpdateTransaction implements \JsonSerializable
@@ -20,7 +22,7 @@ class UpdateTransaction implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<TransactionUpdateTransactionItem> $items
+     * @param array<TransactionUpdateItem|TransactionUpdateItemWithPrice|TransactionUpdateTransactionItem> $items
      */
     public function __construct(
         public readonly TransactionStatus|Undefined $status = new Undefined(),

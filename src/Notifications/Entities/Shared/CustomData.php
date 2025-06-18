@@ -18,8 +18,10 @@ class CustomData implements \JsonSerializable
     ) {
     }
 
-    public function jsonSerialize(): array|\JsonSerializable
+    public function jsonSerialize(): array|\JsonSerializable|\stdClass
     {
-        return $this->data;
+        return $this->data === []
+            ? (object) []
+            : $this->data;
     }
 }

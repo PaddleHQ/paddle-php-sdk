@@ -22,7 +22,7 @@ class SubscriptionAdjustmentPreview
     {
         return new self(
             transactionId: $data['transaction_id'],
-            items: array_map(fn (array $item) => SubscriptionAdjustmentItem::from($item), $data['items']),
+            items: array_map(fn (array $item): SubscriptionAdjustmentItem => SubscriptionAdjustmentItem::from($item), $data['items']),
             totals: AdjustmentTotals::from($data['totals']),
         );
     }

@@ -1,6 +1,15 @@
 # Upgrading
 
-All breaking changes prior to v1 will be documented in this file to assist with upgrading. 
+All breaking changes will be documented in this file to assist with upgrading.
+
+## v1.2.0
+
+Upgrading to this version introduces 2 changes that may require action
+
+1. `\Paddle\SDK\Entities\Shared\TransactionPaymentAttempt` field `paymentMethodId` was `string` only,
+but has been aligned with the API to be `string` or `null`.
+
+2. `\Paddle\SDK\Resources\PricingPreviews\Operations` field `items` has been aligned with the API and can no longer be empty.
 
 ## v1.0.0
 

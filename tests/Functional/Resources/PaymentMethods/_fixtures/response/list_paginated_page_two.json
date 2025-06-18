@@ -1,0 +1,47 @@
+{
+    "data": [
+        {
+            "id": "paymtd_03hs8zx6x377xfsfrt2bqsevbw",
+            "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+            "address_id": "add_01hv8h6jj90jjz0d71m6hj4r9z",
+            "type": "card",
+            "card": {
+                "type": "visa",
+                "last4": "0002",
+                "expiry_month": 1,
+                "expiry_year": 2025
+            },
+            "cardholder_name": "Sam Miller",
+            "paypal": null,
+            "origin": "saved_during_purchase",
+            "saved_at": "2024-05-03T11:50:23.422Z",
+            "updated_at": "2024-05-03T11:50:23.422Z"
+        },
+        {
+            "id": "paymtd_04hs8zx6x377xfsfrt2bqsevbw",
+            "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+            "address_id": "add_01hv8h6jj90jjz0d71m6hj4r9z",
+            "type": "card",
+            "card": {
+                "type": "visa",
+                "last4": "0002",
+                "expiry_month": 1,
+                "expiry_year": 2025
+            },
+            "cardholder_name": "Sam Miller",
+            "paypal": null,
+            "origin": "saved_during_purchase",
+            "saved_at": "2024-05-03T11:50:23.422Z",
+            "updated_at": "2024-05-03T11:50:23.422Z"
+        }
+    ],
+    "meta": {
+        "request_id": "f831dd0b-150d-41c8-a952-5f8f84dbdcee",
+        "pagination": {
+            "per_page": 2,
+            "next": "https://sandbox-api.paddle.com/customers/ctm_01hv6y1jedq4p1n0yqn5ba3ky4/payment-methods?after=paymtd_04hs8zx6x377xfsfrt2bqsevbw",
+            "has_more": false,
+            "estimated_total": 4
+        }
+    }
+}

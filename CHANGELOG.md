@@ -6,6 +6,154 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.9.1] - 2025-02-18
+
+### Fixed
+
+- An error where `stored_payment_method_id` was not returned for past due subscriptions when using `getPaymentMethodChangeTransaction`
+
+## [1.9.0] - 2025-01-30
+
+### Added
+
+- Added `transactions.revise` operation to revise a transaction and added `revised_at` to `Transaction` entity, see [related changelog](https://developer.paddle.com/changelog/2024/revise-transaction-customer-information?utm_source=dx&utm_medium=paddle-php-sdk).
+- Added support for `transaction.revised` notification, see [related changelog](https://developer.paddle.com/changelog/2024/revise-transaction-customer-information?utm_source=dx&utm_medium=paddle-php-sdk).
+- Support for partial simulation payloads, see [related changelog](https://developer.paddle.com/changelog/2025/existing-data-simulations?utm_source=dx&utm_medium=paddle-php-sdk)
+
+### Fixed
+- Handle known entity types for events that are not supported by the current SDK version. `UndefinedEvent` will always return an `UndefinedEntity`.
+
+## [1.8.0] - 2024-12-19
+
+### Added
+
+- Added `on_resume` support to subscription resume and pause operations
+
+## [1.7.2] - 2024-12-17
+
+### Fixed
+
+- Adjustment items can be omitted for when adjustment type is full
+
+## [1.7.1] - 2024-12-13
+
+### Fixed
+
+- Subscription discount now supports null `starts_at`
+
+## [1.7.0] - 2024-12-11
+
+### Added
+
+- Support for adjustment type, see [related changelog](https://developer.paddle.com/changelog/2024/refund-credit-full-total?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added Vietnamese Dong (`VND`) as a supported currency for payments [related changelog](https://developer.paddle.com/changelog/2024/vietnamese-dong-vnd-supported-currency?utm_source=dx&utm_medium=paddle-php-sdk)
+
+## [1.6.0] - 2024-12-05
+
+### Added
+
+- Support for customer portal sessions, see [related changelog](https://developer.paddle.com/changelog/2024/customer-portal-sessions?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->customerPortalSessions->create()`
+
+### Fixed
+
+- `Client->notifications->replay()` now calls the correct endpoint
+- Subscription transaction line items now include proration (`nextTransaction`, `recurringTransactionDetails`, `immediateTransaction`)
+- Transaction preview line items now include proration
+
+## [1.5.0] - 2024-11-18
+
+### Added
+
+- Support for saved payment methods, see [related changelog](https://developer.paddle.com/changelog/2024/saved-payment-methods?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->paymentMethods->list()`
+  - `Client->paymentMethods->get()`
+  - `Client->paymentMethods->delete()`
+  - `Client->customers->generateAuthToken()`
+
+## [1.4.0] - 2024-10-17
+
+### Added
+
+- Added simulations api [related changelog](https://developer.paddle.com/changelog/2024/webhook-simulator?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `traffic_source` property to `NotificationSetting` entity
+- Support notification settings `traffic_source` filter
+- Support new payment methods `offline`, `unknown`, `wire_transfer`
+- Support `tax_rates_used` property on `Adjustment` entity
+
+### Fixed
+
+- Dropped `receipt_data` on create and preview of a one-time charge for Subscriptions and Transactions
+- `TransactionsClient::preview()` `TransactionPreview` response now allows null IDs for non-catalog prices and products:
+  - `items[]->price` can now return `Price` (with `id`) or `TransactionPreviewPrice` (with nullable `id`)
+  - `details->lineItems[]->priceId` is now nullable
+  - `items[]->priceId` is now nullable
+  - `details->lineItems[]->product` can now return `Product` (with `id`) or `TransactionPreviewProduct` (with nullable `id`)
+- Empty custom data array will now serialize to empty JSON object `{}`
+- `EventsClient::list` and `Notification->payload` will now return `UndefinedEvent` for unknown event types.
+
+### Added
+- `TransactionsClient::create()` now supports operation items with optional properties:
+  - `Resources\Transactions\Operations\Create\TransactionCreateItem`
+  - `Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice`
+- `TransactionsClient::update()` now supports operation items with optional properties:
+  - `Resources\Transactions\Operations\Update\TransactionUpdateItem`
+  - `Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice`
+- `TransactionsClient::preview()` now supports operation items with optional properties:
+  - `Resources\Transactions\Operations\Preview\TransactionItemPreviewWithNonCatalogPrice`
+  - `Resources\Transactions\Operations\Preview\TransactionItemPreviewWithPriceId`
+
+### Deprecated
+- `TransactionsClient::create()` operation items have been deprecated:
+  - `Entities\Transaction\TransactionCreateItem`
+  - `Entities\Transaction\TransactionCreateItemWithPrice`
+- `TransactionsClient::update()` operation items have been deprecated:
+  - `Entities\Transaction\TransactionUpdateTransactionItem`
+- `TransactionsClient::preview()` operation items have been deprecated:
+  - `Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice`
+  - `Entities\Transaction\TransactionItemPreviewWithPriceId`
+
+# [1.3.1] - 2024-09-30
+
+### Fixed
+
+- Update version reference to match package version
+
+## [1.3.0] - 2024-09-30
+
+### Added
+
+- Added `AdjustmentsClient::getCreditNote`, see [related changelog](https://developer.paddle.com/changelog/2024/generate-adjustments-credit-notes)
+
+## [1.2.0] - 2024-09-18
+
+### Added
+
+- Added `product` to `subscription.items[]`, see [related changelog](https://developer.paddle.com/changelog/2024/subscription-items-product?utm_source=dx&utm_medium=paddle-php-sdk)
+- Support for `createdAt` and `updatedAt` on Subscription notification prices
+- Support custom prices when updating and previewing subscriptions, see [related changelog](https://developer.paddle.com/changelog/2024/add-custom-items-subscription)
+- `TransactionsClient::getInvoicePDF` now supports `disposition` parameter, see [related changelog](https://developer.paddle.com/changelog/2024/invoice-pdf-open-in-browser)
+- Support notification settings pagination, see [related changelog](https://developer.paddle.com/changelog/2024/notification-settings-pagination)
+- Support notification settings `active` filter
+- Support for `notification_id` on notification events
+
+### Fixed
+
+- `PreviewPrice` operation no longer allows empty `items`
+- Transaction `payment_method_id` can be `string` or `null`
+
+## [1.1.2] - 2024-08-23
+
+### Fixed
+
+- Fixed `TransactionTimePeriod`constructor, updated the visibility from private to public.
+
+## [1.1.1] - 2024-08-21
+
+### Fixed
+
+- Fixed `CreateDiscount` and `UpdateDiscount` to support custom data
+
 ## [1.1.0] - 2024-04-30
 
 ### Added

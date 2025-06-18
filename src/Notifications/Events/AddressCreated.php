@@ -15,9 +15,10 @@ final class AddressCreated extends Event
         string $eventId,
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
-        Address $data,
+        public readonly Address $address,
+        string|null $notificationId,
     ) {
-        parent::__construct($eventId, $eventType, $occurredAt, $data);
+        parent::__construct($eventId, $eventType, $occurredAt, $address, $notificationId);
     }
 
     /**
@@ -28,7 +29,8 @@ final class AddressCreated extends Event
         EventTypeName $eventType,
         \DateTimeInterface $occurredAt,
         Entity $data,
+        string|null $notificationId = null,
     ): static {
-        return new self($eventId, $eventType, $occurredAt, $data);
+        return new self($eventId, $eventType, $occurredAt, $data, $notificationId);
     }
 }

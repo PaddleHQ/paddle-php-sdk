@@ -6,6 +6,7 @@ namespace Paddle\SDK\Resources\Discounts\Operations;
 
 use Paddle\SDK\Entities\Discount\DiscountType;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
@@ -28,6 +29,7 @@ class CreateDiscount implements \JsonSerializable
         public readonly int|Undefined|null $usageLimit = new Undefined(),
         public readonly array|Undefined|null $restrictTo = new Undefined(),
         public readonly string|Undefined|null $expiresAt = new Undefined(),
+        public readonly CustomData|Undefined|null $customData = new Undefined(),
     ) {
     }
 
@@ -45,6 +47,7 @@ class CreateDiscount implements \JsonSerializable
             'usage_limit' => $this->usageLimit,
             'restrict_to' => $this->restrictTo,
             'expires_at' => $this->expiresAt,
+            'custom_data' => $this->customData,
         ]);
     }
 }

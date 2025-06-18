@@ -100,7 +100,8 @@
                     "available_versions": [1]
                 }
             ],
-            "endpoint_secret_key": "pdl_ntfset_01gkpjp8bkm3tm53kdgkx6sms7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI"
+            "endpoint_secret_key": "pdl_ntfset_01gkpjp8bkm3tm53kdgkx6sms7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI",
+            "traffic_source": "platform"
         },
         {
             "id": "ntfset_01gkpop8bkm3tm53itgkx6klk7",
@@ -202,10 +203,17 @@
                     "available_versions": [1]
                 }
             ],
-            "endpoint_secret_key": "ntfset_01gkpop8bkm3tm53itgkx6klk7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI"
+            "endpoint_secret_key": "ntfset_01gkpop8bkm3tm53itgkx6klk7_6h3qd3uFSi9YCD3OLYAShQI90XTI5vEI",
+            "traffic_source": "platform"
         }
     ],
     "meta": {
-        "request_id": "cf039cbb-6c2a-485d-b244-501894b797a6"
+        "request_id": "cf039cbb-6c2a-485d-b244-501894b797a6",
+        "pagination": {
+            "per_page": 5,
+            "next": "https://api.paddle.com/notification-settings?after=ntfset_01gkpop8bkm3tm53itgkx6klk7",
+            "has_more": false,
+            "estimated_total": 5
+        }
     }
 }

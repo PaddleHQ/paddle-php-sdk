@@ -7,9 +7,11 @@ namespace Paddle\SDK\Resources\Transactions\Operations;
 use Paddle\SDK\Entities\Shared\AddressPreview;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
-use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice;
-use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId;
+use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice as EntityItemPreviewWithNonCatalogPrice;
+use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId as EntityItemPreviewWithPriceId;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionItemPreviewWithNonCatalogPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionItemPreviewWithPriceId;
 use Paddle\SDK\Undefined;
 
 class PreviewTransaction implements \JsonSerializable
@@ -17,7 +19,7 @@ class PreviewTransaction implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<TransactionItemPreviewWithPriceId|TransactionItemPreviewWithNonCatalogPrice> $items
+     * @param array<TransactionItemPreviewWithPriceId|TransactionItemPreviewWithNonCatalogPrice|EntityItemPreviewWithPriceId|EntityItemPreviewWithNonCatalogPrice> $items
      */
     public function __construct(
         public readonly array $items,
