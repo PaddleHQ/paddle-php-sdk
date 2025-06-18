@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
+use Paddle\SDK\Entities\Discount\DiscountMode;
 use Paddle\SDK\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Entities\Discount\DiscountType;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -38,6 +39,7 @@ class Discount implements Entity
         public \DateTimeInterface $updatedAt,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
+        public DiscountMode $mode,
         public string|null $discountGroupId,
     ) {
     }
@@ -63,6 +65,7 @@ class Discount implements Entity
             updatedAt: DateTime::from($data['updated_at']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            mode: DiscountMode::from($data['mode']),
             discountGroupId: $data['discount_group_id'] ?? null,
         );
     }

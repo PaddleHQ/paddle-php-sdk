@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Notifications\Entities;
 
+use Paddle\SDK\Notifications\Entities\Discount\DiscountMode;
 use Paddle\SDK\Notifications\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Notifications\Entities\Discount\DiscountType;
 use Paddle\SDK\Notifications\Entities\Shared\CurrencyCode;
@@ -37,6 +38,7 @@ class Discount implements Entity
         public \DateTimeInterface|null $expiresAt,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
+        public DiscountMode|null $mode,
         public string|null $discountGroupId,
     ) {
     }
@@ -61,6 +63,7 @@ class Discount implements Entity
             expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
+            mode: isset($data['mode']) ? DiscountMode::from($data['mode']) : null,
             discountGroupId: $data['discount_group_id'] ?? null,
         );
     }

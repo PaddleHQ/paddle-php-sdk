@@ -8,6 +8,9 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ## [Unreleased]
 
+### Added
+
+- Added support for discount mode
 - Added support for discount group resources, see [related changelog](https://developer.paddle.com/changelog/2025/discount-groups?utm_source=dx&utm_medium=paddle-php-sdk).
 
 ## [1.9.1] - 2025-02-18

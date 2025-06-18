@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Discounts;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Discount\DiscountMode;
 use Paddle\SDK\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Entities\Discount\DiscountType;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -75,17 +76,18 @@ class DiscountsClientTest extends TestCase
 
         yield 'Create with Data' => [
             new CreateDiscount(
-                '10',
-                'Nonprofit discount',
-                DiscountType::Percentage(),
-                true,
-                true,
-                CurrencyCode::USD(),
-                'ABCDE12345',
-                5,
-                1000,
-                ['pro_01gsz4t5hdjse780zja8vvr7jg', 'pro_01gsz4s0w61y0pp88528f1wvvb'],
-                '2025-01-01 10:00:00',
+                amount: '10',
+                description: 'Nonprofit discount',
+                type: DiscountType::Percentage(),
+                enabledForCheckout: true,
+                recur: true,
+                currencyCode: CurrencyCode::USD(),
+                code: 'ABCDE12345',
+                maximumRecurringIntervals: 5,
+                usageLimit: 1000,
+                restrictTo: ['pro_01gsz4t5hdjse780zja8vvr7jg', 'pro_01gsz4s0w61y0pp88528f1wvvb'],
+                expiresAt: '2025-01-01 10:00:00',
+                mode: DiscountMode::Standard(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
@@ -143,6 +145,7 @@ class DiscountsClientTest extends TestCase
                 ],
                 expiresAt: '2025-01-01 10:00:00',
                 status: DiscountStatus::Active(),
+                mode: DiscountMode::Custom(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),

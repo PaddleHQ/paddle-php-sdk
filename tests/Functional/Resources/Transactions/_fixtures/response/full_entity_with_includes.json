@@ -209,6 +209,7 @@
       "enabled_for_checkout": true,
       "code": "QY3XXXMS3E",
       "type": "flat",
+      "mode": "standard",
       "amount": "10",
       "currency_code": "GBP",
       "recur": false,

@@ -2,6 +2,7 @@
     "description": "Nonprofit discount",
     "enabled_for_checkout": true,
     "type": "percentage",
+    "mode": "standard",
     "amount": "10",
     "recur": true,
     "currency_code": "USD",

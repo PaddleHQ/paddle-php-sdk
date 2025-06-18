@@ -2,6 +2,7 @@
     "id": "dsc_01hv6scyf7qdnzcdq01t2y8dx4",
     "code": "SEWRGPB9WY",
     "type": "percentage",
+    "mode": "standard",
     "recur": true,
     "amount": "10",
     "status": "active",
