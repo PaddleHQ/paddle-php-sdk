@@ -30,7 +30,7 @@ trait OptionalProperties
         return self::optional(
             $data,
             $key,
-            fn ($items) => array_map(fn (array $item) => $callback($item), $items),
+            fn ($items) => array_map(fn ($item) => $callback($item), $items),
         );
     }
 }

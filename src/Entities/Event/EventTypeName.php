@@ -64,6 +64,11 @@ final class EventTypeName extends PaddleEnum
     private const AddressUpdated = 'address.updated';
     private const AdjustmentCreated = 'adjustment.created';
     private const AdjustmentUpdated = 'adjustment.updated';
+    private const ApiKeyCreated = 'api_key.created';
+    private const ApiKeyExpired = 'api_key.expired';
+    private const ApiKeyExpiring = 'api_key.expiring';
+    private const ApiKeyRevoked = 'api_key.revoked';
+    private const ApiKeyUpdated = 'api_key.updated';
     private const BusinessCreated = 'business.created';
     private const BusinessImported = 'business.imported';
     private const BusinessUpdated = 'business.updated';
