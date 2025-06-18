@@ -751,7 +751,8 @@
                                     "expiry_month": 1,
                                     "cardholder_name": "Michael McGovern"
                                 },
-                                "type": "card"
+                                "type": "card",
+                                "underlying_details": null
                             },
                             "payment_method_id": "paymtd_01hv8x1tpjfnttxddw73xnqx6s",
                             "payment_attempt_id": "937640dd-e3dc-40df-a16c-bb75aafd8f71",
@@ -772,6 +773,25 @@
                                     "cardholder_name": "Michael McGovern"
                                 },
                                 "type": "card"
+                            },
+                            "payment_method_id": "paymtd_01hv8wx2mka7dfsqjjsxh1ne7z",
+                            "payment_attempt_id": "8f72cfa6-26b4-4a57-91dc-8f2708f7822d",
+                            "stored_payment_method_id": "a78ece50-356f-4e0c-b72d-ad5368b0a0d9"
+                        },
+                        {
+                            "amount": "65215",
+                            "status": "error",
+                            "created_at": "2024-04-12T10:15:57.888183Z",
+                            "error_code": "declined",
+                            "captured_at": null,
+                            "method_details": {
+                                "card": null,
+                                "type": "korea_local",
+                                "underlying_details": {
+                                    "korea_local": {
+                                        "type": "kakaobank"
+                                    }
+                                }
                             },
                             "payment_method_id": "paymtd_01hv8wx2mka7dfsqjjsxh1ne7z",
                             "payment_attempt_id": "8f72cfa6-26b4-4a57-91dc-8f2708f7822d",

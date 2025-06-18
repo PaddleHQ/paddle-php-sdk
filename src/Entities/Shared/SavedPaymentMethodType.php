@@ -18,6 +18,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SavedPaymentMethodType ApplePay()
  * @method static SavedPaymentMethodType Card()
  * @method static SavedPaymentMethodType GooglePay()
+ * @method static SavedPaymentMethodType KoreaLocal()
  * @method static SavedPaymentMethodType Paypal()
  */
 final class SavedPaymentMethodType extends PaddleEnum
@@ -26,5 +27,6 @@ final class SavedPaymentMethodType extends PaddleEnum
     private const ApplePay = 'apple_pay';
     private const Card = 'card';
     private const GooglePay = 'google_pay';
+    private const KoreaLocal = 'korea_local';
     private const Paypal = 'paypal';
 }

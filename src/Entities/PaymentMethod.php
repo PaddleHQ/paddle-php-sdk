@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Shared\Card;
+use Paddle\SDK\Entities\Shared\PaymentMethodUnderlyingDetails;
 use Paddle\SDK\Entities\Shared\Paypal;
 use Paddle\SDK\Entities\Shared\SavedPaymentMethodOrigin;
 use Paddle\SDK\Entities\Shared\SavedPaymentMethodType;
@@ -25,6 +26,7 @@ class PaymentMethod implements Entity
         public SavedPaymentMethodType $type,
         public Card|null $card,
         public Paypal|null $paypal,
+        public PaymentMethodUnderlyingDetails|null $underlyingDetails,
         public SavedPaymentMethodOrigin $origin,
         public \DateTimeInterface $savedAt,
         public \DateTimeInterface $updatedAt,
@@ -40,6 +42,9 @@ class PaymentMethod implements Entity
             type: SavedPaymentMethodType::from($data['type']),
             card: isset($data['card']) ? Card::from($data['card']) : null,
             paypal: isset($data['paypal']) ? Paypal::from($data['paypal']) : null,
+            underlyingDetails: isset($data['underlying_details'])
+                ? PaymentMethodUnderlyingDetails::from($data['underlying_details'])
+                : null,
             origin: SavedPaymentMethodOrigin::from($data['origin']),
             savedAt: DateTime::from($data['saved_at']),
             updatedAt: DateTime::from($data['updated_at']),

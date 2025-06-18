@@ -20,6 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static PaymentMethodType Card()
  * @method static PaymentMethodType GooglePay()
  * @method static PaymentMethodType Ideal()
+ * @method static PaymentMethodType KoreaLocal()
  * @method static PaymentMethodType Offline()
  * @method static PaymentMethodType Paypal()
  * @method static PaymentMethodType Unknown()
@@ -33,6 +34,7 @@ final class PaymentMethodType extends PaddleEnum
     private const Card = 'card';
     private const GooglePay = 'google_pay';
     private const Ideal = 'ideal';
+    private const KoreaLocal = 'korea_local';
     private const Offline = 'offline';
     private const Paypal = 'paypal';
     private const Unknown = 'unknown';

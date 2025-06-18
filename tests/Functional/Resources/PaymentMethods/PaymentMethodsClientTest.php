@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\PaymentMethods;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Shared\KoreaLocalPaymentMethodType;
 use Paddle\SDK\Entities\Shared\SavedPaymentMethodOrigin;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
@@ -229,6 +230,46 @@ class PaymentMethodsClientTest extends TestCase
         $paypal = $paymentMethod->paypal;
         self::assertEquals('sam@example.com', $paypal->email);
         self::assertEquals('some-reference', $paypal->reference);
+    }
+
+    /**
+     * @test
+     */
+    public function get_payment_methods_returns_expected_korea_local_response(): void
+    {
+        $customerId = 'ctm_01hv6y1jedq4p1n0yqn5ba3ky4';
+        $paymentMethodId = 'paymtd_01hs8zx6x377xfsfrt2bqsevbw';
+        $expectedUri = sprintf(
+            '%s/customers/%s/payment-methods/%s',
+            Environment::SANDBOX->baseUrl(),
+            $customerId,
+            $paymentMethodId,
+        );
+        $response = new Response(200, body: self::readRawJsonFixture('response/full_entity_korea_local'));
+
+        $this->mockClient->addResponse($response);
+        $paymentMethod = $this->client->paymentMethods->get($customerId, $paymentMethodId);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+
+        self::assertSame($paymentMethodId, $paymentMethod->id);
+        self::assertSame($customerId, $paymentMethod->customerId);
+        self::assertSame('add_01hv8h6jj90jjz0d71m6hj4r9z', $paymentMethod->addressId);
+        self::assertNull($paymentMethod->card);
+        self::assertNull($paymentMethod->paypal);
+        self::assertEquals(SavedPaymentMethodOrigin::Subscription(), $paymentMethod->origin);
+        self::assertSame('2024-05-03T11:50:23.422+00:00', $paymentMethod->savedAt->format(DATE_RFC3339_EXTENDED));
+        self::assertSame('2024-05-04T11:50:23.422+00:00', $paymentMethod->updatedAt->format(DATE_RFC3339_EXTENDED));
+
+        $koreaLocal = $paymentMethod->underlyingDetails->koreaLocal;
+        self::assertEquals(KoreaLocalPaymentMethodType::KakaoBank(), $koreaLocal->type);
     }
 
     /** @test */
