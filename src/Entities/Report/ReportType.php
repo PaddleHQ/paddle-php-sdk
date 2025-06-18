@@ -20,6 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportType ProductsPrices()
  * @method static ReportType Transactions()
  * @method static ReportType TransactionLineItems()
+ * @method static ReportType Balance()
  */
 final class ReportType extends PaddleEnum
 {
@@ -29,4 +30,5 @@ final class ReportType extends PaddleEnum
     private const ProductsPrices = 'products_prices';
     private const Transactions = 'transactions';
     private const TransactionLineItems = 'transaction_line_items';
+    private const Balance = 'balance';
 }
