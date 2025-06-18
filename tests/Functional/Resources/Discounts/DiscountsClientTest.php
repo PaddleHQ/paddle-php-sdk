@@ -226,6 +226,21 @@ class DiscountsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/discounts?code=ABCDE12345,54321EDCBA', Environment::SANDBOX->baseUrl()),
         ];
+
+        yield 'Discount Group ID Filtered' => [
+            new ListDiscounts(discountGroupIds: ['dsg_01gtf15svsqzgp9325ss4ebmwt']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/discounts?discount_group_id=dsg_01gtf15svsqzgp9325ss4ebmwt', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Multiple Discount Group ID Filtered' => [
+            new ListDiscounts(discountGroupIds: ['dsg_01gtf15svsqzgp9325ss4ebmwt', 'dsg_02gtf15svsqzgp9325ss4ebmwt']),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/discounts?discount_group_id=dsg_01gtf15svsqzgp9325ss4ebmwt,dsg_02gtf15svsqzgp9325ss4ebmwt',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
     }
 
     /** @test */

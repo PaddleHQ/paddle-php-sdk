@@ -37,6 +37,7 @@ final class Discount implements SimulationEntity
         public readonly \DateTimeInterface|Undefined|null $expiresAt = new Undefined(),
         public readonly \DateTimeInterface|Undefined $createdAt = new Undefined(),
         public readonly \DateTimeInterface|Undefined $updatedAt = new Undefined(),
+        public readonly string|Undefined|null $discountGroupId = new Undefined(),
     ) {
     }
 
@@ -60,6 +61,7 @@ final class Discount implements SimulationEntity
             expiresAt: self::optional($data, 'expires_at', fn ($value) => DateTime::from($value)),
             createdAt: self::optional($data, 'created_at', fn ($value) => DateTime::from($value)),
             updatedAt: self::optional($data, 'updated_at', fn ($value) => DateTime::from($value)),
+            discountGroupId: self::optional($data, 'discount_group_id'),
         );
     }
 
@@ -83,6 +85,7 @@ final class Discount implements SimulationEntity
             'expires_at' => $this->expiresAt,
             'created_at' => $this->createdAt,
             'updated_at' => $this->updatedAt,
+            'discount_group_id' => $this->discountGroupId,
         ]);
     }
 }

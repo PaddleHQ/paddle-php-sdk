@@ -37,6 +37,7 @@ class Discount implements Entity
         public \DateTimeInterface|null $expiresAt,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
+        public string|null $discountGroupId,
     ) {
     }
 
@@ -60,6 +61,7 @@ class Discount implements Entity
             expiresAt: isset($data['expires_at']) ? DateTime::from($data['expires_at']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),
+            discountGroupId: $data['discount_group_id'] ?? null,
         );
     }
 }

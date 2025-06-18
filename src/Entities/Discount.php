@@ -38,6 +38,7 @@ class Discount implements Entity
         public \DateTimeInterface $updatedAt,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
+        public string|null $discountGroupId,
     ) {
     }
 
@@ -62,6 +63,7 @@ class Discount implements Entity
             updatedAt: DateTime::from($data['updated_at']),
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
+            discountGroupId: $data['discount_group_id'] ?? null,
         );
     }
 }
