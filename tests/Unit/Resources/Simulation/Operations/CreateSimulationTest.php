@@ -7,11 +7,11 @@ namespace Paddle\SDK\Tests\Unit\Resources\Simulation\Operations;
 use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Resources\Simulations\Operations\Config\SimulationConfigCreate;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeConfig;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeConfigCreate;
 use Paddle\SDK\Resources\Simulations\Operations\CreateSimulation;
 use PHPUnit\Framework\TestCase;
 
@@ -41,27 +41,27 @@ class CreateSimulationTest extends TestCase
     {
         yield 'SubscriptionCreationConfig' => [
             SimulationScenarioType::SubscriptionPause(),
-            new SubscriptionCreationConfig(),
+            new SubscriptionCreationConfigCreate(),
         ];
 
         yield 'SubscriptionPauseConfig' => [
             SimulationScenarioType::SubscriptionRenewal(),
-            new SubscriptionPauseConfig(),
+            new SubscriptionPauseConfigCreate(),
         ];
 
         yield 'SubscriptionRenewalConfig' => [
             SimulationScenarioType::SubscriptionResume(),
-            new SubscriptionRenewalConfig(),
+            new SubscriptionRenewalConfigCreate(),
         ];
 
         yield 'SubscriptionResumeConfig' => [
             SimulationScenarioType::SubscriptionCancellation(),
-            new SubscriptionResumeConfig(),
+            new SubscriptionResumeConfigCreate(),
         ];
 
         yield 'SubscriptionCancellationConfig' => [
             SimulationScenarioType::SubscriptionCreation(),
-            new SubscriptionCancellationConfig(),
+            new SubscriptionCancellationConfigCreate(),
         ];
     }
 }

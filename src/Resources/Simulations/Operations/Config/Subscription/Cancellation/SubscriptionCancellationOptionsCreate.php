@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause;
+namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation;
 
 use Paddle\SDK\Entities\Simulation\Config\Option\EffectiveFrom;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionPauseOptions implements \JsonSerializable
+class SubscriptionCancellationOptionsCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal;
+namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume;
 
 use Paddle\SDK\Entities\Simulation\Config\Option\DunningExhaustedAction;
 use Paddle\SDK\Entities\Simulation\Config\Option\PaymentOutcome;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionRenewalOptions implements \JsonSerializable
+class SubscriptionResumeOptionsCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

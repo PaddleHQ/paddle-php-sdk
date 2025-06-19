@@ -7,7 +7,7 @@ namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancel
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionCancellationEntities implements \JsonSerializable
+class SubscriptionCancellationEntitiesCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

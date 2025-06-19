@@ -6,7 +6,7 @@ namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creati
 
 use Paddle\SDK\FiltersUndefined;
 
-class SubscriptionCreationItem implements \JsonSerializable
+class SubscriptionCreationItemCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

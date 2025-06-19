@@ -22,22 +22,22 @@ use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\OrderBy;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Simulations\Operations\Config\SimulationConfigCreate;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationEntities;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationOptions;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationEntities;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationItem;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationOptions;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseEntities;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseOptions;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalEntities;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalOptions;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeConfig;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeEntities;
-use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeOptions;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationEntitiesCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Cancellation\SubscriptionCancellationOptionsCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationEntitiesCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationItemCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation\SubscriptionCreationOptionsCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseEntitiesCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause\SubscriptionPauseOptionsCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalEntitiesCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewal\SubscriptionRenewalOptionsCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeConfigCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeEntitiesCreate;
+use Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume\SubscriptionResumeOptionsCreate;
 use Paddle\SDK\Resources\Simulations\Operations\CreateSimulation;
 use Paddle\SDK\Resources\Simulations\Operations\ListSimulations;
 use Paddle\SDK\Resources\Simulations\Operations\UpdateSimulation;
@@ -441,8 +441,8 @@ class SimulationsClientTest extends TestCase
     {
         yield 'Subscription creation simulation - transaction ID and new customer' => [
             SimulationScenarioType::SubscriptionCreation(),
-            new SubscriptionCreationConfig(
-                entities: new SubscriptionCreationEntities(
+            new SubscriptionCreationConfigCreate(
+                entities: new SubscriptionCreationEntitiesCreate(
                     customerId: 'ctm_01h04vsc0qhwtsbsxh3422wjs4',
                     addressId: 'add_01h04vsc0qhwtsbsxh3422wjs4',
                     businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
@@ -450,7 +450,7 @@ class SimulationsClientTest extends TestCase
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
                     transactionId: 'txn_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: new SubscriptionCreationOptions(
+                options: new SubscriptionCreationOptionsCreate(
                     customerSimulatedAs: CustomerSimulatedAs::New(),
                     businessSimulatedAs: BusinessSimulatedAs::New(),
                     discountSimulatedAs: DiscountSimulatedAs::NotProvided(),
@@ -462,21 +462,21 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription creation simulation - items and new customer' => [
             SimulationScenarioType::SubscriptionCreation(),
-            new SubscriptionCreationConfig(
-                entities: new SubscriptionCreationEntities(
+            new SubscriptionCreationConfigCreate(
+                entities: new SubscriptionCreationEntitiesCreate(
                     customerId: 'ctm_01h04vsc0qhwtsbsxh3422wjs4',
                     addressId: 'add_01h04vsc0qhwtsbsxh3422wjs4',
                     businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
                     paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
                     items: [
-                        new SubscriptionCreationItem(
+                        new SubscriptionCreationItemCreate(
                             priceId: 'pri_01h04vsc0qhwtsbsxh3422wjs4',
                             quantity: 1,
                         ),
                     ],
                 ),
-                options: new SubscriptionCreationOptions(
+                options: new SubscriptionCreationOptionsCreate(
                     customerSimulatedAs: CustomerSimulatedAs::New(),
                     businessSimulatedAs: BusinessSimulatedAs::New(),
                     discountSimulatedAs: DiscountSimulatedAs::NotProvided(),
@@ -488,21 +488,21 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription creation simulation - matching customer' => [
             SimulationScenarioType::SubscriptionCreation(),
-            new SubscriptionCreationConfig(
-                entities: new SubscriptionCreationEntities(
+            new SubscriptionCreationConfigCreate(
+                entities: new SubscriptionCreationEntitiesCreate(
                     customerId: 'ctm_01h04vsc0qhwtsbsxh3422wjs4',
                     addressId: 'add_01h04vsc0qhwtsbsxh3422wjs4',
                     businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
                     paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
                     items: [
-                        new SubscriptionCreationItem(
+                        new SubscriptionCreationItemCreate(
                             priceId: 'pri_01h04vsc0qhwtsbsxh3422wjs4',
                             quantity: 1,
                         ),
                     ],
                 ),
-                options: new SubscriptionCreationOptions(
+                options: new SubscriptionCreationOptionsCreate(
                     customerSimulatedAs: CustomerSimulatedAs::ExistingEmailMatched(),
                     businessSimulatedAs: BusinessSimulatedAs::NotProvided(),
                     discountSimulatedAs: DiscountSimulatedAs::EnteredByCustomer(),
@@ -514,21 +514,21 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription creation simulation - prefilled customer' => [
             SimulationScenarioType::SubscriptionCreation(),
-            new SubscriptionCreationConfig(
-                entities: new SubscriptionCreationEntities(
+            new SubscriptionCreationConfigCreate(
+                entities: new SubscriptionCreationEntitiesCreate(
                     customerId: 'ctm_01h04vsc0qhwtsbsxh3422wjs4',
                     addressId: 'add_01h04vsc0qhwtsbsxh3422wjs4',
                     businessId: 'biz_01h04vsc0qhwtsbsxh3422wjs4',
                     paymentMethodId: 'paymtd_01h04vsc0qhwtsbsxh3422wjs4',
                     discountId: 'dsc_01h04vsc0qhwtsbsxh3422wjs4',
                     items: [
-                        new SubscriptionCreationItem(
+                        new SubscriptionCreationItemCreate(
                             priceId: 'pri_01h04vsc0qhwtsbsxh3422wjs4',
                             quantity: 1,
                         ),
                     ],
                 ),
-                options: new SubscriptionCreationOptions(
+                options: new SubscriptionCreationOptionsCreate(
                     customerSimulatedAs: CustomerSimulatedAs::ExistingDetailsPrefilled(),
                     businessSimulatedAs: BusinessSimulatedAs::ExistingDetailsPrefilled(),
                     discountSimulatedAs: DiscountSimulatedAs::NotProvided(),
@@ -540,9 +540,9 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription creation simulation - minimal' => [
             SimulationScenarioType::SubscriptionCreation(),
-            new SubscriptionCreationConfig(
-                entities: new SubscriptionCreationEntities(),
-                options: new SubscriptionCreationOptions(),
+            new SubscriptionCreationConfigCreate(
+                entities: new SubscriptionCreationEntitiesCreate(),
+                options: new SubscriptionCreationOptionsCreate(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_subscription_creation')),
             [
@@ -555,11 +555,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription renewal simulation with success outcome' => [
             SimulationScenarioType::SubscriptionRenewal(),
-            new SubscriptionRenewalConfig(
-                entities: new SubscriptionRenewalEntities(
+            new SubscriptionRenewalConfigCreate(
+                entities: new SubscriptionRenewalEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionRenewalOptions::forSuccessfulPayment(),
+                options: SubscriptionRenewalOptionsCreate::forSuccessfulPayment(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_renewal_success')),
             self::readJsonFixture('request/config/subscription_renewal_success'),
@@ -567,8 +567,8 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription renewal simulation with success outcome - minimal' => [
             SimulationScenarioType::SubscriptionRenewal(),
-            new SubscriptionRenewalConfig(
-                entities: new SubscriptionRenewalEntities(),
+            new SubscriptionRenewalConfigCreate(
+                entities: new SubscriptionRenewalEntitiesCreate(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_renewal_success')),
             [
@@ -580,11 +580,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription renewal simulation with failed outcome' => [
             SimulationScenarioType::SubscriptionRenewal(),
-            new SubscriptionRenewalConfig(
-                entities: new SubscriptionRenewalEntities(
+            new SubscriptionRenewalConfigCreate(
+                entities: new SubscriptionRenewalEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionRenewalOptions::forFailedPayment(
+                options: SubscriptionRenewalOptionsCreate::forFailedPayment(
                     DunningExhaustedAction::SubscriptionCanceled(),
                 ),
             ),
@@ -594,11 +594,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription renewal simulation with recovered updated payment method' => [
             SimulationScenarioType::SubscriptionRenewal(),
-            new SubscriptionRenewalConfig(
-                entities: new SubscriptionRenewalEntities(
+            new SubscriptionRenewalConfigCreate(
+                entities: new SubscriptionRenewalEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionRenewalOptions::forRecoveredUpdatedPaymentMethod(),
+                options: SubscriptionRenewalOptionsCreate::forRecoveredUpdatedPaymentMethod(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_renewal_recovered')),
             self::readJsonFixture('request/config/subscription_renewal_recovered'),
@@ -606,11 +606,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription renewal simulation with recovered existing payment method' => [
             SimulationScenarioType::SubscriptionRenewal(),
-            new SubscriptionRenewalConfig(
-                entities: new SubscriptionRenewalEntities(
+            new SubscriptionRenewalConfigCreate(
+                entities: new SubscriptionRenewalEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionRenewalOptions::forRecoveredExistingPaymentMethod(),
+                options: SubscriptionRenewalOptionsCreate::forRecoveredExistingPaymentMethod(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_renewal_recovered_existing')),
             self::readJsonFixture('request/config/subscription_renewal_recovered_existing'),
@@ -618,11 +618,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription resume simulation with success outcome' => [
             SimulationScenarioType::SubscriptionResume(),
-            new SubscriptionResumeConfig(
-                entities: new SubscriptionResumeEntities(
+            new SubscriptionResumeConfigCreate(
+                entities: new SubscriptionResumeEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionResumeOptions::forSuccessfulPayment(),
+                options: SubscriptionResumeOptionsCreate::forSuccessfulPayment(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_success')),
             self::readJsonFixture('request/config/subscription_resume_success'),
@@ -630,8 +630,8 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription resume simulation with - minimal' => [
             SimulationScenarioType::SubscriptionResume(),
-            new SubscriptionResumeConfig(
-                entities: new SubscriptionResumeEntities(),
+            new SubscriptionResumeConfigCreate(
+                entities: new SubscriptionResumeEntitiesCreate(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_success')),
             [
@@ -643,11 +643,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription resume simulation with failed outcome' => [
             SimulationScenarioType::SubscriptionResume(),
-            new SubscriptionResumeConfig(
-                entities: new SubscriptionResumeEntities(
+            new SubscriptionResumeConfigCreate(
+                entities: new SubscriptionResumeEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionResumeOptions::forFailedPayment(
+                options: SubscriptionResumeOptionsCreate::forFailedPayment(
                     DunningExhaustedAction::SubscriptionPaused(),
                 ),
             ),
@@ -657,11 +657,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription resume simulation with recovered updated payment method' => [
             SimulationScenarioType::SubscriptionResume(),
-            new SubscriptionResumeConfig(
-                entities: new SubscriptionResumeEntities(
+            new SubscriptionResumeConfigCreate(
+                entities: new SubscriptionResumeEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionResumeOptions::forRecoveredUpdatedPaymentMethod(),
+                options: SubscriptionResumeOptionsCreate::forRecoveredUpdatedPaymentMethod(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_recovered')),
             self::readJsonFixture('request/config/subscription_resume_recovered'),
@@ -669,11 +669,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription resume simulation with recovered existing payment method' => [
             SimulationScenarioType::SubscriptionResume(),
-            new SubscriptionResumeConfig(
-                entities: new SubscriptionResumeEntities(
+            new SubscriptionResumeConfigCreate(
+                entities: new SubscriptionResumeEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: SubscriptionResumeOptions::forRecoveredExistingPaymentMethod(),
+                options: SubscriptionResumeOptionsCreate::forRecoveredExistingPaymentMethod(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_recovered_existing')),
             self::readJsonFixture('request/config/subscription_resume_recovered_existing'),
@@ -681,11 +681,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription pause simulation' => [
             SimulationScenarioType::SubscriptionPause(),
-            new SubscriptionPauseConfig(
-                entities: new SubscriptionPauseEntities(
+            new SubscriptionPauseConfigCreate(
+                entities: new SubscriptionPauseEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: new SubscriptionPauseOptions(
+                options: new SubscriptionPauseOptionsCreate(
                     effectiveFrom: EffectiveFrom::NextBillingPeriod(),
                     hasPastDueTransaction: false,
                 ),
@@ -696,9 +696,9 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription pause simulation - minimal' => [
             SimulationScenarioType::SubscriptionPause(),
-            new SubscriptionPauseConfig(
-                entities: new SubscriptionPauseEntities(),
-                options: new SubscriptionPauseOptions(),
+            new SubscriptionPauseConfigCreate(
+                entities: new SubscriptionPauseEntitiesCreate(),
+                options: new SubscriptionPauseOptionsCreate(),
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity_config_pause')),
             [
@@ -711,11 +711,11 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription cancellation simulation' => [
             SimulationScenarioType::SubscriptionCancellation(),
-            new SubscriptionCancellationConfig(
-                entities: new SubscriptionCancellationEntities(
+            new SubscriptionCancellationConfigCreate(
+                entities: new SubscriptionCancellationEntitiesCreate(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
-                options: new SubscriptionCancellationOptions(
+                options: new SubscriptionCancellationOptionsCreate(
                     effectiveFrom: EffectiveFrom::NextBillingPeriod(),
                     hasPastDueTransaction: false,
                 ),
@@ -726,9 +726,9 @@ class SimulationsClientTest extends TestCase
 
         yield 'Subscription cancellation simulation - minimal' => [
             SimulationScenarioType::SubscriptionCancellation(),
-            new SubscriptionCancellationConfig(
-                entities: new SubscriptionCancellationEntities(),
-                options: new SubscriptionCancellationOptions(),
+            new SubscriptionCancellationConfigCreate(
+                entities: new SubscriptionCancellationEntitiesCreate(),
+                options: new SubscriptionCancellationOptionsCreate(),
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity_config_cancel')),
             [

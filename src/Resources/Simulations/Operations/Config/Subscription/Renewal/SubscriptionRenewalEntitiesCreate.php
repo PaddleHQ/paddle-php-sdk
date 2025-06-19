@@ -7,7 +7,7 @@ namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Renewa
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionRenewalEntities implements \JsonSerializable
+class SubscriptionRenewalEntitiesCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

@@ -10,7 +10,7 @@ use Paddle\SDK\Entities\Simulation\Config\Option\DiscountSimulatedAs;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionCreationOptions implements \JsonSerializable
+class SubscriptionCreationOptionsCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

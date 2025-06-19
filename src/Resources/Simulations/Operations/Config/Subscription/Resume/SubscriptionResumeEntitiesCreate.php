@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Pause;
+namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Resume;
 
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionPauseEntities implements \JsonSerializable
+class SubscriptionResumeEntitiesCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 

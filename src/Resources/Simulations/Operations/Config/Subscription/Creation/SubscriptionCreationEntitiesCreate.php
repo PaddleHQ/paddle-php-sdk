@@ -8,12 +8,12 @@ use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionCreationEntities implements \JsonSerializable
+class SubscriptionCreationEntitiesCreate implements \JsonSerializable
 {
     use FiltersUndefined;
 
     /**
-     * @param SubscriptionCreationItem[]|null $items
+     * @param SubscriptionCreationItemCreate[]|null $items
      */
     public function __construct(
         public readonly string|Undefined|null $customerId = new Undefined(),
