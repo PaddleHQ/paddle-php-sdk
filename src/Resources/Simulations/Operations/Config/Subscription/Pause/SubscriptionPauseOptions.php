@@ -14,7 +14,7 @@ class SubscriptionPauseOptions implements \JsonSerializable
 
     public function __construct(
         public readonly EffectiveFrom|Undefined $effectiveFrom = new Undefined(),
-        public readonly bool|Undefined $hasPastDueTransactions = new Undefined(),
+        public readonly bool|Undefined $hasPastDueTransaction = new Undefined(),
     ) {
     }
 
@@ -22,7 +22,7 @@ class SubscriptionPauseOptions implements \JsonSerializable
     {
         return (object) $this->filterUndefined([
             'effective_from' => $this->effectiveFrom,
-            'has_past_due_transaction' => $this->hasPastDueTransactions,
+            'has_past_due_transaction' => $this->hasPastDueTransaction,
         ]);
     }
 }

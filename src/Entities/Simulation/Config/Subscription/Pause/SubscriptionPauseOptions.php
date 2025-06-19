@@ -10,7 +10,7 @@ class SubscriptionPauseOptions
 {
     private function __construct(
         public readonly EffectiveFrom $effectiveFrom,
-        public readonly bool $hasPastDueTransactions,
+        public readonly bool $hasPastDueTransaction,
     ) {
     }
 
@@ -18,7 +18,7 @@ class SubscriptionPauseOptions
     {
         return new self(
             effectiveFrom: EffectiveFrom::from($data['effective_from']),
-            hasPastDueTransactions: $data['has_past_due_transaction'],
+            hasPastDueTransaction: $data['has_past_due_transaction'],
         );
     }
 }

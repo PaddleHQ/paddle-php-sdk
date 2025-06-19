@@ -678,7 +678,7 @@ class SimulationsClientTest extends TestCase
                 ),
                 options: new SubscriptionPauseOptions(
                     effectiveFrom: EffectiveFrom::NextBillingPeriod(),
-                    hasPastDueTransactions: false,
+                    hasPastDueTransaction: false,
                 ),
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity_config_pause')),
@@ -693,7 +693,7 @@ class SimulationsClientTest extends TestCase
                 ),
                 options: new SubscriptionCancellationOptions(
                     effectiveFrom: EffectiveFrom::NextBillingPeriod(),
-                    hasPastDueTransactions: false,
+                    hasPastDueTransaction: false,
                 ),
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity_config_cancel')),
