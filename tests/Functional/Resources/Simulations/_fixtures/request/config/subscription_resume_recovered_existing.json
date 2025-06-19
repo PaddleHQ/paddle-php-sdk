@@ -1,0 +1,10 @@
+{
+    "subscription_resume": {
+        "entities": {
+            "subscription_id": "sub_01h04vsc0qhwtsbsxh3422wjs4"
+        },
+        "options": {
+            "payment_outcome": "recovered_existing_payment_method"
+        }
+    }
+}

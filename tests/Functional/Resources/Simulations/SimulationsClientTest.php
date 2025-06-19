@@ -604,6 +604,18 @@ class SimulationsClientTest extends TestCase
             self::readJsonFixture('request/config/subscription_renewal_recovered'),
         ];
 
+        yield 'Subscription renewal simulation with recovered existing payment method' => [
+            SimulationScenarioType::SubscriptionRenewal(),
+            new SubscriptionRenewalConfig(
+                entities: new SubscriptionRenewalEntities(
+                    subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                ),
+                options: SubscriptionRenewalOptions::forRecoveredExistingPaymentMethod(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config_renewal_recovered_existing')),
+            self::readJsonFixture('request/config/subscription_renewal_recovered_existing'),
+        ];
+
         yield 'Subscription resume simulation with success outcome' => [
             SimulationScenarioType::SubscriptionResume(),
             new SubscriptionResumeConfig(
@@ -653,6 +665,18 @@ class SimulationsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_recovered')),
             self::readJsonFixture('request/config/subscription_resume_recovered'),
+        ];
+
+        yield 'Subscription resume simulation with recovered existing payment method' => [
+            SimulationScenarioType::SubscriptionResume(),
+            new SubscriptionResumeConfig(
+                entities: new SubscriptionResumeEntities(
+                    subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
+                ),
+                options: SubscriptionResumeOptions::forRecoveredExistingPaymentMethod(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity_config_resume_recovered_existing')),
+            self::readJsonFixture('request/config/subscription_resume_recovered_existing'),
         ];
 
         yield 'Subscription pause simulation' => [
