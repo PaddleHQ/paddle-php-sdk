@@ -5,23 +5,22 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\Simulations\Operations\Config\Subscription\Creation;
 
 use Paddle\SDK\FiltersUndefined;
-use Paddle\SDK\Undefined;
 
 class SubscriptionCreationItem implements \JsonSerializable
 {
     use FiltersUndefined;
 
     public function __construct(
-        public readonly string|Undefined $priceId = new Undefined(),
-        public readonly int|Undefined $quantity = new Undefined(),
+        public readonly string $priceId,
+        public readonly int $quantity,
     ) {
     }
 
-    public function jsonSerialize(): \stdClass
+    public function jsonSerialize(): array
     {
-        return (object) $this->filterUndefined([
+        return [
             'price_id' => $this->priceId,
             'quantity' => $this->quantity,
-        ]);
+        ];
     }
 }
