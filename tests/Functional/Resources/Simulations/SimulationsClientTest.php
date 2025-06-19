@@ -682,21 +682,6 @@ class SimulationsClientTest extends TestCase
         yield 'Subscription pause simulation' => [
             SimulationScenarioType::SubscriptionPause(),
             new SubscriptionPauseConfig(
-                entities: new SubscriptionPauseEntities(),
-                options: new SubscriptionPauseOptions(),
-            ),
-            new Response(201, body: self::readRawJsonFixture('response/full_entity_config_pause')),
-            [
-                'subscription_pause' => [
-                    'entities' => (object) [],
-                    'options' => (object) [],
-                ],
-            ],
-        ];
-
-        yield 'Subscription pause simulation - minimal' => [
-            SimulationScenarioType::SubscriptionPause(),
-            new SubscriptionPauseConfig(
                 entities: new SubscriptionPauseEntities(
                     subscriptionId: 'sub_01h04vsc0qhwtsbsxh3422wjs4',
                 ),
@@ -707,6 +692,21 @@ class SimulationsClientTest extends TestCase
             ),
             new Response(201, body: self::readRawJsonFixture('response/full_entity_config_pause')),
             self::readJsonFixture('request/config/subscription_pause'),
+        ];
+
+        yield 'Subscription pause simulation - minimal' => [
+            SimulationScenarioType::SubscriptionPause(),
+            new SubscriptionPauseConfig(
+                entities: new SubscriptionPauseEntities(),
+                options: new SubscriptionPauseOptions(),
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity_config_pause')),
+            [
+                'subscription_pause' => [
+                    'entities' => (object) [],
+                    'options' => (object) [],
+                ],
+            ],
         ];
 
         yield 'Subscription cancellation simulation' => [
