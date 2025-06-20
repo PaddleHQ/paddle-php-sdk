@@ -34,6 +34,7 @@ class UpdateDiscount implements \JsonSerializable
         public readonly DiscountStatus|Undefined $status = new Undefined(),
         public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly DiscountMode|Undefined $mode = new Undefined(),
+        public string|Undefined|null $discountGroupId = new Undefined(),
     ) {
     }
 
@@ -54,6 +55,7 @@ class UpdateDiscount implements \JsonSerializable
             'status' => $this->status,
             'custom_data' => $this->customData,
             'mode' => $this->mode,
+            'discount_group_id' => $this->discountGroupId,
         ]);
     }
 }

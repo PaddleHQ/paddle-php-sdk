@@ -32,6 +32,7 @@ class CreateDiscount implements \JsonSerializable
         public readonly string|Undefined|null $expiresAt = new Undefined(),
         public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly DiscountMode|Undefined $mode = new Undefined(),
+        public string|Undefined|null $discountGroupId = new Undefined(),
     ) {
     }
 
@@ -51,6 +52,7 @@ class CreateDiscount implements \JsonSerializable
             'expires_at' => $this->expiresAt,
             'custom_data' => $this->customData,
             'mode' => $this->mode,
+            'discount_group_id' => $this->discountGroupId,
         ]);
     }
 }
