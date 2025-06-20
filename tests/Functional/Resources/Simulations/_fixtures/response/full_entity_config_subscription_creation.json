@@ -27,7 +27,11 @@
                     "business_simulated_as": "new",
                     "discount_simulated_as": "not_provided"
                 }
-            }
+            },
+            "subscription_pause": null,
+            "subscription_resume": null,
+            "subscription_renewal": null,
+            "subscription_cancellation": null
         },
         "last_run_at": null,
         "created_at": "2024-01-01T00:00:00Z",

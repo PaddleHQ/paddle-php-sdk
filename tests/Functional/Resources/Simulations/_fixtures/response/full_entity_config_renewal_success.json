@@ -15,7 +15,11 @@
                     "payment_outcome": "success",
                     "dunning_exhausted_action": null
                 }
-            }
+            },
+            "subscription_creation": null,
+            "subscription_pause": null,
+            "subscription_resume": null,
+            "subscription_cancellation": null
         },
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-01-01T00:00:00Z",

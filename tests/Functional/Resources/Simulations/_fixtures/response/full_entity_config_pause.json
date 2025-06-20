@@ -15,7 +15,11 @@
                     "effective_from": "next_billing_period",
                     "has_past_due_transaction": false
                 }
-            }
+            },
+            "subscription_creation": null,
+            "subscription_resume": null,
+            "subscription_renewal": null,
+            "subscription_cancellation": null
         },
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-01-01T00:00:00Z",
