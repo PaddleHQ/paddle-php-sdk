@@ -16,6 +16,7 @@ use Paddle\SDK\Entities\Simulation\Config\Option\EffectiveFrom;
 use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\Environment;
+use Paddle\SDK\JsonEncoder;
 use Paddle\SDK\Notifications\Entities\EntityFactory;
 use Paddle\SDK\Notifications\Entities\Simulation;
 use Paddle\SDK\Options;
@@ -384,7 +385,7 @@ class SimulationsClientTest extends TestCase
         );
 
         $this->mockClient->addResponse($response);
-        $this->client->simulations->create($operation);
+        $simulation = $this->client->simulations->create($operation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -399,6 +400,10 @@ class SimulationsClientTest extends TestCase
         ]);
 
         self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+        self::assertEquals(
+            json_decode((string) $response->getBody(), true)['data'],
+            json_decode(JsonEncoder::default()->encode($simulation), true),
+        );
     }
 
     /**
@@ -420,7 +425,7 @@ class SimulationsClientTest extends TestCase
         );
 
         $this->mockClient->addResponse($response);
-        $this->client->simulations->update('ntfsim_01j82g2mggsgjpb3mjg0xq6p5k', $operation);
+        $simulation = $this->client->simulations->update('ntfsim_01j82g2mggsgjpb3mjg0xq6p5k', $operation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -435,6 +440,10 @@ class SimulationsClientTest extends TestCase
         ]);
 
         self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+        self::assertEquals(
+            json_decode((string) $response->getBody(), true)['data'],
+            json_decode(JsonEncoder::default()->encode($simulation), true),
+        );
     }
 
     public static function configDataProvider(): \Generator

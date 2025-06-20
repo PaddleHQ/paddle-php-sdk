@@ -22,8 +22,8 @@
             "subscription_cancellation": null
         },
         "last_run_at": null,
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
+        "created_at": "2024-01-01T00:00:00.000000Z",
+        "updated_at": "2024-01-01T00:00:00.000000Z"
     },
     "meta": {
         "request_id": "72351248-13bf-45be-befe-b3a5b5234588"

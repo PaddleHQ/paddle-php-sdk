@@ -35,7 +35,7 @@ final class JsonEncoder
         );
     }
 
-    public function encode(array|\JsonSerializable|\stdClass $payload): string
+    public function encode(mixed $payload): string
     {
         return $this->serializer->serialize($payload, 'json', [
             AbstractObjectNormalizer::PRESERVE_EMPTY_OBJECTS => true,
