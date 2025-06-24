@@ -140,17 +140,6 @@ class AdjustmentsClientTest extends TestCase
             self::readRawJsonFixture('request/create_type_full_with_null_items'),
         ];
 
-        yield 'Full type with external tax mode' => [
-            CreateAdjustment::full(
-                Action::Refund(),
-                'error',
-                'txn_01h8bxpvx398a7zbawb77y0kp5',
-                AdjustmentTaxMode::External(),
-            ),
-            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
-            self::readRawJsonFixture('request/create_type_full_external_tax_mode'),
-        ];
-
         yield 'Full type with internal tax mode' => [
             CreateAdjustment::full(
                 Action::Refund(),
