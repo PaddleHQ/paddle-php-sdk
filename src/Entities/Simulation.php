@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities;
 
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Entities\Simulation\Config\SimulationConfig;
 use Paddle\SDK\Entities\Simulation\SimulationScenarioType;
 use Paddle\SDK\Entities\Simulation\SimulationStatus;
 use Paddle\SDK\Notifications\Entities\Entity as NotificationEntity;
@@ -20,6 +21,7 @@ class Simulation implements Entity
         public string $name,
         public EventTypeName|SimulationScenarioType $type,
         public NotificationEntity|SimulationEntity|null $payload,
+        public SimulationConfig|null $config,
         public \DateTimeInterface|null $lastRunAt,
         public \DateTimeInterface $createdAt,
         public \DateTimeInterface $updatedAt,
@@ -35,6 +37,7 @@ class Simulation implements Entity
             name: $data['name'],
             type: EventTypeName::from($data['type'])->isKnown() ? EventTypeName::from($data['type']) : SimulationScenarioType::from($data['type']),
             payload: $data['payload'] ? SimulationEntityFactory::create($data['type'], $data['payload']) : null,
+            config: isset($data['config']) ? SimulationConfig::from($data['config']) : null,
             lastRunAt: isset($data['last_run_at']) ? DateTime::from($data['last_run_at']) : null,
             createdAt: DateTime::from($data['created_at']),
             updatedAt: DateTime::from($data['updated_at']),

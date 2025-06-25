@@ -1,0 +1,11 @@
+{
+    "subscription_renewal": {
+        "entities": {
+            "subscription_id": "sub_01h04vsc0qhwtsbsxh3422wjs4"
+        },
+        "options": {
+            "payment_outcome": "failed",
+            "dunning_exhausted_action": "subscription_canceled"
+        }
+    }
+}
