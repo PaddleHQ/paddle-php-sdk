@@ -4,21 +4,14 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Tests\Unit\Entities;
 
-use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Entities\Simulation;
+use Paddle\SDK\JsonEncoder;
 use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\Simulation\SimulationEntity;
 use Paddle\SDK\Tests\DataProvider\EventDataProvider;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use Paddle\SDK\Undefined;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
-use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class SimulationTest extends TestCase
 {
@@ -74,20 +67,7 @@ class SimulationTest extends TestCase
         self::assertInstanceOf(SimulationEntity::class, $payload);
         self::assertInstanceOf(Undefined::class, $payload->id);
 
-        $serializer = new Serializer(
-            [
-                new BackedEnumNormalizer(),
-                new DateTimeNormalizer([DateTimeNormalizer::FORMAT_KEY => DateTime::PADDLE_RFC3339]),
-                new JsonSerializableNormalizer(),
-                new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter()),
-            ],
-            [new JsonEncoder()],
-        );
-
-        $decodedData = $serializer->decode(
-            $serializer->serialize($payload, 'json'),
-            'json',
-        );
+        $decodedData = json_decode(JsonEncoder::default()->encode($payload), true);
 
         self::assertEqualsCanonicalizing(
             array_keys($payloadData),

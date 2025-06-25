@@ -20,6 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static EventTypeName CustomerUpdated()
  * @method static EventTypeName DiscountCreated()
  * @method static EventTypeName DiscountImported()
+ * @method static EventTypeName DiscountGroupCreated()
  * @method static EventTypeName DiscountUpdated()
  * @method static EventTypeName InvoiceCanceled()
  * @method static EventTypeName InvoiceCreated()
@@ -64,6 +65,11 @@ final class EventTypeName extends PaddleEnum
     private const AddressUpdated = 'address.updated';
     private const AdjustmentCreated = 'adjustment.created';
     private const AdjustmentUpdated = 'adjustment.updated';
+    private const ApiKeyCreated = 'api_key.created';
+    private const ApiKeyExpired = 'api_key.expired';
+    private const ApiKeyExpiring = 'api_key.expiring';
+    private const ApiKeyRevoked = 'api_key.revoked';
+    private const ApiKeyUpdated = 'api_key.updated';
     private const BusinessCreated = 'business.created';
     private const BusinessImported = 'business.imported';
     private const BusinessUpdated = 'business.updated';
@@ -73,6 +79,7 @@ final class EventTypeName extends PaddleEnum
     private const DiscountCreated = 'discount.created';
     private const DiscountImported = 'discount.imported';
     private const DiscountUpdated = 'discount.updated';
+    private const DiscountGroupCreated = 'discount_group.created';
     private const InvoiceCanceled = 'invoice.canceled';
     private const InvoiceCreated = 'invoice.created';
     private const InvoiceIssued = 'invoice.issued';

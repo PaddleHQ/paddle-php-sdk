@@ -5,6 +5,7 @@
     "enabled_for_checkout": true,
     "code": "ZJFYC3K9KT",
     "type": "flat",
+    "mode": "standard",
     "amount": "1000",
     "currency_code": "USD",
     "recur": true,

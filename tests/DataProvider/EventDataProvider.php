@@ -48,6 +48,36 @@ class EventDataProvider extends TestCase
                 \Paddle\SDK\Notifications\Entities\Adjustment::class,
             ],
             [
+                'api_key.created',
+                'apiKey',
+                \Paddle\SDK\Notifications\Events\ApiKeyCreated::class,
+                \Paddle\SDK\Notifications\Entities\ApiKey::class,
+            ],
+            [
+                'api_key.expired',
+                'apiKey',
+                \Paddle\SDK\Notifications\Events\ApiKeyExpired::class,
+                \Paddle\SDK\Notifications\Entities\ApiKey::class,
+            ],
+            [
+                'api_key.expiring',
+                'apiKey',
+                \Paddle\SDK\Notifications\Events\ApiKeyExpiring::class,
+                \Paddle\SDK\Notifications\Entities\ApiKey::class,
+            ],
+            [
+                'api_key.revoked',
+                'apiKey',
+                \Paddle\SDK\Notifications\Events\ApiKeyRevoked::class,
+                \Paddle\SDK\Notifications\Entities\ApiKey::class,
+            ],
+            [
+                'api_key.updated',
+                'apiKey',
+                \Paddle\SDK\Notifications\Events\ApiKeyUpdated::class,
+                \Paddle\SDK\Notifications\Entities\ApiKey::class,
+            ],
+            [
                 'business.created',
                 'business',
                 \Paddle\SDK\Notifications\Events\BusinessCreated::class,
@@ -100,6 +130,12 @@ class EventDataProvider extends TestCase
                 'discount',
                 \Paddle\SDK\Notifications\Events\DiscountUpdated::class,
                 \Paddle\SDK\Notifications\Entities\Discount::class,
+            ],
+            [
+                'discount_group.created',
+                'discountGroup',
+                \Paddle\SDK\Notifications\Events\DiscountGroupCreated::class,
+                \Paddle\SDK\Notifications\Entities\DiscountGroup::class,
             ],
             [
                 'payment_method.saved',
