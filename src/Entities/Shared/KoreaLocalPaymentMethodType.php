@@ -40,6 +40,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static KoreaLocalPaymentMethodType Shinhyup()
  * @method static KoreaLocalPaymentMethodType Suhyup()
  * @method static KoreaLocalPaymentMethodType TossBank()
+ * @method static KoreaLocalPaymentMethodType Unknown()
  * @method static KoreaLocalPaymentMethodType Woori()
  */
 final class KoreaLocalPaymentMethodType extends PaddleEnum
@@ -70,5 +71,6 @@ final class KoreaLocalPaymentMethodType extends PaddleEnum
     private const Shinhyup = 'shinhyup';
     private const Suhyup = 'suhyup';
     private const TossBank = 'tossbank';
+    private const Unknown = 'unknown';
     private const Woori = 'woori';
 }
