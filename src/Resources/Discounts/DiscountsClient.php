@@ -19,6 +19,7 @@ use Paddle\SDK\Entities\Discount\DiscountStatus;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\Discounts\Operations\CreateDiscount;
+use Paddle\SDK\Resources\Discounts\Operations\GetDiscount;
 use Paddle\SDK\Resources\Discounts\Operations\ListDiscounts;
 use Paddle\SDK\Resources\Discounts\Operations\UpdateDiscount;
 use Paddle\SDK\ResponseParser;
@@ -50,10 +51,10 @@ class DiscountsClient
      * @throws ApiError          On a generic API error
      * @throws MalformedResponse If the API response was not parsable
      */
-    public function get(string $id): Discount
+    public function get(string $id, GetDiscount $operation = new GetDiscount()): Discount
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/discounts/{$id}"),
+            $this->client->getRaw("/discounts/{$id}", $operation),
         );
 
         return Discount::from($parser->getData());
