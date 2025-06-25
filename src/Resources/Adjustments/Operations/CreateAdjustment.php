@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Adjustments\Operations;
 
+use Paddle\SDK\Entities\Adjustment\AdjustmentTaxMode;
 use Paddle\SDK\Entities\Adjustment\AdjustmentType;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
@@ -26,6 +27,7 @@ class CreateAdjustment implements \JsonSerializable
         public readonly string $reason,
         public readonly string $transactionId,
         public readonly AdjustmentType|Undefined $type = new Undefined(),
+        public readonly AdjustmentTaxMode|Undefined $taxMode = new Undefined(),
     ) {
         $typeIsFull = AdjustmentType::Full()->equals($this->type);
 
@@ -38,14 +40,23 @@ class CreateAdjustment implements \JsonSerializable
         }
     }
 
-    public static function full(Action $action, string $reason, string $transactionId): self
-    {
-        return new self($action, new Undefined(), $reason, $transactionId, AdjustmentType::Full());
+    public static function full(
+        Action $action,
+        string $reason,
+        string $transactionId,
+        AdjustmentTaxMode|Undefined $taxMode = new Undefined(),
+    ): self {
+        return new self($action, new Undefined(), $reason, $transactionId, AdjustmentType::Full(), $taxMode);
     }
 
-    public static function partial(Action $action, array $items, string $reason, string $transactionId): self
-    {
-        return new self($action, $items, $reason, $transactionId, AdjustmentType::Partial());
+    public static function partial(
+        Action $action,
+        array $items,
+        string $reason,
+        string $transactionId,
+        AdjustmentTaxMode|Undefined $taxMode = new Undefined(),
+    ): self {
+        return new self($action, $items, $reason, $transactionId, AdjustmentType::Partial(), $taxMode);
     }
 
     public function jsonSerialize(): array
@@ -70,6 +81,7 @@ class CreateAdjustment implements \JsonSerializable
             'reason' => $this->reason,
             'transaction_id' => $this->transactionId,
             'type' => $this->type,
+            'tax_mode' => $this->taxMode,
         ]);
     }
 }
