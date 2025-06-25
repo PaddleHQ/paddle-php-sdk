@@ -6,6 +6,7 @@
         "enabled_for_checkout": true,
         "code": "ABCDE12345",
         "type": "percentage",
+        "mode": "standard",
         "amount": "10",
         "currency_code": "USD",
         "recur": true,

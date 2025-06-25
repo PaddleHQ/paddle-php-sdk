@@ -20,6 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static Action Chargeback()
  * @method static Action ChargebackReverse()
  * @method static Action ChargebackWarning()
+ * @method static Action ChargebackWarningReverse()
  */
 final class Action extends PaddleEnum
 {
@@ -29,4 +30,5 @@ final class Action extends PaddleEnum
     private const Chargeback = 'chargeback';
     private const ChargebackReverse = 'chargeback_reverse';
     private const ChargebackWarning = 'chargeback_warning';
+    private const ChargebackWarningReverse = 'chargeback_warning_reverse';
 }

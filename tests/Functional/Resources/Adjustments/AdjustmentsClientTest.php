@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Adjustments;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Adjustment\AdjustmentTaxMode;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\AdjustmentStatus;
 use Paddle\SDK\Entities\Shared\AdjustmentType;
@@ -81,8 +82,8 @@ class AdjustmentsClientTest extends TestCase
 
         yield 'Create with Data' => [
             new CreateAdjustment(
-                Action::Refund(),
-                [
+                action: Action::Refund(),
+                items: [
                     new AdjustmentItem(
                         'txnitm_01h8bxryv3065dyh6103p3yg28',
                         AdjustmentType::Partial(),
@@ -94,8 +95,9 @@ class AdjustmentsClientTest extends TestCase
                         '1949',
                     ),
                 ],
-                'error',
-                'txn_01h8bxpvx398a7zbawb77y0kp5',
+                reason: 'error',
+                transactionId: 'txn_01h8bxpvx398a7zbawb77y0kp5',
+                taxMode: AdjustmentTaxMode::Internal(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
@@ -136,6 +138,49 @@ class AdjustmentsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
             self::readRawJsonFixture('request/create_type_full_with_null_items'),
+        ];
+
+        yield 'Full type with internal tax mode' => [
+            CreateAdjustment::full(
+                Action::Refund(),
+                'error',
+                'txn_01h8bxpvx398a7zbawb77y0kp5',
+                AdjustmentTaxMode::Internal(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_type_full_internal_tax_mode'),
+        ];
+
+        yield 'Partial type with external tax mode' => [
+            CreateAdjustment::partial(
+                Action::Refund(),
+                [new AdjustmentItem(
+                    'txnitm_01h8bxryv3065dyh6103p3yg28',
+                    AdjustmentType::Partial(),
+                    '100',
+                )],
+                'error',
+                'txn_01h8bxpvx398a7zbawb77y0kp5',
+                AdjustmentTaxMode::External(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_type_partial_external_tax_mode'),
+        ];
+
+        yield 'Partial type with internal tax mode' => [
+            CreateAdjustment::partial(
+                Action::Refund(),
+                [new AdjustmentItem(
+                    'txnitm_01h8bxryv3065dyh6103p3yg28',
+                    AdjustmentType::Partial(),
+                    '100',
+                )],
+                'error',
+                'txn_01h8bxpvx398a7zbawb77y0kp5',
+                AdjustmentTaxMode::Internal(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_type_partial_internal_tax_mode'),
         ];
     }
 

@@ -1,0 +1,11 @@
+{
+    "subscription_pause": {
+        "entities": {
+            "subscription_id": "sub_01h04vsc0qhwtsbsxh3422wjs4"
+        },
+        "options": {
+            "effective_from": "next_billing_period",
+            "has_past_due_transaction": false
+        }
+    }
+}
