@@ -1,0 +1,31 @@
+{
+    "data": {
+        "id": "sim_01h04vsc0qhwtsbsxh3422wjs4",
+        "notification_setting_id": "ntfset_01j82d983j814ypzx7m1fw2jpz",
+        "name": "Subscription pause simulation",
+        "type": "subscription_pause",
+        "status": "active",
+        "payload": null,
+        "config": {
+            "subscription_pause": {
+                "entities": {
+                    "subscription_id": "sub_01h04vsc0qhwtsbsxh3422wjs4"
+                },
+                "options": {
+                    "effective_from": "next_billing_period",
+                    "has_past_due_transaction": false
+                }
+            },
+            "subscription_creation": null,
+            "subscription_resume": null,
+            "subscription_renewal": null,
+            "subscription_cancellation": null
+        },
+        "created_at": "2024-01-01T00:00:00.000000Z",
+        "updated_at": "2024-01-01T00:00:00.000000Z",
+        "last_run_at": null
+    },
+    "meta": {
+        "request_id": "72351248-13bf-45be-befe-b3a5b5234588"
+    }
+}

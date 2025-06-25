@@ -6,6 +6,7 @@
         "enabled_for_checkout": true,
         "code": "4Y3ZR24Q4R",
         "type": "percentage",
+        "mode": "standard",
         "amount": "10",
         "currency_code": "USD",
         "recur": true,

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Paddle\SDK\Entities\Adjustment\AdjustmentTaxMode;
 use Paddle\SDK\Entities\Shared\Action;
 use Paddle\SDK\Entities\Shared\AdjustmentType;
 use Paddle\SDK\Exceptions\ApiError;
@@ -41,6 +42,7 @@ try {
             ],
             'error',
             $transactionId,
+            AdjustmentTaxMode::Internal(),
         ),
     );
 } catch (ApiError|MalformedResponse $e) {
@@ -59,6 +61,7 @@ try {
             Action::Refund(),
             'error',
             $fullAdjustmentTransactionId,
+            AdjustmentTaxMode::Internal(),
         ),
     );
 } catch (ApiError|MalformedResponse $e) {

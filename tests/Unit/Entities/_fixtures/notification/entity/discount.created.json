@@ -2,6 +2,7 @@
     "id": "dsc_01hv6scyf7qdnzcdq01t2y8dx4",
     "code": "SEWRGPB9WY",
     "type": "percentage",
+    "mode": "standard",
     "recur": true,
     "amount": "10",
     "status": "active",
@@ -15,5 +16,6 @@
     "usage_limit": null,
     "currency_code": null,
     "enabled_for_checkout": true,
-    "maximum_recurring_intervals": 3
+    "maximum_recurring_intervals": 3,
+    "discount_group_id": "dsg_01gtf15svsqzgp9325ss4ebmwt"
 }
