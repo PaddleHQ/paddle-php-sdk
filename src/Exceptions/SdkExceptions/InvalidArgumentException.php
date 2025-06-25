@@ -22,4 +22,15 @@ class InvalidArgumentException extends SdkException
             $given,
         ));
     }
+
+    public static function incompatibleArguments(string $incompatibleField, string $field, string|null $value = null): self
+    {
+        $message = sprintf('%s is not compatible with %s', $incompatibleField, $field);
+
+        if ($value !== null) {
+            $message .= ': ' . $value;
+        }
+
+        return new self($message);
+    }
 }

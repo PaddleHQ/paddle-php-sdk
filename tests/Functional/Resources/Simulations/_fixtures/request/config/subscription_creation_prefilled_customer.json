@@ -1,0 +1,22 @@
+{
+    "subscription_creation": {
+        "entities": {
+            "customer_id": "ctm_01h04vsc0qhwtsbsxh3422wjs4",
+            "address_id": "add_01h04vsc0qhwtsbsxh3422wjs4",
+            "business_id": "biz_01h04vsc0qhwtsbsxh3422wjs4",
+            "payment_method_id": "paymtd_01h04vsc0qhwtsbsxh3422wjs4",
+            "discount_id": "dsc_01h04vsc0qhwtsbsxh3422wjs4",
+            "items": [
+                {
+                    "price_id": "pri_01h04vsc0qhwtsbsxh3422wjs4",
+                    "quantity": 1
+                }
+            ]
+        },
+        "options": {
+            "customer_simulated_as": "existing_details_prefilled",
+            "business_simulated_as": "existing_details_prefilled",
+            "discount_simulated_as": "not_provided"
+        }
+    }
+}
