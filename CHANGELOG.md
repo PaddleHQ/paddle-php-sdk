@@ -9,7 +9,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ## [Unreleased]
 
 ### Added
-
+- Added support for API key events, see [related changelog](https://developer.paddle.com/changelog/2025/api-key-improvements?utm_source=dx&utm_medium=paddle-php-sdk).
 - Added support for discount mode
 - Added support for discount group resources, see [related changelog](https://developer.paddle.com/changelog/2025/discount-groups?utm_source=dx&utm_medium=paddle-php-sdk).
 - Added `tax_mode` to adjustment create operation
