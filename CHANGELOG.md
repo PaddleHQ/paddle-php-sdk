@@ -10,6 +10,8 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ### Added
 
+- Added support for discount mode
+- Added support for discount group resources, see [related changelog](https://developer.paddle.com/changelog/2025/discount-groups?utm_source=dx&utm_medium=paddle-php-sdk).
 - Added `tax_mode` to adjustment create operation
 - Support for simulation scenario configuration, see [related changelog](https://developer.paddle.com/changelog/2025/webhook-simulator-scenario-configuration?utm_source=dx&utm_medium=paddle-php-sdk)
 

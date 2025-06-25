@@ -23,6 +23,7 @@ use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
 use Paddle\SDK\Resources\CustomerPortalSessions\CustomerPortalSessionsClient;
 use Paddle\SDK\Resources\Customers\CustomersClient;
+use Paddle\SDK\Resources\DiscountGroups\DiscountGroupsClient;
 use Paddle\SDK\Resources\Discounts\DiscountsClient;
 use Paddle\SDK\Resources\Events\EventsClient;
 use Paddle\SDK\Resources\EventTypes\EventTypesClient;
@@ -65,6 +66,7 @@ class Client
     public readonly AddressesClient $addresses;
     public readonly BusinessesClient $businesses;
     public readonly DiscountsClient $discounts;
+    public readonly DiscountGroupsClient $discountGroups;
     public readonly SubscriptionsClient $subscriptions;
     public readonly EventTypesClient $eventTypes;
     public readonly EventsClient $events;
@@ -114,6 +116,7 @@ class Client
         $this->customerPortalSessions = new CustomerPortalSessionsClient($this);
         $this->businesses = new BusinessesClient($this);
         $this->discounts = new DiscountsClient($this);
+        $this->discountGroups = new DiscountGroupsClient($this);
         $this->subscriptions = new SubscriptionsClient($this);
         $this->eventTypes = new EventTypesClient($this);
         $this->events = new EventsClient($this);

@@ -15,6 +15,7 @@ class ListDiscounts implements HasParameters
      * @param array<string> $ids
      * @param array<Status> $statuses
      * @param array<string> $codes
+     * @param array<string> $discountGroupIds
      *
      * @throws InvalidArgumentException On invalid array contents
      */
@@ -23,6 +24,7 @@ class ListDiscounts implements HasParameters
         private readonly array $ids = [],
         private readonly array $statuses = [],
         private readonly array $codes = [],
+        private readonly array $discountGroupIds = [],
     ) {
         if ($invalid = array_filter($this->ids, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('ids', 'string', implode(', ', $invalid));
@@ -34,6 +36,10 @@ class ListDiscounts implements HasParameters
 
         if ($invalid = array_filter($this->codes, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('codes', 'string', implode(', ', $invalid));
+        }
+
+        if ($invalid = array_filter($this->discountGroupIds, fn ($value): bool => ! is_string($value))) {
+            throw InvalidArgumentException::arrayContainsInvalidTypes('discountGroupIds', 'string', implode(', ', $invalid));
         }
     }
 
@@ -47,6 +53,7 @@ class ListDiscounts implements HasParameters
                 'id' => implode(',', $this->ids),
                 'status' => implode(',', array_map($enumStringify, $this->statuses)),
                 'code' => implode(',', $this->codes),
+                'discount_group_id' => implode(',', $this->discountGroupIds),
             ]),
         );
     }
