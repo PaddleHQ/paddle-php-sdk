@@ -13,8 +13,11 @@ use Paddle\SDK\Entities\Discount\DiscountType;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Environment;
+use Paddle\SDK\JsonEncoder;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Discounts\Operations\CreateDiscount;
+use Paddle\SDK\Resources\Discounts\Operations\DiscountInclude;
+use Paddle\SDK\Resources\Discounts\Operations\GetDiscount;
 use Paddle\SDK\Resources\Discounts\Operations\ListDiscounts;
 use Paddle\SDK\Resources\Discounts\Operations\UpdateDiscount;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
@@ -165,12 +168,17 @@ class DiscountsClientTest extends TestCase
         string $expectedUri,
     ): void {
         $this->mockClient->addResponse($response);
-        $this->client->discounts->list($operation);
+        $discounts = $this->client->discounts->list($operation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
         self::assertEquals('GET', $request->getMethod());
         self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+
+        self::assertJsonStringEqualsJsonString(
+            json_encode(json_decode((string) $response->getBody(), true)['data'][0]),
+            JsonEncoder::default()->encode($discounts->current()),
+        );
     }
 
     public static function listOperationsProvider(): \Generator
@@ -246,6 +254,33 @@ class DiscountsClientTest extends TestCase
                 Environment::SANDBOX->baseUrl(),
             ),
         ];
+
+        yield 'Discount filtered by standard mode' => [
+            new ListDiscounts(mode: DiscountMode::Standard()),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/discounts?mode=standard',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'Discount filtered by custom mode' => [
+            new ListDiscounts(mode: DiscountMode::Custom()),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/discounts?mode=custom',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'Discount with discount group include' => [
+            new ListDiscounts(includes: [DiscountInclude::DiscountGroup()]),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/discounts?include=discount_group',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
     }
 
     /** @test */
@@ -261,6 +296,28 @@ class DiscountsClientTest extends TestCase
         self::assertEquals(
             sprintf('%s/discounts/dsc_01h83xenpcfjyhkqr4x214m02x', Environment::SANDBOX->baseUrl()),
             urldecode((string) $request->getUri()),
+        );
+    }
+
+    /** @test */
+    public function get_hits_expected_uri_with_discount_group_included(): void
+    {
+        $responseBody = self::readRawJsonFixture('response/full_entity_include_discount_group');
+        $response = new Response(200, body: $responseBody);
+        $this->mockClient->addResponse($response);
+        $discount = $this->client->discounts->get('dsc_01h83xenpcfjyhkqr4x214m02x', new GetDiscount(includes: [DiscountInclude::DiscountGroup()]));
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals(
+            sprintf('%s/discounts/dsc_01h83xenpcfjyhkqr4x214m02x?include=discount_group', Environment::SANDBOX->baseUrl()),
+            urldecode((string) $request->getUri()),
+        );
+
+        self::assertJsonStringEqualsJsonString(
+            json_encode(json_decode($responseBody, true)['data']),
+            JsonEncoder::default()->encode($discount),
         );
     }
 }

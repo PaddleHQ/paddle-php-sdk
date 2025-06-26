@@ -41,6 +41,7 @@ class Discount implements Entity
         public ImportMeta|null $importMeta,
         public DiscountMode $mode,
         public string|null $discountGroupId,
+        public DiscountGroup|null $discountGroup,
     ) {
     }
 
@@ -67,6 +68,7 @@ class Discount implements Entity
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
             mode: DiscountMode::from($data['mode']),
             discountGroupId: $data['discount_group_id'] ?? null,
+            discountGroup: isset($data['discount_group']) ? DiscountGroup::from($data['discount_group']) : null,
         );
     }
 }
