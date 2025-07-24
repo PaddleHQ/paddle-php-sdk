@@ -11,6 +11,9 @@ on:
   schedule:
     - cron: '0 10 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: "Package stability ${{ matrix.stability }}"
@@ -23,8 +26,13 @@ jobs:
         stability: [ 'stable', 'lowest' ]
 
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
+
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Build Container
         run: make build
