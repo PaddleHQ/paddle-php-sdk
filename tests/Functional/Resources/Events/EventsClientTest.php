@@ -7,6 +7,7 @@ namespace Paddle\SDK\Tests\Functional\Resources\Events;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Environment;
@@ -81,6 +82,40 @@ class EventsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf(
                 '%s/events?after=evt_01h83xenpcfjyhkqr4x214m02x&order_by=id[asc]&per_page=50',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'List paginated events with event type filter' => [
+            new ListEvents(
+                pager: new Pager(after: 'evt_01h83xenpcfjyhkqr4x214m02x'),
+                eventTypes: [EventTypeName::AddressCreated(), EventTypeName::TransactionCompleted()],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/events?after=evt_01h83xenpcfjyhkqr4x214m02x&order_by=id[asc]&per_page=50&event_type=address.created,transaction.completed',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'List events with event type filter' => [
+            new ListEvents(
+                eventTypes: [EventTypeName::AddressCreated(), EventTypeName::TransactionCompleted()],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/events?event_type=address.created,transaction.completed',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'List events with single event type filter' => [
+            new ListEvents(
+                eventTypes: [EventTypeName::ApiKeyCreated()],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/events?event_type=api_key.created',
                 Environment::SANDBOX->baseUrl(),
             ),
         ];
