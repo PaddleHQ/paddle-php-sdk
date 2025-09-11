@@ -138,6 +138,12 @@ class EventDataProvider extends TestCase
                 \Paddle\SDK\Notifications\Entities\DiscountGroup::class,
             ],
             [
+                'discount_group.updated',
+                'discountGroup',
+                \Paddle\SDK\Notifications\Events\DiscountGroupUpdated::class,
+                \Paddle\SDK\Notifications\Entities\DiscountGroup::class,
+            ],
+            [
                 'payment_method.saved',
                 'paymentMethod',
                 PaymentMethodSaved::class,

@@ -320,4 +320,24 @@ class DiscountsClientTest extends TestCase
             JsonEncoder::default()->encode($discount),
         );
     }
+
+    /**
+     * @test
+     */
+    public function it_uses_expected_payload_on_archive(): void
+    {
+        $this->mockClient->addResponse(
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+        );
+        $this->client->discounts->archive('dsc_01h83xenpcfjyhkqr4x214m02x');
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('PATCH', $request->getMethod());
+        self::assertEquals(Environment::SANDBOX->baseUrl() . '/discounts/dsc_01h83xenpcfjyhkqr4x214m02x', urldecode((string) $request->getUri()));
+        self::assertJsonStringEqualsJsonString(
+            self::readRawJsonFixture('request/archive'),
+            (string) $request->getBody(),
+        );
+    }
 }
