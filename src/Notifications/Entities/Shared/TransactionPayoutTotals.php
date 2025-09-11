@@ -25,6 +25,8 @@ class TransactionPayoutTotals
         public string $earnings,
         public CurrencyCodePayouts $currencyCode,
         public string|null $creditToBalance,
+        public string|null $exchangeRate,
+        public string|null $feeRate,
     ) {
     }
 
@@ -42,6 +44,8 @@ class TransactionPayoutTotals
             earnings: $data['earnings'] ?? null,
             currencyCode: CurrencyCodePayouts::from($data['currency_code']),
             creditToBalance: $data['credit_to_balance'] ?? null,
+            exchangeRate: $data['exchange_rate'] ?? null,
+            feeRate: $data['fee_rate'] ?? null,
         );
     }
 }

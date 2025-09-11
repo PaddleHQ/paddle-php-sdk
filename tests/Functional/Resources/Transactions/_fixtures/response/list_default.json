@@ -878,7 +878,9 @@
           "grand_total": "40000",
           "fee": "2050",
           "earnings": "37950",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "exchange_rate": "0.70194147",
+          "fee_rate": "0"
         },
         "adjusted_payout_totals": {
           "subtotal": "40000",
@@ -890,7 +892,8 @@
             "original": null
           },
           "earnings": "37950",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "exchange_rate": "0.70194147"
         },
         "line_items": [
           {
