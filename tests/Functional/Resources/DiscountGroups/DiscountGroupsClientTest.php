@@ -7,11 +7,13 @@ namespace Paddle\SDK\Tests\Functional\Resources\DiscountGroups;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\DiscountGroup\DiscountGroupStatus;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\DiscountGroups\Operations\CreateDiscountGroup;
 use Paddle\SDK\Resources\DiscountGroups\Operations\ListDiscountGroups;
+use Paddle\SDK\Resources\DiscountGroups\Operations\UpdateDiscountGroup;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -150,5 +152,79 @@ class DiscountGroupsClientTest extends TestCase
                 Environment::SANDBOX->baseUrl(),
             ),
         ];
+    }
+
+    /** @test */
+    public function get_hits_expected_uri(): void
+    {
+        $response = new Response(200, body: self::readRawJsonFixture('response/full_entity'));
+        $this->mockClient->addResponse($response);
+        $this->client->discountGroups->get('dsg_01gtf15svsqzgp9325ss4ebmwt');
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals(
+            sprintf('%s/discount-groups/dsg_01gtf15svsqzgp9325ss4ebmwt', Environment::SANDBOX->baseUrl()),
+            urldecode((string) $request->getUri()),
+        );
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider updateOperationsProvider
+     */
+    public function it_uses_expected_payload_on_update(
+        UpdateDiscountGroup $operation,
+        ResponseInterface $response,
+        string $expectedBody,
+    ): void {
+        $this->mockClient->addResponse($response);
+        $this->client->discountGroups->update('dsg_01gtf15svsqzgp9325ss4ebmwt', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('PATCH', $request->getMethod());
+        self::assertEquals(Environment::SANDBOX->baseUrl() . '/discount-groups/dsg_01gtf15svsqzgp9325ss4ebmwt', urldecode((string) $request->getUri()));
+        self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
+    }
+
+    public static function updateOperationsProvider(): \Generator
+    {
+        yield 'Update Partial' => [
+            new UpdateDiscountGroup(name: 'Some Discount Group'),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_partial'),
+        ];
+
+        yield 'Update All' => [
+            new UpdateDiscountGroup(
+                name: 'Some Discount Group',
+                status: DiscountGroupStatus::Archived(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_full'),
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function it_uses_expected_payload_on_archive(): void
+    {
+        $this->mockClient->addResponse(
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+        );
+        $this->client->discountGroups->archive('dsg_01gtf15svsqzgp9325ss4ebmwt');
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('PATCH', $request->getMethod());
+        self::assertEquals(Environment::SANDBOX->baseUrl() . '/discount-groups/dsg_01gtf15svsqzgp9325ss4ebmwt', urldecode((string) $request->getUri()));
+        self::assertJsonStringEqualsJsonString(
+            self::readRawJsonFixture('request/archive'),
+            (string) $request->getBody(),
+        );
     }
 }
