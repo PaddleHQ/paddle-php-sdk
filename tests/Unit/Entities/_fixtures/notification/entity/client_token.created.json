@@ -1,0 +1,10 @@
+{
+    "id": "ctkn_01ghbkd0frb9k95cnhwd1bxpvk",
+    "token": "live_7d279f61a3499fed520f7cd8c08",
+    "name": "Pricing page integration",
+    "description": "Used to display prices and open checkout within our pricing page on our marketing domain.",
+    "status": "active",
+    "created_at": "2025-06-26T14:36:14.695000Z",
+    "updated_at": "2025-06-26T14:36:14.695000Z",
+    "revoked_at": null
+}

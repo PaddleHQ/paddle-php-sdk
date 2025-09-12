@@ -14,6 +14,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added support to fetch and update discount groups see [related changelog](https://developer.paddle.com/changelog/2025/discount-groups-new-api-operations?utm_source=dx&utm_medium=paddle-php-sdk)
 - Added `exchange_rate` and `fee_rate` to `TransactionPayoutTotals`
 - Added `exchange_rate` to `TransactionPayoutTotalsAdjusted`
+- Added support for client tokens see [related changelog](https://developer.paddle.com/changelog/2025/client-side-token-api?utm_source=dx&utm_medium=paddle-php-sdk)
 
 ## [1.10.0] - 2025-06-27
 

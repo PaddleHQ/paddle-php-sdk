@@ -21,6 +21,7 @@ use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
+use Paddle\SDK\Resources\ClientTokens\ClientTokensClient;
 use Paddle\SDK\Resources\CustomerPortalSessions\CustomerPortalSessionsClient;
 use Paddle\SDK\Resources\Customers\CustomersClient;
 use Paddle\SDK\Resources\DiscountGroups\DiscountGroupsClient;
@@ -61,6 +62,7 @@ class Client
     public readonly PricesClient $prices;
     public readonly TransactionsClient $transactions;
     public readonly AdjustmentsClient $adjustments;
+    public readonly ClientTokensClient $clientTokens;
     public readonly CustomersClient $customers;
     public readonly CustomerPortalSessionsClient $customerPortalSessions;
     public readonly AddressesClient $addresses;
@@ -111,6 +113,7 @@ class Client
         $this->prices = new PricesClient($this);
         $this->transactions = new TransactionsClient($this);
         $this->adjustments = new AdjustmentsClient($this);
+        $this->clientTokens = new ClientTokensClient($this);
         $this->customers = new CustomersClient($this);
         $this->addresses = new AddressesClient($this);
         $this->customerPortalSessions = new CustomerPortalSessionsClient($this);

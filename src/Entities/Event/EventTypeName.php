@@ -20,6 +20,9 @@ use Paddle\SDK\PaddleEnum;
  * @method static EventTypeName BusinessCreated()
  * @method static EventTypeName BusinessImported()
  * @method static EventTypeName BusinessUpdated()
+ * @method static EventTypeName ClientTokenCreated()
+ * @method static EventTypeName ClientTokenRevoked()
+ * @method static EventTypeName ClientTokenUpdated()
  * @method static EventTypeName CustomerCreated()
  * @method static EventTypeName CustomerImported()
  * @method static EventTypeName CustomerUpdated()
@@ -79,6 +82,9 @@ final class EventTypeName extends PaddleEnum
     private const BusinessCreated = 'business.created';
     private const BusinessImported = 'business.imported';
     private const BusinessUpdated = 'business.updated';
+    private const ClientTokenCreated = 'client_token.created';
+    private const ClientTokenRevoked = 'client_token.revoked';
+    private const ClientTokenUpdated = 'client_token.updated';
     private const CustomerCreated = 'customer.created';
     private const CustomerImported = 'customer.imported';
     private const CustomerUpdated = 'customer.updated';
