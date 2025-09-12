@@ -21,6 +21,7 @@ class TransactionPayoutTotalsAdjusted
         public ChargebackFee $chargebackFee,
         public string $earnings,
         public CurrencyCodePayouts $currencyCode,
+        public string|null $exchangeRate,
     ) {
     }
 
@@ -34,6 +35,7 @@ class TransactionPayoutTotalsAdjusted
             ChargebackFee::from($data['chargeback_fee']),
             $data['earnings'],
             CurrencyCodePayouts::from($data['currency_code']),
+            $data['exchange_rate'] ?? null,
         );
     }
 }

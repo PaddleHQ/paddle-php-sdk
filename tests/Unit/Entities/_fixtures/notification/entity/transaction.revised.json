@@ -228,7 +228,9 @@
             "subtotal": "59900",
             "grand_total": "65215",
             "currency_code": "USD",
-            "credit_to_balance": "0"
+            "credit_to_balance": "0",
+            "exchange_rate": "0.70194147",
+            "fee_rate": "0"
         },
         "tax_rates_used": [
             {
@@ -241,6 +243,19 @@
                 "tax_rate": "0.08875"
             }
         ],
+        "adjusted_payout_totals": {
+            "fee": "3311",
+            "tax": "5315",
+            "total": "65215",
+            "chargeback_fee": {
+                "amount": "0",
+                "original": null
+            },
+            "earnings": "56589",
+            "subtotal": "59900",
+            "currency_code": "USD",
+            "exchange_rate": "0.70194147"
+        },
         "adjusted_totals": {
             "fee": "3311",
             "tax": "5315",
