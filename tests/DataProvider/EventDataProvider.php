@@ -96,6 +96,24 @@ class EventDataProvider extends TestCase
                 \Paddle\SDK\Notifications\Entities\Business::class,
             ],
             [
+                'client_token.created',
+                'clientToken',
+                \Paddle\SDK\Notifications\Events\ClientTokenCreated::class,
+                \Paddle\SDK\Notifications\Entities\ClientToken::class,
+            ],
+            [
+                'client_token.revoked',
+                'clientToken',
+                \Paddle\SDK\Notifications\Events\ClientTokenRevoked::class,
+                \Paddle\SDK\Notifications\Entities\ClientToken::class,
+            ],
+            [
+                'client_token.updated',
+                'clientToken',
+                \Paddle\SDK\Notifications\Events\ClientTokenUpdated::class,
+                \Paddle\SDK\Notifications\Entities\ClientToken::class,
+            ],
+            [
                 'customer.created',
                 'customer',
                 \Paddle\SDK\Notifications\Events\CustomerCreated::class,

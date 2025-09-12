@@ -1,0 +1,43 @@
+{
+    "data": [
+        {
+            "id": "ctkn_01ghbkd0frb9k95cnhwd1bxpvk",
+            "token": "live_7d279f61a3499fed520f7cd8c08",
+            "name": "Pricing page integration",
+            "description": "Used to display prices and open checkout within our pricing page on our marketing domain.",
+            "status": "active",
+            "created_at": "2025-06-26T14:36:14.695000Z",
+            "updated_at": "2025-06-26T14:36:14.695000Z",
+            "revoked_at": null
+        },
+        {
+            "id": "ctkn_02ghbkd0frb9k95cnhwd1bxpvk",
+            "token": "live_8d279f61a3499fed520f7cd8c08",
+            "name": "Pricing page integration",
+            "description": "Used to display prices and open checkout within our pricing page on our marketing domain.",
+            "status": "revoked",
+            "created_at": "2025-06-26T14:36:14.695000Z",
+            "updated_at": "2025-06-27T11:26:10.253000Z",
+            "revoked_at": "2025-06-27T11:26:10.253000Z"
+        },
+        {
+            "id": "ctkn_03ghbkd0frb9k95cnhwd1bxpvk",
+            "token": "live_9d279f61a3499fed520f7cd8c08",
+            "name": "Pricing page integration",
+            "description": null,
+            "status": "active",
+            "created_at": "2025-06-26T14:36:14.695000Z",
+            "updated_at": "2025-06-26T14:36:14.695000Z",
+            "revoked_at": null
+        }
+    ],
+    "meta": {
+        "request_id": "f802da6d-096f-4cab-abd1-6c98330d4b09",
+        "pagination": {
+            "per_page": 50,
+            "next": "https://sandbox-api.paddle.com/client-tokens?after=ctkn_03ghbkd0frb9k95cnhwd1bxpvk",
+            "has_more": true,
+            "estimated_total": 6
+        }
+    }
+}
