@@ -135,6 +135,25 @@ $paddle = new Client('API_KEY');
 $product = $paddle->products->get('id');
 ```
 
+### Error Handling
+
+If a request fails, Paddle throws an `ApiError` exception that contains the same information as [errors returned by the API](https://developer.paddle.com/api-reference/about/errors?utm_source=dx&utm_medium=paddle-php-sdk). You can use the `errorCode` attribute to search an error in [the error reference](https://developer.paddle.com/errors/overview?utm_source=dx&utm_medium=paddle-php-sdk) and to handle the error in your app. Validation errors also return an array of `errors` that tell you which fields failed validation. The `retryAfter` property will be set for `too_many_requests` errors.
+
+This example shows how to handle an error with the code `conflict`:
+
+```php
+use Paddle\SDK\Exceptions\ApiError;
+
+try {
+    // Call functions from the SDK
+} catch (ApiError $e) {
+    // $e->errorCode will always follow the error code defined in our documentation
+    if ($e->errorCode === 'conflict') {
+        // Handle Conflict error
+    }
+}
+```
+
 ## Resources
 
 ### Webhook signature verification

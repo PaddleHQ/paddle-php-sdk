@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [Unreleased]
+
+### Added
+
+- `ApiError` will now have `retryAfter` property set for [too_many_requests](https://developer.paddle.com/errors/shared/too_many_requests) errors
+
 ## [1.11.0] - 2025-09-15
 
 ### Added
