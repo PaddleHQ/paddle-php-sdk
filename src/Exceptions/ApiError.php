@@ -12,7 +12,7 @@ class ApiError extends \Exception implements ClientExceptionInterface
     /** @var array<FieldError> */
     public array $fieldErrors;
 
-    public readonly int|null $retryAfter;
+    public int|null $retryAfter = null;
 
     final public function __construct(
         public string $type,
