@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Paddle\SDK\Exceptions;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Message\ResponseInterface;
 
 class ApiError extends \Exception implements ClientExceptionInterface
 {
@@ -26,7 +25,7 @@ class ApiError extends \Exception implements ClientExceptionInterface
         parent::__construct($this->detail);
     }
 
-    public static function fromErrorData(array $error, ResponseInterface|null $response = null): static
+    public static function fromErrorData(array $error, int|null $retryAfter = null): static
     {
         $apiError = new static(
             $error['type'],
@@ -39,8 +38,7 @@ class ApiError extends \Exception implements ClientExceptionInterface
             ),
         );
 
-        $retryAfterHeader = $response?->getHeader('Retry-After')[0] ?? null;
-        $apiError->retryAfter = $retryAfterHeader ? intval($retryAfterHeader) : null;
+        $apiError->retryAfter = $retryAfter;
 
         return $apiError;
     }

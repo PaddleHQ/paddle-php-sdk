@@ -60,7 +60,10 @@ class ResponseParser
         /** @var class-string<ApiError> $exceptionClass */
         $exceptionClass = $this->findExceptionClassFromCode($this->body['error']['code'] ?? 'shared_error');
 
-        throw $exceptionClass::fromErrorData($this->body['error'], $this->response);
+        $retryAfterHeader = $this->response->getHeader('Retry-After')[0] ?? null;
+        $retryAfter = $retryAfterHeader ? intval($retryAfterHeader) : null;
+
+        throw $exceptionClass::fromErrorData($this->body['error'], $retryAfter);
     }
 
     /**
