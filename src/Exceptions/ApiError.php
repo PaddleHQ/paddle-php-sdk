@@ -11,6 +11,8 @@ class ApiError extends \Exception implements ClientExceptionInterface
     /** @var array<FieldError> */
     public array $fieldErrors;
 
+    public int|null $retryAfter = null;
+
     final public function __construct(
         public string $type,
         public string $errorCode,
@@ -23,9 +25,9 @@ class ApiError extends \Exception implements ClientExceptionInterface
         parent::__construct($this->detail);
     }
 
-    public static function fromErrorData(array $error): static
+    public static function fromErrorData(array $error, int|null $retryAfter = null): static
     {
-        return new static(
+        $apiError = new static(
             $error['type'],
             $error['code'],
             $error['detail'],
@@ -35,5 +37,9 @@ class ApiError extends \Exception implements ClientExceptionInterface
                 $error['errors'] ?? [],
             ),
         );
+
+        $apiError->retryAfter = $retryAfter;
+
+        return $apiError;
     }
 }
