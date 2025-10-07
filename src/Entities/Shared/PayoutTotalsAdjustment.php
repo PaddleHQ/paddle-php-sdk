@@ -19,6 +19,7 @@ class PayoutTotalsAdjustment
         public string $total,
         public string $fee,
         public ChargebackFee|null $chargebackFee,
+        public string $retainedFee,
         public string $earnings,
         public CurrencyCodePayouts $currencyCode,
     ) {
@@ -32,6 +33,7 @@ class PayoutTotalsAdjustment
             total: $data['total'],
             fee: $data['fee'],
             chargebackFee: isset($data['chargeback_fee']) ? ChargebackFee::from($data['chargeback_fee']) : null,
+            retainedFee: $data['retained_fee'],
             earnings: $data['earnings'],
             currencyCode: CurrencyCodePayouts::from($data['currency_code']),
         );

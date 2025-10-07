@@ -19,6 +19,7 @@ class TransactionTotalsAdjusted
         public string $total,
         public string $grandTotal,
         public string|null $fee,
+        public string $retainedFee,
         public string|null $earnings,
         public CurrencyCode $currencyCode,
     ) {
@@ -32,6 +33,7 @@ class TransactionTotalsAdjusted
             $data['total'],
             $data['grand_total'],
             $data['fee'] ?? null,
+            $data['retained_fee'],
             $data['earnings'] ?? null,
             CurrencyCode::from($data['currency_code']),
         );

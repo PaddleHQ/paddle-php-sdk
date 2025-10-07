@@ -148,6 +148,7 @@
             "tax": "7987",
             "total": "97987",
             "fee": "4949",
+            "retained_fee": "0",
             "earnings": "85051",
             "currency_code": "USD"
           }

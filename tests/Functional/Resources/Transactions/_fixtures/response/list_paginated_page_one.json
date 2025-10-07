@@ -147,6 +147,7 @@
                     "total": "901387",
                     "grand_total": "901387",
                     "fee": null,
+                    "retained_fee": "0",
                     "earnings": null,
                     "currency_code": "USD"
                 },
@@ -396,6 +397,7 @@
                     "total": "72479",
                     "grand_total": "72479",
                     "fee": null,
+                    "retained_fee": "0",
                     "earnings": null,
                     "currency_code": "USD"
                 },
@@ -645,6 +647,7 @@
                     "total": "59900",
                     "grand_total": "59900",
                     "fee": null,
+                    "retained_fee": "0",
                     "earnings": null,
                     "currency_code": "USD"
                 },
@@ -850,6 +853,7 @@
                     "total": "40000",
                     "grand_total": "40000",
                     "fee": "2050",
+                    "retained_fee": "0",
                     "earnings": "37950",
                     "currency_code": "USD"
                 },
@@ -873,6 +877,7 @@
                     "tax": "0",
                     "total": "40000",
                     "fee": "2050",
+                    "retained_fee": "0",
                     "chargeback_fee": {
                         "amount": "0",
                         "original": null
@@ -1057,6 +1062,7 @@
                     "total": "5000",
                     "grand_total": "5000",
                     "fee": null,
+                    "retained_fee": "0",
                     "earnings": null,
                     "currency_code": "USD"
                 },
@@ -1214,6 +1220,7 @@
                     "total": "43549",
                     "grand_total": "43549",
                     "fee": null,
+                    "retained_fee": "0",
                     "earnings": null,
                     "currency_code": "USD"
                 },
