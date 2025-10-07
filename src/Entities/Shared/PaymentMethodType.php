@@ -17,13 +17,17 @@ use Paddle\SDK\PaddleEnum;
  * @method static PaymentMethodType Alipay()
  * @method static PaymentMethodType ApplePay()
  * @method static PaymentMethodType Bancontact()
+ * @method static PaymentMethodType Blik()
  * @method static PaymentMethodType Card()
  * @method static PaymentMethodType GooglePay()
  * @method static PaymentMethodType Ideal()
  * @method static PaymentMethodType KoreaLocal()
+ * @method static PaymentMethodType MbWay()
  * @method static PaymentMethodType Offline()
  * @method static PaymentMethodType Paypal()
+ * @method static PaymentMethodType Pix()
  * @method static PaymentMethodType Unknown()
+ * @method static PaymentMethodType Upi()
  * @method static PaymentMethodType WireTransfer()
  */
 final class PaymentMethodType extends PaddleEnum
@@ -31,12 +35,16 @@ final class PaymentMethodType extends PaddleEnum
     private const Alipay = 'alipay';
     private const ApplePay = 'apple_pay';
     private const Bancontact = 'bancontact';
+    private const Blik = 'blik';
     private const Card = 'card';
     private const GooglePay = 'google_pay';
     private const Ideal = 'ideal';
     private const KoreaLocal = 'korea_local';
+    private const MbWay = 'mb_way';
     private const Offline = 'offline';
     private const Paypal = 'paypal';
+    private const Pix = 'pix';
     private const Unknown = 'unknown';
+    private const Upi = 'upi';
     private const WireTransfer = 'wire_transfer';
 }
