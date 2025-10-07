@@ -34,6 +34,7 @@
             "tax": "8",
             "total": "100",
             "fee": "5",
+            "retained_fee": "0",
             "earnings": "87",
             "currency_code": "USD"
         },
@@ -49,6 +50,7 @@
             "tax": "8",
             "total": "100",
             "fee": "5",
+            "retained_fee": "0",
             "earnings": "87",
             "currency_code": "USD"
         },

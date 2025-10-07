@@ -29,6 +29,7 @@
                 "tax": "8",
                 "total": "100",
                 "fee": "5",
+                "retained_fee": "0",
                 "earnings": "87",
                 "currency_code": "USD"
             },
@@ -37,6 +38,7 @@
                 "tax": "8",
                 "total": "100",
                 "fee": "5",
+                "retained_fee": "0",
                 "earnings": "87",
                 "currency_code": "USD"
             },
@@ -89,6 +91,7 @@
                 "tax": "13311",
                 "total": "163297",
                 "fee": "8215",
+                "retained_fee": "0",
                 "earnings": "141771",
                 "currency_code": "USD"
             },
@@ -97,6 +100,7 @@
                 "tax": "13311",
                 "total": "163297",
                 "fee": "8215",
+                "retained_fee": "0",
                 "earnings": "141771",
                 "currency_code": "USD"
             },
@@ -149,6 +153,7 @@
                 "tax": "11997",
                 "total": "71984",
                 "fee": "3631",
+                "retained_fee": "0",
                 "earnings": "56356",
                 "currency_code": "USD"
             },
@@ -157,6 +162,7 @@
                 "tax": "11997",
                 "total": "71984",
                 "fee": "3631",
+                "retained_fee": "0",
                 "earnings": "56356",
                 "currency_code": "USD"
             },
@@ -209,6 +215,7 @@
                 "tax": "5998",
                 "total": "35986",
                 "fee": "1837",
+                "retained_fee": "0",
                 "earnings": "28151",
                 "currency_code": "USD"
             },
@@ -217,6 +224,7 @@
                 "tax": "5998",
                 "total": "35986",
                 "fee": "1837",
+                "retained_fee": "0",
                 "earnings": "28151",
                 "currency_code": "USD"
             },
@@ -287,6 +295,7 @@
                 "tax": "6999",
                 "total": "76990",
                 "fee": "3897",
+                "retained_fee": "0",
                 "earnings": "66094",
                 "currency_code": "AUD"
             },
@@ -295,6 +304,7 @@
                 "tax": "4513",
                 "total": "49633",
                 "fee": "2512",
+                "retained_fee": "0",
                 "earnings": "42608",
                 "currency_code": "USD"
             },

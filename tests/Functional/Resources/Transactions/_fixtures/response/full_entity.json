@@ -112,6 +112,7 @@
         "total": "2915",
         "grand_total": "2915",
         "fee": "0",
+        "retained_fee": "0",
         "earnings": "0",
         "currency_code": "GBP"
       },

@@ -96,6 +96,7 @@
                 "total": "0",
                 "grand_total": "0",
                 "fee": "0",
+                "retained_fee": "0",
                 "earnings": "0",
                 "currency_code": "USD"
             },
