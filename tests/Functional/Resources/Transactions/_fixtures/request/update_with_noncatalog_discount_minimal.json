@@ -1,0 +1,7 @@
+{
+  "discount": {
+    "amount": "10",
+    "description": "Promo",
+    "type": "percentage"
+  }
+}

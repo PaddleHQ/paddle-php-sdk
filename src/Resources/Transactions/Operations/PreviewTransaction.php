@@ -10,6 +10,7 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithNonCatalogPrice as EntityItemPreviewWithNonCatalogPrice;
 use Paddle\SDK\Entities\Transaction\TransactionItemPreviewWithPriceId as EntityItemPreviewWithPriceId;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Transactions\Operations\Discount\TransactionNonCatalogDiscount;
 use Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionItemPreviewWithNonCatalogPrice;
 use Paddle\SDK\Resources\Transactions\Operations\Preview\TransactionItemPreviewWithPriceId;
 use Paddle\SDK\Undefined;
@@ -32,6 +33,7 @@ class PreviewTransaction implements \JsonSerializable
         public readonly string|Undefined|null $customerIpAddress = new Undefined(),
         public readonly AddressPreview|Undefined|null $address = new Undefined(),
         public readonly bool|Undefined $ignoreTrials = new Undefined(),
+        public readonly TransactionNonCatalogDiscount|Undefined|null $discount = new Undefined(),
     ) {
     }
 
@@ -48,6 +50,7 @@ class PreviewTransaction implements \JsonSerializable
             'customer_ip_address' => $this->customerIpAddress,
             'address' => $this->address,
             'ignore_trials' => $this->ignoreTrials,
+            'discount' => $this->discount,
         ]);
     }
 }

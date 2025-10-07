@@ -13,6 +13,7 @@ use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\Entities\Transaction\TransactionUpdateTransactionItem;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Transactions\Operations\Discount\TransactionNonCatalogDiscount;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice;
 use Paddle\SDK\Undefined;
@@ -37,6 +38,7 @@ class UpdateTransaction implements \JsonSerializable
         public readonly TransactionTimePeriod|Undefined|null $billingPeriod = new Undefined(),
         public readonly array|Undefined $items = new Undefined(),
         public readonly Checkout|Undefined|null $checkout = new Undefined(),
+        public readonly TransactionNonCatalogDiscount|Undefined|null $discount = new Undefined(),
     ) {
     }
 
@@ -55,6 +57,7 @@ class UpdateTransaction implements \JsonSerializable
             'billing_period' => $this->billingPeriod,
             'items' => $this->items,
             'checkout' => $this->checkout,
+            'discount' => $this->discount,
         ]);
     }
 }

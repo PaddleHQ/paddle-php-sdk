@@ -16,6 +16,7 @@ use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Discount\TransactionNonCatalogDiscount;
 use Paddle\SDK\Undefined;
 
 class CreateTransaction implements \JsonSerializable
@@ -38,6 +39,7 @@ class CreateTransaction implements \JsonSerializable
         public readonly BillingDetails|Undefined|null $billingDetails = new Undefined(),
         public readonly TransactionTimePeriod|Undefined|null $billingPeriod = new Undefined(),
         public readonly Checkout|Undefined|null $checkout = new Undefined(),
+        public readonly TransactionNonCatalogDiscount|Undefined|null $discount = new Undefined(),
     ) {
     }
 
@@ -56,6 +58,7 @@ class CreateTransaction implements \JsonSerializable
             'billing_details' => $this->billingDetails,
             'billing_period' => $this->billingPeriod,
             'checkout' => $this->checkout,
+            'discount' => $this->discount,
         ]);
     }
 }
