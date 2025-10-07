@@ -41,6 +41,7 @@ use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
+use Paddle\SDK\Resources\Transactions\Operations\Discount\TransactionNonCatalogDiscount;
 use Paddle\SDK\Resources\Transactions\Operations\GetTransactionInvoice;
 use Paddle\SDK\Resources\Transactions\Operations\List\Includes;
 use Paddle\SDK\Resources\Transactions\Operations\List\Origin;
@@ -149,6 +150,42 @@ class TransactionsClientTest extends TestCase
 
     public static function createOperationsProvider(): \Generator
     {
+        yield 'Create with non-catalog discount minimal' => [
+            new CreateTransaction(
+                items: [
+                    new TransactionCreateItem('pri_01he5kxqey1k8ankgef29cj4bv', 1),
+                ],
+                discount: new TransactionNonCatalogDiscount(
+                    amount: '10',
+                    description: 'Promo',
+                    type: \Paddle\SDK\Entities\Discount\DiscountType::Percentage(),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_noncatalog_discount_minimal'),
+        ];
+
+        yield 'Create with non-catalog discount full' => [
+            new CreateTransaction(
+                items: [
+                    new TransactionCreateItem('pri_01he5kxqey1k8ankgef29cj4bv', 1),
+                ],
+                discount: new TransactionNonCatalogDiscount(
+                    amount: '500',
+                    description: 'Black Friday',
+                    type: \Paddle\SDK\Entities\Discount\DiscountType::Flat(),
+                    recur: true,
+                    maximumRecurringIntervals: 3,
+                    customData: new CustomData(['source' => 'bf2025']),
+                    restrictTo: [
+                        'pro_01gsz4t5hdjse780zja8vvr7jg',
+                        'pro_01gsz4s0w61y0pp88528f1wvvb',
+                    ],
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_noncatalog_discount_full'),
+        ];
         yield 'Basic Create' => [
             new CreateTransaction(
                 items: [
@@ -439,6 +476,37 @@ class TransactionsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_partial'),
+        ];
+
+        yield 'Update with non-catalog discount minimal' => [
+            new UpdateTransaction(
+                discount: new TransactionNonCatalogDiscount(
+                    amount: '10',
+                    description: 'Promo',
+                    type: \Paddle\SDK\Entities\Discount\DiscountType::Percentage(),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_with_noncatalog_discount_minimal'),
+        ];
+
+        yield 'Update with non-catalog discount full' => [
+            new UpdateTransaction(
+                discount: new TransactionNonCatalogDiscount(
+                    amount: '500',
+                    description: 'Black Friday',
+                    type: \Paddle\SDK\Entities\Discount\DiscountType::Flat(),
+                    recur: true,
+                    maximumRecurringIntervals: 3,
+                    customData: new CustomData(['source' => 'bf2025']),
+                    restrictTo: [
+                        'pro_01gsz4t5hdjse780zja8vvr7jg',
+                        'pro_01gsz4s0w61y0pp88528f1wvvb',
+                    ],
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_with_noncatalog_discount_full'),
         ];
     }
 
@@ -903,6 +971,43 @@ class TransactionsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
             self::readRawJsonFixture('request/preview_with_non_catalog_price_and_product'),
+        ];
+
+        yield 'Preview with non-catalog discount minimal' => [
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithPriceId('pri_01he5kxqey1k8ankgef29cj4bv', 1, true),
+                ],
+                discount: new TransactionNonCatalogDiscount(
+                    amount: '5',
+                    description: 'Black Friday',
+                    type: \Paddle\SDK\Entities\Discount\DiscountType::Percentage(),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_noncatalog_discount_minimal'),
+        ];
+
+        yield 'Preview with non-catalog discount full' => [
+            new PreviewTransaction(
+                items: [
+                    new TransactionItemPreviewWithPriceId('pri_01he5kxqey1k8ankgef29cj4bv', 1, true),
+                ],
+                discount: new TransactionNonCatalogDiscount(
+                    amount: '500',
+                    description: 'Black Friday',
+                    type: \Paddle\SDK\Entities\Discount\DiscountType::Flat(),
+                    recur: true,
+                    maximumRecurringIntervals: 3,
+                    customData: new CustomData(['source' => 'bf2025']),
+                    restrictTo: [
+                        'pro_01gsz4t5hdjse780zja8vvr7jg',
+                        'pro_01gsz4s0w61y0pp88528f1wvvb',
+                    ],
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_entity')),
+            self::readRawJsonFixture('request/preview_with_noncatalog_discount_full'),
         ];
     }
 

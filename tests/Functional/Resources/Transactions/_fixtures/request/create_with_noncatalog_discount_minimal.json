@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "quantity": 1,
+      "price_id": "pri_01he5kxqey1k8ankgef29cj4bv"
+    }
+  ],
+  "discount": {
+    "amount": "10",
+    "description": "Promo",
+    "type": "percentage"
+  }
+}

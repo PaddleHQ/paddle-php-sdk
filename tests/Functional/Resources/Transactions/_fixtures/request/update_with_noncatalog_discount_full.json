@@ -1,0 +1,16 @@
+{
+  "discount": {
+    "amount": "500",
+    "description": "Black Friday",
+    "type": "flat",
+    "recur": true,
+    "maximum_recurring_intervals": 3,
+    "custom_data": {
+      "source": "bf2025"
+    },
+    "restrict_to": [
+      "pro_01gsz4t5hdjse780zja8vvr7jg",
+      "pro_01gsz4s0w61y0pp88528f1wvvb"
+    ]
+  }
+}
