@@ -39,7 +39,7 @@ class ResponseParser
     {
         return new Pagination(
             perPage: $this->body['meta']['pagination']['per_page'],
-            next: $this->body['meta']['pagination']['next'],
+            next: $this->body['meta']['pagination']['next'] ?? '',
             hasMore: $this->body['meta']['pagination']['has_more'],
             estimatedTotal: $this->body['meta']['pagination']['estimated_total'],
         );
