@@ -17,10 +17,12 @@ use Paddle\SDK\PaddleEnum;
  * @method static TaxMode AccountSetting()
  * @method static TaxMode External()
  * @method static TaxMode Internal()
+ * @method static TaxMode Location()
  */
 final class TaxMode extends PaddleEnum
 {
     private const AccountSetting = 'account_setting';
     private const External = 'external';
     private const Internal = 'internal';
+    private const Location = 'location';
 }
