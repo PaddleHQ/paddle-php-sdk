@@ -24,7 +24,9 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportFilterName ProductStatus()
  * @method static ReportFilterName ProductType()
  * @method static ReportFilterName ProductUpdatedAt()
+ * @method static ReportFilterName RemittanceReference()
  * @method static ReportFilterName Status()
+ * @method static ReportFilterName TransactionUpdatedAt()
  * @method static ReportFilterName Type()
  * @method static ReportFilterName UpdatedAt()
  */
@@ -40,7 +42,9 @@ final class ReportFilterName extends PaddleEnum
     private const ProductStatus = 'product_status';
     private const ProductType = 'product_type';
     private const ProductUpdatedAt = 'product_updated_at';
+    private const RemittanceReference = 'remittance_reference';
     private const Status = 'status';
+    private const TransactionUpdatedAt = 'transaction_updated_at';
     private const Type = 'type';
     private const UpdatedAt = 'updated_at';
 }

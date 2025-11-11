@@ -20,6 +20,7 @@ final class Payout implements SimulationEntity
         public readonly PayoutStatus|Undefined $status = new Undefined(),
         public readonly string|Undefined $amount = new Undefined(),
         public readonly CurrencyCodePayouts|Undefined $currencyCode = new Undefined(),
+        public string|Undefined $remittanceReference = new Undefined(),
     ) {
     }
 
@@ -30,6 +31,7 @@ final class Payout implements SimulationEntity
             status: self::optional($data, 'status', fn ($value) => PayoutStatus::from($value)),
             amount: self::optional($data, 'amount'),
             currencyCode: self::optional($data, 'currency_code', fn ($value) => CurrencyCodePayouts::from($value)),
+            remittanceReference: self::optional($data, 'remittance_reference'),
         );
     }
 
@@ -40,6 +42,7 @@ final class Payout implements SimulationEntity
             'status' => $this->status,
             'amount' => $this->amount,
             'currency_code' => $this->currencyCode,
+            'remittance_reference' => $this->remittanceReference,
         ]);
     }
 }

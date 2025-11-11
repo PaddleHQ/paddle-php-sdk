@@ -2,5 +2,6 @@
     "id": "pay_01gsz4vmqbjk3x4vvtafffd540",
     "status": "paid",
     "amount": "10000",
-    "currency_code": "USD"
+    "currency_code": "USD",
+    "remittance_reference": "some-reference"
 }
