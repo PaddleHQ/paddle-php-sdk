@@ -14,6 +14,7 @@ class Payout implements Entity
         public PayoutStatus $status,
         public string $amount,
         public CurrencyCodePayouts $currencyCode,
+        public string|null $remittanceReference,
     ) {
     }
 
@@ -24,6 +25,7 @@ class Payout implements Entity
             PayoutStatus::from($data['status']),
             $data['amount'],
             CurrencyCodePayouts::from($data['currency_code']),
+            $data['remittance_reference'] ?? null,
         );
     }
 }
