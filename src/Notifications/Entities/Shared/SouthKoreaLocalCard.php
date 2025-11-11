@@ -9,26 +9,21 @@ declare(strict_types=1);
  * |-------------------------------------------------------------|.
  */
 
-namespace Paddle\SDK\Entities\Shared;
+namespace Paddle\SDK\Notifications\Entities\Shared;
 
-use Paddle\SDK\Entities\Entity;
-
-/**
- * @deprecated
- */
-class PaymentMethodUnderlyingDetails implements Entity
+class SouthKoreaLocalCard
 {
     private function __construct(
-        public KoreaLocalUnderlyingDetails|null $koreaLocal,
+        public SouthKoreaLocalCardType $type,
+        public string $last4,
     ) {
     }
 
     public static function from(array $data): self
     {
         return new self(
-            koreaLocal: isset($data['korea_local'])
-                ? KoreaLocalUnderlyingDetails::from($data['korea_local'])
-                : null,
+            type: SouthKoreaLocalCardType::from($data['type']),
+            last4: $data['last4'],
         );
     }
 }
