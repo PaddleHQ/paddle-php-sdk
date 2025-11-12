@@ -21,6 +21,11 @@ use Paddle\SDK\PaddleEnum;
  * @method static AvailablePaymentMethods Card()
  * @method static AvailablePaymentMethods GooglePay()
  * @method static AvailablePaymentMethods Ideal()
+ * @method static AvailablePaymentMethods SouthKoreaLocalCard()
+ * @method static AvailablePaymentMethods KakaoPay()
+ * @method static AvailablePaymentMethods NaverPay()
+ * @method static AvailablePaymentMethods Payco()
+ * @method static AvailablePaymentMethods SamsungPay()
  * @method static AvailablePaymentMethods MbWay()
  * @method static AvailablePaymentMethods Offline()
  * @method static AvailablePaymentMethods Paypal()
@@ -38,6 +43,11 @@ final class AvailablePaymentMethods extends PaddleEnum
     private const Card = 'card';
     private const GooglePay = 'google_pay';
     private const Ideal = 'ideal';
+    private const SouthKoreaLocalCard = 'south_korea_local_card';
+    private const KakaoPay = 'kakao_pay';
+    private const NaverPay = 'naver_pay';
+    private const Payco = 'payco';
+    private const SamsungPay = 'samsung_pay';
     private const MbWay = 'mb_way';
     private const Offline = 'offline';
     private const Paypal = 'paypal';

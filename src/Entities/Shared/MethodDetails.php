@@ -16,6 +16,8 @@ class MethodDetails
     private function __construct(
         public PaymentMethodType $type,
         public Card|null $card,
+        public SouthKoreaLocalCard|null $southKoreaLocalCard,
+        /** @deprecated */
         public PaymentMethodUnderlyingDetails|null $underlyingDetails,
     ) {
     }
@@ -25,6 +27,9 @@ class MethodDetails
         return new self(
             PaymentMethodType::from($data['type']),
             isset($data['card']) ? Card::from($data['card']) : null,
+            isset($data['south_korea_local_card'])
+                ? SouthKoreaLocalCard::from($data['south_korea_local_card'])
+                : null,
             isset($data['underlying_details'])
                 ? PaymentMethodUnderlyingDetails::from($data['underlying_details'])
                 : null,
