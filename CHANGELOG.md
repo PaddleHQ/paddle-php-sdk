@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [Unreleased]
+
+### Added
+
+- Added support for `payout_reconciliation` report type, see [changelog](https://developer.paddle.com/changelog/2025/payout-reconciliation-report?utm_source=dx&utm_medium=paddle-php-sdk)
+
+### Deprecated
+- `balance` report type is deprecated, use `payout_reconciliation` instead, see [changelog](https://developer.paddle.com/changelog/2025/payout-reconciliation-report?utm_source=dx&utm_medium=paddle-php-sdk)
+
 ## [1.15.0] - 2026-01-29
 
 ### Added
@@ -17,7 +26,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Added
 
 - Added additional support for local Korean payment methods. See [related changelog](https://developer.paddle.com/changelog/2025/improved-korean-payment-methods?utm_source=dx&utm_medium=paddle-php-sdk)
-- Support for payout reconciliation reports and `remittance_reference`, see [changelog](https://developer.paddle.com/changelog/2025/payout-reconciliation-report?utm_source=dx&utm_medium=paddle-php-sdk)
+- Support for `remittance_reference`, see [changelog](https://developer.paddle.com/changelog/2025/payout-reconciliation-report?utm_source=dx&utm_medium=paddle-php-sdk)
 - Added `location` value for `price.tax_mode`, see [changelog](https://developer.paddle.com/changelog/2025/default-automatic-tax-setting?utm_source=dx&utm_medium=paddle-php-sdk)
 
 ### Deprecated

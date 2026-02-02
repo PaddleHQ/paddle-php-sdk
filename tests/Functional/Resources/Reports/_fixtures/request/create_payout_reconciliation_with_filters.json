@@ -1,0 +1,15 @@
+{
+    "type": "payout_reconciliation",
+    "filters": [
+        {
+            "name": "remittance_reference",
+            "operator": null,
+            "value": "rem_01hhq4c3b03g3x2kpkj8aecjv6"
+        },
+        {
+            "name": "transaction_updated_at",
+            "operator": "gte",
+            "value": "2023-12-30"
+        }
+    ]
+}
