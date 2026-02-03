@@ -15,6 +15,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static EventTypeName ApiKeyCreated()
  * @method static EventTypeName ApiKeyExpired()
  * @method static EventTypeName ApiKeyExpiring()
+ * @method static EventTypeName ApiKeyExposureCreated()
  * @method static EventTypeName ApiKeyRevoked()
  * @method static EventTypeName ApiKeyUpdated()
  * @method static EventTypeName BusinessCreated()
@@ -77,6 +78,7 @@ final class EventTypeName extends PaddleEnum
     private const ApiKeyCreated = 'api_key.created';
     private const ApiKeyExpired = 'api_key.expired';
     private const ApiKeyExpiring = 'api_key.expiring';
+    private const ApiKeyExposureCreated = 'api_key_exposure.created';
     private const ApiKeyRevoked = 'api_key.revoked';
     private const ApiKeyUpdated = 'api_key.updated';
     private const BusinessCreated = 'business.created';
