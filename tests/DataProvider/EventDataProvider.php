@@ -66,6 +66,12 @@ class EventDataProvider extends TestCase
                 \Paddle\SDK\Notifications\Entities\ApiKey::class,
             ],
             [
+                'api_key_exposure.created',
+                'apiKeyExposure',
+                \Paddle\SDK\Notifications\Events\ApiKeyExposureCreated::class,
+                \Paddle\SDK\Notifications\Entities\ApiKeyExposure::class,
+            ],
+            [
                 'api_key.revoked',
                 'apiKey',
                 \Paddle\SDK\Notifications\Events\ApiKeyRevoked::class,

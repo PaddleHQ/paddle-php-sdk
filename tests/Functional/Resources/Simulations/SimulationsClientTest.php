@@ -130,6 +130,10 @@ class SimulationsClientTest extends TestCase
                 ['id' => 'ctm_01h844p3h41s12zs5mn4axja51'],
             ],
             [
+                new Simulation\ApiKeyExposure(id: 'apkexp_01jkas9tppn3bhadwpcyag45zd'),
+                ['id' => 'apkexp_01jkas9tppn3bhadwpcyag45zd'],
+            ],
+            [
                 new Simulation\DeletedPaymentMethod(id: 'paymtd_01hs8zx6x377xfsfrt2bqsevbw'),
                 ['id' => 'paymtd_01hs8zx6x377xfsfrt2bqsevbw'],
             ],
