@@ -79,6 +79,53 @@ class ReportsClientTest extends TestCase
             new Response(201, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
         ];
+
+        yield 'Create payout reconciliation' => [
+            new CreateReport(
+                type: ReportType::PayoutReconciliation(),
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_payout_reconciliation'),
+        ];
+
+        yield 'Create payout reconciliation with filters' => [
+            new CreateReport(
+                type: ReportType::PayoutReconciliation(),
+                filters: [
+                    new ReportFilter(name: ReportFilterName::UpdatedAt(), operator: ReportFilterOperator::Lt(), value: '2023-12-30'),
+                ],
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_payout_reconciliation_full'),
+        ];
+
+        yield 'Create payout reconciliation with remittance reference filter' => [
+            new CreateReport(
+                type: ReportType::PayoutReconciliation(),
+                filters: [
+                    new ReportFilter(
+                        name: ReportFilterName::RemittanceReference(),
+                        operator: null,
+                        value: 'rem_01hhq4c3b03g3x2kpkj8aecjv6',
+                    ),
+                    new ReportFilter(
+                        name: ReportFilterName::TransactionUpdatedAt(),
+                        operator: ReportFilterOperator::Gte(),
+                        value: '2023-12-30',
+                    ),
+                ],
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_payout_reconciliation_with_filters'),
+        ];
+
+        yield 'Create balance report' => [
+            new CreateReport(
+                type: ReportType::Balance(),
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_balance'),
+        ];
     }
 
     /**

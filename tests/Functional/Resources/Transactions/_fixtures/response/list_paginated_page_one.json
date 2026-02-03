@@ -98,7 +98,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "40000",
                                     "currency_code": "AUD"
@@ -139,7 +141,8 @@
                     "credit_to_balance": "0",
                     "balance": "901387",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "73477"
                 },
                 "adjusted_totals": {
                     "subtotal": "827910",
@@ -149,7 +152,8 @@
                     "fee": null,
                     "retained_fee": "0",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "73477"
                 },
                 "payout_totals": null,
                 "adjusted_payout_totals": null,
@@ -283,7 +287,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "5000",
                                     "currency_code": "AUD"
@@ -317,7 +323,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "20000",
                                     "currency_code": "AUD"
@@ -348,7 +356,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "40000",
                                     "currency_code": "AUD"
@@ -389,7 +399,8 @@
                     "credit_to_balance": "0",
                     "balance": "72479",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "12579"
                 },
                 "adjusted_totals": {
                     "subtotal": "59900",
@@ -399,7 +410,8 @@
                     "fee": null,
                     "retained_fee": "0",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "12579"
                 },
                 "payout_totals": null,
                 "adjusted_payout_totals": null,
@@ -533,7 +545,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "5000",
                                     "currency_code": "AUD"
@@ -567,7 +581,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "20000",
                                     "currency_code": "AUD"
@@ -598,7 +614,9 @@
                         },
                         "unit_price_overrides": [
                             {
-                                "country_codes": ["AU"],
+                                "country_codes": [
+                                    "AU"
+                                ],
                                 "unit_price": {
                                     "amount": "40000",
                                     "currency_code": "AUD"
@@ -639,7 +657,8 @@
                     "credit_to_balance": "0",
                     "balance": "59900",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "0"
                 },
                 "adjusted_totals": {
                     "subtotal": "59900",
@@ -649,7 +668,8 @@
                     "fee": null,
                     "retained_fee": "0",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "0"
                 },
                 "payout_totals": null,
                 "adjusted_payout_totals": null,
@@ -845,7 +865,8 @@
                     "credit_to_balance": "0",
                     "balance": "0",
                     "earnings": "37950",
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "0"
                 },
                 "adjusted_totals": {
                     "subtotal": "40000",
@@ -855,7 +876,8 @@
                     "fee": "2050",
                     "retained_fee": "0",
                     "earnings": "37950",
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "0"
                 },
                 "payout_totals": {
                     "subtotal": "40000",
@@ -870,7 +892,8 @@
                     "earnings": "37950",
                     "currency_code": "USD",
                     "exchange_rate": "0.70194147",
-                    "fee_rate": "0"
+                    "fee_rate": "0",
+                    "grand_total_tax": "0"
                 },
                 "adjusted_payout_totals": {
                     "subtotal": "40000",
@@ -1054,7 +1077,8 @@
                     "credit_to_balance": "0",
                     "balance": "5000",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "0"
                 },
                 "adjusted_totals": {
                     "subtotal": "5000",
@@ -1064,7 +1088,8 @@
                     "fee": null,
                     "retained_fee": "0",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "0"
                 },
                 "payout_totals": null,
                 "adjusted_payout_totals": null,
@@ -1212,7 +1237,8 @@
                     "credit_to_balance": "0",
                     "balance": "43549",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "3549"
                 },
                 "adjusted_totals": {
                     "subtotal": "40000",
@@ -1222,7 +1248,8 @@
                     "fee": null,
                     "retained_fee": "0",
                     "earnings": null,
-                    "currency_code": "USD"
+                    "currency_code": "USD",
+                    "grand_total_tax": "3549"
                 },
                 "payout_totals": null,
                 "adjusted_payout_totals": null,

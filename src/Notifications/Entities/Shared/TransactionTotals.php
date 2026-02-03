@@ -25,6 +25,7 @@ class TransactionTotals
         public string|null $earnings,
         public CurrencyCode $currencyCode,
         public string|null $creditToBalance,
+        public string|null $grandTotalTax,
     ) {
     }
 
@@ -42,6 +43,7 @@ class TransactionTotals
             earnings: $data['earnings'] ?? null,
             currencyCode: CurrencyCode::from($data['currency_code']),
             creditToBalance: $data['credit_to_balance'] ?? null,
+            grandTotalTax: $data['grand_total_tax'] ?? null,
         );
     }
 }

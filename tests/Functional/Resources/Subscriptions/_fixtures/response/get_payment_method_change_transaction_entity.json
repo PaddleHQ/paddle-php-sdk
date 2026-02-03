@@ -40,7 +40,9 @@
                     },
                     "unit_price_overrides": [
                         {
-                            "country_codes": ["AU"],
+                            "country_codes": [
+                                "AU"
+                            ],
                             "unit_price": {
                                 "amount": "5000",
                                 "currency_code": "AUD"
@@ -88,7 +90,8 @@
                 "balance": "0",
                 "grand_total": "0",
                 "earnings": null,
-                "currency_code": "USD"
+                "currency_code": "USD",
+                "grand_total_tax": "0"
             },
             "adjusted_totals": {
                 "subtotal": "0",
@@ -98,7 +101,8 @@
                 "fee": "0",
                 "retained_fee": "0",
                 "earnings": "0",
-                "currency_code": "USD"
+                "currency_code": "USD",
+                "grand_total_tax": "0"
             },
             "payout_totals": null,
             "adjusted_payout_totals": null,

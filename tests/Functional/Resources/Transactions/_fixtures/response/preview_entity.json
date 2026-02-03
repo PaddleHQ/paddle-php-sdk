@@ -56,7 +56,9 @@
                     },
                     "unit_price_overrides": [
                         {
-                            "country_codes": ["AU"],
+                            "country_codes": [
+                                "AU"
+                            ],
                             "unit_price": {
                                 "amount": "40000",
                                 "currency_code": "AUD"
@@ -91,7 +93,9 @@
                     },
                     "unit_price_overrides": [
                         {
-                            "country_codes": ["AU"],
+                            "country_codes": [
+                                "AU"
+                            ],
                             "unit_price": {
                                 "amount": "40000",
                                 "currency_code": "AUD"
@@ -135,7 +139,8 @@
                 "credit_to_balance": "0",
                 "balance": "540000",
                 "earnings": null,
-                "currency_code": "USD"
+                "currency_code": "USD",
+                "grand_total_tax": "0"
             },
             "line_items": [
                 {

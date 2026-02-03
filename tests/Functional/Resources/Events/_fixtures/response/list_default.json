@@ -300,7 +300,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -404,7 +405,8 @@
                         "earnings": "0",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [
@@ -633,7 +635,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -737,7 +740,8 @@
                         "earnings": "0",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [
@@ -966,7 +970,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -1070,7 +1075,8 @@
                         "earnings": "0",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [
@@ -1298,7 +1304,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -1402,7 +1409,8 @@
                         "earnings": "0",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [],
@@ -1609,7 +1617,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -1713,7 +1722,8 @@
                         "earnings": "0",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [],
@@ -1980,7 +1990,8 @@
                         "subtotal": "59900",
                         "grand_total": "63494",
                         "currency_code": "USD",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "3594"
                     },
                     "line_items": [
                         {
@@ -2100,7 +2111,8 @@
                         "earnings": "0",
                         "subtotal": "59900",
                         "grand_total": "63494",
-                        "currency_code": "USD"
+                        "currency_code": "USD",
+                        "grand_total_tax": "3594"
                     }
                 },
                 "payments": [],
@@ -2307,7 +2319,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -2405,7 +2418,8 @@
                         "grand_total": "81066",
                         "currency_code": "USD",
                         "exchange_rate": "1.2282731999999998",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "13511"
                     },
                     "tax_rates_used": [
                         {
@@ -2425,7 +2439,8 @@
                         "earnings": "51660",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [
@@ -2653,7 +2668,8 @@
                         "subtotal": "55000",
                         "grand_total": "66000",
                         "currency_code": "GBP",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "11000"
                     },
                     "line_items": [
                         {
@@ -2751,7 +2767,8 @@
                         "grand_total": "81066",
                         "currency_code": "USD",
                         "exchange_rate": "1.2282731999999998",
-                        "credit_to_balance": "0"
+                        "credit_to_balance": "0",
+                        "grand_total_tax": "13511"
                     },
                     "tax_rates_used": [
                         {
@@ -2771,7 +2788,8 @@
                         "earnings": "51660",
                         "subtotal": "55000",
                         "grand_total": "66000",
-                        "currency_code": "GBP"
+                        "currency_code": "GBP",
+                        "grand_total_tax": "11000"
                     }
                 },
                 "payments": [
