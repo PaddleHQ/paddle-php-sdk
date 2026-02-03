@@ -11,6 +11,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Added
 
 - Added support for `wechat_pay` payment method type. See [related changelog](https://developer.paddle.com/changelog/2025/wechat-pay-payment-method?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `api_key_exposure.created` event support. See [related changelog](https://developer.paddle.com/changelog/2025/secret-scanning?utm_source=dx&utm_medium=paddle-php-sdk)
 
 ## [1.15.0] - 2026-01-29
 
