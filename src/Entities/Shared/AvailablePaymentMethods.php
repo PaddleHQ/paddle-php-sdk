@@ -32,6 +32,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static AvailablePaymentMethods Pix()
  * @method static AvailablePaymentMethods Unknown()
  * @method static AvailablePaymentMethods Upi()
+ * @method static AvailablePaymentMethods WechatPay()
  * @method static AvailablePaymentMethods WireTransfer()
  */
 final class AvailablePaymentMethods extends PaddleEnum
@@ -54,5 +55,6 @@ final class AvailablePaymentMethods extends PaddleEnum
     private const Pix = 'pix';
     private const Unknown = 'unknown';
     private const Upi = 'upi';
+    private const WechatPay = 'wechat_pay';
     private const WireTransfer = 'wire_transfer';
 }

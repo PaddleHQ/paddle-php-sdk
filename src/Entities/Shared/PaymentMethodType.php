@@ -33,6 +33,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static PaymentMethodType SouthKoreaLocalCard()
  * @method static PaymentMethodType Unknown()
  * @method static PaymentMethodType Upi()
+ * @method static PaymentMethodType WechatPay()
  * @method static PaymentMethodType WireTransfer()
  */
 final class PaymentMethodType extends PaddleEnum
@@ -56,5 +57,6 @@ final class PaymentMethodType extends PaddleEnum
     private const SouthKoreaLocalCard = 'south_korea_local_card';
     private const Unknown = 'unknown';
     private const Upi = 'upi';
+    private const WechatPay = 'wechat_pay';
     private const WireTransfer = 'wire_transfer';
 }
