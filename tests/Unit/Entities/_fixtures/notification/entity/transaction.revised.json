@@ -106,7 +106,8 @@
             "subtotal": "59900",
             "grand_total": "65215",
             "currency_code": "USD",
-            "credit_to_balance": "0"
+            "credit_to_balance": "0",
+            "grand_total_tax": "5315"
         },
         "line_items": [
             {
@@ -230,7 +231,8 @@
             "currency_code": "USD",
             "credit_to_balance": "0",
             "exchange_rate": "0.70194147",
-            "fee_rate": "0"
+            "fee_rate": "0",
+            "grand_total_tax": "5315"
         },
         "tax_rates_used": [
             {
@@ -263,7 +265,8 @@
             "earnings": "56589",
             "subtotal": "59900",
             "grand_total": "65215",
-            "currency_code": "USD"
+            "currency_code": "USD",
+            "grand_total_tax": "5315"
         }
     },
     "checkout": {

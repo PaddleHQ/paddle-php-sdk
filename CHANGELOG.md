@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [Unreleased]
+
+### Added
+
+- Added `grand_total_tax` to transaction totals and adjusted totals. See [related changelog](https://developer.paddle.com/changelog/2026/grand-total-tax-field?utm_source=dx&utm_medium=paddle-php-sdk)
+
 ## [1.15.0] - 2026-01-29
 
 ### Added
