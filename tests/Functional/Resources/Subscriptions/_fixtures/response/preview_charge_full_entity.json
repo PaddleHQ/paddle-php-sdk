@@ -46,7 +46,8 @@
                 "grand_total": "43549",
                 "earnings": null,
                 "currency_code": "USD",
-                "exchange_rate": "1"
+                "exchange_rate": "1",
+                "grand_total_tax": "3549"
             },
             "line_items": [
                 {
@@ -161,7 +162,8 @@
                     "grand_total": "43549",
                     "earnings": null,
                     "currency_code": "USD",
-                    "exchange_rate": "1"
+                    "exchange_rate": "1",
+                    "grand_total_tax": "3549"
                 },
                 "line_items": [
                     {
@@ -278,7 +280,8 @@
                     "grand_total": "21666",
                     "earnings": null,
                     "currency_code": "USD",
-                    "exchange_rate": "1"
+                    "exchange_rate": "1",
+                    "grand_total_tax": "1766"
                 },
                 "line_items": [
                     {

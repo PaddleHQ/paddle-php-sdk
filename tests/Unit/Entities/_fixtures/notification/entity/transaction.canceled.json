@@ -106,7 +106,8 @@
             "subtotal": "2819900",
             "grand_total": "2763149",
             "currency_code": "USD",
-            "credit_to_balance": "0"
+            "credit_to_balance": "0",
+            "grand_total_tax": "225239"
         },
         "line_items": [
             {
@@ -122,7 +123,7 @@
                     "name": "AeroEdit Enterprise",
                     "type": "standard",
                     "status": "active",
-                    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/Ws808ziTS76a6YbnMkiK_enterprise.png",
+                    "image_url": "https://paddle.s3.amazonaws.com/user/165798/Ws808ziTS76a6YbnMkiK_enterprise.png",
                     "created_at": "2023-02-23T12:44:34.923Z",
                     "updated_at": "2024-04-05T15:58:28.309Z",
                     "custom_data": {
@@ -164,7 +165,7 @@
                     "name": "VIP support",
                     "type": "standard",
                     "status": "active",
-                    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/qgyipKJwRtq98YNboipo_vip-support.png",
+                    "image_url": "https://paddle.s3.amazonaws.com/user/165798/qgyipKJwRtq98YNboipo_vip-support.png",
                     "created_at": "2023-02-23T13:58:17.615Z",
                     "updated_at": "2024-04-05T15:44:02.893Z",
                     "custom_data": null,
@@ -195,7 +196,7 @@
                     "name": "Custom domains",
                     "type": "standard",
                     "status": "active",
-                    "image_url": "https:\/\/paddle.s3.amazonaws.com\/user\/165798\/XIG7UXoJQHmlIAiKcnkA_custom-domains.png",
+                    "image_url": "https://paddle.s3.amazonaws.com/user/165798/XIG7UXoJQHmlIAiKcnkA_custom-domains.png",
                     "created_at": "2023-02-23T14:01:02.441Z",
                     "updated_at": "2024-04-05T15:43:28.971Z",
                     "custom_data": null,
@@ -233,7 +234,8 @@
             "earnings": "0",
             "subtotal": "2537910",
             "grand_total": "2763149",
-            "currency_code": "USD"
+            "currency_code": "USD",
+            "grand_total_tax": "225239"
         }
     },
     "checkout": {

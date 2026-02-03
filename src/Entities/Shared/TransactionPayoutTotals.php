@@ -27,6 +27,7 @@ class TransactionPayoutTotals
         public string $creditToBalance,
         public string $exchangeRate,
         public string $feeRate,
+        public string $grandTotalTax,
     ) {
     }
 
@@ -46,6 +47,7 @@ class TransactionPayoutTotals
             creditToBalance: $data['credit_to_balance'],
             exchangeRate: $data['exchange_rate'],
             feeRate: $data['fee_rate'],
+            grandTotalTax: $data['grand_total_tax'],
         );
     }
 }

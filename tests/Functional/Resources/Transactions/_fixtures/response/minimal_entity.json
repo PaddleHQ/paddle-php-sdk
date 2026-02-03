@@ -1,129 +1,131 @@
 {
-  "data": {
-    "id": "txn_01hempgzm2hjaxbxhbyya4c8m5",
-    "status": "draft",
-    "customer_id": null,
-    "address_id": null,
-    "business_id": null,
-    "custom_data": null,
-    "origin": "api",
-    "collection_mode": "automatic",
-    "subscription_id": null,
-    "invoice_id": null,
-    "invoice_number": null,
-    "billing_details": null,
-    "billing_period": null,
-    "currency_code": "USD",
-    "discount_id": null,
-    "created_at": "2023-11-07T10:51:19.601401071Z",
-    "updated_at": "2023-11-07T10:51:19.601401071Z",
-    "billed_at": null,
-    "revised_at": null,
-    "items": [
-      {
-        "price": {
-          "id": "pri_01he5kxqey1k8ankgef29cj4bv",
-          "description": "Base subscription",
-          "name": "Base subscription",
-          "product_id": "pro_01he5kwnnvgdv2chtpgavk2rf8",
-          "billing_cycle": {
-            "interval": "month",
-            "frequency": 1
-          },
-          "trial_period": null,
-          "tax_mode": "account_setting",
-          "unit_price": {
-            "amount": "0",
-            "currency_code": "USD"
-          },
-          "unit_price_overrides": [],
-          "custom_data": null,
-          "quantity": {
-            "minimum": 1,
-            "maximum": 100
-          },
-          "status": "active",
-          "created_at": "2023-08-16T14:38:08.3Z",
-          "updated_at": "2023-08-16T14:38:08.3Z"
+    "data": {
+        "id": "txn_01hempgzm2hjaxbxhbyya4c8m5",
+        "status": "draft",
+        "customer_id": null,
+        "address_id": null,
+        "business_id": null,
+        "custom_data": null,
+        "origin": "api",
+        "collection_mode": "automatic",
+        "subscription_id": null,
+        "invoice_id": null,
+        "invoice_number": null,
+        "billing_details": null,
+        "billing_period": null,
+        "currency_code": "USD",
+        "discount_id": null,
+        "created_at": "2023-11-07T10:51:19.601401071Z",
+        "updated_at": "2023-11-07T10:51:19.601401071Z",
+        "billed_at": null,
+        "revised_at": null,
+        "items": [
+            {
+                "price": {
+                    "id": "pri_01he5kxqey1k8ankgef29cj4bv",
+                    "description": "Base subscription",
+                    "name": "Base subscription",
+                    "product_id": "pro_01he5kwnnvgdv2chtpgavk2rf8",
+                    "billing_cycle": {
+                        "interval": "month",
+                        "frequency": 1
+                    },
+                    "trial_period": null,
+                    "tax_mode": "account_setting",
+                    "unit_price": {
+                        "amount": "0",
+                        "currency_code": "USD"
+                    },
+                    "unit_price_overrides": [],
+                    "custom_data": null,
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 100
+                    },
+                    "status": "active",
+                    "created_at": "2023-08-16T14:38:08.3Z",
+                    "updated_at": "2023-08-16T14:38:08.3Z"
+                },
+                "quantity": 1
+            }
+        ],
+        "details": {
+            "tax_rates_used": [
+                {
+                    "tax_rate": "0",
+                    "totals": {
+                        "subtotal": "0",
+                        "discount": "0",
+                        "tax": "0",
+                        "total": "0"
+                    }
+                }
+            ],
+            "totals": {
+                "subtotal": "0",
+                "tax": "0",
+                "discount": "0",
+                "total": "0",
+                "grand_total": "0",
+                "fee": null,
+                "credit": "0",
+                "credit_to_balance": "0",
+                "balance": "0",
+                "earnings": null,
+                "currency_code": "USD",
+                "grand_total_tax": "0"
+            },
+            "adjusted_totals": {
+                "subtotal": "0",
+                "tax": "0",
+                "total": "0",
+                "grand_total": "0",
+                "fee": "0",
+                "retained_fee": "0",
+                "earnings": "0",
+                "currency_code": "USD",
+                "grand_total_tax": "0"
+            },
+            "payout_totals": null,
+            "adjusted_payout_totals": null,
+            "line_items": [
+                {
+                    "id": "txnitm_01hempgzn6v3f2d6fgtekt9nwc",
+                    "price_id": "pri_01he5kxqey1k8ankgef29cj4bv",
+                    "quantity": 1,
+                    "totals": {
+                        "subtotal": "0",
+                        "tax": "0",
+                        "discount": "0",
+                        "total": "0"
+                    },
+                    "product": {
+                        "id": "pro_01he5kwnnvgdv2chtpgavk2rf8",
+                        "name": "Fire Transfer",
+                        "description": "Transfer data quickly with Fire Transfer. It's blazin' fast!",
+                        "tax_category": "standard",
+                        "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/XBWZPsQoSc6YyViK5ocI_fire.png",
+                        "custom_data": null,
+                        "status": "active",
+                        "created_at": "2023-08-16T14:38:08.3Z",
+                        "updated_at": "2023-08-16T14:38:08.3Z"
+                    },
+                    "tax_rate": "0",
+                    "unit_totals": {
+                        "subtotal": "0",
+                        "tax": "0",
+                        "discount": "0",
+                        "total": "0"
+                    }
+                }
+            ]
         },
-        "quantity": 1
-      }
-    ],
-    "details": {
-      "tax_rates_used": [
-        {
-          "tax_rate": "0",
-          "totals": {
-            "subtotal": "0",
-            "discount": "0",
-            "tax": "0",
-            "total": "0"
-          }
+        "payments": [],
+        "checkout": {
+            "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hempgzm2hjaxbxhbyya4c8m5"
         }
-      ],
-      "totals": {
-        "subtotal": "0",
-        "tax": "0",
-        "discount": "0",
-        "total": "0",
-        "grand_total": "0",
-        "fee": null,
-        "credit": "0",
-        "credit_to_balance": "0",
-        "balance": "0",
-        "earnings": null,
-        "currency_code": "USD"
-      },
-      "adjusted_totals": {
-        "subtotal": "0",
-        "tax": "0",
-        "total": "0",
-        "grand_total": "0",
-        "fee": "0",
-        "retained_fee": "0",
-        "earnings": "0",
-        "currency_code": "USD"
-      },
-      "payout_totals": null,
-      "adjusted_payout_totals": null,
-      "line_items": [
-        {
-          "id": "txnitm_01hempgzn6v3f2d6fgtekt9nwc",
-          "price_id": "pri_01he5kxqey1k8ankgef29cj4bv",
-          "quantity": 1,
-          "totals": {
-            "subtotal": "0",
-            "tax": "0",
-            "discount": "0",
-            "total": "0"
-          },
-          "product": {
-            "id": "pro_01he5kwnnvgdv2chtpgavk2rf8",
-            "name": "Fire Transfer",
-            "description": "Transfer data quickly with Fire Transfer. It's blazin' fast!",
-            "tax_category": "standard",
-            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/XBWZPsQoSc6YyViK5ocI_fire.png",
-            "custom_data": null,
-            "status": "active",
-            "created_at": "2023-08-16T14:38:08.3Z",
-            "updated_at": "2023-08-16T14:38:08.3Z"
-          },
-          "tax_rate": "0",
-          "unit_totals": {
-            "subtotal": "0",
-            "tax": "0",
-            "discount": "0",
-            "total": "0"
-          }
-        }
-      ]
     },
-    "payments": [],
-    "checkout": {
-      "url": "https://magnificent-entremet-7ae0c6.netlify.app/default/overlay?_ptxn=txn_01hempgzm2hjaxbxhbyya4c8m5"
+    "meta": {
+        "request_id": "0a1e62a8-df0f-4944-a65c-bd1bbaa316fd"
     }
-  },
-  "meta": {
-    "request_id": "0a1e62a8-df0f-4944-a65c-bd1bbaa316fd"
-  }
 }

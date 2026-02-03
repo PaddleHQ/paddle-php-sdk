@@ -22,6 +22,7 @@ class TransactionTotalsAdjusted
         public string $retainedFee,
         public string|null $earnings,
         public CurrencyCode $currencyCode,
+        public string $grandTotalTax,
     ) {
     }
 
@@ -36,6 +37,7 @@ class TransactionTotalsAdjusted
             $data['retained_fee'],
             $data['earnings'] ?? null,
             CurrencyCode::from($data['currency_code']),
+            $data['grand_total_tax'],
         );
     }
 }
