@@ -11,6 +11,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Added
 
 - Added support for `payout_reconciliation` report type, see [changelog](https://developer.paddle.com/changelog/2025/payout-reconciliation-report?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `api_key_exposure.created` event support. See [related changelog](https://developer.paddle.com/changelog/2025/secret-scanning?utm_source=dx&utm_medium=paddle-php-sdk)
 
 ### Deprecated
 - `balance` report type is deprecated, use `payout_reconciliation` instead, see [changelog](https://developer.paddle.com/changelog/2025/payout-reconciliation-report?utm_source=dx&utm_medium=paddle-php-sdk)
