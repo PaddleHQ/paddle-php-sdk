@@ -30,6 +30,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static SavedPaymentMethodType SouthKoreaLocalCard()
  * @method static SavedPaymentMethodType Payco()
  * @method static SavedPaymentMethodType Upi()
+ * @method static SavedPaymentMethodType WechatPay()
  */
 final class SavedPaymentMethodType extends PaddleEnum
 {
@@ -48,4 +49,5 @@ final class SavedPaymentMethodType extends PaddleEnum
     private const SamsungPay = 'samsung_pay';
     private const SouthKoreaLocalCard = 'south_korea_local_card';
     private const Upi = 'upi';
+    private const WechatPay = 'wechat_pay';
 }

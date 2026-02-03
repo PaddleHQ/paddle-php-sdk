@@ -197,7 +197,7 @@
                 }
             ]
         },
-        "available_payment_methods": ["apple_pay"]
+        "available_payment_methods": ["apple_pay", "wechat_pay"]
     },
     "meta": {
         "request_id": "1b2b31c3-f266-4996-8d4d-e5fd495e2069"
