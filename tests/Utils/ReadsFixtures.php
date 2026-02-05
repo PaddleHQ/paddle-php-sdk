@@ -29,7 +29,7 @@ trait ReadsFixtures
                 continue;
             }
 
-            return file_get_contents($file);
+            return trim(file_get_contents($file));
         }
 
         throw new \InvalidArgumentException("Fixture '{$fixture}' not found!");
