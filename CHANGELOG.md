@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.17.0] - 2026-03-30
+
+### Added
+
+- Added support for metrics endpoints. See [related changelog](https://developer.paddle.com/changelog/2026/metrics-api?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->metrics->getMonthlyRecurringRevenue()`
+  - `Client->metrics->getMonthlyRecurringRevenueChange()`
+  - `Client->metrics->getActiveSubscribers()`
+  - `Client->metrics->getRevenue()`
+  - `Client->metrics->getRefunds()`
+  - `Client->metrics->getChargebacks()`
+  - `Client->metrics->getCheckoutConversion()`
+
 ## [1.16.0] - 2026-02-04
 
 ### Added
