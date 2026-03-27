@@ -1,0 +1,17 @@
+{
+    "data": {
+        "timeseries": [
+            { "timestamp": "2025-09-01T00:00:00Z", "count": 1 },
+            { "timestamp": "2025-09-02T00:00:00Z", "count": 2 },
+            { "timestamp": "2025-09-03T00:00:00Z", "count": 0 },
+            { "timestamp": "2025-09-04T00:00:00Z", "count": 1 }
+        ],
+        "starts_at": "2025-09-01T00:00:00Z",
+        "ends_at": "2025-09-05T00:00:00Z",
+        "interval": "day",
+        "updated_at": "2026-03-03T06:30:32.811Z"
+    },
+    "meta": {
+        "request_id": "b93d9c94-c28f-4e5d-af2e-044854d7afe8"
+    }
+}

@@ -28,6 +28,7 @@ use Paddle\SDK\Resources\DiscountGroups\DiscountGroupsClient;
 use Paddle\SDK\Resources\Discounts\DiscountsClient;
 use Paddle\SDK\Resources\Events\EventsClient;
 use Paddle\SDK\Resources\EventTypes\EventTypesClient;
+use Paddle\SDK\Resources\Metrics\MetricsClient;
 use Paddle\SDK\Resources\NotificationLogs\NotificationLogsClient;
 use Paddle\SDK\Resources\Notifications\NotificationsClient;
 use Paddle\SDK\Resources\NotificationSettings\NotificationSettingsClient;
@@ -53,7 +54,7 @@ use Symfony\Component\Uid\Ulid;
 
 class Client
 {
-    private const SDK_VERSION = '1.16.0';
+    private const SDK_VERSION = '1.17.0';
 
     public readonly LoggerInterface $logger;
     public readonly Options $options;
@@ -82,6 +83,7 @@ class Client
     public readonly SimulationRunsClient $simulationRuns;
     public readonly SimulationRunEventsClient $simulationRunEvents;
     public readonly SimulationTypesClient $simulationTypes;
+    public readonly MetricsClient $metrics;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -133,6 +135,7 @@ class Client
         $this->simulationRuns = new SimulationRunsClient($this);
         $this->simulationRunEvents = new SimulationRunEventsClient($this);
         $this->simulationTypes = new SimulationTypesClient($this);
+        $this->metrics = new MetricsClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
