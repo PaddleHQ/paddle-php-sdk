@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Metrics;
 
+use Paddle\SDK\Entities\DateTime;
+
 class MetricsCountDatapoint
 {
     private function __construct(
-        public string $timestamp,
+        public \DateTimeInterface $timestamp,
         public int $count,
     ) {
     }
@@ -22,7 +24,7 @@ class MetricsCountDatapoint
     public static function from(array $data): self
     {
         return new self(
-            timestamp: $data['timestamp'],
+            timestamp: DateTime::from($data['timestamp']),
             count: $data['count'],
         );
     }
