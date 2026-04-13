@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.17.1] - 2026-04-14
+
+### Added
+
+- Added dedicated one-time charge item types for subscriptions, resolving issues with non-catalog product serialization
+  - `SubscriptionChargeItem` — catalog item for one-time charges
+  - `SubscriptionChargeItemWithPrice` — non-catalog item for one-time charges
+  - `SubscriptionChargeNonCatalogPrice` — non-catalog price for existing products
+  - `SubscriptionChargeNonCatalogPriceWithProduct` — non-catalog price with inline product
+  - `SubscriptionChargeNonCatalogProduct` — non-catalog product for one-time charges
+
+### Fixed
+
+- Fixed one-time charge requests failing when using `SubscriptionItemsWithPrice` with `SubscriptionNonCatalogProduct` due to an extra `type` field being serialized
+
 ## [1.17.0] - 2026-03-30
 
 ### Added
