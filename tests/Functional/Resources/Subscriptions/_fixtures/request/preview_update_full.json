@@ -57,8 +57,7 @@
                     "description": "some description",
                     "image_url": "https://www.example.com/image.jpg",
                     "name": "some name",
-                    "tax_category": "digital-goods",
-                    "type": "custom"
+                    "tax_category": "digital-goods"
                 },
                 "quantity": {
                     "maximum": 3,

@@ -33,6 +33,11 @@ use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Subscriptions\Operations\CancelSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeItem;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeItemWithPrice;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeNonCatalogPrice;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeNonCatalogPriceWithProduct;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeNonCatalogProduct;
 use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeCharge;
 use Paddle\SDK\Resources\Subscriptions\Operations\Get\Includes;
 use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptions;
@@ -569,6 +574,69 @@ class SubscriptionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_one_time_charge_full'),
         ];
+
+        yield 'Charge Catalog Item' => [
+            new CreateOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItem('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_minimal'),
+        ];
+
+        yield 'Charge Non-Catalog Price' => [
+            new CreateOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPrice(
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            'One-time setup fee',
+                            new Money('1000', CurrencyCode::USD()),
+                            'Setup Fee',
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(1, 1),
+                            new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_non_catalog_price'),
+        ];
+
+        yield 'Charge Non-Catalog Price and Product' => [
+            new CreateOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPriceWithProduct(
+                            'One-time setup fee',
+                            new Money('1000', CurrencyCode::USD()),
+                            new SubscriptionChargeNonCatalogProduct(
+                                'Custom Setup',
+                                TaxCategory::DigitalGoods(),
+                                'One-time custom setup service',
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            'Setup Fee',
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(1, 1),
+                            new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_non_catalog_price_and_product'),
+        ];
     }
 
     /**
@@ -723,6 +791,69 @@ class SubscriptionsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
             self::readRawJsonFixture('request/preview_one_time_charge_full'),
+        ];
+
+        yield 'Preview Charge Catalog Item' => [
+            new PreviewOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItem('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_minimal'),
+        ];
+
+        yield 'Preview Charge Non-Catalog Price' => [
+            new PreviewOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPrice(
+                            'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            'One-time setup fee',
+                            new Money('1000', CurrencyCode::USD()),
+                            'Setup Fee',
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(1, 1),
+                            new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_non_catalog_price'),
+        ];
+
+        yield 'Preview Charge Non-Catalog Price and Product' => [
+            new PreviewOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPriceWithProduct(
+                            'One-time setup fee',
+                            new Money('1000', CurrencyCode::USD()),
+                            new SubscriptionChargeNonCatalogProduct(
+                                'Custom Setup',
+                                TaxCategory::DigitalGoods(),
+                                'One-time custom setup service',
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            'Setup Fee',
+                            TaxMode::AccountSetting(),
+                            [],
+                            new PriceQuantity(1, 1),
+                            new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_non_catalog_price_and_product'),
         ];
     }
 
