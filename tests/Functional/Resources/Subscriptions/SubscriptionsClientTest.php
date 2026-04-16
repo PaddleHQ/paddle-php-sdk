@@ -105,6 +105,38 @@ class SubscriptionsClientTest extends TestCase
             self::readRawJsonFixture('request/update_partial'),
         ];
 
+        yield 'Update Non-Catalog Product With Null Values' => [
+            new UpdateSubscription(
+                items: [
+                    new SubscriptionItemsWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            'some description',
+                            'some name',
+                            new SubscriptionNonCatalogProduct(
+                                'some name',
+                                null,
+                                null,
+                                TaxCategory::DigitalGoods(),
+                                null,
+                                null,
+                            ),
+                            TaxMode::AccountSetting(),
+                            new Money('1', CurrencyCode::GBP()),
+                            [],
+                            new PriceQuantity(1, 3),
+                            null,
+                            new TimePeriod(Interval::Day(), 1),
+                            new TimePeriod(Interval::Day(), 2),
+                        ),
+                        2,
+                    ),
+                ],
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_non_catalog_product_with_nulls'),
+        ];
+
         yield 'Update All' => [
             new UpdateSubscription(
                 customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',

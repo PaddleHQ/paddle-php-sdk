@@ -30,14 +30,12 @@ class SubscriptionNonCatalogProduct implements \JsonSerializable
 
     public function jsonSerialize(): array
     {
-        $data = [
+        return [
             'name' => $this->name,
             'description' => $this->description,
             'tax_category' => $this->taxCategory,
             'image_url' => $this->imageUrl,
             'custom_data' => $this->customData,
         ];
-
-        return array_filter($data, fn ($value) => $value !== null);
     }
 }
