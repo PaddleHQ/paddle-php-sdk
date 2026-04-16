@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
+/**
+ * @deprecated use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItem for update and preview update operations
+ */
 class SubscriptionItems
 {
     public function __construct(

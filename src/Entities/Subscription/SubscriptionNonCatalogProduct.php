@@ -15,6 +15,9 @@ use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 
+/**
+ * @deprecated use Paddle\SDK\Resources\Subscriptions\Operations\Price\SubscriptionNonCatalogProduct instead
+ */
 class SubscriptionNonCatalogProduct implements \JsonSerializable
 {
     public function __construct(

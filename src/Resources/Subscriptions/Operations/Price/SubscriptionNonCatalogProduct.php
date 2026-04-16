@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Subscriptions\Operations\Charge;
+namespace Paddle\SDK\Resources\Subscriptions\Operations\Price;
 
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionChargeNonCatalogProduct implements \JsonSerializable
+class SubscriptionNonCatalogProduct implements \JsonSerializable
 {
     use FiltersUndefined;
 

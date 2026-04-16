@@ -21,6 +21,14 @@
                 "quantity": {
                     "maximum": 3,
                     "minimum": 1
+                },
+                "billing_cycle": {
+                    "frequency": 1,
+                    "interval": "day"
+                },
+                "trial_period": {
+                    "frequency": 2,
+                    "interval": "day"
                 }
             },
             "quantity": 2

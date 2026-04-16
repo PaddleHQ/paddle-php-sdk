@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Paddle\SDK\Resources\Subscriptions\Operations\Charge;
+namespace Paddle\SDK\Resources\Subscriptions\Operations\Price;
 
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
 use Paddle\SDK\Entities\Shared\TaxMode;
+use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
-class SubscriptionChargeNonCatalogPrice implements \JsonSerializable
+class SubscriptionNonCatalogPriceWithProduct implements \JsonSerializable
 {
     use FiltersUndefined;
 
@@ -20,10 +21,12 @@ class SubscriptionChargeNonCatalogPrice implements \JsonSerializable
      * @param array<UnitPriceOverride> $unitPriceOverrides
      */
     public function __construct(
-        public string $productId,
         public string $description,
         public Money $unitPrice,
+        public SubscriptionNonCatalogProduct $product,
         public string|Undefined|null $name = new Undefined(),
+        public TimePeriod|Undefined|null $billingCycle = new Undefined(),
+        public TimePeriod|Undefined|null $trialPeriod = new Undefined(),
         public TaxMode|Undefined $taxMode = new Undefined(),
         public array|Undefined $unitPriceOverrides = new Undefined(),
         public PriceQuantity|Undefined $quantity = new Undefined(),
@@ -34,10 +37,12 @@ class SubscriptionChargeNonCatalogPrice implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return $this->filterUndefined([
-            'product_id' => $this->productId,
             'description' => $this->description,
             'unit_price' => $this->unitPrice,
+            'product' => $this->product,
             'name' => $this->name,
+            'billing_cycle' => $this->billingCycle,
+            'trial_period' => $this->trialPeriod,
             'tax_mode' => $this->taxMode,
             'unit_price_overrides' => $this->unitPriceOverrides,
             'quantity' => $this->quantity,

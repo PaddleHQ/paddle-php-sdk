@@ -20,9 +20,9 @@ use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
 use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
-use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPrice;
-use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPriceWithProduct;
-use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogProduct;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPrice as EntitySubscriptionNonCatalogPrice;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogPriceWithProduct as EntitySubscriptionNonCatalogPriceWithProduct;
+use Paddle\SDK\Entities\Subscription\SubscriptionNonCatalogProduct as EntitySubscriptionNonCatalogProduct;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnResume;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
@@ -44,8 +44,13 @@ use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptions;
 use Paddle\SDK\Resources\Subscriptions\Operations\PauseSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeCharge;
 use Paddle\SDK\Resources\Subscriptions\Operations\PreviewUpdateSubscription;
+use Paddle\SDK\Resources\Subscriptions\Operations\Price\SubscriptionNonCatalogPrice;
+use Paddle\SDK\Resources\Subscriptions\Operations\Price\SubscriptionNonCatalogPriceWithProduct;
+use Paddle\SDK\Resources\Subscriptions\Operations\Price\SubscriptionNonCatalogProduct;
 use Paddle\SDK\Resources\Subscriptions\Operations\ResumeSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItem;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItemWithPrice;
 use Paddle\SDK\Resources\Subscriptions\Operations\UpdateSubscription;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -108,25 +113,22 @@ class SubscriptionsClientTest extends TestCase
         yield 'Update Non-Catalog Product With Null Values' => [
             new UpdateSubscription(
                 items: [
-                    new SubscriptionItemsWithPrice(
+                    new SubscriptionUpdateItemWithPrice(
                         new SubscriptionNonCatalogPriceWithProduct(
-                            'some description',
-                            'some name',
-                            new SubscriptionNonCatalogProduct(
-                                'some name',
-                                null,
-                                null,
-                                TaxCategory::DigitalGoods(),
-                                null,
-                                null,
+                            description: 'some description',
+                            unitPrice: new Money('1', CurrencyCode::GBP()),
+                            product: new SubscriptionNonCatalogProduct(
+                                name: 'some name',
+                                taxCategory: TaxCategory::DigitalGoods(),
+                                description: null,
+                                imageUrl: null,
+                                customData: null,
                             ),
-                            TaxMode::AccountSetting(),
-                            new Money('1', CurrencyCode::GBP()),
-                            [],
-                            new PriceQuantity(1, 3),
-                            null,
-                            new TimePeriod(Interval::Day(), 1),
-                            new TimePeriod(Interval::Day(), 2),
+                            name: 'some name',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 3),
+                            customData: null,
                         ),
                         2,
                     ),
@@ -155,7 +157,7 @@ class SubscriptionsClientTest extends TestCase
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
                     new SubscriptionItemsWithPrice(
-                        new SubscriptionNonCatalogPrice(
+                        new EntitySubscriptionNonCatalogPrice(
                             'some description',
                             'some name',
                             'pro_01gsz4t5hdjse780zja8vvr7jg',
@@ -170,10 +172,10 @@ class SubscriptionsClientTest extends TestCase
                         2,
                     ),
                     new SubscriptionItemsWithPrice(
-                        new SubscriptionNonCatalogPriceWithProduct(
+                        new EntitySubscriptionNonCatalogPriceWithProduct(
                             'some description',
                             'some name',
-                            new SubscriptionNonCatalogProduct(
+                            new EntitySubscriptionNonCatalogProduct(
                                 'some name',
                                 'some description',
                                 CatalogType::Custom(),
@@ -197,6 +199,67 @@ class SubscriptionsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
+        ];
+
+        yield 'Update All (Operation Models)' => [
+            new UpdateSubscription(
+                customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
+                addressId: 'add_01h848pep46enq8y372x7maj0p',
+                businessId: null,
+                currencyCode: CurrencyCode::GBP(),
+                nextBilledAt: new \DateTimeImmutable('2023-11-06 14:00:00'),
+                discount: new SubscriptionDiscount(
+                    'dsc_01h848pep46enq8y372x7maj0p',
+                    SubscriptionEffectiveFrom::NextBillingPeriod(),
+                ),
+                collectionMode: CollectionMode::Automatic(),
+                billingDetails: null,
+                scheduledChange: null,
+                items: [
+                    new SubscriptionUpdateItem('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
+                    new SubscriptionUpdateItem('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                    new SubscriptionUpdateItemWithPrice(
+                        new SubscriptionNonCatalogPrice(
+                            description: 'some description',
+                            unitPrice: new Money('1', CurrencyCode::GBP()),
+                            productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            name: 'some name',
+                            billingCycle: new TimePeriod(Interval::Day(), 1),
+                            trialPeriod: new TimePeriod(Interval::Day(), 2),
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 3),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        2,
+                    ),
+                    new SubscriptionUpdateItemWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            description: 'some description',
+                            unitPrice: new Money('1', CurrencyCode::GBP()),
+                            product: new SubscriptionNonCatalogProduct(
+                                'some name',
+                                TaxCategory::DigitalGoods(),
+                                'some description',
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            name: 'some name',
+                            billingCycle: new TimePeriod(Interval::Day(), 1),
+                            trialPeriod: new TimePeriod(Interval::Day(), 2),
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 3),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        2,
+                    ),
+                ],
+                customData: new CustomData(['early_access' => true]),
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_full_operation_models'),
         ];
     }
 
@@ -618,20 +681,72 @@ class SubscriptionsClientTest extends TestCase
             self::readRawJsonFixture('request/create_one_time_charge_minimal'),
         ];
 
+        yield 'Charge Non-Catalog Price (Operation Models)' => [
+            new CreateOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPrice(
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_non_catalog_price'),
+        ];
+
+        yield 'Charge Non-Catalog Price and Product (Operation Models)' => [
+            new CreateOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPriceWithProduct(
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            product: new SubscriptionChargeNonCatalogProduct(
+                                name: 'Custom Setup',
+                                taxCategory: TaxCategory::DigitalGoods(),
+                                description: 'One-time custom setup service',
+                                imageUrl: 'https://www.example.com/image.jpg',
+                                customData: new CustomData(['key' => 'value']),
+                            ),
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_non_catalog_price_and_product'),
+        ];
+
         yield 'Charge Non-Catalog Price' => [
             new CreateOneTimeCharge(
                 SubscriptionEffectiveFrom::NextBillingPeriod(),
                 [
                     new SubscriptionChargeItemWithPrice(
                         new SubscriptionChargeNonCatalogPrice(
-                            'pro_01gsz4t5hdjse780zja8vvr7jg',
-                            'One-time setup fee',
-                            new Money('1000', CurrencyCode::USD()),
-                            'Setup Fee',
-                            TaxMode::AccountSetting(),
-                            [],
-                            new PriceQuantity(1, 1),
-                            new CustomData(['key' => 'value']),
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
                         ),
                         1,
                     ),
@@ -647,20 +762,20 @@ class SubscriptionsClientTest extends TestCase
                 [
                     new SubscriptionChargeItemWithPrice(
                         new SubscriptionChargeNonCatalogPriceWithProduct(
-                            'One-time setup fee',
-                            new Money('1000', CurrencyCode::USD()),
-                            new SubscriptionChargeNonCatalogProduct(
-                                'Custom Setup',
-                                TaxCategory::DigitalGoods(),
-                                'One-time custom setup service',
-                                'https://www.example.com/image.jpg',
-                                new CustomData(['key' => 'value']),
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            product: new SubscriptionChargeNonCatalogProduct(
+                                name: 'Custom Setup',
+                                taxCategory: TaxCategory::DigitalGoods(),
+                                description: 'One-time custom setup service',
+                                imageUrl: 'https://www.example.com/image.jpg',
+                                customData: new CustomData(['key' => 'value']),
                             ),
-                            'Setup Fee',
-                            TaxMode::AccountSetting(),
-                            [],
-                            new PriceQuantity(1, 1),
-                            new CustomData(['key' => 'value']),
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
                         ),
                         1,
                     ),
@@ -731,7 +846,7 @@ class SubscriptionsClientTest extends TestCase
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
                     new SubscriptionItems('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
                     new SubscriptionItemsWithPrice(
-                        new SubscriptionNonCatalogPrice(
+                        new EntitySubscriptionNonCatalogPrice(
                             'some description',
                             'some name',
                             'pro_01gsz4t5hdjse780zja8vvr7jg',
@@ -746,10 +861,10 @@ class SubscriptionsClientTest extends TestCase
                         2,
                     ),
                     new SubscriptionItemsWithPrice(
-                        new SubscriptionNonCatalogPriceWithProduct(
+                        new EntitySubscriptionNonCatalogPriceWithProduct(
                             'some description',
                             'some name',
-                            new SubscriptionNonCatalogProduct(
+                            new EntitySubscriptionNonCatalogProduct(
                                 'some name',
                                 'some description',
                                 CatalogType::Custom(),
@@ -773,6 +888,67 @@ class SubscriptionsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
             self::readRawJsonFixture('request/preview_update_full'),
+        ];
+
+        yield 'Preview Update All (Operation Models)' => [
+            new PreviewUpdateSubscription(
+                customerId: 'ctm_01h8441jn5pcwrfhwh78jqt8hk',
+                addressId: 'add_01h848pep46enq8y372x7maj0p',
+                businessId: null,
+                currencyCode: CurrencyCode::GBP(),
+                nextBilledAt: new \DateTimeImmutable('2023-11-06 14:00:00'),
+                discount: new SubscriptionDiscount(
+                    'dsc_01h848pep46enq8y372x7maj0p',
+                    SubscriptionEffectiveFrom::NextBillingPeriod(),
+                ),
+                collectionMode: CollectionMode::Automatic(),
+                billingDetails: null,
+                scheduledChange: null,
+                items: [
+                    new SubscriptionUpdateItem('pri_01gsz91wy9k1yn7kx82aafwvea', 1),
+                    new SubscriptionUpdateItem('pri_01gsz91wy9k1yn7kx82bafwvea', 5),
+                    new SubscriptionUpdateItemWithPrice(
+                        new SubscriptionNonCatalogPrice(
+                            description: 'some description',
+                            unitPrice: new Money('1', CurrencyCode::GBP()),
+                            productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            name: 'some name',
+                            billingCycle: new TimePeriod(Interval::Day(), 1),
+                            trialPeriod: new TimePeriod(Interval::Day(), 2),
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 3),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        2,
+                    ),
+                    new SubscriptionUpdateItemWithPrice(
+                        new SubscriptionNonCatalogPriceWithProduct(
+                            description: 'some description',
+                            unitPrice: new Money('1', CurrencyCode::GBP()),
+                            product: new SubscriptionNonCatalogProduct(
+                                'some name',
+                                TaxCategory::DigitalGoods(),
+                                'some description',
+                                'https://www.example.com/image.jpg',
+                                new CustomData(['key' => 'value']),
+                            ),
+                            name: 'some name',
+                            billingCycle: new TimePeriod(Interval::Day(), 1),
+                            trialPeriod: new TimePeriod(Interval::Day(), 2),
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 3),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        2,
+                    ),
+                ],
+                customData: new CustomData(['early_access' => true]),
+                prorationBillingMode: SubscriptionProrationBillingMode::FullImmediately(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')),
+            self::readRawJsonFixture('request/preview_update_full_operation_models'),
         ];
     }
 
@@ -836,20 +1012,72 @@ class SubscriptionsClientTest extends TestCase
             self::readRawJsonFixture('request/preview_one_time_charge_minimal'),
         ];
 
+        yield 'Preview Charge Non-Catalog Price (Operation Models)' => [
+            new PreviewOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPrice(
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_non_catalog_price'),
+        ];
+
+        yield 'Preview Charge Non-Catalog Price and Product (Operation Models)' => [
+            new PreviewOneTimeCharge(
+                SubscriptionEffectiveFrom::NextBillingPeriod(),
+                [
+                    new SubscriptionChargeItemWithPrice(
+                        new SubscriptionChargeNonCatalogPriceWithProduct(
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            product: new SubscriptionChargeNonCatalogProduct(
+                                name: 'Custom Setup',
+                                taxCategory: TaxCategory::DigitalGoods(),
+                                description: 'One-time custom setup service',
+                                imageUrl: 'https://www.example.com/image.jpg',
+                                customData: new CustomData(['key' => 'value']),
+                            ),
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
+                        ),
+                        1,
+                    ),
+                ],
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/preview_charge_full_entity')),
+            self::readRawJsonFixture('request/preview_one_time_charge_non_catalog_price_and_product'),
+        ];
+
         yield 'Preview Charge Non-Catalog Price' => [
             new PreviewOneTimeCharge(
                 SubscriptionEffectiveFrom::NextBillingPeriod(),
                 [
                     new SubscriptionChargeItemWithPrice(
                         new SubscriptionChargeNonCatalogPrice(
-                            'pro_01gsz4t5hdjse780zja8vvr7jg',
-                            'One-time setup fee',
-                            new Money('1000', CurrencyCode::USD()),
-                            'Setup Fee',
-                            TaxMode::AccountSetting(),
-                            [],
-                            new PriceQuantity(1, 1),
-                            new CustomData(['key' => 'value']),
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
                         ),
                         1,
                     ),
@@ -865,20 +1093,20 @@ class SubscriptionsClientTest extends TestCase
                 [
                     new SubscriptionChargeItemWithPrice(
                         new SubscriptionChargeNonCatalogPriceWithProduct(
-                            'One-time setup fee',
-                            new Money('1000', CurrencyCode::USD()),
-                            new SubscriptionChargeNonCatalogProduct(
-                                'Custom Setup',
-                                TaxCategory::DigitalGoods(),
-                                'One-time custom setup service',
-                                'https://www.example.com/image.jpg',
-                                new CustomData(['key' => 'value']),
+                            description: 'One-time setup fee',
+                            unitPrice: new Money('1000', CurrencyCode::USD()),
+                            product: new SubscriptionChargeNonCatalogProduct(
+                                name: 'Custom Setup',
+                                taxCategory: TaxCategory::DigitalGoods(),
+                                description: 'One-time custom setup service',
+                                imageUrl: 'https://www.example.com/image.jpg',
+                                customData: new CustomData(['key' => 'value']),
                             ),
-                            'Setup Fee',
-                            TaxMode::AccountSetting(),
-                            [],
-                            new PriceQuantity(1, 1),
-                            new CustomData(['key' => 'value']),
+                            name: 'Setup Fee',
+                            taxMode: TaxMode::AccountSetting(),
+                            unitPriceOverrides: [],
+                            quantity: new PriceQuantity(1, 1),
+                            customData: new CustomData(['key' => 'value']),
                         ),
                         1,
                     ),

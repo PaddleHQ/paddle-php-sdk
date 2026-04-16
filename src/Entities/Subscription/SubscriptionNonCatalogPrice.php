@@ -18,6 +18,9 @@ use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\UnitPriceOverride;
 
+/**
+ * @deprecated use Paddle\SDK\Resources\Subscriptions\Operations\Price\SubscriptionNonCatalogPrice instead
+ */
 class SubscriptionNonCatalogPrice
 {
     /**

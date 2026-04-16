@@ -6,16 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
-## [1.17.1] - 2026-04-16
+## [1.17.1] - 2026-04-17
 
 ### Added
 
-- Added dedicated one-time charge item types for subscriptions, resolving issues with non-catalog product serialization
+- Added subscription operation models for update, preview update, and one-time charge requests
+  - `SubscriptionUpdateItem` — catalog item model for update and preview update operations
+  - `SubscriptionUpdateItemWithPrice` — non-catalog item model for update and preview update operations
+  - `SubscriptionNonCatalogPrice` — non-catalog price model for update and preview update operations
+  - `SubscriptionNonCatalogPriceWithProduct` — non-catalog price model with product for update and preview update operations
+  - `SubscriptionNonCatalogProduct` — non-catalog product model for subscription operations
   - `SubscriptionChargeItem` — catalog item for one-time charges
   - `SubscriptionChargeItemWithPrice` — non-catalog item for one-time charges
-  - `SubscriptionChargeNonCatalogPrice` — non-catalog price for existing products
-  - `SubscriptionChargeNonCatalogPriceWithProduct` — non-catalog price with inline product
-  - `SubscriptionChargeNonCatalogProduct` — non-catalog product for one-time charges
+  - `SubscriptionChargeNonCatalogPrice`— one-time charge non-catalog price model
+  - `SubscriptionChargeNonCatalogPriceWithProduct` — one-time charge non-catalog price model with product
 
 ### Fixed
 
