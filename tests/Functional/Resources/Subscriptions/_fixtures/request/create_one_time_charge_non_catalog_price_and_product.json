@@ -1,0 +1,34 @@
+{
+    "effective_from": "next_billing_period",
+    "items": [
+        {
+            "quantity": 1,
+            "price": {
+                "description": "One-time setup fee",
+                "name": "Setup Fee",
+                "tax_mode": "account_setting",
+                "unit_price": {
+                    "amount": "1000",
+                    "currency_code": "USD"
+                },
+                "unit_price_overrides": [],
+                "quantity": {
+                    "minimum": 1,
+                    "maximum": 1
+                },
+                "custom_data": {
+                    "key": "value"
+                },
+                "product": {
+                    "name": "Custom Setup",
+                    "description": "One-time custom setup service",
+                    "tax_category": "digital-goods",
+                    "image_url": "https://www.example.com/image.jpg",
+                    "custom_data": {
+                        "key": "value"
+                    }
+                }
+            }
+        }
+    ]
+}

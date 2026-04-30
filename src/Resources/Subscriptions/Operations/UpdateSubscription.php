@@ -15,6 +15,8 @@ use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
 use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItem;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItemWithPrice;
 use Paddle\SDK\Undefined;
 
 class UpdateSubscription implements \JsonSerializable
@@ -22,7 +24,7 @@ class UpdateSubscription implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<SubscriptionItems|SubscriptionItemsWithPrice> $items
+     * @param array<SubscriptionUpdateItem|SubscriptionUpdateItemWithPrice|SubscriptionItems|SubscriptionItemsWithPrice> $items
      */
     public function __construct(
         public readonly string|Undefined $customerId = new Undefined(),

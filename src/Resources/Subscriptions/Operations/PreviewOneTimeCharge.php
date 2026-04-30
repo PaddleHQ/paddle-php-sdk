@@ -9,6 +9,8 @@ use Paddle\SDK\Entities\Subscription\SubscriptionItems;
 use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
 use Paddle\SDK\Entities\Subscription\SubscriptionOnPaymentFailure;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeItem;
+use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeItemWithPrice;
 use Paddle\SDK\Undefined;
 
 class PreviewOneTimeCharge implements \JsonSerializable
@@ -16,7 +18,7 @@ class PreviewOneTimeCharge implements \JsonSerializable
     use FiltersUndefined;
 
     /**
-     * @param array<SubscriptionItems|SubscriptionItemsWithPrice> $items
+     * @param array<SubscriptionChargeItem|SubscriptionChargeItemWithPrice|SubscriptionItems|SubscriptionItemsWithPrice> $items
      */
     public function __construct(
         public readonly SubscriptionEffectiveFrom $effectiveFrom,

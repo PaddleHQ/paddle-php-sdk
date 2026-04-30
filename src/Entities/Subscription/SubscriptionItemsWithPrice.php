@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities\Subscription;
 
+/**
+ * @deprecated use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItemWithPrice for update and preview update operations
+ */
 class SubscriptionItemsWithPrice
 {
     public function __construct(

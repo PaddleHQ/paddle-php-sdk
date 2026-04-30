@@ -1,0 +1,30 @@
+{
+    "items": [
+        {
+            "price": {
+                "description": "some description",
+                "name": "some name",
+                "product": {
+                    "name": "some name",
+                    "description": null,
+                    "tax_category": "digital-goods",
+                    "image_url": null,
+                    "custom_data": null
+                },
+                "custom_data": null,
+                "tax_mode": "account_setting",
+                "unit_price": {
+                    "amount": "1",
+                    "currency_code": "GBP"
+                },
+                "unit_price_overrides": [],
+                "quantity": {
+                    "maximum": 3,
+                    "minimum": 1
+                }
+            },
+            "quantity": 2
+        }
+    ],
+    "proration_billing_mode": "full_immediately"
+}
