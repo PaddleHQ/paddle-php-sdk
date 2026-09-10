@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.18.0] - 2026-09-10
+
+### Added
+
+- Added support for `\DateTimeInterface` in `expiresAt` when creating or updating a discount, serialized to the RFC 3339 format required by the API. Strings continue to be accepted.
+
+### Fixed
+
+- `currencyCode` is now optional and nullable when creating or updating a discount, matching the API where `currency_code` is only required for `flat` and `flat_per_seat` discount types
+
 ## [1.17.1] - 2026-04-30
 
 ### Added
