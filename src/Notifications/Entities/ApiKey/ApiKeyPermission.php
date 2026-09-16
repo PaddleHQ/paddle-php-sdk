@@ -48,6 +48,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ApiKeyPermission SubscriptionHistoryRead()
  * @method static ApiKeyPermission TransactionRead()
  * @method static ApiKeyPermission TransactionWrite()
+ * @method static ApiKeyPermission VerificationRead()
  */
 final class ApiKeyPermission extends PaddleEnum
 {
@@ -85,4 +86,5 @@ final class ApiKeyPermission extends PaddleEnum
     private const SubscriptionHistoryRead = 'subscription_history.read';
     private const TransactionRead = 'transaction.read';
     private const TransactionWrite = 'transaction.write';
+    private const VerificationRead = 'verification.read';
 }
