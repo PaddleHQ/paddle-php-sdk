@@ -26,7 +26,7 @@ class Customer implements Entity
         public CustomData|null $customData,
         public string $locale,
         public \DateTimeInterface $createdAt,
-        public \DateTimeInterface $updatedAt,
+        public \DateTimeInterface|null $updatedAt,
         public ImportMeta|null $importMeta,
     ) {
     }
@@ -42,7 +42,7 @@ class Customer implements Entity
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             locale: $data['locale'],
             createdAt: DateTime::from($data['created_at']),
-            updatedAt: DateTime::from($data['updated_at']),
+            updatedAt: isset($data['updated_at']) ? DateTime::from($data['updated_at']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
