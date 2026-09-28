@@ -17,8 +17,10 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportFilterName Action()
  * @method static ReportFilterName BalanceMovementDate()
  * @method static ReportFilterName BalanceMovementType()
+ * @method static ReportFilterName CheckoutCreatedAt()
  * @method static ReportFilterName CollectionMode()
  * @method static ReportFilterName CurrencyCode()
+ * @method static ReportFilterName CustomerCountryCode()
  * @method static ReportFilterName Origin()
  * @method static ReportFilterName PriceStatus()
  * @method static ReportFilterName PriceType()
@@ -37,8 +39,10 @@ final class ReportFilterName extends PaddleEnum
     private const Action = 'action';
     private const BalanceMovementDate = 'balance_movement_date';
     private const BalanceMovementType = 'balance_movement_type';
+    private const CheckoutCreatedAt = 'checkout_created_at';
     private const CollectionMode = 'collection_mode';
     private const CurrencyCode = 'currency_code';
+    private const CustomerCountryCode = 'customer_country_code';
     private const Origin = 'origin';
     private const PriceStatus = 'price_status';
     private const PriceType = 'price_type';
