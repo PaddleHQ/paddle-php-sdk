@@ -15,6 +15,8 @@ use Paddle\SDK\PaddleEnum;
 
 /**
  * @method static ReportFilterName Action()
+ * @method static ReportFilterName BalanceMovementDate()
+ * @method static ReportFilterName BalanceMovementType()
  * @method static ReportFilterName CollectionMode()
  * @method static ReportFilterName CurrencyCode()
  * @method static ReportFilterName Origin()
@@ -33,6 +35,8 @@ use Paddle\SDK\PaddleEnum;
 final class ReportFilterName extends PaddleEnum
 {
     private const Action = 'action';
+    private const BalanceMovementDate = 'balance_movement_date';
+    private const BalanceMovementType = 'balance_movement_type';
     private const CollectionMode = 'collection_mode';
     private const CurrencyCode = 'currency_code';
     private const Origin = 'origin';
