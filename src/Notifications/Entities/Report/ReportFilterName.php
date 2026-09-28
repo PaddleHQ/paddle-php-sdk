@@ -30,6 +30,9 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportFilterName ProductUpdatedAt()
  * @method static ReportFilterName RemittanceReference()
  * @method static ReportFilterName Status()
+ * @method static ReportFilterName SubscriptionCreatedAt()
+ * @method static ReportFilterName SubscriptionScheduledChangeAction()
+ * @method static ReportFilterName SubscriptionStatus()
  * @method static ReportFilterName TransactionUpdatedAt()
  * @method static ReportFilterName Type()
  * @method static ReportFilterName UpdatedAt()
@@ -52,6 +55,9 @@ final class ReportFilterName extends PaddleEnum
     private const ProductUpdatedAt = 'product_updated_at';
     private const RemittanceReference = 'remittance_reference';
     private const Status = 'status';
+    private const SubscriptionCreatedAt = 'subscription_created_at';
+    private const SubscriptionScheduledChangeAction = 'subscription_scheduled_change_action';
+    private const SubscriptionStatus = 'subscription_status';
     private const TransactionUpdatedAt = 'transaction_updated_at';
     private const Type = 'type';
     private const UpdatedAt = 'updated_at';
