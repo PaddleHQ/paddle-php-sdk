@@ -10,6 +10,7 @@ use Paddle\SDK\Notifications\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Notifications\Entities\Shared\CustomData;
 use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
 use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionConsentRequirement;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionDiscount;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionItem;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionScheduledChange;
@@ -19,7 +20,8 @@ use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionTimePeriod;
 class Subscription implements Entity
 {
     /**
-     * @param array<SubscriptionItem> $items
+     * @param array<SubscriptionItem>                    $items
+     * @param array<SubscriptionConsentRequirement>|null $consentRequirements
      */
     private function __construct(
         public string $id,
@@ -43,6 +45,7 @@ class Subscription implements Entity
         public TimePeriod $billingCycle,
         public SubscriptionScheduledChange|null $scheduledChange,
         public array $items,
+        public array|null $consentRequirements,
         public CustomData|null $customData,
         public ImportMeta|null $importMeta,
     ) {
@@ -76,6 +79,12 @@ class Subscription implements Entity
                 ? SubscriptionScheduledChange::from($data['scheduled_change'])
                 : null,
             items: array_map(fn (array $item): SubscriptionItem => SubscriptionItem::from($item), $data['items']),
+            consentRequirements: isset($data['consent_requirements'])
+                ? array_map(
+                    fn (array $item): SubscriptionConsentRequirement => SubscriptionConsentRequirement::from($item),
+                    $data['consent_requirements'],
+                )
+                : null,
             customData: isset($data['custom_data']) ? new CustomData($data['custom_data']) : null,
             importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
