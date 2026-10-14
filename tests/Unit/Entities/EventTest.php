@@ -166,6 +166,24 @@ class EventTest extends TestCase
         self::assertSame('ntf_01h8bzam1z32agrxjwhjgqk8w6', $notification->notificationId);
     }
 
+    /** @test */
+    public function it_throws_for_a_request_body_that_is_not_json(): void
+    {
+        $requestStream = $this->createMock(StreamInterface::class);
+        $requestStream
+            ->method('__toString')
+            ->willReturn('{"event_id": ');
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request
+            ->method('getBody')
+            ->willReturn($requestStream);
+
+        $this->expectException(\JsonException::class);
+
+        Event::fromRequest($request);
+    }
+
     /**
      * @test
      */
