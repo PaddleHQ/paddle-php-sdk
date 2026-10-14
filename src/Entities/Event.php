@@ -52,6 +52,7 @@ abstract class Event implements Entity
         return self::from(json_decode(
             (string) $request->getBody(),
             true,
+            512,
             JSON_THROW_ON_ERROR,
         ));
     }
