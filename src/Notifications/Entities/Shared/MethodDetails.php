@@ -17,6 +17,7 @@ class MethodDetails
         public PaymentMethodType $type,
         public Card|null $card,
         public SouthKoreaLocalCard|null $southKoreaLocalCard,
+        public TransactionPaypal|null $paypal,
         /** @deprecated */
         public PaymentMethodUnderlyingDetails|null $underlyingDetails,
     ) {
@@ -30,6 +31,7 @@ class MethodDetails
             isset($data['south_korea_local_card'])
                 ? SouthKoreaLocalCard::from($data['south_korea_local_card'])
                 : null,
+            isset($data['paypal']) ? TransactionPaypal::from($data['paypal']) : null,
             isset($data['underlying_details'])
                 ? PaymentMethodUnderlyingDetails::from($data['underlying_details'])
                 : null,
