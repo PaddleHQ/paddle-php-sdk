@@ -21,6 +21,7 @@ use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
+use Paddle\SDK\Resources\CheckoutDomains\CheckoutDomainsClient;
 use Paddle\SDK\Resources\ClientTokens\ClientTokensClient;
 use Paddle\SDK\Resources\Countries\CountriesClient;
 use Paddle\SDK\Resources\Currencies\CurrenciesClient;
@@ -90,6 +91,7 @@ class Client
     public readonly CountriesClient $countries;
     public readonly CurrenciesClient $currencies;
     public readonly VerificationsClient $verifications;
+    public readonly CheckoutDomainsClient $checkoutDomains;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -145,6 +147,7 @@ class Client
         $this->countries = new CountriesClient($this);
         $this->currencies = new CurrenciesClient($this);
         $this->verifications = new VerificationsClient($this);
+        $this->checkoutDomains = new CheckoutDomainsClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface

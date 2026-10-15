@@ -20,6 +20,8 @@ use Paddle\SDK\PaddleEnum;
  * @method static ApiKeyPermission AdjustmentWrite()
  * @method static ApiKeyPermission BusinessRead()
  * @method static ApiKeyPermission BusinessWrite()
+ * @method static ApiKeyPermission CheckoutDomainRead()
+ * @method static ApiKeyPermission CheckoutDomainWrite()
  * @method static ApiKeyPermission ClientTokenRead()
  * @method static ApiKeyPermission ClientTokenWrite()
  * @method static ApiKeyPermission CustomerRead()
@@ -58,6 +60,8 @@ final class ApiKeyPermission extends PaddleEnum
     private const AdjustmentWrite = 'adjustment.write';
     private const BusinessRead = 'business.read';
     private const BusinessWrite = 'business.write';
+    private const CheckoutDomainRead = 'checkout_domain.read';
+    private const CheckoutDomainWrite = 'checkout_domain.write';
     private const ClientTokenRead = 'client_token.read';
     private const ClientTokenWrite = 'client_token.write';
     private const CustomerRead = 'customer.read';
