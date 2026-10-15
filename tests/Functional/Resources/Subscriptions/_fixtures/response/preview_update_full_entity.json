@@ -529,7 +529,8 @@
         "custom_data": null,
         "management_urls": {
             "update_payment_method": "https://buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/update-payment-method",
-            "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/cancel"
+            "cancel": "https://buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/cancel",
+            "view_subscription": "https://buyer-portal.paddle.com/subscriptions/sub_01hp463gxfvndqjjyqn2n7tkth/view-subscription"
         },
         "discount": null,
         "update_summary": {
