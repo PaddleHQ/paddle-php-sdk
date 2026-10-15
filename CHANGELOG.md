@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [1.19.0] - 2026-09-16
+
+### Added
+
+- Support for the Checkout Domains API to list, get, delete, and verify Apple Pay payment methods
+- Support for the Verifications API to list and get account verifications
+- Support for the Countries API to list supported countries
+- Support for the Currencies API to list supported currencies
+- Support for `consent_requirements` on subscriptions (API and webhook), showing where explicit customer consent is required for renewal
+- Support for PayPal payer details on transaction `method_details` (API and webhook)
+- Support for `rotatable` and `exposed_at` on the `api_key` webhook payload
+- Support for the `checkouts` and `subscriptions` report types and their filters, including `subscription_scheduled_change_action`
+- Support for `filter`, `to`, and `from` parameters when listing events
+- Support for `view_subscription` on subscription management URLs and customer portal session deep links
+- Support for filtering the prices list by billing cycle (`billing_cycle.interval`, `billing_cycle.frequency`)
+- Support for additional API key permission, error code, and report filter values
+
+### Fixed
+
+- Prevented decode errors on responses where a spec-nullable field could be `null`:
+  - `collection_mode` on subscription webhooks
+  - `updated_at` on customer webhooks
+  - `deletion_reason` on deleted payment method webhooks
+  - `currency_code` on price previews
+  - `proration` on subscription adjustment items
+
 ## [1.18.0] - 2026-09-10
 
 ### Added
