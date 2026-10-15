@@ -17,15 +17,19 @@ use Paddle\SDK\PaddleEnum;
  * @method static ErrorCode AlreadyCanceled()
  * @method static ErrorCode AlreadyRefunded()
  * @method static ErrorCode AuthenticationFailed()
+ * @method static ErrorCode BlockedByPolicy()
  * @method static ErrorCode BlockedCard()
  * @method static ErrorCode Canceled()
  * @method static ErrorCode Declined()
+ * @method static ErrorCode DeclinedNotRetryable()
  * @method static ErrorCode ExpiredCard()
  * @method static ErrorCode Fraud()
  * @method static ErrorCode InvalidAmount()
  * @method static ErrorCode InvalidPaymentDetails()
  * @method static ErrorCode IssuerUnavailable()
  * @method static ErrorCode NotEnoughBalance()
+ * @method static ErrorCode PreferredNetworkNotSupported()
+ * @method static ErrorCode PrepaidCardNotSupported()
  * @method static ErrorCode PspError()
  * @method static ErrorCode RedactedPaymentMethod()
  * @method static ErrorCode SystemError()
@@ -37,15 +41,19 @@ final class ErrorCode extends PaddleEnum
     private const AlreadyCanceled = 'already_canceled';
     private const AlreadyRefunded = 'already_refunded';
     private const AuthenticationFailed = 'authentication_failed';
+    private const BlockedByPolicy = 'blocked_by_policy';
     private const BlockedCard = 'blocked_card';
     private const Canceled = 'canceled';
     private const Declined = 'declined';
+    private const DeclinedNotRetryable = 'declined_not_retryable';
     private const ExpiredCard = 'expired_card';
     private const Fraud = 'fraud';
     private const InvalidAmount = 'invalid_amount';
     private const InvalidPaymentDetails = 'invalid_payment_details';
     private const IssuerUnavailable = 'issuer_unavailable';
     private const NotEnoughBalance = 'not_enough_balance';
+    private const PreferredNetworkNotSupported = 'preferred_network_not_supported';
+    private const PrepaidCardNotSupported = 'prepaid_card_not_supported';
     private const PspError = 'psp_error';
     private const RedactedPaymentMethod = 'redacted_payment_method';
     private const SystemError = 'system_error';

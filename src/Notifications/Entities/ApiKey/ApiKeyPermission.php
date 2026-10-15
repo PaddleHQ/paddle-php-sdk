@@ -20,12 +20,15 @@ use Paddle\SDK\PaddleEnum;
  * @method static ApiKeyPermission AdjustmentWrite()
  * @method static ApiKeyPermission BusinessRead()
  * @method static ApiKeyPermission BusinessWrite()
+ * @method static ApiKeyPermission ClientTokenRead()
+ * @method static ApiKeyPermission ClientTokenWrite()
  * @method static ApiKeyPermission CustomerRead()
  * @method static ApiKeyPermission CustomerWrite()
  * @method static ApiKeyPermission CustomerAuthTokenWrite()
  * @method static ApiKeyPermission CustomerPortalSessionWrite()
  * @method static ApiKeyPermission DiscountRead()
  * @method static ApiKeyPermission DiscountWrite()
+ * @method static ApiKeyPermission MetricsRead()
  * @method static ApiKeyPermission NotificationRead()
  * @method static ApiKeyPermission NotificationWrite()
  * @method static ApiKeyPermission NotificationSettingRead()
@@ -42,6 +45,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ApiKeyPermission ReportWrite()
  * @method static ApiKeyPermission SubscriptionRead()
  * @method static ApiKeyPermission SubscriptionWrite()
+ * @method static ApiKeyPermission SubscriptionHistoryRead()
  * @method static ApiKeyPermission TransactionRead()
  * @method static ApiKeyPermission TransactionWrite()
  */
@@ -53,12 +57,15 @@ final class ApiKeyPermission extends PaddleEnum
     private const AdjustmentWrite = 'adjustment.write';
     private const BusinessRead = 'business.read';
     private const BusinessWrite = 'business.write';
+    private const ClientTokenRead = 'client_token.read';
+    private const ClientTokenWrite = 'client_token.write';
     private const CustomerRead = 'customer.read';
     private const CustomerWrite = 'customer.write';
     private const CustomerAuthTokenWrite = 'customer_auth_token.write';
     private const CustomerPortalSessionWrite = 'customer_portal_session.write';
     private const DiscountRead = 'discount.read';
     private const DiscountWrite = 'discount.write';
+    private const MetricsRead = 'metrics.read';
     private const NotificationRead = 'notification.read';
     private const NotificationWrite = 'notification.write';
     private const NotificationSettingRead = 'notification_setting.read';
@@ -75,6 +82,7 @@ final class ApiKeyPermission extends PaddleEnum
     private const ReportWrite = 'report.write';
     private const SubscriptionRead = 'subscription.read';
     private const SubscriptionWrite = 'subscription.write';
+    private const SubscriptionHistoryRead = 'subscription_history.read';
     private const TransactionRead = 'transaction.read';
     private const TransactionWrite = 'transaction.write';
 }
