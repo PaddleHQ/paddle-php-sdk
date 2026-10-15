@@ -22,6 +22,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static ReportType TransactionLineItems()
  * @method static ReportType Balance() Deprecated: Use PayoutReconciliation() instead.
  * @method static ReportType PayoutReconciliation()
+ * @method static ReportType Checkouts()
  */
 final class ReportType extends PaddleEnum
 {
@@ -33,4 +34,5 @@ final class ReportType extends PaddleEnum
     private const TransactionLineItems = 'transaction_line_items';
     private const Balance = 'balance';
     private const PayoutReconciliation = 'payout_reconciliation';
+    private const Checkouts = 'checkouts';
 }
