@@ -22,6 +22,7 @@ use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
 use Paddle\SDK\Resources\ClientTokens\ClientTokensClient;
+use Paddle\SDK\Resources\Countries\CountriesClient;
 use Paddle\SDK\Resources\CustomerPortalSessions\CustomerPortalSessionsClient;
 use Paddle\SDK\Resources\Customers\CustomersClient;
 use Paddle\SDK\Resources\DiscountGroups\DiscountGroupsClient;
@@ -84,6 +85,7 @@ class Client
     public readonly SimulationRunEventsClient $simulationRunEvents;
     public readonly SimulationTypesClient $simulationTypes;
     public readonly MetricsClient $metrics;
+    public readonly CountriesClient $countries;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -136,6 +138,7 @@ class Client
         $this->simulationRunEvents = new SimulationRunEventsClient($this);
         $this->simulationTypes = new SimulationTypesClient($this);
         $this->metrics = new MetricsClient($this);
+        $this->countries = new CountriesClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
