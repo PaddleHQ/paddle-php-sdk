@@ -6,10 +6,18 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Entity;
 
+/**
+ * @template T of Entity
+ *
+ * @implements \Iterator<array-key, T>
+ */
 abstract class Collection implements \Iterator
 {
     private int $pointer = 0;
 
+    /**
+     * @param array<array-key, T> $items
+     */
     protected function __construct(
         protected array $items,
         protected Paginator|null $paginator = null,
@@ -18,6 +26,9 @@ abstract class Collection implements \Iterator
 
     abstract public static function from(array $data, Paginator|null $paginator): self;
 
+    /**
+     * @return T
+     */
     public function current(): Entity
     {
         return $this->items[$this->pointer];
@@ -30,7 +41,7 @@ abstract class Collection implements \Iterator
 
     public function key(): mixed
     {
-        return $this->items[$this->pointer]?->id ?? $this->pointer;
+        return $this->items[$this->pointer]->id ?? $this->pointer;
     }
 
     public function valid(): bool

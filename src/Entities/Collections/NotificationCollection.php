@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Notification;
 
+/**
+ * @extends Collection<Notification>
+ */
 class NotificationCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

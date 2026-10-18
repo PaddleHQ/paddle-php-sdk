@@ -89,7 +89,6 @@ class Client
     private readonly RequestFactoryInterface $requestFactory;
     private readonly StreamFactoryInterface $streamFactory;
     private readonly UriFactoryInterface $uriFactory;
-    private string|null $transactionId = null;
 
     public function __construct(
         #[\SensitiveParameter] private readonly string $apiKey,
@@ -201,7 +200,7 @@ class Client
             );
         }
 
-        $request = $request->withAddedHeader('X-Transaction-ID', $this->transactionId ?? (string) new Ulid());
+        $request = $request->withAddedHeader('X-Transaction-ID', (string) new Ulid());
 
         return $this->httpClient->sendAsyncRequest($request)->wait();
     }
