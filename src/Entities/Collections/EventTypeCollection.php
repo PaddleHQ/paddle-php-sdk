@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\EventType;
 
+/**
+ * @extends Collection<EventType>
+ */
 class EventTypeCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

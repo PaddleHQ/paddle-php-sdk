@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\TransactionPreview;
 
+/**
+ * @extends Collection<TransactionPreview>
+ */
 class TransactionPreviewCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self
