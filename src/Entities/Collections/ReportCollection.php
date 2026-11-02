@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Report;
 
+/**
+ * @extends Collection<Report>
+ */
 class ReportCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

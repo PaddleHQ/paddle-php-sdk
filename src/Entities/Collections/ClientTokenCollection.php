@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\ClientToken;
 
+/**
+ * @extends Collection<ClientToken>
+ */
 class ClientTokenCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

@@ -6,9 +6,19 @@ namespace Paddle\SDK;
 
 use MyCLabs\Enum\Enum;
 
+/**
+ * @method static static Undefined()
+ */
 class PaddleEnum extends Enum
 {
     protected const Undefined = null;
+
+    /**
+     * Unlike MyCLabs enums, unknown API values are assigned after construction.
+     *
+     * @phpstan-readonly-allow-private-mutation
+     */
+    protected $value;
 
     /**
      * @throws \UnexpectedValueException

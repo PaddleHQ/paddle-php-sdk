@@ -21,7 +21,7 @@ class ResponseParser
             $this->body = json_decode(
                 json: (string) $response->getBody(),
                 associative: true,
-                flags: JSON_THROW_ON_ERROR | JSON_PRESERVE_ZERO_FRACTION,
+                flags: JSON_THROW_ON_ERROR,
             );
         } catch (\JsonException) {
             $this->body = null;

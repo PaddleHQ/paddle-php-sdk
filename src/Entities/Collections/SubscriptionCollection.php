@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Subscription;
 
+/**
+ * @extends Collection<Subscription>
+ */
 class SubscriptionCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

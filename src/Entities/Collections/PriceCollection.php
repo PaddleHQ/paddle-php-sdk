@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Price;
 
+/**
+ * @extends Collection<Price>
+ */
 class PriceCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

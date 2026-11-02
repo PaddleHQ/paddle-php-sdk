@@ -149,6 +149,20 @@ class EventTest extends TestCase
     }
 
     /** @test */
+    public function it_rejects_invalid_json_from_request(): void
+    {
+        $requestStream = $this->createMock(StreamInterface::class);
+        $requestStream->method('__toString')->willReturn('{');
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getBody')->willReturn($requestStream);
+
+        $this->expectException(\JsonException::class);
+
+        Event::fromRequest($request);
+    }
+
+    /** @test */
     public function it_creates_from_request(): void
     {
         $requestStream = $this->createMock(StreamInterface::class);

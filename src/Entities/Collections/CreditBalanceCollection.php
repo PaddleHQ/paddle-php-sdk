@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\CreditBalance;
 
+/**
+ * @extends Collection<CreditBalance>
+ */
 class CreditBalanceCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self
