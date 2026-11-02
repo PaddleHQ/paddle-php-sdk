@@ -21,7 +21,7 @@ class SubscriptionAdjustmentItem
         public string $itemId,
         public AdjustmentType $type,
         public string|null $amount,
-        public AdjustmentProration $proration,
+        public AdjustmentProration|null $proration,
         public AdjustmentItemTotals $totals,
     ) {
     }
@@ -32,7 +32,7 @@ class SubscriptionAdjustmentItem
             itemId: $data['item_id'],
             type: AdjustmentType::from($data['type']),
             amount: $data['amount'] ?? null,
-            proration: AdjustmentProration::from($data['proration']),
+            proration: $data['proration'] ? AdjustmentProration::from($data['proration']) : null,
             totals: AdjustmentItemTotals::from($data['totals']),
         );
     }

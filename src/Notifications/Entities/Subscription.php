@@ -37,7 +37,7 @@ class Subscription implements Entity
         public \DateTimeInterface|null $pausedAt,
         public \DateTimeInterface|null $canceledAt,
         public SubscriptionDiscount|null $discount,
-        public CollectionMode $collectionMode,
+        public CollectionMode|null $collectionMode,
         public BillingDetails|null $billingDetails,
         public SubscriptionTimePeriod|null $currentBillingPeriod,
         public TimePeriod $billingCycle,
@@ -66,7 +66,7 @@ class Subscription implements Entity
             pausedAt: isset($data['paused_at']) ? DateTime::from($data['paused_at']) : null,
             canceledAt: isset($data['canceled_at']) ? DateTime::from($data['canceled_at']) : null,
             discount: isset($data['discount']) ? SubscriptionDiscount::from($data['discount']) : null,
-            collectionMode: CollectionMode::from($data['collection_mode']),
+            collectionMode: isset($data['collection_mode']) ? CollectionMode::from($data['collection_mode']) : null,
             billingDetails: isset($data['billing_details']) ? BillingDetails::from($data['billing_details']) : null,
             currentBillingPeriod: isset($data['current_billing_period'])
                 ? SubscriptionTimePeriod::from($data['current_billing_period'])
