@@ -38,6 +38,7 @@ use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
 use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
+use Paddle\SDK\Resources\Transactions\Operations\Create\CreateBillingDetails;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
@@ -58,6 +59,7 @@ use Paddle\SDK\Resources\Transactions\Operations\Revise\TransactionReviseCustome
 use Paddle\SDK\Resources\Transactions\Operations\ReviseTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Update\UpdateBillingDetails;
 use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -346,6 +348,26 @@ class TransactionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_manual'),
         ];
+
+        yield 'Create with billing details' => [
+            new CreateTransaction(
+                items: [
+                    new TransactionCreateItem('pri_01gsz8x8sawmvhz1pv30nge1ke', 1),
+                ],
+                collectionMode: CollectionMode::Manual(),
+                billingDetails: new CreateBillingDetails(
+                    paymentTerms: new TimePeriod(Interval::Day(), 14),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            <<<'JSON'
+                {
+                    "items": [{"price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke", "quantity": 1}],
+                    "collection_mode": "manual",
+                    "billing_details": {"payment_terms": {"interval": "day", "frequency": 14}}
+                }
+                JSON,
+        ];
     }
 
     /**
@@ -374,6 +396,14 @@ class TransactionsClientTest extends TestCase
             new UpdateTransaction(status: TransactionStatus::Billed()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
+        ];
+
+        yield 'Update billing details' => [
+            new UpdateTransaction(
+                billingDetails: new UpdateBillingDetails(purchaseOrderNumber: 'PO-123', additionalInformation: null),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            '{"billing_details": {"purchase_order_number": "PO-123", "additional_information": null}}',
         ];
 
         yield 'Update with catalog price' => [
