@@ -111,7 +111,7 @@ class SubscriptionsClientTest extends TestCase
                 prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
-            '{"billing_details": {"payment_terms": {"interval": "month", "frequency": 1}}, "proration_billing_mode": "prorated_next_billing_period"}',
+            self::readRawJsonFixture('request/update_billing_details'),
         ];
 
         yield 'Update Partial' => [

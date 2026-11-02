@@ -360,13 +360,7 @@ class TransactionsClientTest extends TestCase
                 ),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
-            <<<'JSON'
-                {
-                    "items": [{"price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke", "quantity": 1}],
-                    "collection_mode": "manual",
-                    "billing_details": {"payment_terms": {"interval": "day", "frequency": 14}}
-                }
-                JSON,
+            self::readRawJsonFixture('request/create_with_billing_details'),
         ];
     }
 
@@ -403,7 +397,7 @@ class TransactionsClientTest extends TestCase
                 billingDetails: new UpdateBillingDetails(purchaseOrderNumber: 'PO-123', additionalInformation: null),
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
-            '{"billing_details": {"purchase_order_number": "PO-123", "additional_information": null}}',
+            self::readRawJsonFixture('request/update_billing_details'),
         ];
 
         yield 'Update with catalog price' => [
