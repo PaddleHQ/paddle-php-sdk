@@ -14,6 +14,7 @@ use Paddle\SDK\Entities\Transaction\TransactionCreateItem as EntityTransactionCr
 use Paddle\SDK\Entities\Transaction\TransactionCreateItemWithPrice as EntityTransactionCreateItemWithPrice;
 use Paddle\SDK\Entities\Transaction\TransactionTimePeriod;
 use Paddle\SDK\FiltersUndefined;
+use Paddle\SDK\Resources\Transactions\Operations\Create\CreateBillingDetails;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\Discount\TransactionNonCatalogDiscount;
@@ -36,7 +37,7 @@ class CreateTransaction implements \JsonSerializable
         public readonly CurrencyCode|Undefined $currencyCode = new Undefined(),
         public readonly CollectionMode|Undefined $collectionMode = new Undefined(),
         public readonly string|Undefined|null $discountId = new Undefined(),
-        public readonly BillingDetails|Undefined|null $billingDetails = new Undefined(),
+        public readonly CreateBillingDetails|BillingDetails|Undefined|null $billingDetails = new Undefined(),
         public readonly TransactionTimePeriod|Undefined|null $billingPeriod = new Undefined(),
         public readonly Checkout|Undefined|null $checkout = new Undefined(),
         public readonly TransactionNonCatalogDiscount|Undefined|null $discount = new Undefined(),

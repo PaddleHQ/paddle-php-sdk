@@ -51,6 +51,7 @@ use Paddle\SDK\Resources\Subscriptions\Operations\ResumeSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItem;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItemWithPrice;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\UpdateBillingDetails;
 use Paddle\SDK\Resources\Subscriptions\Operations\UpdateSubscription;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -102,6 +103,15 @@ class SubscriptionsClientTest extends TestCase
             new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
+        ];
+
+        yield 'Update billing details' => [
+            new UpdateSubscription(
+                billingDetails: new UpdateBillingDetails(paymentTerms: new TimePeriod(Interval::Month(), 1)),
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_billing_details'),
         ];
 
         yield 'Update Partial' => [
