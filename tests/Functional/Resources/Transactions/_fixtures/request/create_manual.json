@@ -13,6 +13,7 @@
     "collection_mode": "manual",
     "discount_id": "dsc_01hen7bjzh12m0v2peer15d9qt",
     "billing_details": {
+        "additional_information": null,
         "enable_checkout": true,
         "purchase_order_number": "10009",
         "payment_terms": {
