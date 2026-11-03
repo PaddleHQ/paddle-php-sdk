@@ -15,15 +15,18 @@ use Paddle\SDK\PaddleEnum;
 
 /**
  * @method static CountryCodeIso3 ABW()
+ * @method static CountryCodeIso3 AFG()
  * @method static CountryCodeIso3 AGO()
  * @method static CountryCodeIso3 AIA()
  * @method static CountryCodeIso3 ALA()
  * @method static CountryCodeIso3 ALB()
  * @method static CountryCodeIso3 AND()
+ * @method static CountryCodeIso3 ANT()
  * @method static CountryCodeIso3 ARE()
  * @method static CountryCodeIso3 ARG()
  * @method static CountryCodeIso3 ARM()
  * @method static CountryCodeIso3 ASM()
+ * @method static CountryCodeIso3 ATA()
  * @method static CountryCodeIso3 ATF()
  * @method static CountryCodeIso3 ATG()
  * @method static CountryCodeIso3 AUS()
@@ -40,6 +43,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 BHS()
  * @method static CountryCodeIso3 BIH()
  * @method static CountryCodeIso3 BLM()
+ * @method static CountryCodeIso3 BLR()
  * @method static CountryCodeIso3 BLZ()
  * @method static CountryCodeIso3 BMU()
  * @method static CountryCodeIso3 BOL()
@@ -49,6 +53,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 BTN()
  * @method static CountryCodeIso3 BVT()
  * @method static CountryCodeIso3 BWA()
+ * @method static CountryCodeIso3 CAF()
  * @method static CountryCodeIso3 CAN()
  * @method static CountryCodeIso3 CCK()
  * @method static CountryCodeIso3 CHE()
@@ -56,12 +61,14 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 CHN()
  * @method static CountryCodeIso3 CIV()
  * @method static CountryCodeIso3 CMR()
+ * @method static CountryCodeIso3 COD()
  * @method static CountryCodeIso3 COG()
  * @method static CountryCodeIso3 COK()
  * @method static CountryCodeIso3 COL()
  * @method static CountryCodeIso3 COM()
  * @method static CountryCodeIso3 CPV()
  * @method static CountryCodeIso3 CRI()
+ * @method static CountryCodeIso3 CUB()
  * @method static CountryCodeIso3 CUW()
  * @method static CountryCodeIso3 CXR()
  * @method static CountryCodeIso3 CYM()
@@ -108,12 +115,14 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 HMD()
  * @method static CountryCodeIso3 HND()
  * @method static CountryCodeIso3 HRV()
+ * @method static CountryCodeIso3 HTI()
  * @method static CountryCodeIso3 HUN()
  * @method static CountryCodeIso3 IDN()
  * @method static CountryCodeIso3 IMN()
  * @method static CountryCodeIso3 IND()
  * @method static CountryCodeIso3 IOT()
  * @method static CountryCodeIso3 IRL()
+ * @method static CountryCodeIso3 IRN()
  * @method static CountryCodeIso3 IRQ()
  * @method static CountryCodeIso3 ISL()
  * @method static CountryCodeIso3 ISR()
@@ -133,6 +142,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 LAO()
  * @method static CountryCodeIso3 LBN()
  * @method static CountryCodeIso3 LBR()
+ * @method static CountryCodeIso3 LBY()
  * @method static CountryCodeIso3 LCA()
  * @method static CountryCodeIso3 LIE()
  * @method static CountryCodeIso3 LKA()
@@ -150,7 +160,9 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 MEX()
  * @method static CountryCodeIso3 MHL()
  * @method static CountryCodeIso3 MKD()
+ * @method static CountryCodeIso3 MLI()
  * @method static CountryCodeIso3 MLT()
+ * @method static CountryCodeIso3 MMR()
  * @method static CountryCodeIso3 MNE()
  * @method static CountryCodeIso3 MNG()
  * @method static CountryCodeIso3 MNP()
@@ -167,6 +179,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 NER()
  * @method static CountryCodeIso3 NFK()
  * @method static CountryCodeIso3 NGA()
+ * @method static CountryCodeIso3 NIC()
  * @method static CountryCodeIso3 NIU()
  * @method static CountryCodeIso3 NLD()
  * @method static CountryCodeIso3 NOR()
@@ -183,6 +196,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 PNG()
  * @method static CountryCodeIso3 POL()
  * @method static CountryCodeIso3 PRI()
+ * @method static CountryCodeIso3 PRK()
  * @method static CountryCodeIso3 PRT()
  * @method static CountryCodeIso3 PRY()
  * @method static CountryCodeIso3 PSE()
@@ -190,8 +204,11 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 QAT()
  * @method static CountryCodeIso3 REU()
  * @method static CountryCodeIso3 ROM()
+ * @method static CountryCodeIso3 RUS()
  * @method static CountryCodeIso3 RWA()
  * @method static CountryCodeIso3 SAU()
+ * @method static CountryCodeIso3 SCG()
+ * @method static CountryCodeIso3 SDN()
  * @method static CountryCodeIso3 SEN()
  * @method static CountryCodeIso3 SGP()
  * @method static CountryCodeIso3 SGS()
@@ -201,8 +218,10 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 SLE()
  * @method static CountryCodeIso3 SLV()
  * @method static CountryCodeIso3 SMR()
+ * @method static CountryCodeIso3 SOM()
  * @method static CountryCodeIso3 SPM()
  * @method static CountryCodeIso3 SRB()
+ * @method static CountryCodeIso3 SSD()
  * @method static CountryCodeIso3 STP()
  * @method static CountryCodeIso3 SUR()
  * @method static CountryCodeIso3 SVK()
@@ -211,6 +230,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 SWZ()
  * @method static CountryCodeIso3 SXM()
  * @method static CountryCodeIso3 SYC()
+ * @method static CountryCodeIso3 SYR()
  * @method static CountryCodeIso3 TCA()
  * @method static CountryCodeIso3 TCD()
  * @method static CountryCodeIso3 TGO()
@@ -234,6 +254,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 UZB()
  * @method static CountryCodeIso3 VAT()
  * @method static CountryCodeIso3 VCT()
+ * @method static CountryCodeIso3 VEN()
  * @method static CountryCodeIso3 VGB()
  * @method static CountryCodeIso3 VIR()
  * @method static CountryCodeIso3 VNM()
@@ -241,21 +262,26 @@ use Paddle\SDK\PaddleEnum;
  * @method static CountryCodeIso3 WLF()
  * @method static CountryCodeIso3 WSM()
  * @method static CountryCodeIso3 XXK()
+ * @method static CountryCodeIso3 YEM()
  * @method static CountryCodeIso3 ZAF()
  * @method static CountryCodeIso3 ZMB()
+ * @method static CountryCodeIso3 ZWE()
  */
 final class CountryCodeIso3 extends PaddleEnum
 {
     private const ABW = 'ABW';
+    private const AFG = 'AFG';
     private const AGO = 'AGO';
     private const AIA = 'AIA';
     private const ALA = 'ALA';
     private const ALB = 'ALB';
     private const AND = 'AND';
+    private const ANT = 'ANT';
     private const ARE = 'ARE';
     private const ARG = 'ARG';
     private const ARM = 'ARM';
     private const ASM = 'ASM';
+    private const ATA = 'ATA';
     private const ATF = 'ATF';
     private const ATG = 'ATG';
     private const AUS = 'AUS';
@@ -272,6 +298,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const BHS = 'BHS';
     private const BIH = 'BIH';
     private const BLM = 'BLM';
+    private const BLR = 'BLR';
     private const BLZ = 'BLZ';
     private const BMU = 'BMU';
     private const BOL = 'BOL';
@@ -281,6 +308,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const BTN = 'BTN';
     private const BVT = 'BVT';
     private const BWA = 'BWA';
+    private const CAF = 'CAF';
     private const CAN = 'CAN';
     private const CCK = 'CCK';
     private const CHE = 'CHE';
@@ -288,12 +316,14 @@ final class CountryCodeIso3 extends PaddleEnum
     private const CHN = 'CHN';
     private const CIV = 'CIV';
     private const CMR = 'CMR';
+    private const COD = 'COD';
     private const COG = 'COG';
     private const COK = 'COK';
     private const COL = 'COL';
     private const COM = 'COM';
     private const CPV = 'CPV';
     private const CRI = 'CRI';
+    private const CUB = 'CUB';
     private const CUW = 'CUW';
     private const CXR = 'CXR';
     private const CYM = 'CYM';
@@ -340,12 +370,14 @@ final class CountryCodeIso3 extends PaddleEnum
     private const HMD = 'HMD';
     private const HND = 'HND';
     private const HRV = 'HRV';
+    private const HTI = 'HTI';
     private const HUN = 'HUN';
     private const IDN = 'IDN';
     private const IMN = 'IMN';
     private const IND = 'IND';
     private const IOT = 'IOT';
     private const IRL = 'IRL';
+    private const IRN = 'IRN';
     private const IRQ = 'IRQ';
     private const ISL = 'ISL';
     private const ISR = 'ISR';
@@ -365,6 +397,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const LAO = 'LAO';
     private const LBN = 'LBN';
     private const LBR = 'LBR';
+    private const LBY = 'LBY';
     private const LCA = 'LCA';
     private const LIE = 'LIE';
     private const LKA = 'LKA';
@@ -382,7 +415,9 @@ final class CountryCodeIso3 extends PaddleEnum
     private const MEX = 'MEX';
     private const MHL = 'MHL';
     private const MKD = 'MKD';
+    private const MLI = 'MLI';
     private const MLT = 'MLT';
+    private const MMR = 'MMR';
     private const MNE = 'MNE';
     private const MNG = 'MNG';
     private const MNP = 'MNP';
@@ -399,6 +434,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const NER = 'NER';
     private const NFK = 'NFK';
     private const NGA = 'NGA';
+    private const NIC = 'NIC';
     private const NIU = 'NIU';
     private const NLD = 'NLD';
     private const NOR = 'NOR';
@@ -415,6 +451,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const PNG = 'PNG';
     private const POL = 'POL';
     private const PRI = 'PRI';
+    private const PRK = 'PRK';
     private const PRT = 'PRT';
     private const PRY = 'PRY';
     private const PSE = 'PSE';
@@ -422,8 +459,11 @@ final class CountryCodeIso3 extends PaddleEnum
     private const QAT = 'QAT';
     private const REU = 'REU';
     private const ROM = 'ROM';
+    private const RUS = 'RUS';
     private const RWA = 'RWA';
     private const SAU = 'SAU';
+    private const SCG = 'SCG';
+    private const SDN = 'SDN';
     private const SEN = 'SEN';
     private const SGP = 'SGP';
     private const SGS = 'SGS';
@@ -433,8 +473,10 @@ final class CountryCodeIso3 extends PaddleEnum
     private const SLE = 'SLE';
     private const SLV = 'SLV';
     private const SMR = 'SMR';
+    private const SOM = 'SOM';
     private const SPM = 'SPM';
     private const SRB = 'SRB';
+    private const SSD = 'SSD';
     private const STP = 'STP';
     private const SUR = 'SUR';
     private const SVK = 'SVK';
@@ -443,6 +485,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const SWZ = 'SWZ';
     private const SXM = 'SXM';
     private const SYC = 'SYC';
+    private const SYR = 'SYR';
     private const TCA = 'TCA';
     private const TCD = 'TCD';
     private const TGO = 'TGO';
@@ -466,6 +509,7 @@ final class CountryCodeIso3 extends PaddleEnum
     private const UZB = 'UZB';
     private const VAT = 'VAT';
     private const VCT = 'VCT';
+    private const VEN = 'VEN';
     private const VGB = 'VGB';
     private const VIR = 'VIR';
     private const VNM = 'VNM';
@@ -473,6 +517,8 @@ final class CountryCodeIso3 extends PaddleEnum
     private const WLF = 'WLF';
     private const WSM = 'WSM';
     private const XXK = 'XXK';
+    private const YEM = 'YEM';
     private const ZAF = 'ZAF';
     private const ZMB = 'ZMB';
+    private const ZWE = 'ZWE';
 }
