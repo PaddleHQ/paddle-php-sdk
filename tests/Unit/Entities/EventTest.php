@@ -8,13 +8,16 @@ use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Notifications\Entities\DeletedPaymentMethod;
 use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\PaymentMethod;
+use Paddle\SDK\Notifications\Entities\Shared\PaymentMethodType;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodDeletionReason;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodOrigin;
+use Paddle\SDK\Notifications\Entities\Shared\TransactionPaypal;
 use Paddle\SDK\Notifications\Entities\UndefinedEntity;
 use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
 use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
 use Paddle\SDK\Notifications\Events\SubscriptionActivated;
 use Paddle\SDK\Notifications\Events\SubscriptionCanceled;
+use Paddle\SDK\Notifications\Events\TransactionPaymentFailed;
 use Paddle\SDK\Tests\DataProvider\EventDataProvider;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -231,6 +234,37 @@ class EventTest extends TestCase
         self::assertEquals(SavedPaymentMethodDeletionReason::ReplacedByNewerVersion(), $paymentMethod->deletionReason);
         self::assertSame('2024-05-02T02:55:25.198+00:00', $paymentMethod->savedAt->format(DATE_RFC3339_EXTENDED));
         self::assertSame('2024-05-03T12:24:18.826+00:00', $paymentMethod->updatedAt->format(DATE_RFC3339_EXTENDED));
+    }
+
+    /**
+     * @test
+     */
+    public function it_supports_paypal_method_details(): void
+    {
+        $data = self::readJsonFixture('notification/entity/transaction.payment_failed');
+        $data['payments'][0]['method_details'] = [
+            'type' => 'paypal',
+            'card' => null,
+            'underlying_details' => null,
+            'south_korea_local_card' => null,
+            'paypal' => ['email' => 'john.doe@example.com', 'reference' => 'B-5X123456AB123456C'],
+        ];
+
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'transaction.payment_failed',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => $data,
+        ]);
+
+        self::assertInstanceOf(TransactionPaymentFailed::class, $event);
+
+        $methodDetails = $event->transaction->payments[0]->methodDetails;
+        self::assertEquals(PaymentMethodType::Paypal(), $methodDetails->type);
+        self::assertInstanceOf(TransactionPaypal::class, $methodDetails->paypal);
+        self::assertSame('john.doe@example.com', $methodDetails->paypal->email);
+        self::assertSame('B-5X123456AB123456C', $methodDetails->paypal->reference);
     }
 
     /**
