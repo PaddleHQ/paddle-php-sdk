@@ -8,6 +8,7 @@ use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\ContentLengthPlugin;
 use Http\Client\Common\Plugin\ContentTypePlugin;
 use Http\Client\Common\Plugin\DecoderPlugin;
+use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\Plugin\ResponseSeekableBodyPlugin;
@@ -211,6 +212,10 @@ class Client
         return new PluginClient($httpClient, [
             new AuthenticationPlugin(new Bearer($this->apiKey)),
             new ContentTypePlugin(),
+            new HeaderDefaultsPlugin([
+                // The API requires it even without a body, such as when creating a customer auth token.
+                'Content-Type' => 'application/json',
+            ]),
             new ContentLengthPlugin(),
             new DecoderPlugin(['use_content_encoding' => false]),
             new HeaderSetPlugin([

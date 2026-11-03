@@ -17,6 +17,7 @@ use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItem;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItemWithPrice;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\UpdateBillingDetails;
 use Paddle\SDK\Undefined;
 
 class UpdateSubscription implements \JsonSerializable
@@ -34,7 +35,7 @@ class UpdateSubscription implements \JsonSerializable
         public readonly \DateTimeInterface|Undefined $nextBilledAt = new Undefined(),
         public readonly SubscriptionDiscount|Undefined|null $discount = new Undefined(),
         public readonly CollectionMode|Undefined $collectionMode = new Undefined(),
-        public readonly BillingDetails|Undefined|null $billingDetails = new Undefined(),
+        public readonly UpdateBillingDetails|BillingDetails|Undefined|null $billingDetails = new Undefined(),
         public readonly Undefined|null $scheduledChange = new Undefined(),
         public readonly array|Undefined $items = new Undefined(),
         public readonly CustomData|Undefined|null $customData = new Undefined(),
