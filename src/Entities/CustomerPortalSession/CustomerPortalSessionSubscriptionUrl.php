@@ -19,6 +19,7 @@ class CustomerPortalSessionSubscriptionUrl implements Entity
         public string $id,
         public string $cancelSubscription,
         public string $updateSubscriptionPaymentMethod,
+        public string $viewSubscription,
     ) {
     }
 
@@ -28,6 +29,7 @@ class CustomerPortalSessionSubscriptionUrl implements Entity
             id: $data['id'],
             cancelSubscription: $data['cancel_subscription'],
             updateSubscriptionPaymentMethod: $data['update_subscription_payment_method'],
+            viewSubscription: $data['view_subscription'],
         );
     }
 }
