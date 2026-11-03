@@ -238,6 +238,24 @@ class PricesClientTest extends TestCase
             sprintf('%s/prices?recurring=true', Environment::SANDBOX->baseUrl()),
         ];
 
+        yield 'Billing Cycle Interval Filtered' => [
+            new ListPrices(billingCycleInterval: Interval::Month()),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/prices?billing_cycle.interval=month', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Billing Cycle Frequency Filtered' => [
+            new ListPrices(billingCycleFrequency: 3),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/prices?billing_cycle.frequency=3', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Billing Cycle Interval and Frequency Filtered' => [
+            new ListPrices(billingCycleInterval: Interval::Year(), billingCycleFrequency: 1),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/prices?billing_cycle.interval=year&billing_cycle.frequency=1', Environment::SANDBOX->baseUrl()),
+        ];
+
         yield 'With Includes' => [
             new ListPrices(includes: [Includes::Product()]),
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
