@@ -457,8 +457,7 @@
                 "currency_code": "USD"
             }
         },
-        "import_meta": null,
-        "consent_requirements": []
+        "import_meta": null
     },
     "meta": {
         "request_id": "5a10266d-eb36-486c-b9a0-8ec44543ee6d"
