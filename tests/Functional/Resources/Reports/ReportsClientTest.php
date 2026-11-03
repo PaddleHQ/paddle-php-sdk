@@ -119,6 +119,34 @@ class ReportsClientTest extends TestCase
             self::readRawJsonFixture('request/create_payout_reconciliation_with_filters'),
         ];
 
+        yield 'Create checkouts report' => [
+            new CreateReport(
+                type: ReportType::Checkouts(),
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_checkouts'),
+        ];
+
+        yield 'Create checkouts report with filters' => [
+            new CreateReport(
+                type: ReportType::Checkouts(),
+                filters: [
+                    new ReportFilter(
+                        name: ReportFilterName::CheckoutCreatedAt(),
+                        operator: ReportFilterOperator::Gte(),
+                        value: '2023-12-30',
+                    ),
+                    new ReportFilter(
+                        name: ReportFilterName::CustomerCountryCode(),
+                        operator: null,
+                        value: ['US', 'GB'],
+                    ),
+                ],
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_checkouts_with_filters'),
+        ];
+
         yield 'Create balance report' => [
             new CreateReport(
                 type: ReportType::Balance(),
