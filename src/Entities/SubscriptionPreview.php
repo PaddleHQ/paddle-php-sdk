@@ -17,6 +17,7 @@ use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\TransactionDetailsPreview;
+use Paddle\SDK\Entities\Subscription\SubscriptionConsentRequirement;
 use Paddle\SDK\Entities\Subscription\SubscriptionDiscount;
 use Paddle\SDK\Entities\Subscription\SubscriptionItem;
 use Paddle\SDK\Entities\Subscription\SubscriptionManagementUrls;
@@ -29,7 +30,8 @@ use Paddle\SDK\Entities\Subscription\SubscriptionTimePeriod;
 class SubscriptionPreview implements Entity
 {
     /**
-     * @param array<SubscriptionItem> $items
+     * @param array<SubscriptionItem>               $items
+     * @param array<SubscriptionConsentRequirement> $consentRequirements
      */
     private function __construct(
         public SubscriptionStatus $status,
@@ -57,6 +59,7 @@ class SubscriptionPreview implements Entity
         public SubscriptionNextTransaction|null $nextTransaction,
         public TransactionDetailsPreview|null $recurringTransactionDetails,
         public SubscriptionPreviewSubscriptionUpdateSummary|null $updateSummary,
+        public array $consentRequirements,
     ) {
     }
 
@@ -96,6 +99,10 @@ class SubscriptionPreview implements Entity
                 ? TransactionDetailsPreview::from($data['recurring_transaction_details'])
                 : null,
             updateSummary: isset($data['update_summary']) ? SubscriptionPreviewSubscriptionUpdateSummary::from($data['update_summary']) : null,
+            consentRequirements: array_map(
+                fn (array $item): SubscriptionConsentRequirement => SubscriptionConsentRequirement::from($item),
+                $data['consent_requirements'] ?? [],
+            ),
         );
     }
 }
