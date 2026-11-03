@@ -20,6 +20,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static VerificationStatus ActionRequired()
  * @method static VerificationStatus Completed()
  * @method static VerificationStatus Failed()
+ * @method static VerificationStatus Canceled()
  */
 final class VerificationStatus extends PaddleEnum
 {
@@ -29,4 +30,5 @@ final class VerificationStatus extends PaddleEnum
     private const ActionRequired = 'action_required';
     private const Completed = 'completed';
     private const Failed = 'failed';
+    private const Canceled = 'canceled';
 }

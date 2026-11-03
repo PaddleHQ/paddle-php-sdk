@@ -7,6 +7,8 @@ namespace Paddle\SDK\Tests\Functional\Resources\Verifications;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Verification\VerificationStatus;
+use Paddle\SDK\Entities\Verification\VerificationStepStatus;
 use Paddle\SDK\Entities\Verification\VerificationType;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
@@ -96,5 +98,16 @@ class VerificationsClientTest extends TestCase
             sprintf('%s/verifications/slrvrf_01jjr5d4c14h4y3lqlk9bedkw7', Environment::SANDBOX->baseUrl()),
             urldecode((string) $request->getUri()),
         );
+    }
+
+    /** @test */
+    public function get_returns_canceled_verification(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/canceled_entity')));
+
+        $verification = $this->client->verifications->get('slrvrf_03jjr5d4c14h4y3lqlk9bedkw7');
+
+        self::assertEquals(VerificationStatus::Canceled(), $verification->status);
+        self::assertEquals(VerificationStepStatus::Canceled(), $verification->steps[0]->status);
     }
 }
