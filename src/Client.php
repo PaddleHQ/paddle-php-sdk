@@ -46,6 +46,7 @@ use Paddle\SDK\Resources\Simulations\SimulationsClient;
 use Paddle\SDK\Resources\SimulationTypes\SimulationTypesClient;
 use Paddle\SDK\Resources\Subscriptions\SubscriptionsClient;
 use Paddle\SDK\Resources\Transactions\TransactionsClient;
+use Paddle\SDK\Resources\Verifications\VerificationsClient;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -89,6 +90,7 @@ class Client
     public readonly MetricsClient $metrics;
     public readonly CountriesClient $countries;
     public readonly CurrenciesClient $currencies;
+    public readonly VerificationsClient $verifications;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -143,6 +145,7 @@ class Client
         $this->metrics = new MetricsClient($this);
         $this->countries = new CountriesClient($this);
         $this->currencies = new CurrenciesClient($this);
+        $this->verifications = new VerificationsClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
