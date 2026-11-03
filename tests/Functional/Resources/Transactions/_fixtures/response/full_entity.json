@@ -253,6 +253,26 @@
                 },
                 "created_at": "2023-08-18T21:13:07.18821Z",
                 "captured_at": "2023-08-18T21:13:09.477933Z"
+            },
+            {
+                "payment_attempt_id": "8f6b5a1c-3d2e-4f7a-9b0c-1d2e3f4a5b6c",
+                "payment_method_id": null,
+                "stored_payment_method_id": null,
+                "amount": "40000",
+                "status": "error",
+                "error_code": "declined",
+                "method_details": {
+                    "type": "paypal",
+                    "card": null,
+                    "underlying_details": null,
+                    "south_korea_local_card": null,
+                    "paypal": {
+                        "email": "john.doe@example.com",
+                        "reference": null
+                    }
+                },
+                "created_at": "2023-08-18T21:13:07.18821Z",
+                "captured_at": null
             }
         ],
         "checkout": {

@@ -8,6 +8,7 @@ use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\ContentLengthPlugin;
 use Http\Client\Common\Plugin\ContentTypePlugin;
 use Http\Client\Common\Plugin\DecoderPlugin;
+use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\Plugin\ResponseSeekableBodyPlugin;
@@ -21,7 +22,10 @@ use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
+use Paddle\SDK\Resources\CheckoutDomains\CheckoutDomainsClient;
 use Paddle\SDK\Resources\ClientTokens\ClientTokensClient;
+use Paddle\SDK\Resources\Countries\CountriesClient;
+use Paddle\SDK\Resources\Currencies\CurrenciesClient;
 use Paddle\SDK\Resources\CustomerPortalSessions\CustomerPortalSessionsClient;
 use Paddle\SDK\Resources\Customers\CustomersClient;
 use Paddle\SDK\Resources\DiscountGroups\DiscountGroupsClient;
@@ -43,6 +47,7 @@ use Paddle\SDK\Resources\Simulations\SimulationsClient;
 use Paddle\SDK\Resources\SimulationTypes\SimulationTypesClient;
 use Paddle\SDK\Resources\Subscriptions\SubscriptionsClient;
 use Paddle\SDK\Resources\Transactions\TransactionsClient;
+use Paddle\SDK\Resources\Verifications\VerificationsClient;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -84,6 +89,10 @@ class Client
     public readonly SimulationRunEventsClient $simulationRunEvents;
     public readonly SimulationTypesClient $simulationTypes;
     public readonly MetricsClient $metrics;
+    public readonly CountriesClient $countries;
+    public readonly CurrenciesClient $currencies;
+    public readonly VerificationsClient $verifications;
+    public readonly CheckoutDomainsClient $checkoutDomains;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -136,6 +145,10 @@ class Client
         $this->simulationRunEvents = new SimulationRunEventsClient($this);
         $this->simulationTypes = new SimulationTypesClient($this);
         $this->metrics = new MetricsClient($this);
+        $this->countries = new CountriesClient($this);
+        $this->currencies = new CurrenciesClient($this);
+        $this->verifications = new VerificationsClient($this);
+        $this->checkoutDomains = new CheckoutDomainsClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
@@ -211,6 +224,10 @@ class Client
         return new PluginClient($httpClient, [
             new AuthenticationPlugin(new Bearer($this->apiKey)),
             new ContentTypePlugin(),
+            new HeaderDefaultsPlugin([
+                // The API requires it even without a body, such as when creating a customer auth token.
+                'Content-Type' => 'application/json',
+            ]),
             new ContentLengthPlugin(),
             new DecoderPlugin(['use_content_encoding' => false]),
             new HeaderSetPlugin([

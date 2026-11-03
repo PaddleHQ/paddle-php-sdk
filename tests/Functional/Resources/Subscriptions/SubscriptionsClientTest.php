@@ -17,6 +17,8 @@ use Paddle\SDK\Entities\Shared\PriceQuantity;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
+use Paddle\SDK\Entities\Subscription\SubscriptionConsentRequirementStatus;
+use Paddle\SDK\Entities\Subscription\SubscriptionConsentRequirementType;
 use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
 use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
@@ -51,6 +53,7 @@ use Paddle\SDK\Resources\Subscriptions\Operations\ResumeSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionDiscount;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItem;
 use Paddle\SDK\Resources\Subscriptions\Operations\Update\SubscriptionUpdateItemWithPrice;
+use Paddle\SDK\Resources\Subscriptions\Operations\Update\UpdateBillingDetails;
 use Paddle\SDK\Resources\Subscriptions\Operations\UpdateSubscription;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -102,6 +105,15 @@ class SubscriptionsClientTest extends TestCase
             new UpdateSubscription(prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
+        ];
+
+        yield 'Update billing details' => [
+            new UpdateSubscription(
+                billingDetails: new UpdateBillingDetails(paymentTerms: new TimePeriod(Interval::Month(), 1)),
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_billing_details'),
         ];
 
         yield 'Update Partial' => [
@@ -1213,5 +1225,30 @@ class SubscriptionsClientTest extends TestCase
 
         $nullImmediateTransactionProration = $subscriptionPreview->immediateTransaction->details->lineItems[1]->proration;
         self::assertNull($nullImmediateTransactionProration);
+    }
+
+    /**
+     * @test
+     */
+    public function preview_returns_consent_requirements(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')));
+        $subscriptionPreview = $this->client->subscriptions->previewUpdate(
+            'sub_01h8bx8fmywym11t6swgzba704',
+            new PreviewUpdateSubscription(
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
+            ),
+        );
+
+        self::assertCount(1, $subscriptionPreview->consentRequirements);
+
+        $consentRequirement = $subscriptionPreview->consentRequirements[0];
+        self::assertSame('subconreq_01hp463gxfvndqjjyqn2n7tkth', $consentRequirement->id);
+        self::assertEquals(SubscriptionConsentRequirementType::TrialEnding(), $consentRequirement->requirement);
+        self::assertEquals(SubscriptionConsentRequirementStatus::Pending(), $consentRequirement->status);
+        self::assertSame('2024-02-08T11:02:03+00:00', $consentRequirement->consentPeriod->startsAt->format(DATE_RFC3339));
+        self::assertSame('2024-03-08T11:02:03+00:00', $consentRequirement->consentPeriod->endsAt->format(DATE_RFC3339));
+        self::assertNull($consentRequirement->grantedAt);
+        self::assertNull($consentRequirement->voidedAt);
     }
 }

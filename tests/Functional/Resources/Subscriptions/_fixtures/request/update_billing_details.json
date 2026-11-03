@@ -1,0 +1,9 @@
+{
+  "billing_details": {
+    "payment_terms": {
+      "interval": "month",
+      "frequency": 1
+    }
+  },
+  "proration_billing_mode": "prorated_next_billing_period"
+}

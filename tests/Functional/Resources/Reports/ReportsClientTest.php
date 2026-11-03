@@ -119,6 +119,72 @@ class ReportsClientTest extends TestCase
             self::readRawJsonFixture('request/create_payout_reconciliation_with_filters'),
         ];
 
+        yield 'Create checkouts report' => [
+            new CreateReport(
+                type: ReportType::Checkouts(),
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_checkouts'),
+        ];
+
+        yield 'Create checkouts report with filters' => [
+            new CreateReport(
+                type: ReportType::Checkouts(),
+                filters: [
+                    new ReportFilter(
+                        name: ReportFilterName::CheckoutCreatedAt(),
+                        operator: ReportFilterOperator::Gte(),
+                        value: '2023-12-30',
+                    ),
+                    new ReportFilter(
+                        name: ReportFilterName::CustomerCountryCode(),
+                        operator: null,
+                        value: ['US', 'GB'],
+                    ),
+                ],
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_checkouts_with_filters'),
+        ];
+
+        yield 'Create subscriptions report' => [
+            new CreateReport(
+                type: ReportType::Subscriptions(),
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_subscriptions'),
+        ];
+
+        yield 'Create subscriptions report with filters' => [
+            new CreateReport(
+                type: ReportType::Subscriptions(),
+                filters: [
+                    new ReportFilter(
+                        name: ReportFilterName::SubscriptionStatus(),
+                        operator: null,
+                        value: ['active', 'past_due'],
+                    ),
+                    new ReportFilter(
+                        name: ReportFilterName::SubscriptionCreatedAt(),
+                        operator: ReportFilterOperator::Gte(),
+                        value: '2023-12-30',
+                    ),
+                    new ReportFilter(
+                        name: ReportFilterName::CustomerCountryCode(),
+                        operator: null,
+                        value: ['US', 'GB'],
+                    ),
+                    new ReportFilter(
+                        name: ReportFilterName::SubscriptionScheduledChangeAction(),
+                        operator: null,
+                        value: ['cancel', 'none'],
+                    ),
+                ],
+            ),
+            new Response(201, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_subscriptions_with_filters'),
+        ];
+
         yield 'Create balance report' => [
             new CreateReport(
                 type: ReportType::Balance(),
