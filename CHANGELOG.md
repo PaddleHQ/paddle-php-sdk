@@ -47,6 +47,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added `type` to subscription `discount`
 - Added support for subscription history. See [related changelog](https://developer.paddle.com/changelog/2026/subscription-history?utm_source=dx&utm_medium=paddle-php-sdk)
   - `Client->subscriptions->listHistory()`
+- Added `importMeta` to `SubscriptionPreview`
 
 ### Fixed
 

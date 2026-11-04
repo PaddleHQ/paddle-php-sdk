@@ -15,6 +15,7 @@ use Paddle\SDK\Entities\Shared\BillingDetails;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
+use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Shared\TransactionDetailsPreview;
 use Paddle\SDK\Entities\Subscription\SubscriptionConsentRequirement;
@@ -60,6 +61,7 @@ class SubscriptionPreview implements Entity
         public TransactionDetailsPreview|null $recurringTransactionDetails,
         public SubscriptionPreviewSubscriptionUpdateSummary|null $updateSummary,
         public array $consentRequirements,
+        public ImportMeta|null $importMeta,
     ) {
     }
 
@@ -103,6 +105,7 @@ class SubscriptionPreview implements Entity
                 fn (array $item): SubscriptionConsentRequirement => SubscriptionConsentRequirement::from($item),
                 $data['consent_requirements'] ?? [],
             ),
+            importMeta: isset($data['import_meta']) ? ImportMeta::from($data['import_meta']) : null,
         );
     }
 }
