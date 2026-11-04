@@ -13,6 +13,7 @@ use Paddle\SDK\Notifications\Entities\Shared\CustomData;
 use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
 use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
 use Paddle\SDK\Notifications\Entities\Simulation\Traits\OptionalProperties;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionConsentRequirement;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionDiscount;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionItem;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionScheduledChange;
@@ -26,7 +27,8 @@ final class Subscription implements SimulationEntity
     use FiltersUndefined;
 
     /**
-     * @param array<SubscriptionItem> $items
+     * @param array<SubscriptionItem>               $items
+     * @param array<SubscriptionConsentRequirement> $consentRequirements
      */
     public function __construct(
         public readonly string|Undefined $id = new Undefined(),
@@ -52,6 +54,7 @@ final class Subscription implements SimulationEntity
         public readonly array|Undefined $items = new Undefined(),
         public readonly CustomData|Undefined|null $customData = new Undefined(),
         public readonly ImportMeta|Undefined|null $importMeta = new Undefined(),
+        public readonly array|Undefined|null $consentRequirements = new Undefined(),
     ) {
     }
 
@@ -81,6 +84,7 @@ final class Subscription implements SimulationEntity
             items: self::optionalList($data, 'items', fn ($value) => SubscriptionItem::from($value)),
             customData: self::optional($data, 'custom_data', fn ($value) => new CustomData($value)),
             importMeta: self::optional($data, 'import_meta', fn ($value) => ImportMeta::from($value)),
+            consentRequirements: self::optionalList($data, 'consent_requirements', fn ($value) => SubscriptionConsentRequirement::from($value)),
         );
     }
 
@@ -110,6 +114,7 @@ final class Subscription implements SimulationEntity
             'items' => $this->items,
             'custom_data' => $this->customData,
             'import_meta' => $this->importMeta,
+            'consent_requirements' => $this->consentRequirements,
         ]);
     }
 }
