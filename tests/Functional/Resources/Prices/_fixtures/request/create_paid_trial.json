@@ -1,0 +1,28 @@
+{
+  "description": "Monthly (per seat) with paid trial",
+  "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+  "unit_price": {
+    "amount": "1000",
+    "currency_code": "USD"
+  },
+  "trial_period": {
+    "interval": "day",
+    "frequency": 14,
+    "requires_payment_method": true,
+    "unit_price": {
+      "amount": "100",
+      "currency_code": "USD"
+    },
+    "unit_price_overrides": [
+      {
+        "country_codes": [
+          "GB"
+        ],
+        "unit_price": {
+          "amount": "90",
+          "currency_code": "GBP"
+        }
+      }
+    ]
+  }
+}
