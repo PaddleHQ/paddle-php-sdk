@@ -430,6 +430,27 @@ class SubscriptionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?scheduled_change_action=pause,cancel', Environment::SANDBOX->baseUrl()),
         ];
+
+        yield 'Next Billed At Filtered No Comparator' => [
+            new ListSubscriptions(nextBilledAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'))),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?next_billed_at=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Next Billed At Filtered With Comparator' => [
+            new ListSubscriptions(nextBilledAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::LTE())),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?next_billed_at[LTE]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Next Billed At and Status Filtered' => [
+            new ListSubscriptions(
+                statuses: [SubscriptionStatus::Active()],
+                nextBilledAt: new DateComparison(new \DateTimeImmutable('2023-11-06 14:00:00'), Comparator::GTE()),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf('%s/subscriptions?status=active&next_billed_at[GTE]=2023-11-06T14:00:00.000000Z', Environment::SANDBOX->baseUrl()),
+        ];
     }
 
     /**
