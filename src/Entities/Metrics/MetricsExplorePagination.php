@@ -31,7 +31,7 @@ class MetricsExplorePagination
 
     private static function after(Pagination $pagination): string|null
     {
-        if ($pagination->next === '') {
+        if (! $pagination->hasMore || $pagination->next === '') {
             return null;
         }
 

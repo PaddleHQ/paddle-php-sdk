@@ -31,6 +31,7 @@ class MetricsExplorePaginationTest extends TestCase
         yield 'Next page' => ['https://api.paddle.com/metrics/explore?after=eyJjIjoxfQ', true, 'eyJjIjoxfQ'];
         yield 'Cursor among other query parameters' => ['https://api.paddle.com/metrics/explore?per_page=5&after=eyJjIjoxfQ', true, 'eyJjIjoxfQ'];
         yield 'Last page' => ['', false, null];
+        yield 'Last page with a next URL' => ['https://api.paddle.com/metrics/explore?after=eyJjIjoxfQ', false, null];
         yield 'Empty next with more pages' => ['', true, null];
         yield 'Next without a cursor' => ['https://api.paddle.com/metrics/explore', true, null];
         yield 'Empty cursor' => ['https://api.paddle.com/metrics/explore?after=', true, null];
