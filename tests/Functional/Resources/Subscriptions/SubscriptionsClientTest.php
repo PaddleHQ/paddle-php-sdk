@@ -19,6 +19,7 @@ use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
 use Paddle\SDK\Entities\Subscription\SubscriptionConsentRequirementStatus;
 use Paddle\SDK\Entities\Subscription\SubscriptionConsentRequirementType;
+use Paddle\SDK\Entities\Subscription\SubscriptionDiscountType;
 use Paddle\SDK\Entities\Subscription\SubscriptionEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionItems;
 use Paddle\SDK\Entities\Subscription\SubscriptionItemsWithPrice;
@@ -385,6 +386,22 @@ class SubscriptionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/list_default')),
             sprintf('%s/subscriptions?scheduled_change_action=pause,cancel', Environment::SANDBOX->baseUrl()),
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function list_returns_discount_type(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_default')));
+        $subscriptions = iterator_to_array($this->client->subscriptions->list(), false);
+
+        $discountTypes = array_map(
+            fn ($subscription) => $subscription->discount?->type,
+            array_values(array_filter($subscriptions, fn ($subscription) => $subscription->discount !== null)),
+        );
+
+        self::assertEquals([SubscriptionDiscountType::Recurring(), SubscriptionDiscountType::OneOff()], $discountTypes);
     }
 
     /**

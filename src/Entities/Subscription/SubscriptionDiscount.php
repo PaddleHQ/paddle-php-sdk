@@ -19,6 +19,7 @@ class SubscriptionDiscount
         public string $id,
         public \DateTimeInterface|null $startsAt,
         public \DateTimeInterface|null $endsAt,
+        public SubscriptionDiscountType|null $type = null,
     ) {
     }
 
@@ -28,6 +29,7 @@ class SubscriptionDiscount
             $data['id'],
             isset($data['starts_at']) ? DateTime::from($data['starts_at']) : null,
             isset($data['ends_at']) ? DateTime::from($data['ends_at']) : null,
+            isset($data['type']) ? SubscriptionDiscountType::from($data['type']) : null,
         );
     }
 }
