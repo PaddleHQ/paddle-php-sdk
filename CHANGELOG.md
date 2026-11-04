@@ -37,6 +37,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 ### Fixed
 
 - `Event::fromRequest()` passed `JSON_THROW_ON_ERROR` to `json_decode()` as its depth, so a request body that isn't valid JSON failed with a `TypeError` instead of a `JsonException`
+- `BillingDetails` no longer raises an undefined array key warning when `purchase_order_number` or `additional_information` is missing, for example in subscription history entries
 
 ## [1.18.0] - 2026-09-10
 
