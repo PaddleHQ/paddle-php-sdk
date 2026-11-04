@@ -38,9 +38,17 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `PriceTrialPeriod` can be passed as `trialPeriod` to `CreatePrice` and `UpdatePrice`
 - Added support for retrieving Paddle IP addresses
   - `Client->ipAddresses->get()`
+- Added support for metrics explore. See [related changelog](https://developer.paddle.com/changelog/2026/explore-metrics-api?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->metrics->listExploreEntities()`
+  - `Client->metrics->runExploreQuery()`
+- Added `nextBilledAt` filter to `ListSubscriptions`
+- Added `type` to subscription `discount`
+- Added support for subscription history. See [related changelog](https://developer.paddle.com/changelog/2026/subscription-history?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->subscriptions->listHistory()`
 
 ### Fixed
 
+- `Verifier::verify()` now rejects webhooks whose timestamp is more than `maximumVariance` seconds in the future, as well as in the past
 - `Event::fromRequest()` passed `JSON_THROW_ON_ERROR` to `json_decode()` as its depth, so a request body that isn't valid JSON failed with a `TypeError` instead of a `JsonException`
 - `BillingDetails` no longer raises an undefined array key warning when `purchase_order_number` or `additional_information` is missing, for example in subscription history entries
 
