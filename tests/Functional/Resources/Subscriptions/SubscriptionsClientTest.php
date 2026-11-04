@@ -7,6 +7,9 @@ namespace Paddle\SDK\Tests\Functional\Resources\Subscriptions;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Collections\SubscriptionHistoryCollection;
+use Paddle\SDK\Entities\Shared\ActionSource;
+use Paddle\SDK\Entities\Shared\ActorType;
 use Paddle\SDK\Entities\Shared\CatalogType;
 use Paddle\SDK\Entities\Shared\CollectionMode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
@@ -31,8 +34,48 @@ use Paddle\SDK\Entities\Subscription\SubscriptionProrationBillingMode;
 use Paddle\SDK\Entities\Subscription\SubscriptionResumeEffectiveFrom;
 use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChangeAction;
 use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryAction;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryCanceledEffectiveFrom;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionActivated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionAddressUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionBillingCycleUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionBillingDateUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionBillingDetailsUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionBusinessAdded;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionBusinessRemoved;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionBusinessUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionCanceled;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionCollectionModeUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionConsentRequirementGranted;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionCreated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionCurrencyUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionCustomDataUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionCustomerUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionDiscountAdded;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionDiscountExpired;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionDiscountRemoved;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionItemAdded;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionItemQuantityUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionItemRemoved;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionOneOffChargeApplied;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionPastDue;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionPaused;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionPaymentAttempted;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionPaymentMethodAdded;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionPaymentMethodRemoved;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionPaymentMethodUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionRenewed;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionResumed;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionScheduledChangeAdded;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionScheduledChangeRemoved;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailSubscriptionScheduledChangeUpdated;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDetailUndefined;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryDiscountType;
+use Paddle\SDK\Entities\SubscriptionHistory\SubscriptionHistoryReason;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Options;
+use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
+use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Resources\Subscriptions\Operations\CancelSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeItem;
@@ -42,6 +85,7 @@ use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeNonCa
 use Paddle\SDK\Resources\Subscriptions\Operations\Charge\SubscriptionChargeNonCatalogProduct;
 use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeCharge;
 use Paddle\SDK\Resources\Subscriptions\Operations\Get\Includes;
+use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptionHistory;
 use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptions;
 use Paddle\SDK\Resources\Subscriptions\Operations\PauseSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeCharge;
@@ -1250,5 +1294,223 @@ class SubscriptionsClientTest extends TestCase
         self::assertSame('2024-03-08T11:02:03+00:00', $consentRequirement->consentPeriod->endsAt->format(DATE_RFC3339));
         self::assertNull($consentRequirement->grantedAt);
         self::assertNull($consentRequirement->voidedAt);
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider listHistoryOperationsProvider
+     */
+    public function list_history_hits_expected_uri(
+        ListSubscriptionHistory $operation,
+        string $expectedUri,
+    ): void {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_default')));
+        $collection = $this->client->subscriptions->listHistory('sub_01hv959anj4zrw503h2acawb3p', $operation);
+        $request = $this->mockClient->getLastRequest();
+
+        self::assertInstanceOf(SubscriptionHistoryCollection::class, $collection);
+        self::assertInstanceOf(RequestInterface::class, $request);
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
+    }
+
+    public static function listHistoryOperationsProvider(): \Generator
+    {
+        yield 'Default' => [
+            new ListSubscriptionHistory(),
+            sprintf('%s/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Default Paged' => [
+            new ListSubscriptionHistory(new Pager()),
+            sprintf('%s/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history?order_by=id[asc]&per_page=50', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Filtered' => [
+            new ListSubscriptionHistory(
+                actions: [SubscriptionHistoryAction::SubscriptionRenewed(), SubscriptionHistoryAction::SubscriptionPaused()],
+                sources: [ActionSource::Api(), ActionSource::Dashboard()],
+                actorTypes: [ActorType::ApiKey()],
+                actorIds: ['apikey_01h8441jn5pcwrfhwh78jqt8hl'],
+                reasons: [SubscriptionHistoryReason::CustomerRequest()],
+                occurredAt: new DateComparison(new \DateTime('2026-06-01 00:00:00'), Comparator::GTE()),
+            ),
+            sprintf(
+                '%s/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history'
+                . '?action=subscription_renewed,subscription_paused'
+                . '&source=api,dashboard'
+                . '&actor_type=api_key'
+                . '&actor_id=apikey_01h8441jn5pcwrfhwh78jqt8hl'
+                . '&reason=customer_request'
+                . '&occurred_at[GTE]=2026-06-01T00:00:00.000000Z',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
+
+        yield 'Occurred At Without Comparator' => [
+            new ListSubscriptionHistory(occurredAt: new DateComparison(new \DateTime('2026-06-01 00:00:00'))),
+            sprintf('%s/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history?occurred_at=2026-06-01T00:00:00.000000Z', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /** @test */
+    public function list_history_returns_expected_entities(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_default')));
+        $entries = iterator_to_array($this->client->subscriptions->listHistory('sub_01hv959anj4zrw503h2acawb3p'), false);
+
+        self::assertCount(11, $entries);
+
+        $created = $entries[0];
+        self::assertSame('subhis_01k0w0a4m6v7w8x9y0z1a2b3c4', $created->id);
+        self::assertSame('sub_01hv959anj4zrw503h2acawb3p', $created->subscriptionId);
+        self::assertEquals(ActionSource::Checkout(), $created->source);
+        self::assertEquals(ActorType::Customer(), $created->actor->type);
+        self::assertSame('ctm_01hv8wt8nffez4p2t6typn4a5j', $created->actor->id);
+        self::assertNull($created->reason);
+        self::assertInstanceOf(SubscriptionHistoryDetailSubscriptionCreated::class, $created->detail);
+        self::assertEquals(SubscriptionStatus::Active(), $created->detail->status);
+        self::assertEquals(CollectionMode::Automatic(), $created->detail->collectionMode);
+        self::assertNull($created->detail->billingDetails);
+        self::assertNull($created->detail->customer);
+        self::assertEquals(CurrencyCode::USD(), $created->detail->currencyCode);
+
+        $activated = $entries[1];
+        self::assertEquals(ActorType::System(), $activated->actor->type);
+        self::assertNull($activated->actor->id);
+        self::assertInstanceOf(SubscriptionHistoryDetailSubscriptionActivated::class, $activated->detail);
+        self::assertEquals(SubscriptionHistoryAction::SubscriptionActivated(), $activated->detail->action);
+        self::assertSame('txn_01h89231k3a1q8mn6p4r5s7t9v', $activated->detail->transactionId);
+        self::assertSame('2026-06-29T12:42:28.000000Z', $activated->detail->firstBilledAt?->format('Y-m-d\TH:i:s.u\Z'));
+
+        $itemAdded = $entries[3];
+        self::assertInstanceOf(SubscriptionHistoryDetailSubscriptionItemAdded::class, $itemAdded->detail);
+        self::assertSame('pri_01gsz8x8sawmvhz1pv30nge1ke', $itemAdded->detail->price->id);
+
+        $discountAdded = $entries[4];
+        self::assertInstanceOf(SubscriptionHistoryDetailSubscriptionDiscountAdded::class, $discountAdded->detail);
+        self::assertSame('dsc_01h83xenpcfjyhkqr4x214m02x', $discountAdded->detail->discount->discount->id);
+        self::assertInstanceOf(SubscriptionHistoryDiscountType::class, $discountAdded->detail->discount->type);
+
+        $canceled = $entries[6];
+        self::assertEquals(SubscriptionHistoryReason::CustomerRequest(), $canceled->reason);
+        self::assertInstanceOf(SubscriptionHistoryDetailSubscriptionCanceled::class, $canceled->detail);
+        self::assertEquals(SubscriptionHistoryCanceledEffectiveFrom::NextBillingPeriod(), $canceled->detail->effectiveFrom);
+    }
+
+    /** @test */
+    public function list_history_hydrates_unknown_action_as_undefined_detail(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_default')));
+        $entries = iterator_to_array($this->client->subscriptions->listHistory('sub_01hv959anj4zrw503h2acawb3p'), false);
+
+        $unknown = end($entries);
+        self::assertEquals(ActionSource::Unknown(), $unknown->source);
+        self::assertInstanceOf(SubscriptionHistoryDetailUndefined::class, $unknown->detail);
+        self::assertFalse($unknown->detail->action->isKnown());
+        self::assertSame('subscription_something_new', $unknown->detail->action->getValue());
+        self::assertSame(['action' => 'subscription_something_new', 'some_field' => 'some_value'], $unknown->detail->data);
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider historyDetailTypesProvider
+     *
+     * @param class-string $expectedClass
+     */
+    public function list_history_hydrates_action_as_typed_detail(string $action, string $expectedClass): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_all_actions')));
+        $entries = iterator_to_array($this->client->subscriptions->listHistory('sub_01hv959anj4zrw503h2acawb3p'), false);
+
+        $matching = array_values(array_filter(
+            $entries,
+            fn ($entry): bool => $entry->detail->action->getValue() === $action,
+        ));
+
+        self::assertCount(1, $matching, "Fixture list_history_all_actions is missing an entry for {$action}");
+        self::assertInstanceOf($expectedClass, $matching[0]->detail);
+        self::assertTrue($matching[0]->detail->action->isKnown());
+    }
+
+    public static function historyDetailTypesProvider(): \Generator
+    {
+        yield 'subscription_activated' => ['subscription_activated', SubscriptionHistoryDetailSubscriptionActivated::class];
+        yield 'subscription_address_updated' => ['subscription_address_updated', SubscriptionHistoryDetailSubscriptionAddressUpdated::class];
+        yield 'subscription_billing_cycle_updated' => ['subscription_billing_cycle_updated', SubscriptionHistoryDetailSubscriptionBillingCycleUpdated::class];
+        yield 'subscription_billing_date_updated' => ['subscription_billing_date_updated', SubscriptionHistoryDetailSubscriptionBillingDateUpdated::class];
+        yield 'subscription_billing_details_updated' => ['subscription_billing_details_updated', SubscriptionHistoryDetailSubscriptionBillingDetailsUpdated::class];
+        yield 'subscription_business_added' => ['subscription_business_added', SubscriptionHistoryDetailSubscriptionBusinessAdded::class];
+        yield 'subscription_business_removed' => ['subscription_business_removed', SubscriptionHistoryDetailSubscriptionBusinessRemoved::class];
+        yield 'subscription_business_updated' => ['subscription_business_updated', SubscriptionHistoryDetailSubscriptionBusinessUpdated::class];
+        yield 'subscription_canceled' => ['subscription_canceled', SubscriptionHistoryDetailSubscriptionCanceled::class];
+        yield 'subscription_collection_mode_updated' => ['subscription_collection_mode_updated', SubscriptionHistoryDetailSubscriptionCollectionModeUpdated::class];
+        yield 'subscription_consent_requirement_granted' => ['subscription_consent_requirement_granted', SubscriptionHistoryDetailSubscriptionConsentRequirementGranted::class];
+        yield 'subscription_created' => ['subscription_created', SubscriptionHistoryDetailSubscriptionCreated::class];
+        yield 'subscription_currency_updated' => ['subscription_currency_updated', SubscriptionHistoryDetailSubscriptionCurrencyUpdated::class];
+        yield 'subscription_custom_data_updated' => ['subscription_custom_data_updated', SubscriptionHistoryDetailSubscriptionCustomDataUpdated::class];
+        yield 'subscription_customer_updated' => ['subscription_customer_updated', SubscriptionHistoryDetailSubscriptionCustomerUpdated::class];
+        yield 'subscription_discount_added' => ['subscription_discount_added', SubscriptionHistoryDetailSubscriptionDiscountAdded::class];
+        yield 'subscription_discount_expired' => ['subscription_discount_expired', SubscriptionHistoryDetailSubscriptionDiscountExpired::class];
+        yield 'subscription_discount_removed' => ['subscription_discount_removed', SubscriptionHistoryDetailSubscriptionDiscountRemoved::class];
+        yield 'subscription_item_added' => ['subscription_item_added', SubscriptionHistoryDetailSubscriptionItemAdded::class];
+        yield 'subscription_item_quantity_updated' => ['subscription_item_quantity_updated', SubscriptionHistoryDetailSubscriptionItemQuantityUpdated::class];
+        yield 'subscription_item_removed' => ['subscription_item_removed', SubscriptionHistoryDetailSubscriptionItemRemoved::class];
+        yield 'subscription_one_off_charge_applied' => ['subscription_one_off_charge_applied', SubscriptionHistoryDetailSubscriptionOneOffChargeApplied::class];
+        yield 'subscription_past_due' => ['subscription_past_due', SubscriptionHistoryDetailSubscriptionPastDue::class];
+        yield 'subscription_paused' => ['subscription_paused', SubscriptionHistoryDetailSubscriptionPaused::class];
+        yield 'subscription_payment_attempted' => ['subscription_payment_attempted', SubscriptionHistoryDetailSubscriptionPaymentAttempted::class];
+        yield 'subscription_payment_method_added' => ['subscription_payment_method_added', SubscriptionHistoryDetailSubscriptionPaymentMethodAdded::class];
+        yield 'subscription_payment_method_removed' => ['subscription_payment_method_removed', SubscriptionHistoryDetailSubscriptionPaymentMethodRemoved::class];
+        yield 'subscription_payment_method_updated' => ['subscription_payment_method_updated', SubscriptionHistoryDetailSubscriptionPaymentMethodUpdated::class];
+        yield 'subscription_renewed' => ['subscription_renewed', SubscriptionHistoryDetailSubscriptionRenewed::class];
+        yield 'subscription_resumed' => ['subscription_resumed', SubscriptionHistoryDetailSubscriptionResumed::class];
+        yield 'subscription_scheduled_change_added' => ['subscription_scheduled_change_added', SubscriptionHistoryDetailSubscriptionScheduledChangeAdded::class];
+        yield 'subscription_scheduled_change_removed' => ['subscription_scheduled_change_removed', SubscriptionHistoryDetailSubscriptionScheduledChangeRemoved::class];
+        yield 'subscription_scheduled_change_updated' => ['subscription_scheduled_change_updated', SubscriptionHistoryDetailSubscriptionScheduledChangeUpdated::class];
+    }
+
+    /** @test */
+    public function list_history_fixture_covers_every_known_action(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_all_actions')));
+        $entries = iterator_to_array($this->client->subscriptions->listHistory('sub_01hv959anj4zrw503h2acawb3p'), false);
+
+        $known = array_values(array_filter(SubscriptionHistoryAction::toArray()));
+        $provided = array_map(fn (array $row): string => $row[0], iterator_to_array(self::historyDetailTypesProvider()));
+        $hydrated = array_map(fn ($entry): string => $entry->detail->action->getValue(), $entries);
+
+        sort($known);
+        sort($provided);
+        sort($hydrated);
+
+        self::assertSame($known, array_values($provided));
+        self::assertSame($known, $hydrated);
+    }
+
+    /** @test */
+    public function list_history_can_paginate(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_paginated_page_one')));
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/list_history_paginated_page_two')));
+
+        $collection = $this->client->subscriptions->listHistory('sub_01hv959anj4zrw503h2acawb3p');
+
+        $request = $this->mockClient->getLastRequest();
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history',
+            urldecode((string) $request->getUri()),
+        );
+
+        $allEntries = iterator_to_array($collection, false);
+        self::assertCount(4, $allEntries);
+
+        $request = $this->mockClient->getLastRequest();
+        self::assertEquals(
+            Environment::SANDBOX->baseUrl() . '/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history?after=subhis_02paga0a4m6v7w8x9y0z1a2b3c',
+            urldecode((string) $request->getUri()),
+        );
     }
 }
