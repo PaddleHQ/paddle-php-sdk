@@ -764,6 +764,18 @@ class SubscriptionsClientTest extends TestCase
             self::readRawJsonFixture('request/create_one_time_charge_full'),
         ];
 
+        yield 'Charge With Receipt Data' => [
+            new CreateOneTimeCharge(
+                SubscriptionEffectiveFrom::Immediately(),
+                [
+                    new SubscriptionItems('pri_01gsz98e27ak2tyhexptwc58yk', 1),
+                ],
+                receiptData: 'PO number 12345',
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_one_time_charge_receipt_data'),
+        ];
+
         yield 'Charge Catalog Item' => [
             new CreateOneTimeCharge(
                 SubscriptionEffectiveFrom::NextBillingPeriod(),

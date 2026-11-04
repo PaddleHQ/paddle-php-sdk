@@ -1,0 +1,10 @@
+{
+    "effective_from": "immediately",
+    "items": [
+        {
+            "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+            "quantity": 1
+        }
+    ],
+    "receipt_data": "PO number 12345"
+}
