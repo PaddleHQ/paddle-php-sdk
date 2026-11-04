@@ -38,6 +38,8 @@ use Paddle\SDK\PaddleEnum;
  * @method static EventTypeName InvoiceOverdue()
  * @method static EventTypeName InvoicePaid()
  * @method static EventTypeName InvoiceScheduled()
+ * @method static EventTypeName PaymentMethodDeleted()
+ * @method static EventTypeName PaymentMethodSaved()
  * @method static EventTypeName PayoutCreated()
  * @method static EventTypeName PayoutPaid()
  * @method static EventTypeName PriceCreated()
@@ -101,6 +103,8 @@ final class EventTypeName extends PaddleEnum
     private const InvoiceOverdue = 'invoice.overdue';
     private const InvoicePaid = 'invoice.paid';
     private const InvoiceScheduled = 'invoice.scheduled';
+    private const PaymentMethodDeleted = 'payment_method.deleted';
+    private const PaymentMethodSaved = 'payment_method.saved';
     private const PayoutCreated = 'payout.created';
     private const PayoutPaid = 'payout.paid';
     private const PriceCreated = 'price.created';
