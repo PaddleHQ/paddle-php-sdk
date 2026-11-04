@@ -37,6 +37,8 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `trialPeriod` on prices, `price.*` events and subscription and transaction event item prices is now a `PriceTrialPeriod`, which extends `TimePeriod` so existing code keeps working
   - `PriceTrialPeriod` can be passed as `trialPeriod` to `CreatePrice` and `UpdatePrice`
 - Added `type` to subscription `discount`
+- Added support for subscription history. See [related changelog](https://developer.paddle.com/changelog/2026/subscription-history?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->subscriptions->listHistory()`
 
 ### Fixed
 
