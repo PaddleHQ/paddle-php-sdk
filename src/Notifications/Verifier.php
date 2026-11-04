@@ -22,8 +22,16 @@ final class Verifier
 
         $signature = PaddleSignature::parse($signatureData[0]);
 
-        if ($this->maximumVariance > 0 && \time() > $signature->timestamp + $this->maximumVariance) {
-            return false;
+        if ($this->maximumVariance > 0) {
+            $now = \time();
+
+            if ($now > $signature->timestamp + $this->maximumVariance) {
+                return false;
+            }
+
+            if ($signature->timestamp - $this->maximumVariance > $now) {
+                return false;
+            }
         }
 
         $request->getBody()->rewind();

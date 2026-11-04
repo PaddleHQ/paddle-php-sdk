@@ -1,0 +1,47 @@
+{
+  "data": [
+    {
+      "id": "subhis_03paga0a4m6v7w8x9y0z1a2b3c",
+      "group_id": "subhisgrp_03paga0a4m6v7w8x9y0z1a2b3c",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-12T09:00:00.000000Z",
+      "source": "system",
+      "actor": { "type": "system", "id": null },
+      "reason": null,
+      "detail": {
+        "action": "subscription_past_due",
+        "status": "past_due",
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s7t9z"
+      }
+    },
+    {
+      "id": "subhis_04paga0a4m6v7w8x9y0z1a2b3c",
+      "group_id": "subhisgrp_04paga0a4m6v7w8x9y0z1a2b3c",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-13T09:00:00.000000Z",
+      "source": "system",
+      "actor": { "type": "system", "id": null },
+      "reason": null,
+      "detail": {
+        "action": "subscription_activated",
+        "status": "active",
+        "first_billed_at": null,
+        "next_billed_at": "2026-08-13T09:00:00.000000Z",
+        "current_billing_period": {
+          "starts_at": "2026-07-13T09:00:00.000000Z",
+          "ends_at": "2026-08-13T09:00:00.000000Z"
+        },
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s8a0a"
+      }
+    }
+  ],
+  "meta": {
+    "request_id": "270e71a2-ed13-4f45-b002-45693f5361b6",
+    "pagination": {
+      "per_page": 2,
+      "next": "https://sandbox-api.paddle.com/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history?after=subhis_04paga0a4m6v7w8x9y0z1a2b3c",
+      "has_more": false,
+      "estimated_total": 4
+    }
+  }
+}

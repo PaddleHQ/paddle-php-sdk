@@ -34,6 +34,7 @@ use Paddle\SDK\Resources\DiscountGroups\DiscountGroupsClient;
 use Paddle\SDK\Resources\Discounts\DiscountsClient;
 use Paddle\SDK\Resources\Events\EventsClient;
 use Paddle\SDK\Resources\EventTypes\EventTypesClient;
+use Paddle\SDK\Resources\IpAddresses\IpAddressesClient;
 use Paddle\SDK\Resources\Metrics\MetricsClient;
 use Paddle\SDK\Resources\NotificationLogs\NotificationLogsClient;
 use Paddle\SDK\Resources\Notifications\NotificationsClient;
@@ -99,6 +100,7 @@ class Client
     public readonly ApiRootClient $apiRoot;
     public readonly AccountClient $account;
     public readonly SettingsClient $settings;
+    public readonly IpAddressesClient $ipAddresses;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -158,6 +160,7 @@ class Client
         $this->apiRoot = new ApiRootClient($this);
         $this->account = new AccountClient($this);
         $this->settings = new SettingsClient($this);
+        $this->ipAddresses = new IpAddressesClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
