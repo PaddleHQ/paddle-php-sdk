@@ -33,6 +33,9 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `Client->settings->getTaxSettings()`
   - `Client->settings->updateTaxSettings()`
 - Added `account.read`, `account.write`, `balance_currency.read`, `balance_currency.write`, `checkout_settings.read`, `checkout_settings.write`, `currency_conversion.read`, `currency_conversion.write`, `statement_descriptor.read`, `statement_descriptor.write`, `tax_settings.read`, and `tax_settings.write` to `ApiKeyPermission` (permissions on `api_key.*` events)
+- Added paid trials support: `requires_payment_method`, `unit_price`, and `unit_price_overrides` on price `trial_period`. See [related changelog](https://developer.paddle.com/changelog/2026/paid-trials?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `trialPeriod` on prices, `price.*` events and subscription and transaction event item prices is now a `PriceTrialPeriod`, which extends `TimePeriod` so existing code keeps working
+  - `PriceTrialPeriod` can be passed as `trialPeriod` to `CreatePrice` and `UpdatePrice`
 
 ### Fixed
 

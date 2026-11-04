@@ -24,7 +24,10 @@
                 "import_meta": null,
                 "trial_period": {
                     "interval": "day",
-                    "frequency": 14
+                    "frequency": 14,
+                    "requires_payment_method": false,
+                    "unit_price": null,
+                    "unit_price_overrides": []
                 },
                 "billing_cycle": {
                     "interval": "month",

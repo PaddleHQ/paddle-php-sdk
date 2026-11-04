@@ -1,0 +1,12 @@
+{
+  "description": "Monthly (per seat) with trial",
+  "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+  "unit_price": {
+    "amount": "1000",
+    "currency_code": "USD"
+  },
+  "trial_period": {
+    "interval": "week",
+    "frequency": 1
+  }
+}
