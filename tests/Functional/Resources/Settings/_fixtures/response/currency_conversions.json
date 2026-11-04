@@ -1,0 +1,106 @@
+{
+  "data": {
+    "ARS": {
+      "enabled": false
+    },
+    "AUD": {
+      "enabled": true
+    },
+    "BRL": {
+      "enabled": false
+    },
+    "CAD": {
+      "enabled": true
+    },
+    "CHF": {
+      "enabled": false
+    },
+    "CLP": {
+      "enabled": false
+    },
+    "CNY": {
+      "enabled": false
+    },
+    "COP": {
+      "enabled": false
+    },
+    "CZK": {
+      "enabled": false
+    },
+    "DKK": {
+      "enabled": false
+    },
+    "EUR": {
+      "enabled": true
+    },
+    "GBP": {
+      "enabled": false
+    },
+    "HKD": {
+      "enabled": false
+    },
+    "HUF": {
+      "enabled": false
+    },
+    "ILS": {
+      "enabled": false
+    },
+    "INR": {
+      "enabled": false
+    },
+    "JPY": {
+      "enabled": true
+    },
+    "KRW": {
+      "enabled": false
+    },
+    "MXN": {
+      "enabled": false
+    },
+    "NOK": {
+      "enabled": false
+    },
+    "NZD": {
+      "enabled": false
+    },
+    "PEN": {
+      "enabled": false
+    },
+    "PLN": {
+      "enabled": false
+    },
+    "RUB": {
+      "enabled": false
+    },
+    "SEK": {
+      "enabled": false
+    },
+    "SGD": {
+      "enabled": false
+    },
+    "THB": {
+      "enabled": false
+    },
+    "TRY": {
+      "enabled": false
+    },
+    "TWD": {
+      "enabled": false
+    },
+    "UAH": {
+      "enabled": false
+    },
+    "USD": {
+      "enabled": true
+    },
+    "VND": {
+      "enabled": false
+    },
+    "ZAR": {
+      "enabled": false
+    }
+  },
+  "meta": {
+    "request_id": "9bcdcc29-e180-4055-ad3d-d37e5dc5e56d"
+  }
+}

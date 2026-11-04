@@ -1,0 +1,26 @@
+{
+  "data": {
+    "api": {
+      "name": "Paddle API",
+      "version": "1",
+      "environment": "production",
+      "documentation_url": "https://developer.paddle.com/api-reference/overview"
+    },
+    "caller": {
+      "auth_type": "api_key",
+      "account": {
+        "id": "slr_01k1e8w9df9pz73s399svdkxtg",
+        "name": "AeroEdit"
+      },
+      "permissions": [
+        "transaction.read",
+        "transaction.write",
+        "subscription.read",
+        "customer.read"
+      ]
+    }
+  },
+  "meta": {
+    "request_id": "9bcdcc29-e180-4055-ad3d-d37e5dc5e56d"
+  }
+}

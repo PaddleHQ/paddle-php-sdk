@@ -19,8 +19,10 @@ use Http\Discovery\HttpAsyncClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\Authentication\Bearer;
 use Paddle\SDK\Logger\Formatter;
+use Paddle\SDK\Resources\Account\AccountClient;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
+use Paddle\SDK\Resources\ApiRoot\ApiRootClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
 use Paddle\SDK\Resources\CheckoutDomains\CheckoutDomainsClient;
 use Paddle\SDK\Resources\ClientTokens\ClientTokensClient;
@@ -41,6 +43,7 @@ use Paddle\SDK\Resources\Prices\PricesClient;
 use Paddle\SDK\Resources\PricingPreviews\PricingPreviewsClient;
 use Paddle\SDK\Resources\Products\ProductsClient;
 use Paddle\SDK\Resources\Reports\ReportsClient;
+use Paddle\SDK\Resources\Settings\SettingsClient;
 use Paddle\SDK\Resources\SimulationRunEvents\SimulationRunEventsClient;
 use Paddle\SDK\Resources\SimulationRuns\SimulationRunsClient;
 use Paddle\SDK\Resources\Simulations\SimulationsClient;
@@ -93,6 +96,9 @@ class Client
     public readonly CurrenciesClient $currencies;
     public readonly VerificationsClient $verifications;
     public readonly CheckoutDomainsClient $checkoutDomains;
+    public readonly ApiRootClient $apiRoot;
+    public readonly AccountClient $account;
+    public readonly SettingsClient $settings;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -149,6 +155,9 @@ class Client
         $this->currencies = new CurrenciesClient($this);
         $this->verifications = new VerificationsClient($this);
         $this->checkoutDomains = new CheckoutDomainsClient($this);
+        $this->apiRoot = new ApiRootClient($this);
+        $this->account = new AccountClient($this);
+        $this->settings = new SettingsClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface

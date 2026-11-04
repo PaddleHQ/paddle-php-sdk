@@ -1,0 +1,12 @@
+{
+  "data": {
+    "primary": "USD",
+    "preferred": "GBP",
+    "enabled": [
+      "USD"
+    ]
+  },
+  "meta": {
+    "request_id": "9bcdcc29-e180-4055-ad3d-d37e5dc5e56d"
+  }
+}

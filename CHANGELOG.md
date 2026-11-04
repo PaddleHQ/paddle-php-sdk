@@ -8,6 +8,32 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ## [Unreleased]
 
+### Added
+
+- Added support for account settings. See [related changelog](https://developer.paddle.com/changelog/2026/account-settings-api?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->apiRoot->get()`
+  - `Client->account->get()`
+  - `Client->account->update()`
+  - `Client->settings->getBalanceCurrency()`
+  - `Client->settings->updateBalanceCurrency()`
+  - `Client->settings->getCheckoutFeatures()`
+  - `Client->settings->updateCheckoutFeatures()`
+  - `Client->settings->getCheckoutPaymentMethodSettings()`
+  - `Client->settings->updateCheckoutPaymentMethodSettings()`
+  - `Client->settings->getCheckoutRecovery()`
+  - `Client->settings->updateCheckoutRecovery()`
+  - `Client->settings->getCheckoutStylesOverlay()`
+  - `Client->settings->updateCheckoutStylesOverlay()`
+  - `Client->settings->getCheckoutUrl()`
+  - `Client->settings->updateCheckoutUrl()`
+  - `Client->settings->getCurrencyConversions()`
+  - `Client->settings->updateCurrencyConversions()`
+  - `Client->settings->getStatementDescriptorSettings()`
+  - `Client->settings->updateStatementDescriptorSettings()`
+  - `Client->settings->getTaxSettings()`
+  - `Client->settings->updateTaxSettings()`
+- Added `account.read`, `account.write`, `balance_currency.read`, `balance_currency.write`, `checkout_settings.read`, `checkout_settings.write`, `currency_conversion.read`, `currency_conversion.write`, `statement_descriptor.read`, `statement_descriptor.write`, `tax_settings.read`, and `tax_settings.write` to `ApiKeyPermission` (permissions on `api_key.*` events)
+
 ### Fixed
 
 - `Event::fromRequest()` passed `JSON_THROW_ON_ERROR` to `json_decode()` as its depth, so a request body that isn't valid JSON failed with a `TypeError` instead of a `JsonException`
