@@ -39,6 +39,10 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added support for metrics explore. See [related changelog](https://developer.paddle.com/changelog/2026/explore-metrics-api?utm_source=dx&utm_medium=paddle-php-sdk)
   - `Client->metrics->listExploreEntities()`
   - `Client->metrics->runExploreQuery()`
+- Added `nextBilledAt` filter to `ListSubscriptions`
+- Added `type` to subscription `discount`
+- Added support for subscription history. See [related changelog](https://developer.paddle.com/changelog/2026/subscription-history?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->subscriptions->listHistory()`
 
 ### Fixed
 
