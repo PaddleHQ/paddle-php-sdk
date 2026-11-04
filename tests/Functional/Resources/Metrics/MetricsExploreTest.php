@@ -12,7 +12,7 @@ use Paddle\SDK\Entities\Metrics\MetricEntity;
 use Paddle\SDK\Entities\Metrics\MetricEntityDefinition;
 use Paddle\SDK\Entities\Metrics\MetricsAggregation;
 use Paddle\SDK\Entities\Metrics\MetricsBucketInterval;
-use Paddle\SDK\Entities\Metrics\MetricsExploreResponse;
+use Paddle\SDK\Entities\Metrics\MetricsExplore;
 use Paddle\SDK\Entities\Metrics\MetricsFieldType;
 use Paddle\SDK\Entities\Metrics\MetricsFilterOperator;
 use Paddle\SDK\Entities\Metrics\MetricsSortDirection;
@@ -22,8 +22,8 @@ use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Metrics\Operations\Explore\ExploreFilter;
 use Paddle\SDK\Resources\Metrics\Operations\Explore\ExploreMeasure;
 use Paddle\SDK\Resources\Metrics\Operations\Explore\ExploreOrderBy;
+use Paddle\SDK\Resources\Metrics\Operations\ExploreMetrics;
 use Paddle\SDK\Resources\Metrics\Operations\ListExploreEntities;
-use Paddle\SDK\Resources\Metrics\Operations\RunExploreQuery;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -115,11 +115,11 @@ class MetricsExploreTest extends TestCase
     /**
      * @test
      */
-    public function run_explore_query_sends_full_body_and_parses_response(): void
+    public function explore_sends_full_body_and_parses_response(): void
     {
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/explore')));
 
-        $response = $this->client->metrics->runExploreQuery(new RunExploreQuery(
+        $response = $this->client->metrics->explore(new ExploreMetrics(
             entity: MetricEntity::TransactionsCompleted(),
             from: new \DateTimeImmutable('2026-05-01T00:00:00Z'),
             to: '2026-08-01',
@@ -154,9 +154,9 @@ class MetricsExploreTest extends TestCase
             (string) $request->getBody(),
         );
 
-        self::assertInstanceOf(MetricsExploreResponse::class, $response);
+        self::assertInstanceOf(MetricsExplore::class, $response);
 
-        $data = $response->data;
+        $data = $response;
         self::assertEquals(MetricEntity::TransactionsCompleted(), $data->entity);
         self::assertEquals(MetricsBucketInterval::Month(), $data->interval);
         self::assertEquals(CurrencyCode::USD(), $data->currencyCode);
@@ -181,18 +181,18 @@ class MetricsExploreTest extends TestCase
         self::assertTrue($response->pagination->hasMore);
         self::assertSame(42, $response->pagination->estimatedTotal);
         self::assertSame('https://api.paddle.com/metrics/explore?after=' . self::FIRST_CURSOR, $response->pagination->next);
-        self::assertTrue($response->hasMore());
-        self::assertSame(self::FIRST_CURSOR, $response->nextCursor());
+        self::assertTrue($response->pagination->hasMore);
+        self::assertSame(self::FIRST_CURSOR, $response->pagination->after);
     }
 
     /**
      * @test
      */
-    public function run_explore_query_minimal_body_omits_optional_fields(): void
+    public function explore_minimal_body_omits_optional_fields(): void
     {
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/explore')));
 
-        $this->client->metrics->runExploreQuery(new RunExploreQuery(
+        $this->client->metrics->explore(new ExploreMetrics(
             entity: MetricEntity::Checkouts(),
             from: '2026-05-01',
             to: '2026-08-01',
@@ -213,11 +213,11 @@ class MetricsExploreTest extends TestCase
     /**
      * @test
      */
-    public function run_explore_query_sends_null_aggregation(): void
+    public function explore_sends_null_aggregation(): void
     {
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/explore')));
 
-        $this->client->metrics->runExploreQuery(new RunExploreQuery(
+        $this->client->metrics->explore(new ExploreMetrics(
             entity: MetricEntity::Subscriptions(),
             from: '2026-05-01',
             to: '2026-08-01',
@@ -238,12 +238,35 @@ class MetricsExploreTest extends TestCase
     /**
      * @test
      */
-    public function run_explore_query_follows_next_cursor(): void
+    public function explore_leaves_out_empty_after(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/explore')));
+
+        $this->client->metrics->explore(
+            new ExploreMetrics(
+                entity: MetricEntity::TransactionsCompleted(),
+                from: '2026-05-01',
+                to: '2026-08-01',
+                measures: [new ExploreMeasure('gross_revenue', MetricsAggregation::Sum())],
+            ),
+            after: '',
+        );
+
+        self::assertSame(
+            Environment::SANDBOX->baseUrl() . '/metrics/explore',
+            urldecode((string) $this->mockClient->getLastRequest()->getUri()),
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function explore_follows_next_cursor(): void
     {
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/explore')));
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/explore_last_page')));
 
-        $operation = new RunExploreQuery(
+        $operation = new ExploreMetrics(
             entity: MetricEntity::TransactionsCompleted(),
             from: '2026-05-01',
             to: '2026-08-01',
@@ -251,13 +274,13 @@ class MetricsExploreTest extends TestCase
             dimensions: ['product'],
         );
 
-        $first = $this->client->metrics->runExploreQuery($operation);
+        $first = $this->client->metrics->explore($operation);
         self::assertEquals(
             Environment::SANDBOX->baseUrl() . '/metrics/explore',
             urldecode((string) $this->mockClient->getLastRequest()->getUri()),
         );
 
-        $second = $this->client->metrics->runExploreQuery($operation, after: $first->nextCursor());
+        $second = $this->client->metrics->explore($operation, after: $first->pagination->after);
         $request = $this->mockClient->getLastRequest();
 
         self::assertEquals(
@@ -265,8 +288,8 @@ class MetricsExploreTest extends TestCase
             urldecode((string) $request->getUri()),
         );
         self::assertSame(['product'], json_decode((string) $request->getBody(), true)['dimensions']);
-        self::assertSame(['product' => 'pro_01h1vjfevh5etwq3rb416a23h3'], $second->data->series[0]->dimensions);
-        self::assertFalse($second->hasMore());
-        self::assertNull($second->nextCursor());
+        self::assertSame(['product' => 'pro_01h1vjfevh5etwq3rb416a23h3'], $second->series[0]->dimensions);
+        self::assertFalse($second->pagination->hasMore);
+        self::assertNull($second->pagination->after);
     }
 }

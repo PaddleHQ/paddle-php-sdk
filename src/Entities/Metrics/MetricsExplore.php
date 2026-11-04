@@ -12,10 +12,10 @@ declare(strict_types=1);
 namespace Paddle\SDK\Entities\Metrics;
 
 use Paddle\SDK\Entities\DateTime;
-use Paddle\SDK\Entities\Entity;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Entities\Shared\Pagination;
 
-class MetricsExploreData implements Entity
+class MetricsExplore
 {
     /**
      * @param array<MetricsExploreSeries> $series
@@ -29,10 +29,11 @@ class MetricsExploreData implements Entity
         public \DateTimeInterface $updatedAt,
         public MetricsExploreFields $fields,
         public array $series,
+        public MetricsExplorePagination $pagination,
     ) {
     }
 
-    public static function from(array $data): self
+    public static function from(array $data, Pagination $pagination): self
     {
         return new self(
             entity: MetricEntity::from($data['entity']),
@@ -46,6 +47,7 @@ class MetricsExploreData implements Entity
                 fn (array $series): MetricsExploreSeries => MetricsExploreSeries::from($series),
                 $data['series'],
             ),
+            pagination: MetricsExplorePagination::from($pagination),
         );
     }
 }

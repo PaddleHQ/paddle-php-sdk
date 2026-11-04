@@ -7,17 +7,17 @@ namespace Paddle\SDK\Tests\Unit\Resources\Metrics\Operations;
 use Paddle\SDK\Entities\Metrics\MetricEntity;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Resources\Metrics\Operations\Explore\ExploreMeasure;
-use Paddle\SDK\Resources\Metrics\Operations\RunExploreQuery;
+use Paddle\SDK\Resources\Metrics\Operations\ExploreMetrics;
 use PHPUnit\Framework\TestCase;
 
-class RunExploreQueryTest extends TestCase
+class ExploreMetricsTest extends TestCase
 {
     /**
      * @test
      */
     public function it_formats_datetime_boundaries_as_rfc3339(): void
     {
-        $operation = new RunExploreQuery(
+        $operation = new ExploreMetrics(
             entity: MetricEntity::Checkouts(),
             from: new \DateTimeImmutable('2026-05-01T12:30:00Z'),
             to: new \DateTimeImmutable('2026-08-01T00:00:00+01:00'),
@@ -40,7 +40,7 @@ class RunExploreQueryTest extends TestCase
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage("expected {$field} to only contain");
 
-        new RunExploreQuery(...[
+        new ExploreMetrics(...[
             'entity' => MetricEntity::Checkouts(),
             'from' => '2026-05-01',
             'to' => '2026-08-01',
