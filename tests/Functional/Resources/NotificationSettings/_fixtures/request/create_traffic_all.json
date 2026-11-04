@@ -1,0 +1,10 @@
+{
+    "description": "Slack notifications",
+    "type": "url",
+    "destination": "https://hooks.slack.com/example",
+    "include_sensitive_fields": false,
+    "subscribed_events": [
+        "transaction.created"
+    ],
+    "traffic_source": "all"
+}
