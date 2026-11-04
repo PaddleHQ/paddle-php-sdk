@@ -1551,4 +1551,44 @@ class SubscriptionsClientTest extends TestCase
             urldecode((string) $request->getUri()),
         );
     }
+
+    /**
+     * @test
+     */
+    public function preview_returns_import_meta(): void
+    {
+        $body = json_decode(self::readRawJsonFixture('response/preview_update_full_entity'), true, 512, JSON_THROW_ON_ERROR);
+        $body['data']['import_meta'] = [
+            'external_id' => '9b95b0b8-e10f-441a-862e-1936a6d818ab',
+            'imported_from' => 'paddle_classic',
+        ];
+        $this->mockClient->addResponse(new Response(200, body: json_encode($body, JSON_THROW_ON_ERROR)));
+
+        $subscriptionPreview = $this->client->subscriptions->previewUpdate(
+            'sub_01h8bx8fmywym11t6swgzba704',
+            new PreviewUpdateSubscription(
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
+            ),
+        );
+
+        self::assertNotNull($subscriptionPreview->importMeta);
+        self::assertSame('9b95b0b8-e10f-441a-862e-1936a6d818ab', $subscriptionPreview->importMeta->externalId);
+        self::assertSame('paddle_classic', $subscriptionPreview->importMeta->importedFrom);
+    }
+
+    /**
+     * @test
+     */
+    public function preview_returns_null_import_meta(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/preview_update_full_entity')));
+        $subscriptionPreview = $this->client->subscriptions->previewUpdate(
+            'sub_01h8bx8fmywym11t6swgzba704',
+            new PreviewUpdateSubscription(
+                prorationBillingMode: SubscriptionProrationBillingMode::ProratedNextBillingPeriod(),
+            ),
+        );
+
+        self::assertNull($subscriptionPreview->importMeta);
+    }
 }
