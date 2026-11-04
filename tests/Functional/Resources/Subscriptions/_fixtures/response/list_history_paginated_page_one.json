@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": "subhis_01paga0a4m6v7w8x9y0z1a2b3c",
+      "group_id": "subhisgrp_01paga0a4m6v7w8x9y0z1a2b3c",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-10T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_paused",
+        "effective_from": "immediately",
+        "status": "paused"
+      }
+    },
+    {
+      "id": "subhis_02paga0a4m6v7w8x9y0z1a2b3c",
+      "group_id": "subhisgrp_02paga0a4m6v7w8x9y0z1a2b3c",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-11T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_resumed",
+        "status": "active",
+        "on_resume": "start_new_billing_period"
+      }
+    }
+  ],
+  "meta": {
+    "request_id": "270e71a2-ed13-4f45-b002-45693f5361b5",
+    "pagination": {
+      "per_page": 2,
+      "next": "https://sandbox-api.paddle.com/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history?after=subhis_02paga0a4m6v7w8x9y0z1a2b3c",
+      "has_more": true,
+      "estimated_total": 4
+    }
+  }
+}

@@ -9,6 +9,7 @@ use Paddle\SDK\Entities\Subscription\SubscriptionScheduledChangeAction;
 use Paddle\SDK\Entities\Subscription\SubscriptionStatus;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\HasParameters;
+use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 
 class ListSubscriptions implements HasParameters
@@ -30,6 +31,7 @@ class ListSubscriptions implements HasParameters
         private readonly array $priceIds = [],
         private readonly array $scheduledChangeActions = [],
         private readonly array $statuses = [],
+        private readonly DateComparison|null $nextBilledAt = null,
     ) {
         if ($invalid = array_filter($this->addressIds, fn ($value): bool => ! is_string($value))) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('addressIds', 'string', implode(', ', $invalid));
@@ -70,6 +72,7 @@ class ListSubscriptions implements HasParameters
                 'price_id' => implode(',', $this->priceIds),
                 'scheduled_change_action' => implode(',', array_map($enumStringify, $this->scheduledChangeActions)),
                 'status' => implode(',', array_map($enumStringify, $this->statuses)),
+                'next_billed_at' . $this->nextBilledAt?->comparator() => $this->nextBilledAt?->formatted(),
             ]),
         );
     }

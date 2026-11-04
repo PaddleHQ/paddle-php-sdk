@@ -14,6 +14,7 @@ namespace Paddle\SDK\Resources\Subscriptions;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Entities\Collections\SubscriptionCollection;
+use Paddle\SDK\Entities\Collections\SubscriptionHistoryCollection;
 use Paddle\SDK\Entities\Subscription;
 use Paddle\SDK\Entities\SubscriptionPreview;
 use Paddle\SDK\Entities\Transaction;
@@ -23,6 +24,7 @@ use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\Subscriptions\Operations\CancelSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\CreateOneTimeCharge;
 use Paddle\SDK\Resources\Subscriptions\Operations\Get\Includes;
+use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptionHistory;
 use Paddle\SDK\Resources\Subscriptions\Operations\ListSubscriptions;
 use Paddle\SDK\Resources\Subscriptions\Operations\PauseSubscription;
 use Paddle\SDK\Resources\Subscriptions\Operations\PreviewOneTimeCharge;
@@ -51,6 +53,24 @@ class SubscriptionsClient
         return SubscriptionCollection::from(
             $parser->getData(),
             new Paginator($this->client, $parser->getPagination(), SubscriptionCollection::class),
+        );
+    }
+
+    /**
+     * @throws ApiError          On a generic API error
+     * @throws MalformedResponse If the API response was not parsable
+     */
+    public function listHistory(
+        string $subscriptionId,
+        ListSubscriptionHistory $listOperation = new ListSubscriptionHistory(),
+    ): SubscriptionHistoryCollection {
+        $parser = new ResponseParser(
+            $this->client->getRaw("/subscriptions/{$subscriptionId}/history", $listOperation),
+        );
+
+        return SubscriptionHistoryCollection::from(
+            $parser->getData(),
+            new Paginator($this->client, $parser->getPagination(), SubscriptionHistoryCollection::class),
         );
     }
 
