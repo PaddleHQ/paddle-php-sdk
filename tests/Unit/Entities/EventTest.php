@@ -17,6 +17,7 @@ use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodDeletionReason;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodOrigin;
 use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
 use Paddle\SDK\Notifications\Entities\Shared\TransactionPaypal;
+use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionDiscountType;
 use Paddle\SDK\Notifications\Entities\UndefinedEntity;
 use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
 use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
@@ -315,6 +316,7 @@ class EventTest extends TestCase
         self::assertSame($event->data, $event->subscription);
         self::assertEquals('2024-04-12T10:18:47+00:00', $event->subscription->discount->startsAt->format(DATE_RFC3339));
         self::assertEquals('2024-05-12T10:18:47+00:00', $event->subscription->discount->endsAt->format(DATE_RFC3339));
+        self::assertEquals(SubscriptionDiscountType::Recurring(), $event->subscription->discount->type);
     }
 
     /**
@@ -337,6 +339,7 @@ class EventTest extends TestCase
         self::assertSame($event->data, $event->subscription);
         self::assertNull($event->subscription->discount->startsAt);
         self::assertNull($event->subscription->discount->endsAt);
+        self::assertNull($event->subscription->discount->type);
     }
 
     /**

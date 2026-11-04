@@ -106,6 +106,21 @@ class NotificationSettingsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
         ];
+
+        foreach (['Platform', 'Simulation', 'All'] as $trafficSource) {
+            yield "Create with {$trafficSource} traffic source" => [
+                new CreateNotificationSetting(
+                    description: 'Slack notifications',
+                    destination: 'https://hooks.slack.com/example',
+                    subscribedEvents: [EventTypeName::TransactionCreated()],
+                    type: NotificationSettingType::Url(),
+                    includeSensitiveFields: false,
+                    trafficSource: NotificationSettingTrafficSource::{$trafficSource}(),
+                ),
+                new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+                self::readRawJsonFixture('request/create_traffic_' . strtolower($trafficSource)),
+            ];
+        }
     }
 
     /**
@@ -169,6 +184,14 @@ class NotificationSettingsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
         ];
+
+        foreach (['Platform', 'Simulation', 'All'] as $trafficSource) {
+            yield "Update {$trafficSource} traffic source" => [
+                new UpdateNotificationSetting(trafficSource: NotificationSettingTrafficSource::{$trafficSource}()),
+                new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+                self::readRawJsonFixture('request/update_traffic_' . strtolower($trafficSource)),
+            ];
+        }
     }
 
     /**
