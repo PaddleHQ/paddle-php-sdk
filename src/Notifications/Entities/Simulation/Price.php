@@ -11,6 +11,7 @@ use Paddle\SDK\Notifications\Entities\Shared\CustomData;
 use Paddle\SDK\Notifications\Entities\Shared\ImportMeta;
 use Paddle\SDK\Notifications\Entities\Shared\Money;
 use Paddle\SDK\Notifications\Entities\Shared\PriceQuantity;
+use Paddle\SDK\Notifications\Entities\Shared\PriceTrialPeriod;
 use Paddle\SDK\Notifications\Entities\Shared\Status;
 use Paddle\SDK\Notifications\Entities\Shared\TaxMode;
 use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
@@ -55,7 +56,7 @@ final class Price implements SimulationEntity
             description: self::optional($data, 'description'),
             type: self::optional($data, 'type', fn ($value) => CatalogType::from($value)),
             billingCycle: self::optional($data, 'billing_cycle', fn ($value) => TimePeriod::from($value)),
-            trialPeriod: self::optional($data, 'trial_period', fn ($value) => TimePeriod::from($value)),
+            trialPeriod: self::optional($data, 'trial_period', fn ($value) => PriceTrialPeriod::from($value)),
             taxMode: self::optional($data, 'tax_mode', fn ($value) => TaxMode::from($value)),
             unitPrice: self::optional($data, 'unit_price', fn ($value) => Money::from($value)),
             unitPriceOverrides: self::optionalList($data, 'unit_price_overrides', fn ($value) => UnitPriceOverride::from($value)),

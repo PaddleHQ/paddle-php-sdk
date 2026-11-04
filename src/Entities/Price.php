@@ -16,6 +16,7 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\ImportMeta;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
+use Paddle\SDK\Entities\Shared\PriceTrialPeriod;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
@@ -33,7 +34,7 @@ class Price implements Entity
         public string $description,
         public CatalogType|null $type,
         public TimePeriod|null $billingCycle,
-        public TimePeriod|null $trialPeriod,
+        public PriceTrialPeriod|null $trialPeriod,
         public TaxMode $taxMode,
         public Money $unitPrice,
         public array $unitPriceOverrides,
@@ -56,7 +57,7 @@ class Price implements Entity
             description: $data['description'],
             type: CatalogType::from($data['type'] ?? ''),
             billingCycle: isset($data['billing_cycle']) ? TimePeriod::from($data['billing_cycle']) : null,
-            trialPeriod: isset($data['trial_period']) ? TimePeriod::from($data['trial_period']) : null,
+            trialPeriod: isset($data['trial_period']) ? PriceTrialPeriod::from($data['trial_period']) : null,
             taxMode: TaxMode::from($data['tax_mode']),
             unitPrice: Money::from($data['unit_price']),
             unitPriceOverrides: array_map(

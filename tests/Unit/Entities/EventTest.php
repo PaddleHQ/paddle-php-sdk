@@ -8,15 +8,22 @@ use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Notifications\Entities\DeletedPaymentMethod;
 use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\PaymentMethod;
+use Paddle\SDK\Notifications\Entities\Shared\CurrencyCode;
+use Paddle\SDK\Notifications\Entities\Shared\Interval;
 use Paddle\SDK\Notifications\Entities\Shared\PaymentMethodType;
+use Paddle\SDK\Notifications\Entities\Shared\PriceTrialPeriod;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodDeletionReason;
 use Paddle\SDK\Notifications\Entities\Shared\SavedPaymentMethodOrigin;
+use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
 use Paddle\SDK\Notifications\Entities\Shared\TransactionPaypal;
 use Paddle\SDK\Notifications\Entities\UndefinedEntity;
 use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
 use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
+use Paddle\SDK\Notifications\Events\PriceCreated;
+use Paddle\SDK\Notifications\Events\PriceUpdated;
 use Paddle\SDK\Notifications\Events\SubscriptionActivated;
 use Paddle\SDK\Notifications\Events\SubscriptionCanceled;
+use Paddle\SDK\Notifications\Events\SubscriptionTrialing;
 use Paddle\SDK\Notifications\Events\TransactionPaymentFailed;
 use Paddle\SDK\Tests\DataProvider\EventDataProvider;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
@@ -327,5 +334,78 @@ class EventTest extends TestCase
         self::assertSame($event->data, $event->subscription);
         self::assertNull($event->subscription->discount->startsAt);
         self::assertNull($event->subscription->discount->endsAt);
+    }
+
+    /**
+     * @test
+     */
+    public function it_supports_price_paid_trial_period(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'price.updated',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/price.updated'),
+        ]);
+
+        self::assertInstanceOf(PriceUpdated::class, $event);
+
+        $trialPeriod = $event->price->trialPeriod;
+        self::assertInstanceOf(PriceTrialPeriod::class, $trialPeriod);
+        self::assertInstanceOf(TimePeriod::class, $trialPeriod);
+        self::assertEquals(Interval::Day(), $trialPeriod->interval);
+        self::assertSame(14, $trialPeriod->frequency);
+        self::assertTrue($trialPeriod->requiresPaymentMethod);
+        self::assertSame('100', $trialPeriod->unitPrice?->amount);
+        self::assertEquals(CurrencyCode::USD(), $trialPeriod->unitPrice?->currencyCode);
+        self::assertCount(1, $trialPeriod->unitPriceOverrides);
+        self::assertSame(['GB'], $trialPeriod->unitPriceOverrides[0]->countryCodes);
+        self::assertSame('90', $trialPeriod->unitPriceOverrides[0]->unitPrice->amount);
+        self::assertEquals(CurrencyCode::GBP(), $trialPeriod->unitPriceOverrides[0]->unitPrice->currencyCode);
+    }
+
+    /**
+     * @test
+     */
+    public function it_defaults_price_trial_period_paid_trial_fields(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'price.created',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/price.created'),
+        ]);
+
+        self::assertInstanceOf(PriceCreated::class, $event);
+
+        $trialPeriod = $event->price->trialPeriod;
+        self::assertInstanceOf(PriceTrialPeriod::class, $trialPeriod);
+        self::assertTrue($trialPeriod->requiresPaymentMethod);
+        self::assertNull($trialPeriod->unitPrice);
+        self::assertSame([], $trialPeriod->unitPriceOverrides);
+    }
+
+    /**
+     * @test
+     */
+    public function it_supports_subscription_item_price_trial_period(): void
+    {
+        $event = Event::from([
+            'event_id' => 'evt_01h8bzakzx3hm2fmen703n5q45',
+            'event_type' => 'subscription.trialing',
+            'occurred_at' => '2023-08-21T11:57:47.390028Z',
+            'notification_id' => 'ntf_01h8bzam1z32agrxjwhjgqk8w6',
+            'data' => self::readJsonFixture('notification/entity/subscription.trialing'),
+        ]);
+
+        self::assertInstanceOf(SubscriptionTrialing::class, $event);
+
+        $trialPeriod = $event->subscription->items[0]->price->trialPeriod;
+        self::assertInstanceOf(PriceTrialPeriod::class, $trialPeriod);
+        self::assertFalse($trialPeriod->requiresPaymentMethod);
+        self::assertNull($trialPeriod->unitPrice);
+        self::assertSame([], $trialPeriod->unitPriceOverrides);
     }
 }

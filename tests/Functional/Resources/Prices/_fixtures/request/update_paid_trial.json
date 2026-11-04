@@ -1,0 +1,8 @@
+{
+  "trial_period": {
+    "interval": "day",
+    "frequency": 7,
+    "requires_payment_method": false,
+    "unit_price": null
+  }
+}

@@ -7,12 +7,14 @@ namespace Paddle\SDK\Tests\Functional\Resources\Prices;
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Price;
 use Paddle\SDK\Entities\Shared\CountryCode;
 use Paddle\SDK\Entities\Shared\CurrencyCode;
 use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Interval;
 use Paddle\SDK\Entities\Shared\Money;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
+use Paddle\SDK\Entities\Shared\PriceTrialPeriod;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
@@ -98,6 +100,36 @@ class PricesClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
         ];
+
+        yield 'Create with Paid Trial' => [
+            new CreatePrice(
+                description: 'Monthly (per seat) with paid trial',
+                productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                unitPrice: new Money('1000', CurrencyCode::USD()),
+                trialPeriod: new PriceTrialPeriod(
+                    interval: Interval::Day(),
+                    frequency: 14,
+                    requiresPaymentMethod: true,
+                    unitPrice: new Money('100', CurrencyCode::USD()),
+                    unitPriceOverrides: [
+                        new UnitPriceOverride([CountryCode::GB()], new Money('90', CurrencyCode::GBP())),
+                    ],
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/paid_trial_entity')),
+            self::readRawJsonFixture('request/create_paid_trial'),
+        ];
+
+        yield 'Create with Trial Period Only' => [
+            new CreatePrice(
+                description: 'Monthly (per seat) with trial',
+                productId: 'pro_01gsz4t5hdjse780zja8vvr7jg',
+                unitPrice: new Money('1000', CurrencyCode::USD()),
+                trialPeriod: new PriceTrialPeriod(Interval::Week(), 1),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_trial_period_only'),
+        ];
     }
 
     /**
@@ -148,6 +180,19 @@ class PricesClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
+        ];
+
+        yield 'Update Paid Trial' => [
+            new UpdatePrice(
+                trialPeriod: new PriceTrialPeriod(
+                    interval: Interval::Day(),
+                    frequency: 7,
+                    requiresPaymentMethod: false,
+                    unitPrice: null,
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_paid_trial'),
         ];
     }
 
@@ -297,5 +342,47 @@ class PricesClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity_with_includes')),
             sprintf('%s/prices/pri_01h7zcgmdc6tmwtjehp3sh7azf?include=product', Environment::SANDBOX->baseUrl()),
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_paid_trial_period(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/paid_trial_entity')));
+        $price = $this->client->prices->get('pri_01hzpaidtrial00000000000000');
+
+        $trialPeriod = $price->trialPeriod;
+        self::assertInstanceOf(PriceTrialPeriod::class, $trialPeriod);
+        self::assertInstanceOf(TimePeriod::class, $trialPeriod);
+        self::assertEquals(Interval::Day(), $trialPeriod->interval);
+        self::assertSame(14, $trialPeriod->frequency);
+        self::assertTrue($trialPeriod->requiresPaymentMethod);
+        self::assertInstanceOf(Money::class, $trialPeriod->unitPrice);
+        self::assertSame('100', $trialPeriod->unitPrice->amount);
+        self::assertEquals(CurrencyCode::USD(), $trialPeriod->unitPrice->currencyCode);
+        self::assertIsArray($trialPeriod->unitPriceOverrides);
+        self::assertCount(1, $trialPeriod->unitPriceOverrides);
+        self::assertSame(['GB'], $trialPeriod->unitPriceOverrides[0]->countryCodes);
+        self::assertSame('90', $trialPeriod->unitPriceOverrides[0]->unitPrice->amount);
+        self::assertEquals(CurrencyCode::GBP(), $trialPeriod->unitPriceOverrides[0]->unitPrice->currencyCode);
+    }
+
+    /**
+     * @test
+     */
+    public function it_defaults_paid_trial_fields_when_missing(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/full_entity')));
+        $price = $this->client->prices->get('pri_01he6hp8cg49jjf1pdjf6d5yw1');
+
+        self::assertInstanceOf(Price::class, $price);
+        $trialPeriod = $price->trialPeriod;
+        self::assertInstanceOf(PriceTrialPeriod::class, $trialPeriod);
+        self::assertEquals(Interval::Week(), $trialPeriod->interval);
+        self::assertSame(1, $trialPeriod->frequency);
+        self::assertTrue($trialPeriod->requiresPaymentMethod);
+        self::assertNull($trialPeriod->unitPrice);
+        self::assertSame([], $trialPeriod->unitPriceOverrides);
     }
 }
