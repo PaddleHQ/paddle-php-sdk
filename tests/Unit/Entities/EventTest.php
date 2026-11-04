@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Tests\Unit\Entities;
 
 use Paddle\SDK\Entities\Event;
+use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Notifications\Entities\DeletedPaymentMethod;
 use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\PaymentMethod;
@@ -216,6 +217,7 @@ class EventTest extends TestCase
         self::assertSame('evt_01h8bzakzx3hm2fmen703n5q45', $event->eventId);
         self::assertSame('2023-08-21T11:57:47.390+00:00', $event->occurredAt->format(DATE_RFC3339_EXTENDED));
         self::assertSame('payment_method.saved', $event->eventType->getValue());
+        self::assertEquals(EventTypeName::PaymentMethodSaved(), $event->eventType);
 
         $paymentMethod = $event->paymentMethod;
         self::assertInstanceOf(PaymentMethod::class, $paymentMethod);
@@ -249,6 +251,7 @@ class EventTest extends TestCase
         self::assertSame('evt_01h8bzakzx3hm2fmen703n5q45', $event->eventId);
         self::assertSame('2023-08-21T11:57:47.390+00:00', $event->occurredAt->format(DATE_RFC3339_EXTENDED));
         self::assertSame('payment_method.deleted', $event->eventType->getValue());
+        self::assertEquals(EventTypeName::PaymentMethodDeleted(), $event->eventType);
 
         $paymentMethod = $event->paymentMethod;
         self::assertInstanceOf(DeletedPaymentMethod::class, $paymentMethod);
