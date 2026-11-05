@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
-## [Unreleased]
+## [1.19.0] - 2026-11-05
 
 ### Added
 
@@ -32,29 +32,61 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `Client->settings->updateStatementDescriptorSettings()`
   - `Client->settings->getTaxSettings()`
   - `Client->settings->updateTaxSettings()`
+- Added support for checkout domains. See [related changelog](https://developer.paddle.com/changelog/2026/checkout-domains-api?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->checkoutDomains->list()`
+  - `Client->checkoutDomains->get()`
+  - `Client->checkoutDomains->delete()`
+  - `Client->checkoutDomains->verifyPaymentMethod()`
+- Added support for verifications
+  - `Client->verifications->list()`
+  - `Client->verifications->get()`
+- Added support for countries
+  - `Client->countries->list()`
+- Added support for currencies
+  - `Client->currencies->list()`
+- Added support for `checkouts` report type. See [related changelog](https://developer.paddle.com/changelog/2026/checkouts-report?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added support for `subscriptions` report type. See [related changelog](https://developer.paddle.com/changelog/2026/subscriptions-report?utm_source=dx&utm_medium=paddle-php-sdk) and [scheduled change filter changelog](https://developer.paddle.com/changelog/2026/subscriptions-report-scheduled-change-filter?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `filter`, `to`, and `from` parameters to list events operation. See [related changelog](https://developer.paddle.com/changelog/2026/event-notification-log-filtering?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `paypal` to transaction payment `methodDetails` (API and webhook), showing the PayPal account used for a payment attempt. See [related changelog](https://developer.paddle.com/changelog/2026/paypal-transaction-payments?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `viewSubscription` to subscription `managementUrls` and customer portal session subscription `urls`. See [related changelog](https://developer.paddle.com/changelog/2026/view-subscription-customer-portal-link?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `CLP` and `PEN` currency code support. See [related changelog](https://developer.paddle.com/changelog/2026/clp-pen-currencies?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `rotatable` to api_key events. See [related changelog](https://developer.paddle.com/changelog/2026/aws-secrets-manager-rotation?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `exposedAt` to api_key events
+- Added `balance_movement_date` and `balance_movement_type` filters for payout reconciliation reports. See [related changelog](https://developer.paddle.com/changelog/2026/payout-reconciliation-report-filters?utm_source=dx&utm_medium=paddle-php-sdk)
+- Added `consentRequirements` to subscriptions (API and webhook) and subscription previews
+- Added `billingCycleInterval` (sent as `billing_cycle.interval`) and `billingCycleFrequency` (sent as `billing_cycle.frequency`) parameters to list prices operation
+- Added `checkout_domain.read`, `checkout_domain.write`, `client_token.read`, `client_token.write`, `metrics.read`, `subscription_history.read`, and `verification.read` to `ApiKeyPermission` (permissions on `api_key.*` events)
 - Added `account.read`, `account.write`, `balance_currency.read`, `balance_currency.write`, `checkout_settings.read`, `checkout_settings.write`, `currency_conversion.read`, `currency_conversion.write`, `statement_descriptor.read`, `statement_descriptor.write`, `tax_settings.read`, and `tax_settings.write` to `ApiKeyPermission` (permissions on `api_key.*` events)
+- Added `blocked_by_policy`, `preferred_network_not_supported`, and `prepaid_card_not_supported` to `ErrorCode`, and `declined_not_retryable` to the webhook `ErrorCode`
+- Added `CreateBillingDetails` and `UpdateBillingDetails` request classes for billing details when creating or updating transactions and updating subscriptions. Unset fields are left out of the request, so use these instead of `BillingDetails` when a purchase order number isn't set.
 - Added paid trials support: `requires_payment_method`, `unit_price`, and `unit_price_overrides` on price `trial_period`. See [related changelog](https://developer.paddle.com/changelog/2026/paid-trials?utm_source=dx&utm_medium=paddle-php-sdk)
   - `trialPeriod` on prices, `price.*` events and subscription and transaction event item prices is now a `PriceTrialPeriod`, which extends `TimePeriod` so existing code keeps working
   - `PriceTrialPeriod` can be passed as `trialPeriod` to `CreatePrice` and `UpdatePrice`
-- Added `payment_method.saved` and `payment_method.deleted` to `EventTypeName`, so they can be used for notification setting subscriptions and simulations
-- Added `trafficSource` to `CreateNotificationSetting` and `UpdateNotificationSetting`, so notification settings can receive platform events, simulation events or both
-- Added `consentRequirements` to the simulation `Subscription` payload entity
-- Added support for retrieving Paddle IP addresses
-  - `Client->ipAddresses->get()`
+- Added support for subscription history. See [related changelog](https://developer.paddle.com/changelog/2026/subscription-history?utm_source=dx&utm_medium=paddle-php-sdk)
+  - `Client->subscriptions->listHistory()`
+- Added `type` to subscription `discount`
+- Added `nextBilledAt` filter to `ListSubscriptions`
 - Added support for metrics explore. See [related changelog](https://developer.paddle.com/changelog/2026/explore-metrics-api?utm_source=dx&utm_medium=paddle-php-sdk)
   - `Client->metrics->listExploreEntities()`
   - `Client->metrics->explore()`
-- Added `nextBilledAt` filter to `ListSubscriptions`
-- Added `type` to subscription `discount`
-- Added support for subscription history. See [related changelog](https://developer.paddle.com/changelog/2026/subscription-history?utm_source=dx&utm_medium=paddle-php-sdk)
-  - `Client->subscriptions->listHistory()`
+- Added support for retrieving Paddle IP addresses
+  - `Client->ipAddresses->get()`
+- Added `trafficSource` to `CreateNotificationSetting` and `UpdateNotificationSetting`, so notification settings can receive platform events, simulation events or both
+- Added `payment_method.saved` and `payment_method.deleted` to `EventTypeName`, so they can be used for notification setting subscriptions and simulations
+- Added `consentRequirements` to the simulation `Subscription` payload entity
 - Added `importMeta` to `SubscriptionPreview`
 
 ### Fixed
 
-- `Verifier::verify()` now rejects webhooks whose timestamp is more than `maximumVariance` seconds in the future, as well as in the past
+- `generateAuthToken()` no longer fails with `unsupported_media_type`. Requests now default `Content-Type` to `application/json`, including requests without a body
 - `Event::fromRequest()` passed `JSON_THROW_ON_ERROR` to `json_decode()` as its depth, so a request body that isn't valid JSON failed with a `TypeError` instead of a `JsonException`
+- Prevented decode errors where the API can return `null`:
+  - `collection_mode` on subscription webhooks
+  - `updated_at` on customer webhooks
+  - `currency_code` on price previews
+  - `proration` on subscription adjustment items
 - `BillingDetails` no longer raises an undefined array key warning when `purchase_order_number` or `additional_information` is missing, for example in subscription history entries
+- `Verifier::verify()` now rejects webhooks whose timestamp is more than `maximumVariance` seconds in the future, as well as in the past
 
 ## [1.18.0] - 2026-09-10
 
