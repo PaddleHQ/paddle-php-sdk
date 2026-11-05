@@ -14,7 +14,7 @@ use Paddle\SDK\Resources\Metrics\Operations\Explore\ExploreMeasure;
 use Paddle\SDK\Resources\Metrics\Operations\Explore\ExploreOrderBy;
 use Paddle\SDK\Undefined;
 
-class RunExploreQuery implements \JsonSerializable
+class ExploreMetrics implements \JsonSerializable
 {
     use FiltersUndefined;
 
