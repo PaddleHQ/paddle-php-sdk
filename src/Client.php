@@ -22,6 +22,7 @@ use Paddle\SDK\Logger\Formatter;
 use Paddle\SDK\Resources\Account\AccountClient;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
+use Paddle\SDK\Resources\ApiKeys\ApiKeysClient;
 use Paddle\SDK\Resources\ApiRoot\ApiRootClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
 use Paddle\SDK\Resources\CheckoutDomains\CheckoutDomainsClient;
@@ -101,6 +102,7 @@ class Client
     public readonly AccountClient $account;
     public readonly SettingsClient $settings;
     public readonly IpAddressesClient $ipAddresses;
+    public readonly ApiKeysClient $apiKeys;
 
     private readonly HttpAsyncClient $httpClient;
     private readonly RequestFactoryInterface $requestFactory;
@@ -161,6 +163,7 @@ class Client
         $this->account = new AccountClient($this);
         $this->settings = new SettingsClient($this);
         $this->ipAddresses = new IpAddressesClient($this);
+        $this->apiKeys = new ApiKeysClient($this);
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface

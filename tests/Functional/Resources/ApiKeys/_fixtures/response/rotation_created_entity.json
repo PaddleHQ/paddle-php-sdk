@@ -1,0 +1,16 @@
+{
+    "data": {
+        "id": "apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7",
+        "api_key_id": "apikey_01jkdpbhazdpn3wpcya45as9tg",
+        "new_key": "<api_key>",
+        "grace_period_seconds": 3600,
+        "new_key_expires_at": "2026-11-02T00:00:00Z",
+        "expires_at": null,
+        "status": "pending",
+        "created_at": "2026-10-02T09:00:00.000Z",
+        "updated_at": "2026-10-02T09:00:00.000Z"
+    },
+    "meta": {
+        "request_id": "b2b4b6d7-6b7a-4b8e-9b3e-7a4d9f2a5c6e"
+    }
+}

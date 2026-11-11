@@ -84,6 +84,18 @@ class EventDataProvider extends TestCase
                 \Paddle\SDK\Notifications\Entities\ApiKey::class,
             ],
             [
+                'api_key_rotation.created',
+                'apiKeyRotation',
+                \Paddle\SDK\Notifications\Events\ApiKeyRotationCreated::class,
+                \Paddle\SDK\Notifications\Entities\ApiKeyRotation::class,
+            ],
+            [
+                'api_key_rotation.updated',
+                'apiKeyRotation',
+                \Paddle\SDK\Notifications\Events\ApiKeyRotationUpdated::class,
+                \Paddle\SDK\Notifications\Entities\ApiKeyRotation::class,
+            ],
+            [
                 'business.created',
                 'business',
                 \Paddle\SDK\Notifications\Events\BusinessCreated::class,
