@@ -163,7 +163,15 @@ class Client
         $this->account = new AccountClient($this);
         $this->settings = new SettingsClient($this);
         $this->ipAddresses = new IpAddressesClient($this);
-        $this->apiKeys = new ApiKeysClient($this);
+        $this->apiKeys = new ApiKeysClient($this, self::rotatableApiKeyId($this->apiKey));
+    }
+
+    /**
+     * Reads the ID from an API key. Returns null for keys without one, such as legacy API keys, which can't be rotated.
+     */
+    private static function rotatableApiKeyId(#[\SensitiveParameter] string $apiKey): string|null
+    {
+        return preg_match('/^pdl_\w+?_apikey_([a-z\d]{26})_/', $apiKey, $matches) === 1 ? "apikey_{$matches[1]}" : null;
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface

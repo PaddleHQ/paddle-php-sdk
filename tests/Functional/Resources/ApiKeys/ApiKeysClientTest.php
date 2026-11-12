@@ -36,7 +36,7 @@ class ApiKeysClientTest extends TestCase
     {
         $this->mockClient = new MockClient();
         $this->client = new Client(
-            apiKey: 'API_KEY_PLACEHOLDER',
+            apiKey: 'pdl_test_apikey_01jkdpbhazdpn3wpcya45as9tg_clientsecret_abc',
             options: new Options(Environment::SANDBOX),
             httpClient: $this->mockClient);
     }
@@ -175,7 +175,7 @@ class ApiKeysClientTest extends TestCase
         string $expectedUri,
     ): void {
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/rotation_list_page_one')));
-        $this->client->apiKeys->listRotations('apikey_01jkdpbhazdpn3wpcya45as9tg', $operation);
+        $this->client->apiKeys->listCurrentKeyRotations($operation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -220,7 +220,7 @@ class ApiKeysClientTest extends TestCase
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/rotation_list_page_one')));
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/rotation_list_page_two')));
 
-        $collection = $this->client->apiKeys->listRotations('apikey_01jkdpbhazdpn3wpcya45as9tg');
+        $collection = $this->client->apiKeys->listCurrentKeyRotations();
         $rotations = iterator_to_array($collection, false);
 
         self::assertCount(3, $rotations);
@@ -240,7 +240,7 @@ class ApiKeysClientTest extends TestCase
     public function get_rotation_hits_expected_uri(): void
     {
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/rotation_entity')));
-        $rotation = $this->client->apiKeys->getRotation('apikey_01jkdpbhazdpn3wpcya45as9tg', 'apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7');
+        $rotation = $this->client->apiKeys->getCurrentKeyRotation('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7');
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -272,7 +272,7 @@ class ApiKeysClientTest extends TestCase
         string $expectedBody,
     ): void {
         $this->mockClient->addResponse(new Response(201, body: self::readRawJsonFixture('response/rotation_created_entity')));
-        $rotation = $this->client->apiKeys->createRotation('apikey_01jkdpbhazdpn3wpcya45as9tg', $operation);
+        $rotation = $this->client->apiKeys->rotateCurrentKey($operation);
         $request = $this->mockClient->getLastRequest();
 
         self::assertInstanceOf(RequestInterface::class, $request);
@@ -297,13 +297,53 @@ class ApiKeysClientTest extends TestCase
     public function create_rotation_keeps_new_key_out_of_debug_output(): void
     {
         $this->mockClient->addResponse(new Response(201, body: self::readRawJsonFixture('response/rotation_created_entity')));
-        $rotation = $this->client->apiKeys->createRotation('apikey_01jkdpbhazdpn3wpcya45as9tg', new CreateApiKeyRotation(gracePeriodSeconds: 3600));
+        $rotation = $this->client->apiKeys->rotateCurrentKey(new CreateApiKeyRotation(gracePeriodSeconds: 3600));
 
         $debugOutput = print_r($rotation, true);
 
         self::assertStringNotContainsString('pdl_live_apikey_01jkdpbhazdpn3wpcya45as9tg_somesecret_abc', $debugOutput);
         self::assertStringContainsString('[REDACTED]', $debugOutput);
         self::assertStringContainsString('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', $debugOutput);
+    }
+
+    /** @test */
+    public function current_key_rotations_authenticate_with_the_client_api_key(): void
+    {
+        $this->mockClient->addResponse(new Response(201, body: self::readRawJsonFixture('response/rotation_created_entity')));
+        $this->client->apiKeys->rotateCurrentKey(new CreateApiKeyRotation(gracePeriodSeconds: 3600));
+
+        self::assertSame(
+            'Bearer pdl_test_apikey_01jkdpbhazdpn3wpcya45as9tg_clientsecret_abc',
+            $this->mockClient->getLastRequest()->getHeaderLine('Authorization'),
+        );
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider currentKeyRotationCallsProvider
+     */
+    public function current_key_rotations_fail_when_the_client_api_key_cannot_be_rotated(\Closure $call): void
+    {
+        $client = new Client(
+            apiKey: 'API_KEY_PLACEHOLDER',
+            options: new Options(Environment::SANDBOX),
+            httpClient: $this->mockClient,
+        );
+
+        try {
+            $call($client);
+            self::fail('Expected InvalidArgumentException');
+        } catch (InvalidArgumentException) {
+            self::assertCount(0, $this->mockClient->getRequests());
+        }
+    }
+
+    public static function currentKeyRotationCallsProvider(): \Generator
+    {
+        yield 'Rotate' => [fn (Client $client) => $client->apiKeys->rotateCurrentKey(new CreateApiKeyRotation(gracePeriodSeconds: 3600))];
+        yield 'List' => [fn (Client $client) => $client->apiKeys->listCurrentKeyRotations()];
+        yield 'Get' => [fn (Client $client) => $client->apiKeys->getCurrentKeyRotation('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7')];
     }
 
     public static function createRotationOperationsProvider(): \Generator

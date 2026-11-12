@@ -19,6 +19,7 @@ use Paddle\SDK\Entities\Collections\ApiKeyCollection;
 use Paddle\SDK\Entities\Collections\ApiKeyRotationCollection;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Exceptions\ApiError;
+use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\ApiKeys\Operations\CreateApiKeyRotation;
 use Paddle\SDK\Resources\ApiKeys\Operations\ListApiKeyRotations;
@@ -29,6 +30,7 @@ class ApiKeysClient
 {
     public function __construct(
         private readonly Client $client,
+        private readonly string|null $currentApiKeyId = null,
     ) {
     }
 
@@ -62,13 +64,16 @@ class ApiKeysClient
     }
 
     /**
-     * @throws ApiError          On a generic API error
-     * @throws MalformedResponse If the API response was not parsable
+     * Lists rotations of the API key this client is authenticated with. A key can only list its own rotations.
+     *
+     * @throws ApiError                 On a generic API error
+     * @throws MalformedResponse        If the API response was not parsable
+     * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function listRotations(string $apiKeyId, ListApiKeyRotations $listOperation = new ListApiKeyRotations()): ApiKeyRotationCollection
+    public function listCurrentKeyRotations(ListApiKeyRotations $listOperation = new ListApiKeyRotations()): ApiKeyRotationCollection
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/api-keys/{$apiKeyId}/rotations", $listOperation),
+            $this->client->getRaw("/api-keys/{$this->currentApiKeyId()}/rotations", $listOperation),
         );
 
         return ApiKeyRotationCollection::from(
@@ -78,28 +83,42 @@ class ApiKeysClient
     }
 
     /**
-     * @throws ApiError          On a generic API error
-     * @throws MalformedResponse If the API response was not parsable
+     * Gets a rotation of the API key this client is authenticated with. A key can only get its own rotations.
+     *
+     * @throws ApiError                 On a generic API error
+     * @throws MalformedResponse        If the API response was not parsable
+     * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function getRotation(string $apiKeyId, string $rotationId): ApiKeyRotation
+    public function getCurrentKeyRotation(string $rotationId): ApiKeyRotation
     {
         $parser = new ResponseParser(
-            $this->client->getRaw("/api-keys/{$apiKeyId}/rotations/{$rotationId}"),
+            $this->client->getRaw("/api-keys/{$this->currentApiKeyId()}/rotations/{$rotationId}"),
         );
 
         return ApiKeyRotation::from($parser->getData());
     }
 
     /**
-     * @throws ApiError          On a generic API error
-     * @throws MalformedResponse If the API response was not parsable
+     * Rotates the API key this client is authenticated with. A key can only rotate itself.
+     *
+     * To rotate another key, create a client with that key's secret.
+     *
+     * @throws ApiError                 On a generic API error
+     * @throws MalformedResponse        If the API response was not parsable
+     * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function createRotation(string $apiKeyId, CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
+    public function rotateCurrentKey(CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
     {
         $parser = new ResponseParser(
-            $this->client->postRaw("/api-keys/{$apiKeyId}/rotations", $createOperation),
+            $this->client->postRaw("/api-keys/{$this->currentApiKeyId()}/rotations", $createOperation),
         );
 
         return ApiKeyRotationCreated::from($parser->getData());
+    }
+
+    private function currentApiKeyId(): string
+    {
+        return $this->currentApiKeyId
+            ?? throw new InvalidArgumentException("the client's API key can't be rotated, as it isn't a rotatable API key");
     }
 }
