@@ -12,6 +12,7 @@ use Paddle\SDK\Entities\ApiKeyRotation;
 use Paddle\SDK\Entities\ApiKeyRotation\ApiKeyRotationStatus;
 use Paddle\SDK\Entities\ApiKeyRotationCreated;
 use Paddle\SDK\Environment;
+use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Notifications\Entities\ApiKey\ApiKeyPermission;
 use Paddle\SDK\Notifications\Entities\ApiKey\ApiKeyStatus;
 use Paddle\SDK\Options;
@@ -193,6 +194,24 @@ class ApiKeysClientTest extends TestCase
             new ListApiKeyRotations(new Pager(after: 'apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', perPage: 10)),
             sprintf('%s/api-keys/apikey_01jkdpbhazdpn3wpcya45as9tg/rotations?after=apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7&order_by=id[asc]&per_page=10', Environment::SANDBOX->baseUrl()),
         ];
+
+        yield 'Id Filtered' => [
+            new ListApiKeyRotations(ids: ['apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7']),
+            sprintf('%s/api-keys/apikey_01jkdpbhazdpn3wpcya45as9tg/rotations?id=apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', Environment::SANDBOX->baseUrl()),
+        ];
+
+        yield 'Multiple Id Filtered' => [
+            new ListApiKeyRotations(ids: ['apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', 'apkrot_01kjnm4a3w4jqdbtqvb2jwjdf8']),
+            sprintf('%s/api-keys/apikey_01jkdpbhazdpn3wpcya45as9tg/rotations?id=apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7,apkrot_01kjnm4a3w4jqdbtqvb2jwjdf8', Environment::SANDBOX->baseUrl()),
+        ];
+    }
+
+    /** @test */
+    public function list_rotations_rejects_non_string_ids(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ListApiKeyRotations(ids: [123]);
     }
 
     /** @test */
@@ -272,6 +291,19 @@ class ApiKeysClientTest extends TestCase
         self::assertSame('2026-11-02T00:00:00.000+00:00', $rotation->newKeyExpiresAt->format(DATE_RFC3339_EXTENDED));
         self::assertNull($rotation->expiresAt);
         self::assertEquals(ApiKeyRotationStatus::Pending(), $rotation->status);
+    }
+
+    /** @test */
+    public function create_rotation_keeps_new_key_out_of_debug_output(): void
+    {
+        $this->mockClient->addResponse(new Response(201, body: self::readRawJsonFixture('response/rotation_created_entity')));
+        $rotation = $this->client->apiKeys->createRotation('apikey_01jkdpbhazdpn3wpcya45as9tg', new CreateApiKeyRotation(gracePeriodSeconds: 3600));
+
+        $debugOutput = print_r($rotation, true);
+
+        self::assertStringNotContainsString('pdl_live_apikey_01jkdpbhazdpn3wpcya45as9tg_somesecret_abc', $debugOutput);
+        self::assertStringContainsString('[REDACTED]', $debugOutput);
+        self::assertStringContainsString('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', $debugOutput);
     }
 
     public static function createRotationOperationsProvider(): \Generator

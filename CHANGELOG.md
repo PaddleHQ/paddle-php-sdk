@@ -21,6 +21,8 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added `ApiKeyRotationStatus` (`pending`, `completed`, `canceled`, `expired`)
   - `Client->apiKeys->createRotation()` returns `ApiKeyRotationCreated`, which includes the full `newKey`. It can't be retrieved again, so store it securely
   - `Client->apiKeys->getRotation()` and `Client->apiKeys->listRotations()` return `ApiKeyRotation`, where `newKey` is redacted
+  - `ApiKeyRotationCreated` redacts `newKey` in `var_dump()` and `print_r()` output
+- `ListApiKeyRotations` can filter by rotation `ids`
 
 ## [1.19.0] - 2026-11-05
 
