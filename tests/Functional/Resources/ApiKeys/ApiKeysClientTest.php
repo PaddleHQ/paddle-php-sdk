@@ -28,6 +28,8 @@ class ApiKeysClientTest extends TestCase
 {
     use ReadsFixtures;
 
+    private const NEW_API_KEY = 'pdl_live_apikey_01kjnm4a3w4jqdbtqvb2jwjdf7_somesecret_abc';
+
     private MockClient $mockClient;
     private Client $client;
 
@@ -252,7 +254,7 @@ class ApiKeysClientTest extends TestCase
         CreateApiKeyRotation $operation,
         string $expectedBody,
     ): void {
-        $this->mockClient->addResponse(new Response(201, body: str_replace('<api_key>', self::newApiKey(), self::readRawJsonFixture('response/rotation_created_entity'))));
+        $this->mockClient->addResponse(new Response(201, body: str_replace('<api_key>', self::NEW_API_KEY, self::readRawJsonFixture('response/rotation_created_entity'))));
         $rotation = $this->client->apiKeys->createRotation('apikey_01jkdpbhazdpn3wpcya45as9tg', $operation);
         $request = $this->mockClient->getLastRequest();
 
@@ -267,7 +269,7 @@ class ApiKeysClientTest extends TestCase
         self::assertInstanceOf(ApiKeyRotationCreated::class, $rotation);
         self::assertSame('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', $rotation->id);
         self::assertSame('apikey_01jkdpbhazdpn3wpcya45as9tg', $rotation->apiKeyId);
-        self::assertSame(self::newApiKey(), $rotation->newKey);
+        self::assertSame(self::NEW_API_KEY, $rotation->newKey);
         self::assertSame(3600, $rotation->gracePeriodSeconds);
         self::assertSame('2026-11-02T00:00:00.000+00:00', $rotation->newKeyExpiresAt->format(DATE_RFC3339_EXTENDED));
         self::assertNull($rotation->expiresAt);
@@ -296,11 +298,5 @@ class ApiKeysClientTest extends TestCase
             ),
             self::readRawJsonFixture('request/create_rotation_string_expiry'),
         ];
-    }
-
-    // Built from parts so the source never holds a string that secret scanners read as a live API key.
-    private static function newApiKey(): string
-    {
-        return implode('_', ['pdl', 'live', 'apikey', '01kjnm4a3w4jqdbtqvb2jwjdf7', 'exampleSecret']);
     }
 }
