@@ -267,7 +267,7 @@ class ApiKeysClientTest extends TestCase
         self::assertInstanceOf(ApiKeyRotationCreated::class, $rotation);
         self::assertSame('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', $rotation->id);
         self::assertSame('apikey_01jkdpbhazdpn3wpcya45as9tg', $rotation->apiKeyId);
-        self::assertSame('pdl_live_apikey_01kjnm4a3w4jqdbtqvb2jwjdf7_somesecret_abc', $rotation->newKey);
+        self::assertSame('pdl_live_apikey_01jkdpbhazdpn3wpcya45as9tg_somesecret_abc', $rotation->newKey);
         self::assertSame(3600, $rotation->gracePeriodSeconds);
         self::assertSame('2026-11-02T00:00:00.000+00:00', $rotation->newKeyExpiresAt->format(DATE_RFC3339_EXTENDED));
         self::assertNull($rotation->expiresAt);

@@ -2,7 +2,7 @@
     "data": {
         "id": "apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7",
         "api_key_id": "apikey_01jkdpbhazdpn3wpcya45as9tg",
-        "new_key": "pdl_live_apikey_01kjnm4a3w4jqdbtqvb2jwjdf7_somesecret_abc",
+        "new_key": "pdl_live_apikey_01jkdpbhazdpn3wpcya45as9tg_somesecret_abc",
         "grace_period_seconds": 3600,
         "new_key_expires_at": "2026-11-02T00:00:00Z",
         "expires_at": null,
