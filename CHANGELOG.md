@@ -16,6 +16,9 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `Client->apiKeys->listRotations()`
   - `Client->apiKeys->getRotation()`
   - `Client->apiKeys->createRotation()`
+- Rotation methods take a `RotatableApiKey` for the key to manage. A key can only manage its own rotations
+  - `RotatableApiKey::current()` uses the API key the client is authenticated with
+  - `RotatableApiKey::from($secret)` uses another key. It reads the key's ID from the secret and authenticates those requests with it
 - Added `api_key.read` to `ApiKeyPermission`
 - Added `api_key_rotation.created` and `api_key_rotation.updated` events, including simulation payload support
 - Added `ApiKeyRotationStatus` (`pending`, `completed`, `canceled`, `expired`)

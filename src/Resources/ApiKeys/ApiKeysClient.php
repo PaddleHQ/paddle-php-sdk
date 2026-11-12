@@ -19,6 +19,7 @@ use Paddle\SDK\Entities\Collections\ApiKeyCollection;
 use Paddle\SDK\Entities\Collections\ApiKeyRotationCollection;
 use Paddle\SDK\Entities\Collections\Paginator;
 use Paddle\SDK\Exceptions\ApiError;
+use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
 use Paddle\SDK\Resources\ApiKeys\Operations\CreateApiKeyRotation;
 use Paddle\SDK\Resources\ApiKeys\Operations\ListApiKeyRotations;
@@ -29,6 +30,7 @@ class ApiKeysClient
 {
     public function __construct(
         private readonly Client $client,
+        private readonly string|null $currentApiKeyId = null,
     ) {
     }
 
@@ -62,44 +64,71 @@ class ApiKeysClient
     }
 
     /**
-     * @throws ApiError          On a generic API error
-     * @throws MalformedResponse If the API response was not parsable
+     * @throws ApiError                 On a generic API error
+     * @throws MalformedResponse        If the API response was not parsable
+     * @throws InvalidArgumentException If the key is the current one and the client's API key can't be rotated
      */
-    public function listRotations(string $apiKeyId, ListApiKeyRotations $listOperation = new ListApiKeyRotations()): ApiKeyRotationCollection
+    public function listRotations(RotatableApiKey $apiKey, ListApiKeyRotations $listOperation = new ListApiKeyRotations()): ApiKeyRotationCollection
     {
+        [$client, $apiKeyId] = $this->resolve($apiKey);
+
         $parser = new ResponseParser(
-            $this->client->getRaw("/api-keys/{$apiKeyId}/rotations", $listOperation),
+            $client->getRaw("/api-keys/{$apiKeyId}/rotations", $listOperation),
         );
 
         return ApiKeyRotationCollection::from(
             $parser->getData(),
-            new Paginator($this->client, $parser->getPagination(), ApiKeyRotationCollection::class),
+            new Paginator($client, $parser->getPagination(), ApiKeyRotationCollection::class),
         );
     }
 
     /**
-     * @throws ApiError          On a generic API error
-     * @throws MalformedResponse If the API response was not parsable
+     * @throws ApiError                 On a generic API error
+     * @throws MalformedResponse        If the API response was not parsable
+     * @throws InvalidArgumentException If the key is the current one and the client's API key can't be rotated
      */
-    public function getRotation(string $apiKeyId, string $rotationId): ApiKeyRotation
+    public function getRotation(RotatableApiKey $apiKey, string $rotationId): ApiKeyRotation
     {
+        [$client, $apiKeyId] = $this->resolve($apiKey);
+
         $parser = new ResponseParser(
-            $this->client->getRaw("/api-keys/{$apiKeyId}/rotations/{$rotationId}"),
+            $client->getRaw("/api-keys/{$apiKeyId}/rotations/{$rotationId}"),
         );
 
         return ApiKeyRotation::from($parser->getData());
     }
 
     /**
-     * @throws ApiError          On a generic API error
-     * @throws MalformedResponse If the API response was not parsable
+     * @throws ApiError                 On a generic API error
+     * @throws MalformedResponse        If the API response was not parsable
+     * @throws InvalidArgumentException If the key is the current one and the client's API key can't be rotated
      */
-    public function createRotation(string $apiKeyId, CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
+    public function createRotation(RotatableApiKey $apiKey, CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
     {
+        [$client, $apiKeyId] = $this->resolve($apiKey);
+
         $parser = new ResponseParser(
-            $this->client->postRaw("/api-keys/{$apiKeyId}/rotations", $createOperation),
+            $client->postRaw("/api-keys/{$apiKeyId}/rotations", $createOperation),
         );
 
         return ApiKeyRotationCreated::from($parser->getData());
+    }
+
+    /**
+     * A key can only manage its own rotations, so another key's requests are authenticated with its secret.
+     *
+     * @return array{Client, string}
+     */
+    private function resolve(RotatableApiKey $apiKey): array
+    {
+        if ($apiKey->isCurrent()) {
+            if ($this->currentApiKeyId === null) {
+                throw new InvalidArgumentException("the client's API key can't be rotated, as it isn't a rotatable API key");
+            }
+
+            return [$this->client, $this->currentApiKeyId];
+        }
+
+        return [$this->client->withApiKey((string) $apiKey->secret()), (string) $apiKey->id];
     }
 }

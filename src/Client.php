@@ -23,6 +23,7 @@ use Paddle\SDK\Resources\Account\AccountClient;
 use Paddle\SDK\Resources\Addresses\AddressesClient;
 use Paddle\SDK\Resources\Adjustments\AdjustmentsClient;
 use Paddle\SDK\Resources\ApiKeys\ApiKeysClient;
+use Paddle\SDK\Resources\ApiKeys\RotatableApiKey;
 use Paddle\SDK\Resources\ApiRoot\ApiRootClient;
 use Paddle\SDK\Resources\Businesses\BusinessesClient;
 use Paddle\SDK\Resources\CheckoutDomains\CheckoutDomainsClient;
@@ -105,6 +106,7 @@ class Client
     public readonly ApiKeysClient $apiKeys;
 
     private readonly HttpAsyncClient $httpClient;
+    private readonly HttpAsyncClient $baseHttpClient;
     private readonly RequestFactoryInterface $requestFactory;
     private readonly StreamFactoryInterface $streamFactory;
     private readonly UriFactoryInterface $uriFactory;
@@ -126,9 +128,8 @@ class Client
         $this->streamFactory = $streamFactory ?: Psr17FactoryDiscovery::findStreamFactory();
         $this->uriFactory = $uriFactory ?: Psr17FactoryDiscovery::findUriFactory();
 
-        $this->httpClient = $this->buildClient(
-            $httpClient ?: HttpAsyncClientDiscovery::find(),
-        );
+        $this->baseHttpClient = $httpClient ?: HttpAsyncClientDiscovery::find();
+        $this->httpClient = $this->buildClient($this->baseHttpClient);
 
         $this->products = new ProductsClient($this);
         $this->prices = new PricesClient($this);
@@ -163,7 +164,23 @@ class Client
         $this->account = new AccountClient($this);
         $this->settings = new SettingsClient($this);
         $this->ipAddresses = new IpAddressesClient($this);
-        $this->apiKeys = new ApiKeysClient($this);
+        $this->apiKeys = new ApiKeysClient($this, RotatableApiKey::idFromSecret($this->apiKey));
+    }
+
+    /**
+     * @internal returns a client with the same configuration that authenticates with a different API key
+     */
+    public function withApiKey(#[\SensitiveParameter] string $apiKey): self
+    {
+        return new self(
+            $apiKey,
+            $this->options,
+            $this->baseHttpClient,
+            $this->logger,
+            $this->requestFactory,
+            $this->streamFactory,
+            $this->uriFactory,
+        );
     }
 
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
