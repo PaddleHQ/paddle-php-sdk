@@ -25,9 +25,9 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
   - `ApiKeyRotationCreated` redacts `newKey` in `var_dump()` and `print_r()` output
 - `ListApiKeyRotations` can filter by rotation `ids`
 
-### Fixed
+### Changed
 
-- `var_dump()` and `print_r()` of the `Client`, or of any resource client such as `Client->products`, no longer show the API key
+- Added `__debugInfo()` to the `Client`, so `var_dump()` and `print_r()` output leaves out credentials and HTTP client internals
 
 ## [1.19.0] - 2026-11-05
 

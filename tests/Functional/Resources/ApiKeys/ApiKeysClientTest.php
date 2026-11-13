@@ -347,7 +347,7 @@ class ApiKeysClientTest extends TestCase
      */
     public function current_key_rotations_keep_the_client_secret_out_of_urls_and_logs(\Closure $call, string $responseFixture): void
     {
-        $logger = new class extends AbstractLogger {
+        $logger = new class() extends AbstractLogger {
             public array $messages = [];
 
             public function log($level, \Stringable|string $message, array $context = []): void
