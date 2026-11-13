@@ -6,6 +6,8 @@ namespace Paddle\SDK\Tests\Functional\Resources\ApiKeys;
 
 use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client as MockClient;
+use Monolog\Handler\TestHandler;
+use Monolog\Logger;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\ApiKey;
 use Paddle\SDK\Entities\ApiKeyRotation;
@@ -21,7 +23,6 @@ use Paddle\SDK\Resources\ApiKeys\Operations\ListApiKeyRotations;
 use Paddle\SDK\Resources\ApiKeys\Operations\ListApiKeys;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
-use Paddle\SDK\Tests\Utils\RecordingLogger;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -347,12 +348,12 @@ class ApiKeysClientTest extends TestCase
      */
     public function current_key_rotations_keep_the_client_secret_out_of_urls_and_logs(\Closure $call, string $responseFixture): void
     {
-        $logger = new RecordingLogger();
+        $logs = new TestHandler();
         $client = new Client(
             apiKey: 'pdl_test_apikey_01jkdpbhazdpn3wpcya45as9tg_clientsecret_abc',
             options: new Options(Environment::SANDBOX),
             httpClient: $this->mockClient,
-            logger: $logger,
+            logger: new Logger('test', [$logs]),
         );
         $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture($responseFixture)));
 
@@ -361,8 +362,9 @@ class ApiKeysClientTest extends TestCase
         $uri = (string) $this->mockClient->getLastRequest()->getUri();
         self::assertStringStartsWith('https://sandbox-api.paddle.com/api-keys/apikey_01jkdpbhazdpn3wpcya45as9tg/rotations', $uri);
         self::assertStringNotContainsString('clientsecret', $uri);
-        self::assertNotEmpty($logger->messages);
-        self::assertStringNotContainsString('clientsecret', implode("\n", $logger->messages));
+        $messages = implode("\n", array_map(fn ($record) => $record->message, $logs->getRecords()));
+        self::assertNotEmpty($messages);
+        self::assertStringNotContainsString('clientsecret', $messages);
     }
 
     /** @test */
