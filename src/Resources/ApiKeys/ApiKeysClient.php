@@ -70,7 +70,7 @@ class ApiKeysClient
      * @throws MalformedResponse        If the API response was not parsable
      * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function listCurrentKeyRotations(ListApiKeyRotations $listOperation = new ListApiKeyRotations()): ApiKeyRotationCollection
+    public function listRotationsForCurrentKey(ListApiKeyRotations $listOperation = new ListApiKeyRotations()): ApiKeyRotationCollection
     {
         $parser = new ResponseParser(
             $this->client->getRaw("/api-keys/{$this->currentApiKeyId()}/rotations", $listOperation),
@@ -89,7 +89,7 @@ class ApiKeysClient
      * @throws MalformedResponse        If the API response was not parsable
      * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function getCurrentKeyRotation(string $rotationId): ApiKeyRotation
+    public function getRotationForCurrentKey(string $rotationId): ApiKeyRotation
     {
         $parser = new ResponseParser(
             $this->client->getRaw("/api-keys/{$this->currentApiKeyId()}/rotations/{$rotationId}"),
@@ -107,7 +107,7 @@ class ApiKeysClient
      * @throws MalformedResponse        If the API response was not parsable
      * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function rotateCurrentKey(CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
+    public function createRotationForCurrentKey(CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/api-keys/{$this->currentApiKeyId()}/rotations", $createOperation),
