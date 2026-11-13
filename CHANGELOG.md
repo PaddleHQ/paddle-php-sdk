@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [Unreleased]
+
+### Fixed
+
+- `var_dump()` and `print_r()` of the `Client`, or of any resource client such as `Client->products`, no longer show the API key
+
 ## [1.19.0] - 2026-11-05
 
 ### Added
