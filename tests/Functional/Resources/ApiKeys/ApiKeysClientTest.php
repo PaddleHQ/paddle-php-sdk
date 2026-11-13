@@ -24,6 +24,7 @@ use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\AbstractLogger;
 
 class ApiKeysClientTest extends TestCase
 {
@@ -336,6 +337,64 @@ class ApiKeysClientTest extends TestCase
             self::fail('Expected InvalidArgumentException');
         } catch (InvalidArgumentException) {
             self::assertCount(0, $this->mockClient->getRequests());
+        }
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider currentKeyRotationCallsWithResponsesProvider
+     */
+    public function current_key_rotations_keep_the_client_secret_out_of_urls_and_logs(\Closure $call, string $responseFixture): void
+    {
+        $logger = new class extends AbstractLogger {
+            public array $messages = [];
+
+            public function log($level, \Stringable|string $message, array $context = []): void
+            {
+                $this->messages[] = (string) $message;
+            }
+        };
+        $client = new Client(
+            apiKey: 'pdl_test_apikey_01jkdpbhazdpn3wpcya45as9tg_clientsecret_abc',
+            options: new Options(Environment::SANDBOX),
+            httpClient: $this->mockClient,
+            logger: $logger,
+        );
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture($responseFixture)));
+
+        $call($client);
+
+        $uri = (string) $this->mockClient->getLastRequest()->getUri();
+        self::assertStringStartsWith('https://sandbox-api.paddle.com/api-keys/apikey_01jkdpbhazdpn3wpcya45as9tg/rotations', $uri);
+        self::assertStringNotContainsString('clientsecret', $uri);
+        self::assertNotEmpty($logger->messages);
+        self::assertStringNotContainsString('clientsecret', implode("\n", $logger->messages));
+    }
+
+    /** @test */
+    public function current_key_rotations_keep_the_client_secret_out_of_the_error_message(): void
+    {
+        $client = new Client(
+            apiKey: 'pdl_test_apikey_notarotatablekey_clientsecret_abc',
+            options: new Options(Environment::SANDBOX),
+            httpClient: $this->mockClient,
+        );
+
+        try {
+            $client->apiKeys->createRotationForCurrentKey(new CreateApiKeyRotation(gracePeriodSeconds: 3600));
+            self::fail('Expected InvalidArgumentException');
+        } catch (InvalidArgumentException $e) {
+            self::assertStringNotContainsString('clientsecret', $e->getMessage());
+            self::assertStringNotContainsString('clientsecret', $e->getTraceAsString());
+        }
+    }
+
+    public static function currentKeyRotationCallsWithResponsesProvider(): \Generator
+    {
+        $responses = ['Rotate' => 'response/rotation_created_entity', 'List' => 'response/rotation_list_page_one', 'Get' => 'response/rotation_entity'];
+        foreach (self::currentKeyRotationCallsProvider() as $name => [$call]) {
+            yield $name => [$call, $responses[$name]];
         }
     }
 
