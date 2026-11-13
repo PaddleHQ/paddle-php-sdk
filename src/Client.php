@@ -174,6 +174,17 @@ class Client
         return preg_match('/^pdl_\w+?_apikey_([a-z\d]{26})_/', $apiKey, $matches) === 1 ? "apikey_{$matches[1]}" : null;
     }
 
+    /**
+     * Keeps the API key out of var_dump() and print_r() output. The HTTP client is left out too, as it holds the key in its auth header.
+     */
+    public function __debugInfo(): array
+    {
+        $properties = get_object_vars($this);
+        unset($properties['apiKey'], $properties['httpClient']);
+
+        return $properties;
+    }
+
     public function getRaw(string|UriInterface $uri, array|HasParameters $parameters = []): ResponseInterface
     {
         if ($parameters) {
