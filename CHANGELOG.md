@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx&utm_medium=paddle-php-sdk) for information about changes to the Paddle Billing platform, the Paddle API, and other developer tools.
 
+## [Unreleased]
+
+### Added
+
+- Added support for API keys
+  - `Client->apiKeys->list()`
+  - `Client->apiKeys->get()`
+  - `Client->apiKeys->createRotationForCurrentKey()`
+  - `Client->apiKeys->listRotationsForCurrentKey()`
+  - `Client->apiKeys->getRotationForCurrentKey()`
+- The rotation methods act on the API key the client is authenticated with, as a key can only manage its own rotations. To rotate another key, create a client with that key's secret
+- Added `api_key.read` to `ApiKeyPermission`
+- Added `api_key_rotation.created` and `api_key_rotation.updated` events, including simulation payload support
+- Added `ApiKeyRotationStatus` (`pending`, `completed`, `canceled`, `expired`)
+  - `Client->apiKeys->createRotationForCurrentKey()` returns `ApiKeyRotationCreated`, which includes the full `newKey`. It can't be retrieved again, so store it securely
+  - `Client->apiKeys->getRotationForCurrentKey()` and `Client->apiKeys->listRotationsForCurrentKey()` return `ApiKeyRotation`, where `newKey` is redacted
+  - `ApiKeyRotationCreated` redacts `newKey` in `var_dump()` and `print_r()` output
+- `ListApiKeyRotations` can filter by rotation `ids`
+
+### Changed
+
+- Added `__debugInfo()` to the `Client`, so `var_dump()` and `print_r()` output leaves out credentials and HTTP client internals
+
 ## [1.19.0] - 2026-11-05
 
 ### Added

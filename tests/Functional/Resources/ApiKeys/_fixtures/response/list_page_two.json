@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "id": "apikey_03jkdpbhazdpn3wpcya45as9tg",
+            "name": "Checkout",
+            "description": null,
+            "key": "pdl_live_apikey_03jkdpbhaz****",
+            "status": "revoked",
+            "permissions": ["price.read"],
+            "exposed_at": "2025-08-01T10:00:00.000Z",
+            "expires_at": null,
+            "rotatable": true,
+            "last_used_at": null,
+            "created_at": "2025-03-26T06:58:38.517Z",
+            "updated_at": "2025-08-02T06:58:38.517Z"
+        }
+    ],
+    "meta": {
+        "request_id": "f802da6d-096f-4cab-abd1-6c98330d4b0a",
+        "pagination": {
+            "per_page": 2,
+            "next": "https://sandbox-api.paddle.com/api-keys?after=apikey_03jkdpbhazdpn3wpcya45as9tg",
+            "has_more": false,
+            "estimated_total": 3
+        }
+    }
+}
