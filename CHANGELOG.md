@@ -10,7 +10,7 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 ### Added
 
-- Added support for API keys
+- Added support for API keys. See [related changelog](https://developer.paddle.com/changelog/2026/api-keys-read-and-rotate-api?utm_source=dx&utm_medium=paddle-php-sdk)
   - `Client->apiKeys->list()`
   - `Client->apiKeys->get()`
   - `Client->apiKeys->createRotationForCurrentKey()`
