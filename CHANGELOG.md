@@ -13,17 +13,12 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 - Added support for API keys. See [related changelog](https://developer.paddle.com/changelog/2026/api-keys-read-and-rotate-api?utm_source=dx&utm_medium=paddle-php-sdk)
   - `Client->apiKeys->list()`
   - `Client->apiKeys->get()`
+- Added support for API key rotation. See [related changelog](https://developer.paddle.com/changelog/2026/api-keys-read-and-rotate-api?utm_source=dx&utm_medium=paddle-php-sdk). The rotation methods act on the API key the client is authenticated with, as a key can only manage its own rotations. To rotate another key, create a client with that key's secret. The full `newKey` is only returned on create, so store it securely
   - `Client->apiKeys->createRotationForCurrentKey()`
   - `Client->apiKeys->listRotationsForCurrentKey()`
   - `Client->apiKeys->getRotationForCurrentKey()`
-- The rotation methods act on the API key the client is authenticated with, as a key can only manage its own rotations. To rotate another key, create a client with that key's secret
 - Added `api_key.read` to `ApiKeyPermission`
 - Added `api_key_rotation.created` and `api_key_rotation.updated` events, including simulation payload support
-- Added `ApiKeyRotationStatus` (`pending`, `completed`, `canceled`, `expired`)
-  - `Client->apiKeys->createRotationForCurrentKey()` returns `ApiKeyRotationCreated`, which includes the full `newKey`. It can't be retrieved again, so store it securely
-  - `Client->apiKeys->getRotationForCurrentKey()` and `Client->apiKeys->listRotationsForCurrentKey()` return `ApiKeyRotation`, where `newKey` is redacted
-  - `ApiKeyRotationCreated` redacts `newKey` in `var_dump()` and `print_r()` output
-- `ListApiKeyRotations` can filter by rotation `ids`
 
 ### Changed
 
