@@ -119,6 +119,19 @@ class EventsClientTest extends TestCase
                 Environment::SANDBOX->baseUrl(),
             ),
         ];
+
+        yield 'List events with payload filter and time range' => [
+            new ListEvents(
+                filter: 'txn_01h3cgmh9qn7yezn4rgze4nrg2',
+                to: new \DateTime('2023-12-25T00:00:00.000Z'),
+                from: new \DateTime('2023-12-24T00:00:00.000Z'),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/list_default')),
+            sprintf(
+                '%s/events?filter=txn_01h3cgmh9qn7yezn4rgze4nrg2&to=2023-12-25T00:00:00.000000Z&from=2023-12-24T00:00:00.000000Z',
+                Environment::SANDBOX->baseUrl(),
+            ),
+        ];
     }
 
     /**

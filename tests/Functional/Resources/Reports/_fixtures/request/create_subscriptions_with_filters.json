@@ -1,0 +1,34 @@
+{
+    "type": "subscriptions",
+    "filters": [
+        {
+            "name": "subscription_status",
+            "operator": null,
+            "value": [
+                "active",
+                "past_due"
+            ]
+        },
+        {
+            "name": "subscription_created_at",
+            "operator": "gte",
+            "value": "2023-12-30"
+        },
+        {
+            "name": "customer_country_code",
+            "operator": null,
+            "value": [
+                "US",
+                "GB"
+            ]
+        },
+        {
+            "name": "subscription_scheduled_change_action",
+            "operator": null,
+            "value": [
+                "cancel",
+                "none"
+            ]
+        }
+    ]
+}

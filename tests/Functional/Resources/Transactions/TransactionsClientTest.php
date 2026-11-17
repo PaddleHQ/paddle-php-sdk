@@ -17,10 +17,12 @@ use Paddle\SDK\Entities\Shared\CustomData;
 use Paddle\SDK\Entities\Shared\Disposition;
 use Paddle\SDK\Entities\Shared\Interval;
 use Paddle\SDK\Entities\Shared\Money;
+use Paddle\SDK\Entities\Shared\PaymentMethodType;
 use Paddle\SDK\Entities\Shared\PriceQuantity;
 use Paddle\SDK\Entities\Shared\TaxCategory;
 use Paddle\SDK\Entities\Shared\TaxMode;
 use Paddle\SDK\Entities\Shared\TimePeriod;
+use Paddle\SDK\Entities\Shared\TransactionPaypal;
 use Paddle\SDK\Entities\Shared\TransactionStatus;
 use Paddle\SDK\Entities\Transaction;
 use Paddle\SDK\Entities\Transaction\TransactionCreateItem as DeprecatedTransactionCreateItem;
@@ -38,6 +40,7 @@ use Paddle\SDK\Options;
 use Paddle\SDK\Resources\Shared\Operations\List\Comparator;
 use Paddle\SDK\Resources\Shared\Operations\List\DateComparison;
 use Paddle\SDK\Resources\Shared\Operations\List\Pager;
+use Paddle\SDK\Resources\Transactions\Operations\Create\CreateBillingDetails;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Create\TransactionCreateItemWithPrice;
 use Paddle\SDK\Resources\Transactions\Operations\CreateTransaction;
@@ -58,6 +61,7 @@ use Paddle\SDK\Resources\Transactions\Operations\Revise\TransactionReviseCustome
 use Paddle\SDK\Resources\Transactions\Operations\ReviseTransaction;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItem;
 use Paddle\SDK\Resources\Transactions\Operations\Update\TransactionUpdateItemWithPrice;
+use Paddle\SDK\Resources\Transactions\Operations\Update\UpdateBillingDetails;
 use Paddle\SDK\Resources\Transactions\Operations\UpdateTransaction;
 use Paddle\SDK\Tests\Utils\ReadsFixtures;
 use PHPUnit\Framework\TestCase;
@@ -346,6 +350,20 @@ class TransactionsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_manual'),
         ];
+
+        yield 'Create with billing details' => [
+            new CreateTransaction(
+                items: [
+                    new TransactionCreateItem('pri_01gsz8x8sawmvhz1pv30nge1ke', 1),
+                ],
+                collectionMode: CollectionMode::Manual(),
+                billingDetails: new CreateBillingDetails(
+                    paymentTerms: new TimePeriod(Interval::Day(), 14),
+                ),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/create_with_billing_details'),
+        ];
     }
 
     /**
@@ -374,6 +392,14 @@ class TransactionsClientTest extends TestCase
             new UpdateTransaction(status: TransactionStatus::Billed()),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_single'),
+        ];
+
+        yield 'Update billing details' => [
+            new UpdateTransaction(
+                billingDetails: new UpdateBillingDetails(purchaseOrderNumber: 'PO-123', additionalInformation: null),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_billing_details'),
         ];
 
         yield 'Update with catalog price' => [
@@ -738,6 +764,23 @@ class TransactionsClientTest extends TestCase
 
         $paymentWithoutPaymentMethodId = $transaction->payments[1];
         self::assertNull($paymentWithoutPaymentMethodId->paymentMethodId);
+    }
+
+    /**
+     * @test
+     */
+    public function get_returns_paypal_method_details(): void
+    {
+        $this->mockClient->addResponse(new Response(200, body: self::readRawJsonFixture('response/full_entity')));
+        $transaction = $this->client->transactions->get('txn_01hen7bxc1p8ep4yk7n5jbzk9r');
+
+        self::assertNull($transaction->payments[0]->methodDetails->paypal);
+
+        $methodDetails = $transaction->payments[2]->methodDetails;
+        self::assertEquals(PaymentMethodType::Paypal(), $methodDetails->type);
+        self::assertInstanceOf(TransactionPaypal::class, $methodDetails->paypal);
+        self::assertSame('john.doe@example.com', $methodDetails->paypal->email);
+        self::assertNull($methodDetails->paypal->reference);
     }
 
     /**

@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "code": "USD",
+            "name": "US Dollar",
+            "decimal_places": 2,
+            "can_be_balance": true,
+            "applicable_countries": [
+                "US",
+                "AE",
+                "BB"
+            ],
+            "minimum_payment_amount": "50"
+        },
+        {
+            "code": "GBP",
+            "name": "Pound Sterling",
+            "decimal_places": 2,
+            "can_be_balance": true,
+            "applicable_countries": [
+                "GB"
+            ],
+            "minimum_payment_amount": "30"
+        },
+        {
+            "code": "JPY",
+            "name": "Japanese Yen",
+            "decimal_places": 0,
+            "can_be_balance": false,
+            "applicable_countries": [
+                "JP"
+            ],
+            "minimum_payment_amount": "50"
+        }
+    ],
+    "meta": {
+        "request_id": "7f3c1d95-2a48-4e6b-9c07-5b8e2f4a1d63"
+    }
+}

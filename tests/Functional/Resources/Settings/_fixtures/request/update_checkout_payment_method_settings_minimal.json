@@ -1,0 +1,10 @@
+{
+  "payment_methods": {
+    "apple_pay": {
+      "enabled": true
+    },
+    "alipay": {
+      "enabled": false
+    }
+  }
+}
