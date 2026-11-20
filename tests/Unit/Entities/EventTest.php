@@ -6,6 +6,8 @@ namespace Paddle\SDK\Tests\Unit\Entities;
 
 use Paddle\SDK\Entities\Event;
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Notifications\Entities\ApiKeyRotation;
+use Paddle\SDK\Notifications\Entities\ApiKeyRotation\ApiKeyRotationStatus;
 use Paddle\SDK\Notifications\Entities\DeletedPaymentMethod;
 use Paddle\SDK\Notifications\Entities\Entity;
 use Paddle\SDK\Notifications\Entities\PaymentMethod;
@@ -19,6 +21,8 @@ use Paddle\SDK\Notifications\Entities\Shared\TimePeriod;
 use Paddle\SDK\Notifications\Entities\Shared\TransactionPaypal;
 use Paddle\SDK\Notifications\Entities\Subscription\SubscriptionDiscountType;
 use Paddle\SDK\Notifications\Entities\UndefinedEntity;
+use Paddle\SDK\Notifications\Events\ApiKeyRotationCreated;
+use Paddle\SDK\Notifications\Events\ApiKeyRotationUpdated;
 use Paddle\SDK\Notifications\Events\PaymentMethodDeleted;
 use Paddle\SDK\Notifications\Events\PaymentMethodSaved;
 use Paddle\SDK\Notifications\Events\PriceCreated;
@@ -91,6 +95,43 @@ class EventTest extends TestCase
     public static function eventDataProvider(): iterable
     {
         return EventDataProvider::events();
+    }
+
+    /**
+     * @test
+     */
+    public function it_parses_api_key_rotation_events(): void
+    {
+        $created = Event::from([
+            'event_id' => 'evt_01jkdr0rc527wcjdg1txsdxhtk',
+            'event_type' => 'api_key_rotation.created',
+            'occurred_at' => '2025-08-19T12:58:38.746382Z',
+            'notification_id' => 'ntf_01jkdr1mgbe62eqkh3p0fq8b0s',
+            'data' => self::readJsonFixture('notification/entity/api_key_rotation.created'),
+        ]);
+
+        self::assertInstanceOf(ApiKeyRotationCreated::class, $created);
+        self::assertEquals(EventTypeName::ApiKeyRotationCreated(), $created->eventType);
+        self::assertInstanceOf(ApiKeyRotation::class, $created->apiKeyRotation);
+        self::assertSame('apkrot_01jkas9tppn3bhadwpcyag45zd', $created->apiKeyRotation->id);
+        self::assertSame('apikey_01jkdpbhazdpn3wpcya45as9tg', $created->apiKeyRotation->apiKeyId);
+        self::assertEquals(ApiKeyRotationStatus::Pending(), $created->apiKeyRotation->status);
+        self::assertSame(3600, $created->apiKeyRotation->gracePeriodSeconds);
+        self::assertNull($created->apiKeyRotation->newKeyExpiresAt);
+        self::assertNull($created->apiKeyRotation->expiresAt);
+
+        $updated = Event::from([
+            'event_id' => 'evt_01jkdrb9yq2v6k4e1m3x8p7c5d',
+            'event_type' => 'api_key_rotation.updated',
+            'occurred_at' => '2025-08-19T13:10:02.114209Z',
+            'data' => self::readJsonFixture('notification/entity/api_key_rotation.updated'),
+        ]);
+
+        self::assertInstanceOf(ApiKeyRotationUpdated::class, $updated);
+        self::assertEquals(EventTypeName::ApiKeyRotationUpdated(), $updated->eventType);
+        self::assertEquals(ApiKeyRotationStatus::Completed(), $updated->apiKeyRotation->status);
+        self::assertSame('2026-11-02T00:00:00.000+00:00', $updated->apiKeyRotation->newKeyExpiresAt->format(DATE_RFC3339_EXTENDED));
+        self::assertSame('2025-08-19T14:10:02.114+00:00', $updated->apiKeyRotation->expiresAt->format(DATE_RFC3339_EXTENDED));
     }
 
     /**
