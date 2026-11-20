@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Entities;
 
-use Paddle\SDK\Notifications\Entities\ApiKey\ApiKeyPermission;
-use Paddle\SDK\Notifications\Entities\ApiKey\ApiKeyStatus;
+use Paddle\SDK\Entities\ApiKey\ApiKeyPermission;
+use Paddle\SDK\Entities\ApiKey\ApiKeyStatus;
 
 class ApiKey implements Entity
 {
