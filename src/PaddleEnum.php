@@ -31,7 +31,8 @@ class PaddleEnum extends Enum
             if ($value === null) {
                 throw $e;
             }
-            $enum = self::Undefined();
+            // The first Undefined() call returns MyCLabs' cached instance, which must not hold this value.
+            $enum = clone self::Undefined();
             $enum->value = $value;
 
             return $enum;

@@ -24,6 +24,10 @@ Check our main [developer changelog](https://developer.paddle.com/?utm_source=dx
 
 - Added `__debugInfo()` to the `Client`, so `var_dump()` and `print_r()` output leaves out credentials and HTTP client internals
 
+### Fixed
+
+- Hydrating an unknown enum value no longer changes that enum's `Undefined()` case. Previously, after the first unknown value, `Undefined()->getValue()` and `from(null)->getValue()` returned that value instead of `null` until the process ended
+
 ## [1.19.0] - 2026-11-05
 
 ### Added
