@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Currency;
 
+/**
+ * @extends Collection<Currency>
+ */
 class CurrencyCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self
