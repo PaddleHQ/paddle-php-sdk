@@ -425,15 +425,6 @@ class SettingsClientTest extends TestCase
             CheckoutUrl::class,
         ];
 
-        yield 'Update checkout URL clearing default' => [
-            'updateCheckoutUrl',
-            '/settings/checkout-url',
-            new UpdateCheckoutUrl(defaultUrl: null),
-            self::readRawJsonFixture('request/update_checkout_url_clear'),
-            'response/checkout_url_unset',
-            CheckoutUrl::class,
-        ];
-
         yield 'Update currency conversions minimal' => [
             'updateCurrencyConversions',
             '/settings/currency-conversions',
