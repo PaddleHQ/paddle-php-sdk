@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Product;
 
+/**
+ * @extends Collection<Product>
+ */
 class ProductCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

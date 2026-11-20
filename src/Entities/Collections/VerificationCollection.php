@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\Verification;
 
+/**
+ * @extends Collection<Verification>
+ */
 class VerificationCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self

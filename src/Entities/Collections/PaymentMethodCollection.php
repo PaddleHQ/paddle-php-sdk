@@ -13,6 +13,9 @@ namespace Paddle\SDK\Entities\Collections;
 
 use Paddle\SDK\Entities\PaymentMethod;
 
+/**
+ * @extends Collection<PaymentMethod>
+ */
 class PaymentMethodCollection extends Collection
 {
     public static function from(array $itemsData, Paginator|null $paginator = null): self
