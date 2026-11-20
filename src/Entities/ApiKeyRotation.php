@@ -28,6 +28,16 @@ class ApiKeyRotation implements Entity
     ) {
     }
 
+    /**
+     * Keeps the full new key out of var_dump() and print_r() output.
+     *
+     * @return array<string, mixed>
+     */
+    public function __debugInfo(): array
+    {
+        return array_merge(get_object_vars($this), ['newKey' => '[REDACTED]']);
+    }
+
     public static function from(array $data): self
     {
         return new self(

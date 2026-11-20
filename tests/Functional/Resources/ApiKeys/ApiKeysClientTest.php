@@ -14,7 +14,6 @@ use Paddle\SDK\Entities\ApiKey\ApiKeyPermission;
 use Paddle\SDK\Entities\ApiKey\ApiKeyStatus;
 use Paddle\SDK\Entities\ApiKeyRotation;
 use Paddle\SDK\Entities\ApiKeyRotation\ApiKeyRotationStatus;
-use Paddle\SDK\Entities\ApiKeyRotationCreated;
 use Paddle\SDK\Environment;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\Options;
@@ -285,7 +284,7 @@ class ApiKeysClientTest extends TestCase
         );
         self::assertJsonStringEqualsJsonString($expectedBody, (string) $request->getBody());
 
-        self::assertInstanceOf(ApiKeyRotationCreated::class, $rotation);
+        self::assertInstanceOf(ApiKeyRotation::class, $rotation);
         self::assertSame('apkrot_01kjnm4a3w4jqdbtqvb2jwjdf7', $rotation->id);
         self::assertSame('apikey_01jkdpbhazdpn3wpcya45as9tg', $rotation->apiKeyId);
         self::assertSame('pdl_live_apikey_01jkdpbhazdpn3wpcya45as9tg_somesecret_abc', $rotation->newKey);

@@ -14,7 +14,6 @@ namespace Paddle\SDK\Resources\ApiKeys;
 use Paddle\SDK\Client;
 use Paddle\SDK\Entities\ApiKey;
 use Paddle\SDK\Entities\ApiKeyRotation;
-use Paddle\SDK\Entities\ApiKeyRotationCreated;
 use Paddle\SDK\Entities\Collections\ApiKeyCollection;
 use Paddle\SDK\Entities\Collections\ApiKeyRotationCollection;
 use Paddle\SDK\Entities\Collections\Paginator;
@@ -107,13 +106,13 @@ class ApiKeysClient
      * @throws MalformedResponse        If the API response was not parsable
      * @throws InvalidArgumentException If the client's API key can't be rotated, such as a legacy API key
      */
-    public function createRotationForCurrentKey(CreateApiKeyRotation $createOperation): ApiKeyRotationCreated
+    public function createRotationForCurrentKey(CreateApiKeyRotation $createOperation): ApiKeyRotation
     {
         $parser = new ResponseParser(
             $this->client->postRaw("/api-keys/{$this->currentApiKeyId()}/rotations", $createOperation),
         );
 
-        return ApiKeyRotationCreated::from($parser->getData());
+        return ApiKeyRotation::from($parser->getData());
     }
 
     private function currentApiKeyId(): string
