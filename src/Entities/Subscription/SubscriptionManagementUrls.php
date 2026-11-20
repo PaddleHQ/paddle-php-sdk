@@ -16,11 +16,12 @@ class SubscriptionManagementUrls
     private function __construct(
         public string|null $updatePaymentMethod,
         public string $cancel,
+        public string $viewSubscription,
     ) {
     }
 
     public static function from(array $data): self
     {
-        return new self($data['update_payment_method'], $data['cancel']);
+        return new self($data['update_payment_method'], $data['cancel'], $data['view_subscription']);
     }
 }

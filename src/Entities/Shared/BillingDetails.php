@@ -26,8 +26,8 @@ class BillingDetails
         return new self(
             $billingDetails['enable_checkout'],
             TimePeriod::from($billingDetails['payment_terms']),
-            $billingDetails['purchase_order_number'],
-            $billingDetails['additional_information'],
+            $billingDetails['purchase_order_number'] ?? null,
+            $billingDetails['additional_information'] ?? null,
         );
     }
 }

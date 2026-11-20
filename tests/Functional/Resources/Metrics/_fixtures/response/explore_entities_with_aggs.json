@@ -1,0 +1,22 @@
+{
+	"data": [
+		{
+			"entity": "checkouts",
+			"time_dimension": {
+				"intervals": ["day", "week"],
+				"max_lookback_days": 90
+			},
+			"dimensions": [],
+			"measures": [
+				{
+					"name": "gross",
+					"type": "currency",
+					"aggs": ["sum", "count"]
+				}
+			]
+		}
+	],
+	"meta": {
+		"request_id": "ecd52aa1-a73c-43df-af3b-e87edec3b436"
+	}
+}

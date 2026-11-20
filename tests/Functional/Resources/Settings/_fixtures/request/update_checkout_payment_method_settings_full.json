@@ -1,0 +1,55 @@
+{
+  "payment_methods": {
+    "alipay": {
+      "enabled": true
+    },
+    "apple_pay": {
+      "enabled": false
+    },
+    "bancontact": {
+      "enabled": true
+    },
+    "blik": {
+      "enabled": false
+    },
+    "card": {
+      "enabled": true
+    },
+    "google_pay": {
+      "enabled": false
+    },
+    "ideal": {
+      "enabled": true
+    },
+    "kakao_pay": {
+      "enabled": false
+    },
+    "mb_way": {
+      "enabled": true
+    },
+    "naver_pay": {
+      "enabled": false
+    },
+    "payco": {
+      "enabled": true
+    },
+    "paypal": {
+      "enabled": false
+    },
+    "pix": {
+      "enabled": true
+    },
+    "samsung_pay": {
+      "enabled": false
+    },
+    "south_korea_local_card": {
+      "enabled": true
+    },
+    "upi": {
+      "enabled": false
+    },
+    "wechat_pay": {
+      "enabled": true
+    }
+  }
+}

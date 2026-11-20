@@ -1,0 +1,77 @@
+{
+  "data": {
+    "payment_methods": {
+      "alipay": {
+        "enabled": false,
+        "available": true
+      },
+      "apple_pay": {
+        "enabled": true,
+        "available": true
+      },
+      "bancontact": {
+        "enabled": false,
+        "available": true
+      },
+      "blik": {
+        "enabled": false,
+        "available": false
+      },
+      "card": {
+        "enabled": true,
+        "available": true
+      },
+      "google_pay": {
+        "enabled": true,
+        "available": true
+      },
+      "ideal": {
+        "enabled": false,
+        "available": true
+      },
+      "kakao_pay": {
+        "enabled": false,
+        "available": false
+      },
+      "mb_way": {
+        "enabled": false,
+        "available": false
+      },
+      "naver_pay": {
+        "enabled": false,
+        "available": false
+      },
+      "payco": {
+        "enabled": false,
+        "available": false
+      },
+      "paypal": {
+        "enabled": true,
+        "available": true
+      },
+      "pix": {
+        "enabled": false,
+        "available": false
+      },
+      "samsung_pay": {
+        "enabled": false,
+        "available": false
+      },
+      "south_korea_local_card": {
+        "enabled": false,
+        "available": false
+      },
+      "upi": {
+        "enabled": false,
+        "available": false
+      },
+      "wechat_pay": {
+        "enabled": false,
+        "available": false
+      }
+    }
+  },
+  "meta": {
+    "request_id": "45cbcb2f-6a71-4b09-8a05-4c9e11b10c11"
+  }
+}

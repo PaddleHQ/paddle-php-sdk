@@ -1,0 +1,11 @@
+{
+  "GBP": {
+    "enabled": true
+  },
+  "USD": {
+    "enabled": false
+  },
+  "JPY": {
+    "enabled": true
+  }
+}

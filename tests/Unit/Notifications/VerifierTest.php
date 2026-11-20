@@ -34,4 +34,50 @@ class VerifierTest extends TestCase
 
         self::assertTrue((new Verifier(null))->verify($request, ...$secrets));
     }
+
+    /**
+     * @test
+     *
+     * @dataProvider timestampVarianceProvider
+     */
+    public function it_rejects_timestamps_outside_maximum_variance(int $offset, bool $expected): void
+    {
+        $secret = 'pdl_ntfset_01hs0t3tw21j988db1pam5xg8m_GrOWLNef+vmtjJYq4mSnHNzvc8uWoJ1I';
+        $body = '{"event_type":"transaction.completed"}';
+        $timestamp = \time() + $offset;
+        $signature = PaddleSignature::calculateHMAC("{$timestamp}:{$body}", $secret);
+
+        $request = Psr17FactoryDiscovery::findRequestFactory()
+            ->createRequest('POST', '/paddle/notifications')
+            ->withHeader(PaddleSignature::HEADER, "ts={$timestamp};h1={$signature}")
+            ->withBody(Psr17FactoryDiscovery::findStreamFactory()->createStream($body));
+
+        self::assertSame($expected, (new Verifier())->verify($request, new Secret($secret)));
+    }
+
+    public static function timestampVarianceProvider(): \Generator
+    {
+        yield 'Current timestamp' => [0, true];
+        yield 'Old timestamp within variance' => [-2, true];
+        yield 'Future timestamp within variance' => [2, true];
+        yield 'Old timestamp' => [-60, false];
+        yield 'Future timestamp' => [60, false];
+        yield 'Far future timestamp' => [315360000, false];
+    }
+
+    /** @test */
+    public function it_skips_timestamp_check_without_maximum_variance(): void
+    {
+        $secret = 'pdl_ntfset_01hs0t3tw21j988db1pam5xg8m_GrOWLNef+vmtjJYq4mSnHNzvc8uWoJ1I';
+        $body = '{"event_type":"transaction.completed"}';
+        $timestamp = \time() + 315360000;
+        $signature = PaddleSignature::calculateHMAC("{$timestamp}:{$body}", $secret);
+
+        $request = Psr17FactoryDiscovery::findRequestFactory()
+            ->createRequest('POST', '/paddle/notifications')
+            ->withHeader(PaddleSignature::HEADER, "ts={$timestamp};h1={$signature}")
+            ->withBody(Psr17FactoryDiscovery::findStreamFactory()->createStream($body));
+
+        self::assertTrue((new Verifier(null))->verify($request, new Secret($secret)));
+    }
 }

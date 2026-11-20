@@ -259,6 +259,7 @@ class CustomersClientTest extends TestCase
         self::assertInstanceOf(RequestInterface::class, $request);
         self::assertEquals('POST', $request->getMethod());
         self::assertSame('', (string) $request->getBody());
+        self::assertSame('application/json', $request->getHeaderLine('Content-Type'));
         self::assertEquals($expectedUri, urldecode((string) $request->getUri()));
 
         self::assertSame(

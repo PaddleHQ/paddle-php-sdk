@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\NotificationSettings\Operations;
 
 use Paddle\SDK\Entities\Event\EventTypeName;
+use Paddle\SDK\Entities\NotificationSetting\NotificationSettingTrafficSource;
 use Paddle\SDK\FiltersUndefined;
 use Paddle\SDK\Undefined;
 
@@ -22,6 +23,7 @@ class UpdateNotificationSetting implements \JsonSerializable
         public readonly int|Undefined $apiVersion = new Undefined(),
         public readonly bool|Undefined $includeSensitiveFields = new Undefined(),
         public readonly array|Undefined $subscribedEvents = new Undefined(),
+        public readonly NotificationSettingTrafficSource|Undefined $trafficSource = new Undefined(),
     ) {
     }
 
@@ -34,6 +36,7 @@ class UpdateNotificationSetting implements \JsonSerializable
             'api_version' => $this->apiVersion,
             'include_sensitive_fields' => $this->includeSensitiveFields,
             'subscribed_events' => $this->subscribedEvents,
+            'traffic_source' => $this->trafficSource,
         ]);
     }
 }

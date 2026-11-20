@@ -1,0 +1,827 @@
+{
+  "data": [
+    {
+      "id": "subhis_01k0a0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0a0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T12:42:27.000000Z",
+      "source": "checkout",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_activated",
+        "status": "active",
+        "first_billed_at": "2026-06-29T12:42:28.000000Z",
+        "next_billed_at": "2026-07-29T12:42:28.000000Z",
+        "current_billing_period": {
+          "starts_at": "2026-06-29T12:42:28.000000Z",
+          "ends_at": "2026-07-29T12:42:28.000000Z"
+        },
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s7t9v"
+      }
+    },
+    {
+      "id": "subhis_01k0b0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0b0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T13:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_address_updated",
+        "address": {
+          "id": "add_01hv8gq3318ktkfengj2r75gfx",
+          "city": "San Jose",
+          "region": "CA",
+          "status": "active",
+          "created_at": "2024-04-12T06:45:53.267000Z",
+          "first_line": "5400 E Washington Drive, Floor 2",
+          "updated_at": "2024-04-12T06:47:01.533006Z",
+          "custom_data": {
+            "crm_id": "08bcfb7a-41d8-4747-9ade-3d885c287d0f"
+          },
+          "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+          "description": "California Office",
+          "import_meta": null,
+          "postal_code": "95314",
+          "second_line": null,
+          "country_code": "US"
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0c0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0c0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T14:00:00.000000Z",
+      "source": "api",
+      "actor": { "type": "api_key", "id": "apikey_01h8441jn5pcwrfhwh78jqt8hl" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_billing_cycle_updated",
+        "billing_cycle": { "frequency": 3, "interval": "month" },
+        "current_billing_period": {
+          "starts_at": "2026-06-29T14:00:00.000000Z",
+          "ends_at": "2026-09-29T14:00:00.000000Z"
+        },
+        "next_billed_at": "2026-09-29T14:00:00.000000Z"
+      }
+    },
+    {
+      "id": "subhis_01k0d0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0d0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T15:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_billing_date_updated",
+        "next_billed_at": "2026-08-01T00:00:00.000000Z",
+        "current_billing_period": {
+          "starts_at": "2026-07-01T00:00:00.000000Z",
+          "ends_at": "2026-08-01T00:00:00.000000Z"
+        },
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s7t9z",
+        "proration_billing_mode": "prorated_immediately"
+      }
+    },
+    {
+      "id": "subhis_01k0e0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0e0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T16:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_billing_details_updated",
+        "billing_details": {
+          "enable_checkout": true,
+          "payment_terms": {
+            "interval": "month",
+            "frequency": 1
+          },
+          "purchase_order_number": "10009",
+          "additional_information": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0f0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0f0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T17:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_business_added",
+        "business": {
+          "id": "biz_01hv8hkr641vmpwytx38znv56k",
+          "name": "Uplift Inc.",
+          "status": "active",
+          "contacts": [
+            {
+              "name": "Parker Jones",
+              "email": "parker@example.com"
+            }
+          ],
+          "created_at": "2024-04-12T06:58:37.892000Z",
+          "updated_at": "2024-04-12T07:01:03.510528Z",
+          "custom_data": {
+            "crm_id": "eb9b8d9b-7dd6-48e6-8c39-8557bba5eaa9"
+          },
+          "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+          "import_meta": null,
+          "company_number": "555775291485",
+          "tax_identifier": "555952383"
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0g0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0g0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T18:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_business_removed",
+        "business": {
+          "id": "biz_01hv8hkr641vmpwytx38znv56k",
+          "name": "Uplift Inc.",
+          "status": "active",
+          "contacts": [
+            {
+              "name": "Parker Jones",
+              "email": "parker@example.com"
+            }
+          ],
+          "created_at": "2024-04-12T06:58:37.892000Z",
+          "updated_at": "2024-04-12T07:01:03.510528Z",
+          "custom_data": {
+            "crm_id": "eb9b8d9b-7dd6-48e6-8c39-8557bba5eaa9"
+          },
+          "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+          "import_meta": null,
+          "company_number": "555775291485",
+          "tax_identifier": "555952383"
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0h0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0h0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T19:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_business_updated",
+        "business": {
+          "id": "biz_01hv8hkr641vmpwytx38znv56k",
+          "name": "Uplift Inc.",
+          "status": "active",
+          "contacts": [
+            {
+              "name": "Parker Jones",
+              "email": "parker@example.com"
+            }
+          ],
+          "created_at": "2024-04-12T06:58:37.892000Z",
+          "updated_at": "2024-04-12T07:01:03.510528Z",
+          "custom_data": {
+            "crm_id": "eb9b8d9b-7dd6-48e6-8c39-8557bba5eaa9"
+          },
+          "customer_id": "ctm_01hv6y1jedq4p1n0yqn5ba3ky4",
+          "import_meta": null,
+          "company_number": "555775291485",
+          "tax_identifier": "555952383"
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0i0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0i0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-04T12:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": "customer_request",
+      "detail": {
+        "action": "subscription_canceled",
+        "effective_from": "next_billing_period"
+      }
+    },
+    {
+      "id": "subhis_01k0j0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0j0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T20:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_collection_mode_updated",
+        "collection_mode": "manual"
+      }
+    },
+    {
+      "id": "subhis_01k0k0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0k0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-01T00:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_consent_requirement_granted",
+        "consent_requirement": {
+          "id": "subcr_01j3g2y5g0f5q9k2h1n8x7e6d5",
+          "requirement": "trial_ending",
+          "status": "granted",
+          "created_at": "2026-06-01T00:00:00.000000Z",
+          "consent_period": {
+            "starts_at": "2026-06-01T00:00:00.000000Z",
+            "ends_at": "2026-06-15T00:00:00.000000Z"
+          },
+          "granted_at": "2026-06-10T00:00:00.000000Z",
+          "voided_at": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0l0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0l0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T12:42:27.000000Z",
+      "source": "checkout",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_created",
+        "status": "active",
+        "collection_mode": "automatic",
+        "billing_details": null,
+        "customer": null,
+        "address": null,
+        "business": null,
+        "currency_code": "USD",
+        "current_billing_period": {
+          "starts_at": "2026-06-29T12:42:27.000000Z",
+          "ends_at": "2026-07-29T12:42:27.000000Z"
+        },
+        "billing_cycle": { "frequency": 1, "interval": "month" },
+        "items": null,
+        "custom_data": null,
+        "discount": null,
+        "has_payment_method": true
+      }
+    },
+    {
+      "id": "subhis_01k0m0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0m0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T21:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_currency_updated",
+        "currency_code": "EUR"
+      }
+    },
+    {
+      "id": "subhis_01k0n0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0n0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T22:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_custom_data_updated",
+        "custom_data": { "key": "value" }
+      }
+    },
+    {
+      "id": "subhis_01k0o0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0o0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-06-29T23:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_customer_updated",
+        "customer": {
+          "id": "ctm_01h844p3h41s12zs5mn4axja51",
+          "status": "active",
+          "custom_data": {
+            "customer_reference_id": "abcd1234"
+          },
+          "name": "Alex Wilson",
+          "email": "test2@example.com",
+          "marketing_consent": false,
+          "locale": "en",
+          "created_at": "2023-08-18T10:57:31.172000Z",
+          "updated_at": "2023-08-18T10:57:31.172000Z",
+          "import_meta": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0p0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0p0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-02T10:00:00.000000Z",
+      "source": "api",
+      "actor": { "type": "api_key", "id": "apikey_01h8441jn5pcwrfhwh78jqt8hl" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_discount_added",
+        "discount": {
+          "discount": {
+            "id": "dsc_01h83xenpcfjyhkqr4x214m02x",
+            "status": "active",
+            "description": "Nonprofit discount",
+            "enabled_for_checkout": true,
+            "code": "ABCDE12345",
+            "type": "percentage",
+            "mode": "standard",
+            "amount": "10",
+            "currency_code": "USD",
+            "recur": true,
+            "maximum_recurring_intervals": 5,
+            "usage_limit": 1000,
+            "restrict_to": ["pro_01gsz4t5hdjse780zja8vvr7jg", "pro_01gsz4s0w61y0pp88528f1wvvb"],
+            "expires_at": null,
+            "times_used": 0,
+            "created_at": "2023-08-18T08:51:07.596000Z",
+            "updated_at": "2023-08-18T08:51:07.596000Z",
+            "import_meta": null,
+            "custom_data": { "key": "value" },
+            "discount_group_id": null,
+            "discount_group": null
+          },
+          "type": "recurring",
+          "starts_at": "2026-07-02T10:00:00.000000Z",
+          "ends_at": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0q0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0q0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-15T10:00:00.000000Z",
+      "source": "system",
+      "actor": { "type": "system", "id": null },
+      "reason": null,
+      "detail": {
+        "action": "subscription_discount_expired",
+        "discount": {
+          "discount": {
+            "id": "dsc_01h83xenpcfjyhkqr4x214m02x",
+            "status": "expired",
+            "description": "Nonprofit discount",
+            "enabled_for_checkout": true,
+            "code": "ABCDE12345",
+            "type": "percentage",
+            "mode": "standard",
+            "amount": "10",
+            "currency_code": "USD",
+            "recur": true,
+            "maximum_recurring_intervals": 5,
+            "usage_limit": 1000,
+            "restrict_to": ["pro_01gsz4t5hdjse780zja8vvr7jg", "pro_01gsz4s0w61y0pp88528f1wvvb"],
+            "expires_at": "2026-07-15T10:00:00.000000Z",
+            "times_used": 1,
+            "created_at": "2023-08-18T08:51:07.596000Z",
+            "updated_at": "2023-08-18T08:51:07.596000Z",
+            "import_meta": null,
+            "custom_data": { "key": "value" },
+            "discount_group_id": null,
+            "discount_group": null
+          },
+          "type": "recurring",
+          "starts_at": "2026-07-02T10:00:00.000000Z",
+          "ends_at": "2026-07-15T10:00:00.000000Z"
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0r0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0r0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-16T10:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_discount_removed",
+        "discount": {
+          "discount": {
+            "id": "dsc_01h83xenpcfjyhkqr4x214m02x",
+            "status": "active",
+            "description": "Nonprofit discount",
+            "enabled_for_checkout": true,
+            "code": "ABCDE12345",
+            "type": "percentage",
+            "mode": "standard",
+            "amount": "10",
+            "currency_code": "USD",
+            "recur": true,
+            "maximum_recurring_intervals": 5,
+            "usage_limit": 1000,
+            "restrict_to": ["pro_01gsz4t5hdjse780zja8vvr7jg", "pro_01gsz4s0w61y0pp88528f1wvvb"],
+            "expires_at": null,
+            "times_used": 0,
+            "created_at": "2023-08-18T08:51:07.596000Z",
+            "updated_at": "2023-08-18T08:51:07.596000Z",
+            "import_meta": null,
+            "custom_data": { "key": "value" },
+            "discount_group_id": null,
+            "discount_group": null
+          },
+          "type": "recurring",
+          "starts_at": "2026-07-02T10:00:00.000000Z",
+          "ends_at": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k0s0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0s0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-01T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_item_added",
+        "price": {
+          "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "type": "standard",
+          "description": "Monthly (per seat)",
+          "name": "Monthly (per seat)",
+          "tax_mode": "account_setting",
+          "billing_cycle": { "frequency": 1, "interval": "month" },
+          "trial_period": null,
+          "unit_price": { "amount": "3000", "currency_code": "USD" },
+          "unit_price_overrides": [],
+          "custom_data": null,
+          "status": "active",
+          "quantity": { "minimum": 1, "maximum": 999 },
+          "import_meta": null,
+          "product": {
+            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "name": "ChatApp Pro",
+            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+            "tax_category": "standard",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+            "status": "active",
+            "custom_data": null,
+            "import_meta": null,
+            "prices": [],
+            "type": null,
+            "created_at": "2023-08-16T14:38:08.300000Z",
+            "updated_at": "2023-08-16T14:38:08.300000Z"
+          },
+          "created_at": "2023-02-23T13:55:22.538367Z",
+          "updated_at": "2023-11-09T14:07:16.051528Z"
+        },
+        "quantity": 5,
+        "update_summary": { "quantity_delta": 5 },
+        "proration_billing_mode": "prorated_immediately",
+        "on_payment_failure": "prevent_change",
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s7t9x"
+      }
+    },
+    {
+      "id": "subhis_01k0t0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0t0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-08T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_item_quantity_updated",
+        "price": {
+          "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "type": "standard",
+          "description": "Monthly (per seat)",
+          "name": "Monthly (per seat)",
+          "tax_mode": "account_setting",
+          "billing_cycle": { "frequency": 1, "interval": "month" },
+          "trial_period": null,
+          "unit_price": { "amount": "3000", "currency_code": "USD" },
+          "unit_price_overrides": [],
+          "custom_data": null,
+          "status": "active",
+          "quantity": { "minimum": 1, "maximum": 999 },
+          "import_meta": null,
+          "product": {
+            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "name": "ChatApp Pro",
+            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+            "tax_category": "standard",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+            "status": "active",
+            "custom_data": null,
+            "import_meta": null,
+            "prices": [],
+            "type": null,
+            "created_at": "2023-08-16T14:38:08.300000Z",
+            "updated_at": "2023-08-16T14:38:08.300000Z"
+          },
+          "created_at": "2023-02-23T13:55:22.538367Z",
+          "updated_at": "2023-11-09T14:07:16.051528Z"
+        },
+        "quantity": 8,
+        "update_summary": { "quantity_delta": 3 },
+        "proration_billing_mode": "prorated_next_billing_period",
+        "on_payment_failure": "apply_change",
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s8a0a"
+      }
+    },
+    {
+      "id": "subhis_01k0u0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0u0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-09T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_item_removed",
+        "price": {
+          "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+          "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "type": "standard",
+          "description": "Monthly (per seat)",
+          "name": "Monthly (per seat)",
+          "tax_mode": "account_setting",
+          "billing_cycle": { "frequency": 1, "interval": "month" },
+          "trial_period": null,
+          "unit_price": { "amount": "3000", "currency_code": "USD" },
+          "unit_price_overrides": [],
+          "custom_data": null,
+          "status": "active",
+          "quantity": { "minimum": 1, "maximum": 999 },
+          "import_meta": null,
+          "product": {
+            "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+            "name": "ChatApp Pro",
+            "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+            "tax_category": "standard",
+            "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+            "status": "active",
+            "custom_data": null,
+            "import_meta": null,
+            "prices": [],
+            "type": null,
+            "created_at": "2023-08-16T14:38:08.300000Z",
+            "updated_at": "2023-08-16T14:38:08.300000Z"
+          },
+          "created_at": "2023-02-23T13:55:22.538367Z",
+          "updated_at": "2023-11-09T14:07:16.051528Z"
+        },
+        "quantity": 0,
+        "update_summary": { "quantity_delta": -8 },
+        "proration_billing_mode": "full_immediately",
+        "on_payment_failure": "prevent_change",
+        "transaction_id": null
+      }
+    },
+    {
+      "id": "subhis_01k0v0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0v0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-10T09:00:00.000000Z",
+      "source": "api",
+      "actor": { "type": "api_key", "id": "apikey_01h8441jn5pcwrfhwh78jqt8hl" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_one_off_charge_applied",
+        "effective_from": "immediately",
+        "items": [
+          {
+            "price": {
+              "id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+              "product_id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+              "type": "standard",
+              "description": "Monthly (per seat)",
+              "name": "Monthly (per seat)",
+              "tax_mode": "account_setting",
+              "billing_cycle": { "frequency": 1, "interval": "month" },
+              "trial_period": null,
+              "unit_price": { "amount": "3000", "currency_code": "USD" },
+              "unit_price_overrides": [],
+              "custom_data": null,
+              "status": "active",
+              "quantity": { "minimum": 1, "maximum": 999 },
+              "import_meta": null,
+              "product": {
+                "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+                "name": "ChatApp Pro",
+                "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level.",
+                "tax_category": "standard",
+                "image_url": "https://paddle-sandbox.s3.amazonaws.com/user/10889/2nmP8MQSret0aWeDemRw_icon1.png",
+                "status": "active",
+                "custom_data": null,
+                "import_meta": null,
+                "prices": [],
+                "type": null,
+                "created_at": "2023-08-16T14:38:08.300000Z",
+                "updated_at": "2023-08-16T14:38:08.300000Z"
+              },
+              "created_at": "2023-02-23T13:55:22.538367Z",
+              "updated_at": "2023-11-09T14:07:16.051528Z"
+            },
+            "quantity": 1
+          }
+        ],
+        "on_payment_failure": "prevent_change",
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s8b1b"
+      }
+    },
+    {
+      "id": "subhis_01k0w0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0w0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-11T09:00:00.000000Z",
+      "source": "system",
+      "actor": { "type": "system", "id": null },
+      "reason": null,
+      "detail": {
+        "action": "subscription_past_due",
+        "status": "past_due",
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s8c2c"
+      }
+    },
+    {
+      "id": "subhis_01k0x0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0x0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-12T09:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": "customer_request",
+      "detail": {
+        "action": "subscription_paused",
+        "effective_from": "next_billing_period",
+        "status": "paused"
+      }
+    },
+    {
+      "id": "subhis_01k8w1f5n7w8x9y0z1a2b3c4e3",
+      "group_id": "subhisgrp_01k8w1f5n7w8x9y0z1a2b3c4e3",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-06T14:00:00.000000Z",
+      "source": "system",
+      "actor": { "type": "system", "id": null },
+      "reason": null,
+      "detail": {
+        "action": "subscription_payment_attempted",
+        "operation": "subscription_update",
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s7t9y"
+      }
+    },
+    {
+      "id": "subhis_01k6w1f5n7w8x9y0z1a2b3c4e1",
+      "group_id": "subhisgrp_01k6w1f5n7w8x9y0z1a2b3c4e1",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-05T13:00:00.000000Z",
+      "source": "checkout",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_payment_method_added"
+      }
+    },
+    {
+      "id": "subhis_01k0y0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0y0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-13T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_payment_method_removed"
+      }
+    },
+    {
+      "id": "subhis_01k0z0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k0z0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-14T09:00:00.000000Z",
+      "source": "dashboard",
+      "actor": { "type": "user", "id": "usr_01h8441jn5pcwrfhwh78jqt8hk" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_payment_method_updated"
+      }
+    },
+    {
+      "id": "subhis_01k1w1f5n7w8x9y0z1a2b3c4d6",
+      "group_id": "subhisgrp_01k1w1f5n7w8x9y0z1a2b3c4d6",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-29T12:42:28.000000Z",
+      "source": "system",
+      "actor": { "type": "system", "id": null },
+      "reason": null,
+      "detail": {
+        "action": "subscription_renewed",
+        "next_billed_at": "2026-08-29T12:42:28.000000Z",
+        "current_billing_period": {
+          "starts_at": "2026-07-29T12:42:28.000000Z",
+          "ends_at": "2026-08-29T12:42:28.000000Z"
+        },
+        "transaction_id": "txn_01h89231k3a1q8mn6p4r5s7t9w"
+      }
+    },
+    {
+      "id": "subhis_01k1a0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k1a0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-20T09:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_resumed",
+        "status": "active",
+        "on_resume": "start_new_billing_period"
+      }
+    },
+    {
+      "id": "subhis_01k4w1f5n7w8x9y0z1a2b3c4d9",
+      "group_id": "subhisgrp_01k4w1f5n7w8x9y0z1a2b3c4d9",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-03T11:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_scheduled_change_added",
+        "scheduled_change": {
+          "action": "cancel",
+          "effective_at": "2026-08-01T00:00:00.000000Z",
+          "resume_at": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k1b0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k1b0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-21T09:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_scheduled_change_removed",
+        "scheduled_change": {
+          "action": "cancel",
+          "effective_at": "2026-08-01T00:00:00.000000Z",
+          "resume_at": null
+        }
+      }
+    },
+    {
+      "id": "subhis_01k1c0a4m6v7w8x9y0z1a2b3c4",
+      "group_id": "subhisgrp_01k1c0a4m6v7w8x9y0z1a2b3c4",
+      "subscription_id": "sub_01hv959anj4zrw503h2acawb3p",
+      "occurred_at": "2026-07-22T09:00:00.000000Z",
+      "source": "customer_portal",
+      "actor": { "type": "customer", "id": "ctm_01hv8wt8nffez4p2t6typn4a5j" },
+      "reason": null,
+      "detail": {
+        "action": "subscription_scheduled_change_updated",
+        "scheduled_change": {
+          "action": "pause",
+          "effective_at": "2026-08-15T00:00:00.000000Z",
+          "resume_at": "2026-09-15T00:00:00.000000Z"
+        }
+      }
+    }
+  ],
+  "meta": {
+    "request_id": "170e71a2-ed13-4f45-b002-45693f5361b4",
+    "pagination": {
+      "per_page": 50,
+      "next": "https://sandbox-api.paddle.com/subscriptions/sub_01hv959anj4zrw503h2acawb3p/history?after=subhis_01k1c0a4m6v7w8x9y0z1a2b3c4",
+      "has_more": false,
+      "estimated_total": 33
+    }
+  }
+}

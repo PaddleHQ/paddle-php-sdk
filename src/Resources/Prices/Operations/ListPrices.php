@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\Prices\Operations;
 
 use Paddle\SDK\Entities\Shared\CatalogType;
+use Paddle\SDK\Entities\Shared\Interval;
 use Paddle\SDK\Entities\Shared\Status;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\HasParameters;
@@ -30,6 +31,8 @@ class ListPrices implements HasParameters
         private readonly array $productIds = [],
         private readonly array $statuses = [],
         private readonly bool|null $recurring = null,
+        private readonly Interval|null $billingCycleInterval = null,
+        private readonly int|null $billingCycleFrequency = null,
     ) {
         if ($invalid = array_filter($this->includes, fn ($value): bool => ! $value instanceof Includes)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('includes', Includes::class, implode(', ', $invalid));
@@ -65,6 +68,8 @@ class ListPrices implements HasParameters
                 'product_id' => implode(',', $this->productIds),
                 'status' => implode(',', array_map($enumStringify, $this->statuses)),
                 'recurring' => isset($this->recurring) ? ($this->recurring ? 'true' : 'false') : null,
+                'billing_cycle.interval' => $this->billingCycleInterval?->getValue(),
+                'billing_cycle.frequency' => $this->billingCycleFrequency,
             ]),
         );
     }

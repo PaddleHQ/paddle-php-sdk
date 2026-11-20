@@ -26,6 +26,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CurrencyCode SEK()
  * @method static CurrencyCode ARS()
  * @method static CurrencyCode BRL()
+ * @method static CurrencyCode CLP()
  * @method static CurrencyCode CNY()
  * @method static CurrencyCode COP()
  * @method static CurrencyCode CZK()
@@ -37,6 +38,7 @@ use Paddle\SDK\PaddleEnum;
  * @method static CurrencyCode MXN()
  * @method static CurrencyCode NOK()
  * @method static CurrencyCode NZD()
+ * @method static CurrencyCode PEN()
  * @method static CurrencyCode PLN()
  * @method static CurrencyCode RUB()
  * @method static CurrencyCode THB()
@@ -60,6 +62,7 @@ final class CurrencyCode extends PaddleEnum
     private const SEK = 'SEK';
     private const ARS = 'ARS';
     private const BRL = 'BRL';
+    private const CLP = 'CLP';
     private const CNY = 'CNY';
     private const COP = 'COP';
     private const CZK = 'CZK';
@@ -71,6 +74,7 @@ final class CurrencyCode extends PaddleEnum
     private const MXN = 'MXN';
     private const NOK = 'NOK';
     private const NZD = 'NZD';
+    private const PEN = 'PEN';
     private const PLN = 'PLN';
     private const RUB = 'RUB';
     private const THB = 'THB';

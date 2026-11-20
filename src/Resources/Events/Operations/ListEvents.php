@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paddle\SDK\Resources\Events\Operations;
 
+use Paddle\SDK\Entities\DateTime;
 use Paddle\SDK\Entities\Event\EventTypeName;
 use Paddle\SDK\Exceptions\SdkExceptions\InvalidArgumentException;
 use Paddle\SDK\HasParameters;
@@ -17,6 +18,9 @@ class ListEvents implements HasParameters
     public function __construct(
         private readonly Pager|null $pager = null,
         private readonly array $eventTypes = [],
+        private readonly string|null $filter = null,
+        private readonly \DateTimeInterface|null $to = null,
+        private readonly \DateTimeInterface|null $from = null,
     ) {
         if ($invalid = array_filter($this->eventTypes, fn ($value): bool => ! $value instanceof EventTypeName)) {
             throw InvalidArgumentException::arrayContainsInvalidTypes('eventTypes', EventTypeName::class, implode(', ', $invalid));
@@ -31,6 +35,9 @@ class ListEvents implements HasParameters
             $this->pager?->getParameters() ?? [],
             array_filter([
                 'event_type' => implode(',', array_map($enumStringify, $this->eventTypes)),
+                'filter' => $this->filter,
+                'to' => isset($this->to) ? DateTime::from($this->to)?->format() : null,
+                'from' => isset($this->from) ? DateTime::from($this->from)?->format() : null,
             ]),
         );
     }

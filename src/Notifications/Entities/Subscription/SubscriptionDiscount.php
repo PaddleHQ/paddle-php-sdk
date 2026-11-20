@@ -13,12 +13,13 @@ namespace Paddle\SDK\Notifications\Entities\Subscription;
 
 use Paddle\SDK\Notifications\Entities\DateTime;
 
-class SubscriptionDiscount
+class SubscriptionDiscount implements \JsonSerializable
 {
     private function __construct(
         public string $id,
         public \DateTimeInterface|null $startsAt,
         public \DateTimeInterface|null $endsAt,
+        public SubscriptionDiscountType|null $type = null,
     ) {
     }
 
@@ -28,6 +29,23 @@ class SubscriptionDiscount
             $data['id'],
             isset($data['starts_at']) ? DateTime::from($data['starts_at']) : null,
             isset($data['ends_at']) ? DateTime::from($data['ends_at']) : null,
+            isset($data['type']) ? SubscriptionDiscountType::from($data['type']) : null,
         );
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [
+            'id' => $this->id,
+            'starts_at' => $this->startsAt,
+            'ends_at' => $this->endsAt,
+        ];
+
+        // Simulation payloads are validated against a schema that only accepts a known type, so leave it out when unset.
+        if ($this->type !== null) {
+            $data['type'] = $this->type;
+        }
+
+        return $data;
     }
 }

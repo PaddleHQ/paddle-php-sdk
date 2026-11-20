@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "discount": {
+    "type": "percentage",
+    "amount": "10"
+  }
+}

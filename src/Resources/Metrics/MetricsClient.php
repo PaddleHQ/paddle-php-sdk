@@ -12,16 +12,20 @@ declare(strict_types=1);
 namespace Paddle\SDK\Resources\Metrics;
 
 use Paddle\SDK\Client;
+use Paddle\SDK\Entities\Collections\MetricEntityDefinitionCollection;
 use Paddle\SDK\Entities\Metrics\MetricsActiveSubscribers;
 use Paddle\SDK\Entities\Metrics\MetricsChargebacks;
 use Paddle\SDK\Entities\Metrics\MetricsCheckoutConversion;
+use Paddle\SDK\Entities\Metrics\MetricsExplore;
 use Paddle\SDK\Entities\Metrics\MetricsMonthlyRecurringRevenue;
 use Paddle\SDK\Entities\Metrics\MetricsMonthlyRecurringRevenueChange;
 use Paddle\SDK\Entities\Metrics\MetricsRefunds;
 use Paddle\SDK\Entities\Metrics\MetricsRevenue;
 use Paddle\SDK\Exceptions\ApiError;
 use Paddle\SDK\Exceptions\SdkExceptions\MalformedResponse;
+use Paddle\SDK\Resources\Metrics\Operations\ExploreMetrics;
 use Paddle\SDK\Resources\Metrics\Operations\GetMetrics;
+use Paddle\SDK\Resources\Metrics\Operations\ListExploreEntities;
 use Paddle\SDK\ResponseParser;
 
 class MetricsClient
@@ -120,5 +124,33 @@ class MetricsClient
         );
 
         return MetricsCheckoutConversion::from($parser->getData());
+    }
+
+    /**
+     * @throws ApiError          On a generic API error
+     * @throws MalformedResponse If the API response was not parsable
+     */
+    public function listExploreEntities(ListExploreEntities $operation = new ListExploreEntities()): MetricEntityDefinitionCollection
+    {
+        $parser = new ResponseParser(
+            $this->client->getRaw('/metrics/explore/entities', $operation),
+        );
+
+        return MetricEntityDefinitionCollection::from($parser->getData());
+    }
+
+    /**
+     * @param string|null $after The `pagination->after` cursor from a previous explore() result, to fetch the next page
+     *
+     * @throws ApiError          On a generic API error
+     * @throws MalformedResponse If the API response was not parsable
+     */
+    public function explore(ExploreMetrics $operation, string|null $after = null): MetricsExplore
+    {
+        $parser = new ResponseParser(
+            $this->client->postRaw('/metrics/explore', $operation, $after === null || $after === '' ? [] : ['after' => $after]),
+        );
+
+        return MetricsExplore::from($parser->getData(), $parser->getPagination());
     }
 }

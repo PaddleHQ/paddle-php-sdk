@@ -96,6 +96,45 @@ class DiscountsClientTest extends TestCase
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/create_full'),
         ];
+
+        yield 'Create Percentage without Currency Code' => [
+            new CreateDiscount(
+                amount: '10',
+                description: 'Nonprofit discount',
+                type: DiscountType::Percentage(),
+                enabledForCheckout: true,
+                recur: true,
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_without_currency_code'),
+        ];
+
+        yield 'Create Percentage with Null Currency Code' => [
+            new CreateDiscount(
+                amount: '10',
+                description: 'Nonprofit discount',
+                type: DiscountType::Percentage(),
+                enabledForCheckout: true,
+                recur: true,
+                currencyCode: null,
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_null_currency_code'),
+        ];
+
+        yield 'Create with DateTime ExpiresAt' => [
+            new CreateDiscount(
+                amount: '10',
+                description: 'Nonprofit discount',
+                type: DiscountType::Percentage(),
+                enabledForCheckout: true,
+                recur: true,
+                currencyCode: CurrencyCode::USD(),
+                expiresAt: new \DateTimeImmutable('2025-01-01T10:00:00Z'),
+            ),
+            new Response(200, body: self::readRawJsonFixture('response/minimal_entity')),
+            self::readRawJsonFixture('request/create_with_datetime_expires_at'),
+        ];
     }
 
     /**
@@ -154,6 +193,18 @@ class DiscountsClientTest extends TestCase
             ),
             new Response(200, body: self::readRawJsonFixture('response/full_entity')),
             self::readRawJsonFixture('request/update_full'),
+        ];
+
+        yield 'Update with Null Currency Code' => [
+            new UpdateDiscount(currencyCode: null),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_null_currency_code'),
+        ];
+
+        yield 'Update with DateTime ExpiresAt' => [
+            new UpdateDiscount(expiresAt: new \DateTimeImmutable('2025-01-01T10:00:00Z')),
+            new Response(200, body: self::readRawJsonFixture('response/full_entity')),
+            self::readRawJsonFixture('request/update_datetime_expires_at'),
         ];
     }
 

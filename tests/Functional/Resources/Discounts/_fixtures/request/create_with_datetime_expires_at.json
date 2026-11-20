@@ -1,0 +1,9 @@
+{
+    "description": "Nonprofit discount",
+    "enabled_for_checkout": true,
+    "type": "percentage",
+    "amount": "10",
+    "recur": true,
+    "currency_code": "USD",
+    "expires_at": "2025-01-01T10:00:00.000000Z"
+}

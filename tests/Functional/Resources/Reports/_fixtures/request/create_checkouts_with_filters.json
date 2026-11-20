@@ -1,0 +1,18 @@
+{
+    "type": "checkouts",
+    "filters": [
+        {
+            "name": "checkout_created_at",
+            "operator": "gte",
+            "value": "2023-12-30"
+        },
+        {
+            "name": "customer_country_code",
+            "operator": null,
+            "value": [
+                "US",
+                "GB"
+            ]
+        }
+    ]
+}

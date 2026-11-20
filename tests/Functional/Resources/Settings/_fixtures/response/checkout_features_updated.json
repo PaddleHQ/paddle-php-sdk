@@ -1,0 +1,10 @@
+{
+  "data": {
+    "discounts_enabled": true,
+    "audience_opt_in": "choice",
+    "saved_payment_methods_enabled": true
+  },
+  "meta": {
+    "request_id": "3a2d1e4c-7b8f-4a6d-9c1e-2f4b6a8d0c3e"
+  }
+}

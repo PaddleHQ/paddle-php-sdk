@@ -1,0 +1,18 @@
+{
+  "data": {
+    "api": {
+      "name": "Paddle API",
+      "version": "1",
+      "environment": "production",
+      "documentation_url": "https://developer.paddle.com/api-reference/overview"
+    },
+    "caller": {
+      "auth_type": null,
+      "account": null,
+      "permissions": []
+    }
+  },
+  "meta": {
+    "request_id": "3f1e6c8a-2b4d-4a90-8c7e-1d2f3a4b5c6d"
+  }
+}
